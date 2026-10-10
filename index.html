@@ -604,7 +604,7 @@ body.light .g-cosmos{opacity:.8}
 .g-home.entr .g-tpl{opacity:0;animation:gCardIn .45s var(--ease) both;animation-delay:var(--d,.3s)}
 @media (prefers-reduced-motion:reduce){ .g-home.entr .g-hello,.g-home.entr .g-sub,.g-home.entr .g-tpl{animation:none;opacity:1} }
 @keyframes gSparkPulse{0%,100%{transform:translateY(0) scale(1);filter:brightness(1)}50%{transform:translateY(0) scale(1.06);filter:brightness(1.08)}}
-.g-hello{font-size:clamp(30px,3.8vw,44px);font-weight:500;letter-spacing:-.02em;line-height:1.28;color:var(--gt);text-align:center;word-break:keep-all} /* 1.6 상속 금지, Gemini 히어로 수준으로 타이트하게 */
+.g-hello{font-size:clamp(30px,3.9vw,56px);font-weight:700;letter-spacing:-.02em;line-height:1.28;color:#fff;text-align:center;word-break:keep-all} /* 1.6 상속 금지, Gemini 히어로 수준으로 타이트하게 */
 @media (max-width:860px){.g-hello .hseg{display:block}} /* 모바일만 지정된 지점에서 개행, 데스크톱은 공백 포함 한 줄 */
 .g-sub{font-size:clamp(14px,1.3vw,17px);color:var(--gt2);text-align:center;margin-top:10px;word-break:keep-all}
 .g-sub .sbr{display:none} /* 서브카피 지정 줄바꿈 — 데스크톱 1줄, 모바일에서만 문장 경계로 꺾임 (사용자 지시) */
@@ -877,21 +877,28 @@ body.light #teth-help svg rect{fill:#1f1f1f}
 .g-plus-pop .row{display:flex;justify-content:flex-end;margin-top:14px}
 .g-plus-pop .go{height:36px;padding:0 20px;border-radius:999px;background:var(--inv-bg);color:var(--inv-fg);font-size:13px;font-weight:600}
 /* ── 홈 템플릿 갤러리 (Gemini 카드 문법 — 사용자 지시: 제목→카드→채팅, 3열/모바일 2열, 하단 스크림) ── */
-.g-tplwrap{width:min(880px,94%);margin:30px auto 0;position:relative;z-index:1}
+.g-tplwrap{width:min(880px,94%);margin:64px auto 0;position:relative;z-index:1}
 .g-tpls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.g-tpl{position:relative;border:0;padding:0;border-radius:22px;overflow:hidden;cursor:pointer;background:var(--g1);aspect-ratio:220/124;transition:transform .15s var(--ease),box-shadow .15s;font-family:inherit}
+.g-tpl{position:relative;border:0;padding:0;border-radius:22px;overflow:hidden;cursor:pointer;background:var(--g1);aspect-ratio:220/124;transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s cubic-bezier(.22,.61,.36,1);font-family:inherit}
 .g-tpl>svg{position:absolute;inset:0;width:100%;height:100%}
 .g-tpl::before{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none;z-index:2} /* 보더 링 — 불투명 SVG 위에 페인트 (codex fc) */
 .g-tpl::after{content:'';position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 100%);pointer-events:none} /* 라벨 스크림 — Gemini 급 농도 (agy tpl P1) */
-.g-tpl:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
-.g-tpl:hover::before{box-shadow:inset 0 0 0 1px rgba(255,255,255,.16)}
-.g-tpl .lb{position:absolute;left:14px;bottom:12px;font-size:16px;font-weight:500;letter-spacing:0;color:#fff;z-index:1}
+.g-tpl:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
+.g-tpl:hover::before{box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.g-tpl:hover .lb{color:#00feff}
+.g-tpl .lb{position:absolute;left:14px;bottom:12px;font-size:14px;font-weight:500;letter-spacing:0;color:#fff;z-index:1;transition:color .35s cubic-bezier(.22,.61,.36,1)}
 .g-tpl.on{box-shadow:0 0 0 2.5px #a8c7fa}
 .g-tpl.on:hover{box-shadow:0 0 0 2.5px #a8c7fa,0 8px 24px rgba(0,0,0,.35)} /* 선택 상태에서도 hover 부양 유지 (codex fc) */
 /* 종목 = 실제 로고 타일 / 기능 배지, 브랜드 마크 (사용자 지시) */
 .g-tpl .timg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
 .g-tpl .timg img{max-width:56%;max-height:52%;object-fit:contain;display:block}
-.g-tpl .timg img.inv,.g-tpl-sel .th .timg img.inv{filter:brightness(0) invert(1)} /* 다크 배경 화이트 리버스 */
+.g-tpl .timg img.inv,.g-tpl-sel .th .timg img.inv{filter:brightness(0) invert(1)}
+/* 종목 카드: 호버 시 브랜드 색 빛 번짐 + 노이즈 질감 (--glow = 로고 브랜드 색) */
+.g-tpl[data-id="spx"]{--glow:214,0,42}.g-tpl[data-id="ndx"]{--glow:9,150,199}.g-tpl[data-id="btc"]{--glow:247,147,26}.g-tpl[data-id="eth"]{--glow:98,126,234}.g-tpl[data-id="sec"]{--glow:40,90,255}.g-tpl[data-id="hyx"]{--glow:240,70,40}.g-tpl[data-id="tsla"]{--glow:232,33,39}.g-tpl[data-id="spcx"]{--glow:150,170,205}.g-tpl[data-id="nvda"]{--glow:118,185,0}.g-tpl[data-id="aapl"]{--glow:190,195,205}.g-tpl[data-id="msft"]{--glow:0,164,239}.g-tpl[data-id="googl"]{--glow:66,133,244}.g-tpl[data-id="amzn"]{--glow:255,153,0}.g-tpl[data-id="meta"]{--glow:0,129,251}.g-tpl[data-id="avgo"]{--glow:204,9,47}.g-tpl[data-id="tsm"]{--glow:230,0,18}.g-tpl[data-id="brk"]{--glow:90,110,170}.g-tpl[data-id="lly"]{--glow:213,43,30}.g-tpl[data-id="wmt"]{--glow:0,113,220}.g-tpl[data-id="jpm"]{--glow:170,130,90}.g-tpl[data-id="visa"]{--glow:30,80,220}.g-tpl[data-id="ma"]{--glow:255,95,0}.g-tpl[data-id="nflx"]{--glow:229,9,20}.g-tpl[data-id="xom"]{--glow:237,28,36}.g-tpl[data-id="orcl"]{--glow:199,70,52}.g-tpl[data-id="cost"]{--glow:30,110,220}.g-tpl[data-id="pg"]{--glow:30,90,210}.g-tpl[data-id="aramco"]{--glow:0,170,120}.g-tpl[data-id="sap"]{--glow:0,143,211}.g-tpl[data-id="asml"]{--glow:40,80,220}.g-tpl[data-id="bac"]{--glow:227,24,55}.g-tpl[data-id="hd"]{--glow:249,99,2}.g-tpl[data-id="cola"]{--glow:244,0,9}.g-tpl[data-id="mcd"]{--glow:255,188,13}.g-tpl[data-id="tm"]{--glow:235,10,30}.g-tpl[data-id="amd"]{--glow:237,28,36}.g-tpl[data-id="intc"]{--glow:0,113,197}.g-tpl[data-id="crm"]{--glow:0,161,224}.g-tpl[data-id="pltr"]{--glow:170,180,195}.g-tpl[data-id="tcehy"]{--glow:0,82,217}.g-tpl[data-id="baba"]{--glow:255,106,0}.g-tpl[data-id="lvmh"]{--glow:190,160,110}.g-tpl[data-id="hmc"]{--glow:0,90,200}.g-tpl[data-id="nvr"]{--glow:3,199,90}.g-tpl[data-id="kko"]{--glow:254,229,0}.g-tpl[data-id="xrp"]{--glow:170,180,195}.g-tpl[data-id="sol"]{--glow:153,69,255}.g-tpl[data-id="bnb"]{--glow:243,186,47}.g-tpl[data-id="doge"]{--glow:194,166,51}.g-tpl[data-id="ada"]{--glow:0,51,173}
+.g-tpl .timg img{position:relative;z-index:1}
+.g-tpl[data-k="assets"] .timg::before{content:"";position:absolute;inset:0;background:radial-gradient(115% 135% at 50% 40%,rgba(var(--glow),.26) 0%,rgba(var(--glow),.19) 18%,rgba(var(--glow),.12) 36%,rgba(var(--glow),.06) 54%,rgba(var(--glow),.02) 72%,rgba(var(--glow),0) 100%);opacity:0;transition:opacity .5s cubic-bezier(.22,.61,.36,1)}
+.g-tpl:hover .timg::before{opacity:1}
+.g-tpl[data-k="assets"] .timg::after{content:"";position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27160%27 height=%27160%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E")} /* 다크 배경 화이트 리버스 */
 /* 배지 — 톤온톤 플랫 칩 (원색 솔리드 금지, agy fc) */
 .g-tpl .tbdg{position:absolute;top:10px;right:10px;z-index:1;font-size:10.5px;font-weight:600;letter-spacing:.02em;padding:3px 8px;border-radius:6px;background:rgba(91,138,247,.14);border:1px solid rgba(91,138,247,.28);color:#a7c0ff}
 .g-tpl .tbdg.hot{background:rgba(224,96,75,.13);border-color:rgba(224,96,75,.3);color:#f2a89b}
@@ -1420,9 +1427,9 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .ga-nav{height:30px;padding:0 12px;margin-right:2px;border-radius:999px;display:inline-flex;align-items:center;font-size:12.5px;font-weight:500;color:var(--gt2);text-decoration:none;transition:background .12s,color .12s}
 .ga-nav:hover{background:rgba(255,255,255,.07);color:var(--gt)}
 /* CTA 위계: 전환 목표인 '무료로 시작'이 솔리드, '로그인'은 아웃라인 (agy qa3) */
-.ga-login{height:30px;padding:0 16px;border-radius:999px;background:#191a1d;color:#fff;border:1px solid rgba(255,255,255,.85);font-size:12.5px;font-weight:600;transition:background .12s}
+.ga-login{height:30px;padding:0 16px;border-radius:999px;background:#313339;color:#fff;border:1px solid #616672;font-size:12.5px;font-weight:600;transition:background .12s}
 .ga-login:hover{background:#26282c}
-.ga-signup{height:30px;padding:0 16px;border-radius:999px;background:#fff;color:#111;font-size:12.5px;font-weight:600;transition:opacity .12s}
+.ga-signup{height:30px;padding:0 16px;border-radius:999px;background:#00feff;color:#111;font-size:12.5px;font-weight:600;transition:opacity .12s}
 .ga-signup:hover{opacity:.88}
 #modal-auth .modal{width:min(480px,100%);background:#1b1c1f;color:#ececf1;border-radius:24px;padding:44px 40px 36px;position:relative;text-align:center;max-height:calc(100vh - 20px);overflow-y:auto}
 #modal-auth .au-x{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#a6aab2;font-size:18px;transition:background .12s}
@@ -1480,7 +1487,7 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .g-new .lb,.g-util .lb{transition:opacity var(--motion-fast) var(--ease);white-space:nowrap}
 .g-new,.g-util{position:relative;min-width:0}
 .g-side.collapsed .g-new .lb,.g-side.collapsed .g-util .lb{opacity:0}
-.g-side.collapsed .g-new,.g-side.collapsed .g-util{padding:0 14px} /* 아이콘 중심 x 유지(10+14+8=32) */
+.g-side.collapsed .g-new,.g-side.collapsed .g-util{padding:0 12px;width:40px;height:40px;flex:none;overflow:visible} /* 아이콘 중심 x 유지(10+14+8=32) */
 .g-side.collapsed .g-new,.g-side.collapsed .g-util{margin-top:0;margin-bottom:0} /* GPT 리듬 유지 */
 .g-new .lbp,.g-util .lbp{opacity:0;pointer-events:none}
 .g-side.collapsed .g-new:hover .lbp,.g-side.collapsed .g-util:hover .lbp{opacity:1}
@@ -2787,7 +2794,7 @@ body.tf-route #teth-help{bottom:88px}
 .tfbk-filters{position:relative;display:flex;gap:16px;justify-content:center;align-items:center;margin:40px 0 57px;flex-wrap:wrap}
 .tfbk-dropwrap{position:relative;display:inline-flex}
 /* sort pill: 166x48 r24 bg #000 border 2px #4a4a4a pad 0 26 fs14, hover bg #2e2e2e (즉시) */
-.tfbk-drop{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:166px;box-sizing:border-box;height:48px;border-radius:24px;padding:0 26px;font-size:14px;color:#dbdbdb;background:#000;border:2px solid #4a4a4a;cursor:pointer;transition:none}
+.tfbk-drop{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-width:166px;box-sizing:border-box;height:48px;border-radius:24px;padding:0 26px;font-size:14px;color:#dbdbdb;background:#101113;border:2px solid #4a4a4a;cursor:pointer;transition:none}
 .tfbk-drop:hover{background:#2e2e2e}
 .tfbk-drop .car{font-size:10px;opacity:.85}
 /* 컴팩트 변형(모바일 컨트롤 132x34 r17 bg#000 bd 1px #4a4a4a / 리뷰 정렬 h34 r6) */
@@ -2821,7 +2828,7 @@ body.tf-route #teth-help{bottom:88px}
 .tfbk-catdrop{display:none}
 /* card: 1px 그라디언트 보더 래퍼 r24 on #000, 간격 50 */
 .tfbk-card{border-radius:24px;padding:1px;margin-bottom:50px;
-  background:linear-gradient(308deg,rgba(255,255,255,.14),rgba(0,0,0,0) 13.16%),linear-gradient(139deg,rgba(255,255,255,.14) 1%,rgba(0,0,0,0) 19.85%),#000}
+  background:linear-gradient(308deg,rgba(255,255,255,.14),rgba(0,0,0,0) 13.16%),linear-gradient(139deg,rgba(255,255,255,.14) 1%,rgba(0,0,0,0) 19.85%),#101113}
 /* 내부 grid [712:566]≈[1.26fr:1fr] gap 20 pad 38 40 */
 .tfbk-card .cin{border-radius:23px;display:grid;grid-template-columns:1.26fr 1fr;column-gap:20px;padding:38px 40px}
 .tfbk-card .lft{min-width:0}
@@ -3111,7 +3118,7 @@ body.tf-route #teth-help{bottom:88px}
   .ss3 .tfbk-filters .fp{display:inline-flex;align-items:center;height:38px;border-radius:19px;padding:0 16px;font-size:13px} /* 전략들: .fp가 주 내비 탭 — 모바일 숨김 예외 (qa3 P0) */
   /* (cp CSS 는 미디어 블록 밖 최상위로 이동 — 데스크톱 무스타일 사고 수정, QA) */
   .tfbk-catdrop{display:inline-flex}
-  .tfbk-drop{height:34px;border-radius:17px;padding:0 15px;border-width:1px;background:#000;min-width:132px}
+  .tfbk-drop{height:34px;border-radius:17px;padding:0 15px;border-width:1px;background:#101113;min-width:132px}
   /* 카운터 소형: 21x32 r4 pad4 6, 글리프 20/700 lh24 */
   .tfbk-cnt-tile{width:21px;height:32px;padding:4px 6px;border-radius:4px;margin:0 1.5px}
   .tfbk-cnt-clip{width:9px;height:24px}
@@ -3226,7 +3233,7 @@ body.tf-route #teth-help{bottom:88px}
 .ss3-by{font-size:16px;font-weight:400;color:#848a94;margin-left:2px}
 .ss3-div{width:1px;height:26px;background:rgba(255,255,255,.14);flex-shrink:0}
 /* 검색 필: 캐논 드롭다운 필 문법 (h48 r24 bg#000 bd2 #4a4a4a) */
-.ss3-search{display:inline-flex;align-items:center;gap:10px;height:48px;border-radius:24px;padding:0 24px;background:#000;border:2px solid #4a4a4a;flex:1;max-width:320px;min-width:180px;box-sizing:border-box;transition:none}
+.ss3-search{display:inline-flex;align-items:center;gap:10px;height:48px;border-radius:24px;padding:0 24px;background:#101113;border:2px solid #4a4a4a;flex:1;max-width:320px;min-width:180px;box-sizing:border-box;transition:none}
 .ss3-search:hover,.ss3-search:focus-within{border-color:#787878}
 .ss3-search svg{width:14px;height:14px;stroke:#848a94;fill:none;stroke-width:2;flex-shrink:0}
 .ss3-search input{background:none;border:0;outline:none;color:#fff;font-size:14px;width:100%}
@@ -3296,10 +3303,10 @@ body.tf-route #teth-help{bottom:88px}
 .ss3-dlgw{position:fixed;inset:0;z-index:320;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.75);backdrop-filter:blur(8px);animation:ss3fade .15s linear}
 @keyframes ss3fade{from{opacity:0}to{opacity:1}}
 .ss3-dlg{position:relative;width:560px;max-width:100%;max-height:85vh;border-radius:24px;padding:1px;overflow:hidden;animation:ss3in .12s ease-out;
-  background:linear-gradient(308deg,rgba(255,255,255,.14),rgba(0,0,0,0) 13.16%),linear-gradient(139deg,rgba(255,255,255,.14) 1%,rgba(0,0,0,0) 19.85%),#000}
+  background:linear-gradient(308deg,rgba(255,255,255,.14),rgba(0,0,0,0) 13.16%),linear-gradient(139deg,rgba(255,255,255,.14) 1%,rgba(0,0,0,0) 19.85%),#101113}
 .ss3-dlg.wide{width:620px}
 @keyframes ss3in{from{opacity:0}to{opacity:1}}
-.ss3-dlg .din{background:#000;border-radius:23px;padding:36px 40px;max-height:calc(85vh - 2px);overflow-y:auto;box-sizing:border-box}
+.ss3-dlg .din{background:#101113;border-radius:23px;padding:36px 40px;max-height:calc(85vh - 2px);overflow-y:auto;box-sizing:border-box}
 .ss3-dlg .dh2{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
 .ss3-dlg .dh2 b{font-size:24px;font-weight:600;color:#fff}
 .ss3-dlg .dx{background:none;border:0;color:#848a94;font-size:18px;cursor:pointer;padding:4px;transition:none}
@@ -3310,7 +3317,7 @@ body.tf-route #teth-help{bottom:88px}
 .ss3-dlg .ntc{font-size:13px;line-height:20px;color:#848a94;margin-bottom:20px}
 .ss3-dlg .fld3{margin-bottom:16px}
 .ss3-dlg .fld3 label{display:block;font-size:13px;color:#848a94;margin-bottom:8px}
-.ss3-dlg select,.ss3-dlg input[type=text]{width:100%;height:48px;border-radius:12px;background:#000;border:2px solid #4a4a4a;color:#fff;font-size:14px;padding:0 16px;box-sizing:border-box;outline:none}
+.ss3-dlg select,.ss3-dlg input[type=text]{width:100%;height:48px;border-radius:12px;background:#101113;border:2px solid #4a4a4a;color:#fff;font-size:14px;padding:0 16px;box-sizing:border-box;outline:none}
 .ss3-dlg select{appearance:none;-webkit-appearance:none;background-image:url('data:image/svg+xml;utf8,<svg fill="%23dbdbdb" height="20" viewBox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');background-repeat:no-repeat;background-position:right 16px center;padding-right:44px;cursor:pointer} /* AGY 게이트 P1-6: 네이티브 화살표 제거, pillDrop 룩 */
 .ss3-dlg select:hover,.ss3-dlg input[type=text]:focus{border-color:#787878}
 .ss3-dlg .warn3{background:rgba(234,179,8,.08);border:1px solid rgba(234,179,8,.25);border-radius:10px;padding:12px 16px;font-size:12.5px;line-height:1.6;color:#eab308;margin-bottom:16px}
@@ -7065,7 +7072,7 @@ body.st-full .stg{position:relative}
 .acx-g2 li{grid-template-columns:24px minmax(0,1fr)}
 /* ── 거래소 연결 플랜 (참고: ChatGPT 플랜 업그레이드, 플랜 구성) ── */
 body.pl-page #g-content,body.pl-page #g-scroll,body.pl-page .g-center{background:#212121}
-body.pl-page.pl-dark #g-content,body.pl-page.pl-dark #g-scroll,body.pl-page.pl-dark .g-center{background:#000}
+body.pl-page.pl-dark #g-content,body.pl-page.pl-dark #g-scroll,body.pl-page.pl-dark .g-center{background:#101113}
 body.pl-page #g-chead{background:transparent}
 body.pl-page #g-appbanner{display:none!important}
 .pl{max-width:1080px;margin:0 auto;padding:8px 24px 100px;color:#ececec;font-weight:400}
@@ -7195,7 +7202,7 @@ body.pl-page #teth-help,body.pl-page .hw-fab,body.pl-page #hw-fab,body.pl-page [
 .pl-t3.mt0{margin:0 0 6px}
 .pl-left .pl-d2{margin:0 0 18px}
 /* 플랜 화면도 메인과 같은 검정 (머리글과 띠가 생기지 않게) */
-body.pl-page #g-content,body.pl-page #g-scroll,body.pl-page .g-center{background:#000}
+body.pl-page #g-content,body.pl-page #g-scroll,body.pl-page .g-center{background:#101113}
 .pl-card{background:transparent}
 .pl-card.pl-hi{background:linear-gradient(180deg,#0e0e0e 0%,#1b2740 48%,#24406a 100%)}
 /* ── 플랜 뒤 화면 (px): 검정 바탕 한 열, 제목 하나, 한 줄, 단추 하나 ── */
@@ -7370,12 +7377,12 @@ body.px-go #teth-help{display:none!important}
   .px-list .px-acct{padding:14px 0}
 }
 /* ── 설정을 ChatGPT 설정 어휘로 (sk-settings) ── */
-body.st-full #g-content,body.st-full #g-scroll,body.st-full .g-center{background:#000}
+body.st-full #g-content,body.st-full #g-scroll,body.st-full .g-center{background:#101113}
 body.st-full #teth-help,body.st-full #g-appbanner,body.st-full .gft{display:none!important}
 body.st-full .stg{color:#ececec;grid-template-columns:300px minmax(0,1fr)}
-body.st-full .stg-nav{width:300px;background:#000;border-right:1px solid rgba(255,255,255,.1);padding:60px 10px 24px;gap:2px}
+body.st-full .stg-nav{width:300px;background:#101113;border-right:1px solid rgba(255,255,255,.1);padding:60px 10px 24px;gap:2px}
 body.st-full .stg.nav-hid .stg-nav{width:300px}
-body.st-full .stg-rail{background:#000;border-right-color:rgba(255,255,255,.1)}
+body.st-full .stg-rail{background:#101113;border-right-color:rgba(255,255,255,.1)}
 body.st-full .stg-back{height:44px;padding:0 12px;font-size:16px;color:#ececec;gap:12px}
 body.st-full .stg-back svg{width:20px;height:20px}
 body.st-full .stg-nav small{margin:22px 12px 8px;font-size:14px;color:#9a9a9a;font-weight:400}
@@ -7449,7 +7456,7 @@ body.st-full .stg-hr:first-child{border-top:0}
 .stg-dlg .bts{margin-top:20px}
 @media (max-width:900px){
   body.st-full .stg{display:block}
-  body.st-full .stg-nav{position:static;display:flex;flex-direction:column;align-items:stretch;width:auto;height:auto;padding:16px 12px 40px;border:0;border-bottom:0;overflow:visible;background:#000}
+  body.st-full .stg-nav{position:static;display:flex;flex-direction:column;align-items:stretch;width:auto;height:auto;padding:16px 12px 40px;border:0;border-bottom:0;overflow:visible;background:#101113}
   body.st-full .stg-back{position:static;margin:0 0 6px;width:auto;font-size:16px;padding:0 8px;justify-content:flex-start;box-shadow:none;background:none}
   body.st-full .stg-back svg{width:20px;height:20px}
   body.st-full .stg-nav small{display:block;margin:20px 8px 6px}
@@ -7575,10 +7582,10 @@ body.st-full .stg-r .k span .num{white-space:nowrap}
   .skc-ft{padding:12px 16px calc(14px + env(safe-area-inset-bottom))}
 }
 /* ── 메인 화면 바탕을 설정 화면처럼 완전 검정으로 (색만, 구성은 그대로) ── */
-body.g-dark,body.g-dark #g-root,body.g-dark .g-center{background:#000}
-body.g-dark .g-side{background:#000;border-right:1px solid rgba(255,255,255,.1)}
+body.g-dark,body.g-dark #g-root,body.g-dark .g-center{background:#101113}
+body.g-dark .g-side{background:#101113;border-right:1px solid rgba(255,255,255,.1)}
 /* ── AI 트레이딩 첫 화면: 명조 → 시스템 산세리프 400, 연두 → 흰 알약 (영상, 무료 줄, 아래 섹션은 그대로) ── */
-#g-root .txh-hero h1{font-family:var(--font),system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:400;font-size:48px;line-height:1.2;letter-spacing:-.02em}
+#g-root .txh-hero h1{font-family:var(--font),system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:700;font-size:56px;line-height:1.2;letter-spacing:-.02em}
 #g-root .txh-eyebrow{font-size:14px;color:#cdcdcd;margin-bottom:14px}
 #g-root .txh-sub{font-size:18px;line-height:1.6;color:#cdcdcd;max-width:640px;margin:18px auto 28px}
 #g-root .txh-hero .txh-cta{height:48px;padding:0 26px;background:#fff;color:#000;font-weight:500;font-size:16px}
@@ -7607,20 +7614,20 @@ body.g-dark .g-side{background:#000;border-right:1px solid rgba(255,255,255,.1)}
 .skf-fw svg{opacity:.7}
 .skf-sort{position:relative;display:inline-flex}
 .skf-sort .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-.skf-sort select{height:40px;padding:0 34px 0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:#000 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23cdcdcd' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;color:#ececec;font:inherit;font-size:14px;appearance:none;-webkit-appearance:none;cursor:pointer}
+.skf-sort select{height:40px;padding:0 34px 0 16px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:#101113 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23cdcdcd' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E") no-repeat right 14px center;color:#ececec;font:inherit;font-size:14px;appearance:none;-webkit-appearance:none;cursor:pointer}
 @media (max-width:760px){
   .mk-card.skf{padding:18px 18px;gap:14px;border-radius:20px}
   .skf-ret b{font-size:24px}
 }
 /* 첫 화면 바탕도 메인과 같은 검정 */
-#g-root .txh-hero,#g-root .txh{background:#000}
+#g-root .txh-hero,#g-root .txh{background:#101113}
 .skf-fw .mk-fw,.skf-fw{display:flex;align-items:center;gap:6px}
 /* 복사한 사람 수: 아이콘과 숫자가 붙지 않게 */
 .skf-fw .mk3-fw{display:inline-flex!important;align-items:center;gap:8px!important;font-size:14px;color:#afafaf}
 .skf-fw .mk3-fw svg{margin:0!important;position:static!important;flex:none;width:16px;height:16px}
 .skf-fw .mk3-fw b{font-weight:500;color:#ececec}
 /* ── 소개 페이지 아래 섹션 전체: 명조 → 산세리프 400, 연두 → 흰 알약, 카드 #303030 반경 26 ── */
-#g-root .txh,#g-root .txh-wrap{background:#000}
+#g-root .txh,#g-root .txh-wrap{background:#101113}
 #g-root .txh h2,#g-root .txh-step .n{font-family:var(--font),system-ui,-apple-system,"Segoe UI",sans-serif}
 #g-root .txh h2{font-weight:400;font-size:28px;line-height:1.3;letter-spacing:-.01em;color:#fff}
 #g-root .txh-lead{margin-top:10px;font-size:18px;line-height:1.55;color:#cdcdcd;max-width:640px}
@@ -7658,9 +7665,9 @@ body.g-dark .g-side{background:#000;border-right:1px solid rgba(255,255,255,.1)}
   #g-root .txh-sec{padding-top:72px}
 }
 /* 바탕 변수도 검정으로: 입력창 받침, 흐림 띠처럼 바탕과 섞이는 요소가 띠를 만들지 않게 */
-body.g-dark{--g0:#000}
-body.g-dark .g-pillband{background-image:linear-gradient(to top,#000 56%,rgba(0,0,0,0))}
-body.g-dark #g-appbanner{background:#000}
+body.g-dark{--g0:#101113}
+body.g-dark .g-pillband{background-image:linear-gradient(to top,#101113 56%,rgba(0,0,0,0))}
+body.g-dark #g-appbanner{background:#101113}
 /* ── AI 질문 패널 (입력창 바로 위, Genspark식) ── */
 #g-askdock{max-width:820px;margin:0 auto 10px;position:relative;z-index:3}
 .ska{background:#2f2f2f;border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;animation:skaIn .18s ease both}
@@ -7782,7 +7789,7 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 .myex.on{border:2px solid #9a9a9a;color:#fff;padding:0 15px}
 .myex-ic{display:inline-flex}
 .myex-ic .tb-ic{width:16px;height:16px;border-radius:4px;margin:0}
-.myex-ic .tb-ic+.tb-ic{margin-left:-4px;box-shadow:0 0 0 2px #000}
+.myex-ic .tb-ic+.tb-ic{margin-left:-4px;box-shadow:0 0 0 2px #101113}
 .myex svg{width:14px;height:14px}
 .myex-m{position:absolute;top:calc(100% + 6px);left:0;z-index:40;min-width:220px;padding:6px;border-radius:16px;background:#2f2f2f;border:1px solid rgba(255,255,255,.1);box-shadow:0 12px 32px rgba(0,0,0,.5)}
 .myex-m button{display:flex;align-items:center;gap:8px;width:100%;height:40px;padding:0 12px;border:0;border-radius:10px;background:none;color:#ececec;font:inherit;font-size:14px;text-align:left;cursor:pointer}
@@ -8174,7 +8181,7 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 /* Codex 차트 s3: 초록 통일, 청산 표시는 범례처럼 회색, 모바일 월별 격자 */
 #bt-root .bt-chart path[stroke="#2fb98a"]{stroke:#2ebd85}
 #bt-root .bt-chart stop[stop-color="#2fb98a"]{stop-color:#2ebd85}
-#bt-root .bt-chart g.bt-m.k-sell path{stroke:#cdcdcd!important;fill:#000!important}
+#bt-root .bt-chart g.bt-m.k-sell path{stroke:#cdcdcd!important;fill:#101113!important}
 #bt-root .bt-leg .a::before{background:linear-gradient(90deg,#2ebd85 50%,#f0566a 50%)!important}
 .skb-mtm{display:none}
 @media (max-width:768px){
@@ -8393,7 +8400,7 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .g-send:hover{background:#e5e5e5}
 .g-send:disabled{background:#2f2f2f;color:#9a9a9a}
 /* ═══ 터미널 시장 (sk-mkt): 바이낸스처럼 칸마다 카드, 시장 줄, 종목 선택 창, 차트/정보/데이터 ═══ */
-.tft-page{--mkc:#141414;background:#000}
+.tft-page{--mkc:#141414;background:#101113}
 .tft-page .tm-simnote{display:none!important}
 /* 카드 배치: 시장 줄 / (차트 카드 | 판단 카드) / 아래 카드 */
 .tft-page .mkh{margin:6px 6px 0;border-radius:16px;background:var(--mkc)}
