@@ -502,7 +502,7 @@ body{
   --gb:#3d6ef0;--gb2:#5b8af7;--gg:#4ec08d;--ga:#d9a84e;--gr:#e0604b;
   /* 확장 토큰: 표면/반전/툴팁/그림자/글로우, 라이트 테마가 이 값만 재정의한다 */
   --pill:#1e2024;--pop:#26282d;--hoverline:rgba(255,255,255,.05);
-  --tip-bg:#e9e9e9;--tip-fg:#17181b;--inv-bg:#eceef2;--inv-fg:#17181b;
+  --tip-bg:#313339;--tip-fg:#fff;--inv-bg:#eceef2;--inv-fg:#17181b;
   --shadow-pop:0 16px 48px rgba(0,0,0,.45);--shadow-pill:none;
   --glow:rgba(24,42,94,.55);}
 #g-root{position:fixed;inset:0;background:#0f1012;color:#e3e3e3;display:flex;flex-direction:column;font-size:13.5px;z-index:40;}
@@ -582,16 +582,16 @@ body.light .g-util.cur{background:#e2e6ec;color:#1f1f1f}
 .g-chead{height:44px;flex-shrink:0;display:flex;align-items:center;gap:10px;padding:0 18px;font-size:14px;font-weight:500}
 body.tf-route .g-chead{display:none} /* 전략 라우트는 콘텐츠의 tfw-hd(뒤로+제목)가 단일 헤더 — 같은 제목 이중 적층 제거 (agy IA-04) */
 .g-chead .sub{font-size:12px;color:var(--gt3);font-weight:400}
-.g-tabs{display:flex;gap:2px;margin-left:8px}
-.g-tab{padding:5px 11px;border-radius:6px;font-size:12.5px;color:var(--gt3);transition:background .12s}
+.g-tabs{display:flex;gap:2px;margin-left:0;order:-1}.g-chead .sub:empty{display:none} /* 제목과 탭 사이 불필요한 간격 제거 (사용자 지시) */
+.g-tab{padding:5px 8px;border-radius:6px;font-size:12px;color:var(--gt3);transition:background .12s}
 .g-tab:hover{background:rgba(255,255,255,.05);color:var(--gt2)}
 .g-tab.on{background:var(--g3);color:var(--gt)}
 .g-scroll{flex:1;overflow-y:auto;min-height:0}
 .g-doc{max-width:820px;margin:0 auto;padding:20px 28px 28px}
 /* home */
-.g-home{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:7vh 24px 24px;background:radial-gradient(ellipse 640px 420px at 50% 52%,var(--glow),transparent 70%)} /* Gemini 순서: 제목 상단 → 카드 → 채팅 하단 (사용자 지시) */
+.g-home{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:10vh 24px 24px;background:none} /* Gemini 순서: 제목 상단 → 카드 → 채팅 하단 (사용자 지시) */
 /* cosmic hero: 타이틀 뒤 가로 밴드 하나만 차지, 콘텐츠는 항상 위 레이어 */
-.g-cosmos{position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);width:min(980px,100%);height:min(480px,74%);pointer-events:none;z-index:0}
+.g-cosmos{display:none!important;position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);width:min(980px,100%);height:min(480px,74%);pointer-events:none;z-index:0}
 .g-home .g-hero-spark,.g-home .g-hello,.g-home .g-sub{position:relative;z-index:1} /* fixed 배치인 .g-terms, 모바일 .g-chipstack은 건드리지 않는다 */
 body.light .g-cosmos{opacity:.8}
 @media (min-width:861px){.g-home .g-chipstack{position:relative;z-index:1}}
@@ -606,7 +606,7 @@ body.light .g-cosmos{opacity:.8}
 @keyframes gSparkPulse{0%,100%{transform:translateY(0) scale(1);filter:brightness(1)}50%{transform:translateY(0) scale(1.06);filter:brightness(1.08)}}
 .g-hello{font-size:clamp(30px,3.9vw,56px);font-weight:700;letter-spacing:-.02em;line-height:1.28;color:#fff;text-align:center;word-break:keep-all} /* 1.6 상속 금지, Gemini 히어로 수준으로 타이트하게 */
 @media (max-width:860px){.g-hello .hseg{display:block}} /* 모바일만 지정된 지점에서 개행, 데스크톱은 공백 포함 한 줄 */
-.g-sub{font-size:clamp(14px,1.3vw,17px);color:var(--gt2);text-align:center;margin-top:10px;word-break:keep-all}
+.g-sub{font-size:clamp(14px,1.3vw,17px);color:var(--gt2);text-align:center;margin-top:16px;word-break:keep-all}
 .g-sub .sbr{display:none} /* 서브카피 지정 줄바꿈 — 데스크톱 1줄, 모바일에서만 문장 경계로 꺾임 (사용자 지시) */
 .g-terms .tbr{display:none} /* 약관도 동일 규칙: PC 1줄, 모바일만 문장 경계 2줄 (사용자 지시) */
 @media (max-width:860px){ .g-sub .sbr,.g-terms .tbr{display:inline} }
@@ -638,14 +638,14 @@ body.light .g-cosmos{opacity:.8}
 /* ══ 언어/통화 선택기 (지구본) ══ */
 #g-globe{position:absolute;top:14px;right:20px;z-index:45;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--gt2);transition:background .12s}
 #g-globe:hover{background:var(--hoverline);color:var(--gt)}
-#glc-panel{position:fixed;top:56px;right:16px;z-index:95;width:560px;background:var(--g2);border:1px solid var(--gl);border-radius:18px;box-shadow:var(--shadow-pop);padding:22px;display:none;grid-template-columns:1fr 1fr;gap:0 26px}
+#glc-panel{position:fixed;top:56px;right:16px;z-index:95;width:560px;background:var(--g2);border:1px solid var(--gl);border-radius:18px;box-shadow:var(--shadow-pop);padding:16px;display:none;grid-template-columns:1fr 1fr;gap:0 26px}
 #glc-panel.on{display:grid}
 #glc-panel .col h4{font-size:15px;font-weight:700;color:var(--gt);margin-bottom:12px;display:flex;align-items:center;gap:6px}
 #glc-panel .col h4{position:relative}
-#glc-panel .col h4 .qi{width:15px;height:15px;border-radius:50%;border:1.3px solid var(--gt3);color:var(--gt3);display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:400;cursor:default}
+#glc-panel .col h4 .qi{width:16px;height:16px;border-radius:50%;border:0;color:var(--gt3);display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:400;cursor:default}
 #glc-panel .qtip{position:absolute;top:26px;left:0;background:var(--g3);color:var(--gt);font-size:12.5px;font-weight:400;line-height:1.6;padding:12px 14px;border-radius:10px;max-width:280px;box-shadow:var(--shadow-pop);opacity:0;pointer-events:none;transition:opacity .15s;z-index:5}
 #glc-panel .qi:hover~.qtip{opacity:1}
-#g-globe .gtip{position:absolute;top:40px;right:0;background:var(--tip-bg);color:var(--tip-fg);font-size:12px;font-weight:600;padding:7px 13px;border-radius:999px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+#g-globe .gtip{position:absolute;top:40px;right:0;background:#313339;color:#fff;font-size:12px;font-weight:600;padding:7px 13px;border-radius:999px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .15s;box-shadow:0 4px 14px rgba(0,0,0,.3)}
 #g-globe:hover .gtip{opacity:1}
 #glc-panel .srch{display:flex;align-items:center;gap:8px;height:38px;border-radius:10px;background:var(--g3);padding:0 12px;margin-bottom:10px}
 #glc-panel .srch svg{flex-shrink:0;color:var(--gt3)}
@@ -731,10 +731,10 @@ body.light .g-cosmos{opacity:.8}
 #g-prof-menu .hd{padding:9px 12px 9px;border-bottom:1px solid var(--gl);margin-bottom:5px}
 #g-prof-menu .hd b{display:block;font-size:13.5px;font-weight:600;color:var(--gt)}
 #g-prof-menu .hd span{display:block;font-size:12px;color:var(--gt3);margin-top:2px}
-#g-sess-ren-form{display:flex;gap:6px;padding:4px}
+#g-sess-ren-form{display:flex;align-items:center;gap:6px;padding:4px}
 #g-sess-ren-form input{flex:1;height:34px;border-radius:9px;border:1px solid var(--gl);background:transparent;color:var(--gt);padding:0 10px;font-size:13px;min-width:0}
 #g-sess-ren-form input:focus{outline:none;border-color:var(--gt3)}
-#g-sess-ren-form button{height:34px;padding:0 12px;border-radius:9px;background:var(--inv-bg);color:var(--inv-fg);font-size:12.5px;font-weight:600}
+#g-sess-ren-form button{display:inline-flex;align-items:center;justify-content:center;height:34px;box-sizing:border-box;padding:0 12px;border-radius:9px;background:#45484f;color:#fff;font-size:12px;font-weight:600;line-height:1;flex:none;transition:background .12s}#g-sess-ren-form button:hover{background:#50535b}
 @keyframes gmPopOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(4px) scale(.985)}}
 @keyframes gSheetDown{from{transform:none;opacity:1}to{transform:translateY(45%);opacity:0}}
 /* 퇴장 공통: 애니메이션 동안 인터랙션 차단, 끝난 뒤 JS가 hidden 처리 */
@@ -877,27 +877,32 @@ body.light #teth-help svg rect{fill:#1f1f1f}
 .g-plus-pop .row{display:flex;justify-content:flex-end;margin-top:14px}
 .g-plus-pop .go{height:36px;padding:0 20px;border-radius:999px;background:var(--inv-bg);color:var(--inv-fg);font-size:13px;font-weight:600}
 /* ── 홈 템플릿 갤러리 (Gemini 카드 문법 — 사용자 지시: 제목→카드→채팅, 3열/모바일 2열, 하단 스크림) ── */
-.g-tplwrap{width:min(880px,94%);margin:64px auto 0;position:relative;z-index:1}
+.g-tplwrap{width:min(1040px,94%);margin:80px auto 0;position:relative;z-index:1}
 .g-tpls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.g-tpl{position:relative;border:0;padding:0;border-radius:22px;overflow:hidden;cursor:pointer;background:var(--g1);aspect-ratio:220/124;transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s cubic-bezier(.22,.61,.36,1);font-family:inherit}
+.g-tpl{position:relative;border:0;padding:0;border-radius:22px;overflow:hidden;cursor:pointer;background:var(--g1);aspect-ratio:220/124;outline:1px solid rgba(0,254,255,0);outline-offset:0;transition:transform .35s cubic-bezier(.2,.8,.3,1),box-shadow .35s cubic-bezier(.22,.61,.36,1),outline-color .3s ease;font-family:inherit}
 .g-tpl>svg{position:absolute;inset:0;width:100%;height:100%}
-.g-tpl::before{content:'';position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08);pointer-events:none;z-index:2} /* 보더 링 — 불투명 SVG 위에 페인트 (codex fc) */
-.g-tpl::after{content:'';position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.35) 55%,rgba(0,0,0,0) 100%);pointer-events:none} /* 라벨 스크림 — Gemini 급 농도 (agy tpl P1) */
-.g-tpl:hover{transform:translateY(-6px);box-shadow:0 8px 24px rgba(0,0,0,.35)}
-.g-tpl:hover::before{box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
-.g-tpl:hover .lb{color:#00feff}
-.g-tpl .lb{position:absolute;left:14px;bottom:12px;font-size:14px;font-weight:500;letter-spacing:0;color:#fff;z-index:1;transition:color .35s cubic-bezier(.22,.61,.36,1)}
-.g-tpl.on{box-shadow:0 0 0 2.5px #a8c7fa}
-.g-tpl.on:hover{box-shadow:0 0 0 2.5px #a8c7fa,0 8px 24px rgba(0,0,0,.35)} /* 선택 상태에서도 hover 부양 유지 (codex fc) */
+.g-tpl::before{content:'';position:absolute;inset:0;border-radius:inherit;padding:1px;background:linear-gradient(to bottom,var(--tb1) 0%,var(--tb2) 45%,var(--tb3) 100%);transition:--tb1 .3s ease,--tb2 .3s ease,--tb3 .3s ease;-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);pointer-events:none;z-index:2} /* 보더 링 — 불투명 SVG 위에 페인트 (codex fc) */
+.g-tpl::after{content:'';position:absolute;left:0;right:0;top:0;bottom:0;background:linear-gradient(to top,rgba(0,0,0,.12) 0%,rgba(0,0,0,.07) 55%,rgba(0,0,0,0) 100%) bottom/100% 52% no-repeat;background-color:rgba(0,254,255,0);pointer-events:none;transition:background-color .35s ease}
+/* 평소엔 아주 옅은 아래 그라데이션(25%), 호버·선택 시 진하게 */ /* 라벨 스크림 — Gemini 급 농도 (agy tpl P1) */
+.g-tpl{box-shadow:0 0 0 1px rgba(0,254,255,0),0 0 12px 0 rgba(0,254,255,0),0 8px 24px rgba(0,0,0,0)}.g-tpl:hover{transform:translateY(-8px);box-shadow:0 0 0 1px rgba(0,254,255,0),0 0 12px 0 rgba(0,254,255,0),0 8px 24px rgba(0,0,0,.35)}
+
+.g-tpl .lb{position:absolute;left:16px;bottom:20px;font-size:14px;font-weight:500;letter-spacing:0;color:#fff;z-index:1}
+.g-tpl.on{box-shadow:0 0 0 1px rgba(0,254,255,0),0 0 12px 0 rgba(0,254,255,0),0 8px 24px rgba(0,0,0,0)}
+/* 선택: 카드 원래 테두리(위 밝고 아래로 옅어짐)를 메인색으로 물들임 (사용자 지시) */
+@property --tb1{syntax:"<color>";inherits:false;initial-value:rgba(255,255,255,.085)}@property --tb2{syntax:"<color>";inherits:false;initial-value:rgba(255,255,255,.04)}@property --tb3{syntax:"<color>";inherits:false;initial-value:rgba(255,255,255,.03)}
+.g-tpl.on::before{--tb1:rgba(0,254,255,.85);--tb2:rgba(0,254,255,.75);--tb3:rgba(0,254,255,.75);padding:1.5px}.g-tpl:focus-visible{outline:2px solid #00feff;outline-offset:2px}
+.g-tpl.on:hover{box-shadow:0 0 0 1px rgba(0,254,255,0),0 0 12px 0 rgba(0,254,255,0),0 8px 24px rgba(0,0,0,.35)}
+.g-tpl.on .lb{color:#00feff} /* 선택 상태에서도 hover 부양 유지 (codex fc) */
 /* 종목 = 실제 로고 타일 / 기능 배지, 브랜드 마크 (사용자 지시) */
-.g-tpl .timg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
-.g-tpl .timg img{max-width:56%;max-height:52%;object-fit:contain;display:block}
+.g-tpl .timg{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding-bottom:16px;box-sizing:border-box}
+.g-tpl .timg img{max-width:45%;max-height:42%;object-fit:contain;display:block}
 .g-tpl .timg img.inv,.g-tpl-sel .th .timg img.inv{filter:brightness(0) invert(1)}
 /* 종목 카드: 호버 시 브랜드 색 빛 번짐 + 노이즈 질감 (--glow = 로고 브랜드 색) */
 .g-tpl[data-id="spx"]{--glow:214,0,42}.g-tpl[data-id="ndx"]{--glow:9,150,199}.g-tpl[data-id="btc"]{--glow:247,147,26}.g-tpl[data-id="eth"]{--glow:98,126,234}.g-tpl[data-id="sec"]{--glow:40,90,255}.g-tpl[data-id="hyx"]{--glow:240,70,40}.g-tpl[data-id="tsla"]{--glow:232,33,39}.g-tpl[data-id="spcx"]{--glow:150,170,205}.g-tpl[data-id="nvda"]{--glow:118,185,0}.g-tpl[data-id="aapl"]{--glow:190,195,205}.g-tpl[data-id="msft"]{--glow:0,164,239}.g-tpl[data-id="googl"]{--glow:66,133,244}.g-tpl[data-id="amzn"]{--glow:255,153,0}.g-tpl[data-id="meta"]{--glow:0,129,251}.g-tpl[data-id="avgo"]{--glow:204,9,47}.g-tpl[data-id="tsm"]{--glow:230,0,18}.g-tpl[data-id="brk"]{--glow:90,110,170}.g-tpl[data-id="lly"]{--glow:213,43,30}.g-tpl[data-id="wmt"]{--glow:0,113,220}.g-tpl[data-id="jpm"]{--glow:170,130,90}.g-tpl[data-id="visa"]{--glow:30,80,220}.g-tpl[data-id="ma"]{--glow:255,95,0}.g-tpl[data-id="nflx"]{--glow:229,9,20}.g-tpl[data-id="xom"]{--glow:237,28,36}.g-tpl[data-id="orcl"]{--glow:199,70,52}.g-tpl[data-id="cost"]{--glow:30,110,220}.g-tpl[data-id="pg"]{--glow:30,90,210}.g-tpl[data-id="aramco"]{--glow:0,170,120}.g-tpl[data-id="sap"]{--glow:0,143,211}.g-tpl[data-id="asml"]{--glow:40,80,220}.g-tpl[data-id="bac"]{--glow:227,24,55}.g-tpl[data-id="hd"]{--glow:249,99,2}.g-tpl[data-id="cola"]{--glow:244,0,9}.g-tpl[data-id="mcd"]{--glow:255,188,13}.g-tpl[data-id="tm"]{--glow:235,10,30}.g-tpl[data-id="amd"]{--glow:237,28,36}.g-tpl[data-id="intc"]{--glow:0,113,197}.g-tpl[data-id="crm"]{--glow:0,161,224}.g-tpl[data-id="pltr"]{--glow:170,180,195}.g-tpl[data-id="tcehy"]{--glow:0,82,217}.g-tpl[data-id="baba"]{--glow:255,106,0}.g-tpl[data-id="lvmh"]{--glow:190,160,110}.g-tpl[data-id="hmc"]{--glow:0,90,200}.g-tpl[data-id="nvr"]{--glow:3,199,90}.g-tpl[data-id="kko"]{--glow:254,229,0}.g-tpl[data-id="xrp"]{--glow:170,180,195}.g-tpl[data-id="sol"]{--glow:153,69,255}.g-tpl[data-id="bnb"]{--glow:243,186,47}.g-tpl[data-id="doge"]{--glow:194,166,51}.g-tpl[data-id="ada"]{--glow:0,51,173}
 .g-tpl .timg img{position:relative;z-index:1}
-.g-tpl[data-k="assets"] .timg::before{content:"";position:absolute;inset:0;background:radial-gradient(115% 135% at 50% 40%,rgba(var(--glow),.26) 0%,rgba(var(--glow),.19) 18%,rgba(var(--glow),.12) 36%,rgba(var(--glow),.06) 54%,rgba(var(--glow),.02) 72%,rgba(var(--glow),0) 100%);opacity:0;transition:opacity .5s cubic-bezier(.22,.61,.36,1)}
+.g-tpl[data-k="assets"] .timg::before{content:"";position:absolute;inset:0;background:radial-gradient(115% 135% at 50% 40% in oklab,rgba(var(--glow),.26) 0%,rgba(var(--glow),.19) 18%,rgba(var(--glow),.12) 36%,rgba(var(--glow),.06) 54%,rgba(var(--glow),.02) 72%,rgba(var(--glow),0) 100%);opacity:0;transition:opacity .5s cubic-bezier(.22,.61,.36,1)}
 .g-tpl:hover .timg::before{opacity:1}
+
 .g-tpl[data-k="assets"] .timg::after{content:"";position:absolute;inset:0;opacity:.18;mix-blend-mode:overlay;background-image:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27160%27 height=%27160%27%3E%3Cfilter id=%27n%27%3E%3CfeTurbulence type=%27fractalNoise%27 baseFrequency=%27.9%27 numOctaves=%272%27 stitchTiles=%27stitch%27/%3E%3C/filter%3E%3Crect width=%27100%25%27 height=%27100%25%27 filter=%27url(%23n)%27/%3E%3C/svg%3E")} /* 다크 배경 화이트 리버스 */
 /* 배지 — 톤온톤 플랫 칩 (원색 솔리드 금지, agy fc) */
 .g-tpl .tbdg{position:absolute;top:10px;right:10px;z-index:1;font-size:10.5px;font-weight:600;letter-spacing:.02em;padding:3px 8px;border-radius:6px;background:rgba(91,138,247,.14);border:1px solid rgba(91,138,247,.28);color:#a7c0ff}
@@ -919,6 +924,80 @@ body.light #teth-help svg rect{fill:#1f1f1f}
 /* 카드 열 정책: 3열(>1100) / 2열(601~1100, 태블릿) / 1열(<=600, 폰) — Gemini 갤러리 (사용자 지시) */
 @media(max-width:1100px){ .g-tpls{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px} .g-tpl .lb{font-size:17px} }
 @media(max-width:600px){ .g-tpls{grid-template-columns:minmax(0,1fr)} .g-tpl .lb{font-size:18px} }
+/* 모바일(<=600): 기능 = 목록형 줄, 종목 = 로고 칩 가로 스크롤 (사용자 지시, 2026-10-10) */
+.g-tpl-grp{display:contents}.g-tpl-sub{display:none}.g-tpl .tico{display:none}
+/* PC 선택 표시: 오른쪽 위 메인색 체크 배지 (사용자 지시) */
+.g-tpl .tck{display:flex;position:absolute;top:12px;right:12px;width:24px;height:24px;border-radius:50%;background:#00feff;color:#101113;align-items:center;justify-content:center;z-index:3;opacity:0;transform:scale(.8);transition:opacity .25s ease,transform .25s ease;pointer-events:none}
+.g-tpl .tck svg{width:14px;height:14px;stroke-width:2.6}
+.g-tpl.on .tck{opacity:1;transform:scale(1)}
+@media(max-width:600px){
+  .g-tpls{display:block}
+  .g-tpl-acts{display:flex;flex-direction:column;gap:2px;margin:0 -8px}
+  .g-tpl-grp .g-tpl,.g-tpl-grp .g-tpl:hover,.g-tpl-grp .g-tpl.on,.g-tpl-grp .g-tpl.on:hover{transform:none;box-shadow:none}
+  .g-tpl-grp .g-tpl{outline:0}.g-tpl-grp .g-tpl:focus-visible{outline:2px solid #00feff;outline-offset:-2px}
+  .g-tpl-grp .g-tpl::after,.g-tpl-grp .timg::before,.g-tpl-grp .timg::after,.g-tpl-grp .tbdg{display:none}
+  .g-tpl-acts .g-tpl{aspect-ratio:auto;height:48px;border-radius:12px;background:transparent;display:flex;align-items:center;gap:12px;padding:0 12px;text-align:left}
+  .g-tpl-acts .g-tpl>svg,.g-tpl-acts .g-tpl::before{display:none}
+  .g-tpl-acts .tico{display:flex;width:32px;height:32px;border-radius:9px;background:#1f2024;align-items:center;justify-content:center;color:#9ea3ad;flex:none}
+  .g-tpl-acts .lb{position:static;flex:1;font-size:14px}
+  .g-tpl-acts .tico svg{width:18px;height:18px}.g-tpl-acts .tck svg{width:16px;height:16px}
+  .g-tpl-acts .g-tpl.on{background:#1a1b1f}.g-tpl-grp .g-tpl.on .lb{color:#00feff}
+  .g-tpl-acts .g-tpl.on .tico{color:#00feff;background:rgba(0,254,255,.10)}.g-tpl-acts .tico{transition:color .3s ease,background .3s ease}
+  .g-tpl-acts .g-tpl{transition:background .3s ease}.g-tpl-acts .lb,.g-tpl-acts .tico{transition:color .3s ease}
+  .g-tpl-acts .tck{display:flex;position:static;width:auto;height:auto;background:none;border-radius:0;color:#00feff;flex:none;opacity:0;transform:none;transition:opacity .3s ease}.g-tpl-acts .tck svg{stroke-width:2}.g-tpl-assets .tck{display:none}
+  .g-tpl-acts .g-tpl.on .tck{opacity:.9}
+  .g-tpl-assets .g-tpl{transition:box-shadow .3s ease}.g-tpl-assets .lb{transition:color .3s ease}
+  .g-tpl-sub{display:block;margin:28px 0 12px;font-size:14px;font-weight:600;color:#8d919a}
+  .g-tpl-assets{display:flex;gap:8px;overflow-x:auto;overflow-y:hidden;margin:0 -24px;padding:1px 24px;scrollbar-width:none}
+  .g-tpl-assets::-webkit-scrollbar{display:none}
+  #g-root .g-tpl-assets{scrollbar-width:none!important}#g-root .g-tpl-assets::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
+  .g-tpl-assets .g-tpl{flex:none;aspect-ratio:auto;height:44px;border-radius:999px;display:flex;align-items:center;gap:8px;padding:0 14px 0 6px;background:#1f2024}
+  .g-tpl-assets .g-tpl::before{display:none}
+  .g-tpl-assets .g-tpl,.g-tpl-assets .g-tpl:hover{box-shadow:inset 0 0 0 1px rgba(0,254,255,0)}
+  .g-tpl-assets .g-tpl.on,.g-tpl-assets .g-tpl.on:hover{box-shadow:none;background:rgba(0,254,255,.10)}.g-tpl-assets .g-tpl.on .lb{color:#00feff}.g-tpl-assets .g-tpl{transition:background .3s ease}
+  .g-tpl-assets .timg{position:relative;inset:auto;width:30px;height:30px;padding:0;border-radius:50%;overflow:hidden;flex:none}
+  .g-tpl-assets .timg img{max-width:62%;max-height:62%}
+  .g-tpl-assets .lb{position:static;font-size:14px;white-space:nowrap}
+  /* Gemini 레퍼런스: 아래에서 올라오는 푸른 빛 + 요소 세로 중앙 (사용자 지시) */
+  #g-content .g-home{padding-top:66px;padding-bottom:126px}
+  body.has-banner #g-content .g-home{min-height:calc(100dvh - 64px)!important}body:not(.has-banner) #g-content .g-home{min-height:100dvh!important}
+  #g-content .g-home .g-pillband{background:none;position:sticky;bottom:0;margin:0 -24px;z-index:30;padding-top:4px}
+  #g-content .g-home+.gft{margin-top:0}#g-content .g-home+.gft .gft-in{border-top:0}
+  /* A안 (사용자 선택): 기능 = 가운데 정렬 알약 칩, 종목 = 입력창 바로 위 가로 칩 */
+  #g-content .g-home .g-tplwrap,#g-content .g-home .g-tpls{display:contents}
+  #g-content .g-home .g-tpl-acts{margin-bottom:auto}
+  .g-tpl-acts{flex-direction:row;flex-wrap:wrap;justify-content:center;gap:8px;margin:20px 0 0}
+  .g-tpl-acts .g-tpl{height:40px;border-radius:999px;padding:0 16px 0 12px;gap:6px;background:#1f2024;flex:none;transition:background .3s ease}
+  .g-tpl-acts .tico{width:auto;height:auto;background:none;border-radius:0;color:#9ea3ad}
+  .g-tpl-acts .tico svg{width:18px;height:18px}
+  .g-tpl-acts .lb{flex:none;font-size:14px;white-space:nowrap}
+  .g-tpl-acts .tck{display:none}
+  .g-tpl-acts .g-tpl.on{background:rgba(0,254,255,.10)}
+  .g-tpl-acts .g-tpl.on .tico{background:none}
+  .g-tpl-sub{display:none}
+  .g-tpl-assets{position:sticky;bottom:var(--tm-band-h,125px);margin:0 -24px;padding:1px 24px 0;z-index:2;align-self:stretch}
+  .g-tpl-assets .g-tpl{height:40px}
+  .g-tpl-assets .timg{width:28px;height:28px}
+  #g-content .g-home{padding-bottom:0}
+  /* 선택 칩: 최대 2줄 + "+N" 칩, 누르면 전부 펼침. 칩 여백 위·왼쪽 16px로 맞춤 (사용자 지시) */
+  html body:has(#g-content .g-home) #teth-help{bottom:var(--tm-fab-b,108px);transition:bottom .25s ease}
+  #g-content .g-home .g-tpl-sub,#g-content .g-home .g-tpl-assets,#g-content .g-home .g-pillband{transition:background-color .2s ease}
+  #g-content .g-home.tm-stuck .g-tpl-assets,#g-content .g-home.tm-stuck .g-pillband{background-color:rgba(16,17,19,.94)}
+  #g-content .g-home.tm-stuck .g-tpl-sub{background-color:rgba(16,17,19,.94)}
+  #g-content .g-home .g-tpl-sub::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:28px;background:linear-gradient(to bottom,rgba(16,17,19,0),rgba(16,17,19,.94));opacity:0;transition:opacity .2s ease;pointer-events:none}
+  #g-content .g-home.tm-stuck .g-tpl-sub::before{opacity:1}
+  #g-content .g-home .g-pill{padding:8px 12px}#g-content .g-home .g-pill .plus{margin-left:2px}#g-content .g-home .g-pill.has-tpl{padding-bottom:12px}#g-content .g-home .g-tpl-sel{padding:4px 0 8px;margin-left:0}
+  #g-content .g-home .g-tpl-sel .tmore{display:inline-flex;align-items:center;height:38px;padding:0 14px;border:0;border-radius:999px;background:rgba(255,255,255,.08);color:#fff;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+  /* B안 (사용자 선택): 기능을 고르면 입력창 위에 질문 + 종목 칩 줄이 나타남 */
+  .g-tpl-sub{display:block;position:sticky;bottom:calc(var(--tm-band-h,125px) + 41px);margin:24px -24px 0;padding:0 24px 10px;align-self:stretch;font-size:13px;font-weight:500;color:#9ea3ad;text-align:left;z-index:2}
+  .g-tpl-assets,.g-tpl-sub{opacity:0;transform:translateY(10px);visibility:hidden;pointer-events:none;transition:opacity .3s ease,transform .35s cubic-bezier(.22,.61,.36,1),visibility 0s linear .35s,bottom .25s ease}
+  #g-content .g-home.tm-show-assets .g-tpl-assets,#g-content .g-home.tm-show-assets .g-tpl-sub{opacity:1;transform:none;visibility:visible;pointer-events:auto;transition:opacity .3s ease,transform .35s cubic-bezier(.22,.61,.36,1),visibility 0s,bottom .25s ease}
+  #g-content .g-home .g-pill{box-shadow:0 0 16px 0 rgba(0,254,255,.18),0 0 40px 6px rgba(0,254,255,.08);transition:box-shadow .3s ease}
+  #g-content .g-home .g-pill:focus-within{box-shadow:0 0 20px 1px rgba(0,254,255,.28),0 0 48px 10px rgba(0,254,255,.12)}
+  #g-content .g-home .g-hello{margin-top:auto;font-size:36px}#g-content .g-home .g-tplwrap{margin-bottom:auto;margin-left:0;margin-right:0}
+  #g-content .g-home::after{content:"";position:absolute;left:0;right:0;bottom:0;height:42vh;background:radial-gradient(55% 55% at 12% 100% in oklab,rgba(0,212,255,.34) 0%,rgba(0,212,255,.12) 50%,rgba(0,212,255,0) 100%),radial-gradient(50% 80% at 52% 100% in oklab,rgba(0,212,255,.26) 0%,rgba(0,212,255,.09) 55%,rgba(0,212,255,0) 100%),radial-gradient(45% 48% at 90% 100% in oklab,rgba(0,212,255,.30) 0%,rgba(0,212,255,.10) 50%,rgba(0,212,255,0) 100%),radial-gradient(120% 70% at 50% 100% in oklab,rgba(0,212,255,.14) 0%,rgba(0,212,255,.04) 60%,rgba(0,212,255,0) 100%);mix-blend-mode:screen;pointer-events:none;z-index:0}
+}
+
 .g-tpl .ck{position:absolute;top:8px;right:8px;width:20px;height:20px;border-radius:50%;background:#a8c7fa;display:flex;align-items:center;justify-content:center;z-index:1}
 .g-pill.has-tpl{flex-wrap:wrap;border-radius:28px} /* 2줄 상태에서 스타디움 곡률 밖으로 전송버튼이 나가지 않게 (.multi와 동일 처리) */
 .g-tpl-sel{flex:0 0 100%;order:-2;display:flex;gap:8px;flex-wrap:wrap;padding:4px 2px 10px;animation:gTselIn .2s var(--ease)}
@@ -929,6 +1008,32 @@ body.light #teth-help svg rect{fill:#1f1f1f}
 .g-tpl-sel .tchip button{border:0;background:rgba(255,255,255,.14);border-radius:50%;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center;color:var(--gt);font-size:12px;line-height:1;cursor:pointer;padding:0}
 .g-tpl-sel .tchip button:hover{background:rgba(255,255,255,.24)}
 @keyframes gTchipIn{from{transform:scale(.82);opacity:0}to{transform:scale(1);opacity:1}}
+/* 물결 고리 + 제목 흐림→선명 (토스 레퍼런스, 사용자 요청) */
+.tm-ripple{display:none!important}
+@media (min-width:601px){
+  #g-content .g-home .tm-ripple{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+  .tm-ripple i{position:absolute;left:50%;top:48%;width:56vmin;height:44vmin;border-radius:48% 52% 50% 50% / 53% 47% 53% 47%;box-shadow:inset 0 0 0 1.5px rgba(0,230,255,.16),inset 0 0 30px rgba(61,255,176,.06),0 0 30px rgba(0,230,255,.07);opacity:0;animation:tmRipple 10s linear infinite}
+  .tm-ripple i:nth-child(2){animation-delay:-2.5s;border-radius:52% 48% 47% 53% / 48% 54% 46% 52%}
+  .tm-ripple i:nth-child(3){animation-delay:-5s;border-radius:50% 50% 53% 47% / 46% 52% 48% 54%}
+  .tm-ripple i:nth-child(4){animation-delay:-7.5s;border-radius:47% 53% 50% 50% / 52% 46% 54% 48%}
+}
+@keyframes tmRipple{0%{transform:translate(-50%,-50%) scale(.35) rotate(0deg);opacity:0}15%{opacity:1}70%{opacity:.55}100%{transform:translate(-50%,-50%) scale(2.1) rotate(18deg);opacity:0}}
+.g-hello .hw{display:inline-block;animation:tmBlurIn .8s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 110ms + .1s)}
+@keyframes tmBlurIn{from{opacity:0;filter:blur(12px);transform:translateY(6px)}to{opacity:1;filter:blur(0);transform:none}}
+@media (prefers-reduced-motion:reduce){.tm-ripple i,.g-hello .hw{animation:none;opacity:1}}
+/* [시안] PC 홈: Gemini처럼 화면 가운데 큰 타원형 빛 (카드 뒤) */
+@media (min-width:601px){
+  #g-content .g-home::after{content:"";position:fixed;inset:0;background:radial-gradient(28% 32% at 56% 45% in oklch,rgba(61,255,176,.18) 0%,rgba(61,255,176,.09) 35%,rgba(61,255,176,.03) 65%,rgba(61,255,176,0) 100%),radial-gradient(27% 31% at 45% 56% in oklch,rgba(0,230,255,.22) 0%,rgba(0,230,255,.11) 35%,rgba(0,230,255,.035) 65%,rgba(0,230,255,0) 100%),radial-gradient(40% 46% at 50% 50% in oklch,rgba(40,110,255,.26) 0%,rgba(40,110,255,.14) 30%,rgba(40,110,255,.06) 55%,rgba(40,110,255,.015) 80%,rgba(40,110,255,0) 100%);mix-blend-mode:screen;pointer-events:none;z-index:0}
+  #g-content .g-home::after{transform-origin:50% 50%;animation:tmGlowSpread 1.8s cubic-bezier(.2,.8,.3,1) .1s both}
+  @keyframes tmGlowSpread{from{opacity:0;transform:scale(.35)}60%{opacity:1}to{opacity:1;transform:scale(1)}}
+  @media (prefers-reduced-motion:reduce){#g-content .g-home::after{animation:none}}
+  body.g-dark #g-content .g-home .g-pillband{background-image:linear-gradient(to top,rgba(16,17,19,.6) 40%,rgba(16,17,19,0))}
+}
+/* 보내기 버튼: 메인색 배경 + 어두운 아이콘 (Gemini·ChatGPT처럼 브랜드색 주 버튼, 사용자 지시) */
+#g-root #g-home-send{background:#00feff;color:#101113;transition:background .2s ease,transform .15s ease}#g-root #g-home-send:hover{background:#00d6d8}#g-root #g-home-send:active{transform:scale(.94)}
+#g-root #g-send-btn{background:#00feff;color:#101113;transition:background .2s ease,transform .15s ease}#g-root #g-send-btn:hover{background:#00d6d8}#g-root #g-send-btn:active{transform:scale(.94)}#g-root #g-send-btn:disabled{background:#2b2d32;color:#6f747d}
+.g-tpl-sel .tchip{animation-duration:.25s}.g-tpl-sel .tchip.out{animation:gTchipOut .19s ease forwards;pointer-events:none}
+@keyframes gTchipOut{from{transform:scale(1);opacity:1}to{transform:scale(.82);opacity:0}}
 @keyframes gTselIn{from{transform:translateY(6px);opacity:0}to{transform:translateY(0);opacity:1}}
 @media (prefers-reduced-motion: reduce){ .g-tpl-sel,.g-tpl-sel .tchip{animation:none} }
 @media(max-width:860px){
@@ -973,10 +1078,10 @@ body.light .au-free{color:#1e8e3e}
 /* conversation */
 .g-thread{display:flex;flex-direction:column;gap:16px;padding-bottom:8px}
 .g-umsg{width:fit-content;max-width:78%;margin-left:auto;background:var(--g2);border-radius:18px;padding:10px 16px;font-size:14px;color:var(--gt)}
-.g-amsg{font-size:15.5px;line-height:1.8;color:var(--gt);word-break:keep-all}
+.g-amsg{font-size:15px;line-height:1.8;color:var(--gt);word-break:keep-all}
 /* 마크다운 답변 스타일 */
 .g-amsg{max-width:720px} /* Reading width 제한 */
-.g-amsg h4{font-size:16.5px;font-weight:700;margin:22px 0 10px;color:var(--gt)}
+.g-amsg h4{font-size:16px;font-weight:700;margin:22px 0 10px;color:var(--gt)}
 .g-amsg h4:first-child{margin-top:2px}
 /* 코드 블록 */
 .codeblk{margin:10px 0;border:1px solid var(--gl);border-radius:12px;overflow:hidden;background:rgba(0,0,0,.35)}
@@ -1040,7 +1145,7 @@ body.light .au-free{color:#1e8e3e}
 @media(max-width:860px){
   .g-acts button{width:38px;height:38px}
   .g-composer-row .g-send{width:40px;height:40px}
-  .g-askcard .hd .x{padding:10px 12px;margin:-8px -8px -8px 0}
+  .g-askcard .hd .x{margin:-6px -6px -6px 0}
   .g-askcard .nav button,.fbp .pill{min-height:40px}
   .g-uacts button{width:34px;height:34px}
 }
@@ -1070,14 +1175,14 @@ body.light .au-free{color:#1e8e3e}
 .g-amsg ul.nl li{margin:12px 0;padding-left:26px;position:relative}
 .g-amsg ul.nl li .no{position:absolute;left:2px;top:0;font-style:normal;font-weight:600;color:var(--gt);font-variant-numeric:tabular-nums}
 /* 콜아웃: 인포 카드 (헤어라인 보더 라운드 박스 + 인포 아이콘) */
-.g-amsg blockquote{display:flex;gap:10px;align-items:flex-start;margin:12px 0;padding:12px 15px;border:1px solid var(--gl);background:rgba(255,255,255,.03);border-radius:12px;color:var(--gt2);font-size:14.5px}
+.g-amsg blockquote{display:flex;gap:10px;align-items:flex-start;margin:12px 0;padding:12px 15px;border:1px solid var(--gl);background:rgba(255,255,255,.03);border-radius:12px;color:var(--gt2);font-size:14px}
 .g-amsg blockquote::before{content:'';flex-shrink:0;width:15px;height:15px;margin-top:4px;background:var(--gt3);-webkit-mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 7.5v.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 7.5v.5'/%3E%3C/svg%3E") center/contain no-repeat}
 .g-amsg .tblwrap{overflow-x:auto;margin:12px 0}
 .g-amsg table{border-collapse:collapse;font-size:14px;line-height:1.6;color:var(--gt2)} /* 전역 --text(잉크) 상속 차단, 다크 가독성 보장 */
 .g-amsg th,.g-amsg td{border:1px solid var(--gl);padding:9px 14px;text-align:left;vertical-align:top;word-break:keep-all}
 .g-amsg th{background:rgba(255,255,255,.06);font-weight:600;color:var(--gt);white-space:nowrap}
 .g-amsg td b{color:var(--gt)}
-.g-amsg code{background:rgba(128,128,128,.16);border-radius:4px;padding:1px 5px;font-size:13.5px}
+.g-amsg code{background:rgba(128,128,128,.16);border-radius:4px;padding:1px 5px;font-size:13px}
 .g-amsg .sp8{height:10px}
 /* 세션 제목 인라인 편집 */
 #g-chead-title{display:inline-flex;align-items:center;gap:6px}
@@ -1279,7 +1384,7 @@ body.light .au-free{color:#1e8e3e}
 .g-askcard{border:1px solid var(--gl);border-radius:16px;background:var(--g1);padding:16px;display:flex;flex-direction:column;gap:12px;max-width:700px}
 .g-askcard .hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .g-askcard .t{font-size:14.5px;font-weight:600;color:var(--gt)}
-.g-askcard .x{cursor:pointer;color:var(--gt3);font-size:17px;line-height:1;padding:3px 7px;border-radius:6px}
+.g-askcard .x{cursor:pointer;color:var(--gt3);display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;box-sizing:border-box;padding:0;border-radius:8px}
 .g-askcard .x:hover{background:rgba(128,128,128,.15);color:var(--gt)}
 .g-askcard .ops{display:flex;flex-direction:column;gap:8px}
 .g-askcard .op{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--gl);border-radius:11px;padding:11px 14px;cursor:pointer;transition:background .12s,border-color .12s}
@@ -1427,7 +1532,7 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .ga-nav{height:30px;padding:0 12px;margin-right:2px;border-radius:999px;display:inline-flex;align-items:center;font-size:12.5px;font-weight:500;color:var(--gt2);text-decoration:none;transition:background .12s,color .12s}
 .ga-nav:hover{background:rgba(255,255,255,.07);color:var(--gt)}
 /* CTA 위계: 전환 목표인 '무료로 시작'이 솔리드, '로그인'은 아웃라인 (agy qa3) */
-.ga-login{height:30px;padding:0 16px;border-radius:999px;background:#313339;color:#fff;border:1px solid #616672;font-size:12.5px;font-weight:600;transition:background .12s}
+.ga-login{height:30px;padding:0 16px;border-radius:999px;background:#313339;color:#fff;border:1px solid transparent;font-size:12.5px;font-weight:600;transition:background .12s}
 .ga-login:hover{background:#26282c}
 .ga-signup{height:30px;padding:0 16px;border-radius:999px;background:#00feff;color:#111;font-size:12.5px;font-weight:600;transition:opacity .12s}
 .ga-signup:hover{opacity:.88}
@@ -1446,19 +1551,20 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .au-btn:hover{background:#2b2d32}
 .au-btn.ghost{background:transparent}
 .au-btn.ghost:hover{background:#232529}
-.au-btn.primary{background:#fff;border-color:#fff;color:#111;font-weight:600}
-.au-btn.primary:hover{background:#e8e8e8}
+.au-btn.primary{background:#00feff;border-color:#00feff;color:#101113;font-weight:600}
+.au-btn.primary:hover{background:#00d6d8;border-color:#00d6d8}
 .au-btn:disabled{opacity:.5;cursor:default}
 .au-div{display:flex;align-items:center;gap:12px;color:#8b8f98;font-size:12.5px;margin:18px 0 0}
 .au-div::before,.au-div::after{content:"";flex:1;border-top:1.5px dashed #3c3f45}
 .au-input-wrap{position:relative;margin-top:26px;text-align:left}
 .au-input{width:100%;height:52px;border-radius:999px;border:1px solid #3c3f45;background:#101114;color:#ececf1;padding:0 20px;font-size:15px;outline:none;transition:border-color .12s}
-.au-input:focus{border-color:#8a8fff}
+.au-input:focus{border-color:#00feff}
+.au-input[type=number]{-moz-appearance:textfield;appearance:textfield}.au-input[type=number]::-webkit-inner-spin-button,.au-input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 .au-input::placeholder{color:#6f747d}
-.au-field{position:relative;text-align:left;margin-top:16px}
+.au-field{position:relative;text-align:left;margin-top:16px}.au-field.au-field-first{margin-top:26px}.au-field .au-side svg{display:block}
 .au-field .au-label{position:absolute;top:-7px;left:18px;background:#1b1c1f;padding:0 6px;font-size:11.5px;color:#a6aab2;z-index:1}
 .au-field .au-input{border-radius:16px;background:#1b1c1f}
-.au-field .au-side{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:13px;color:#9ba0ff;background:none}
+.au-field .au-side{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:13px;color:#00feff;background:none}
 .au-req{border:1px solid #3c3f45;border-radius:12px;padding:14px 16px;margin-top:16px;text-align:left;font-size:13px;color:#b7bac1;line-height:1.7}
 .au-req .rq{display:flex;align-items:center;gap:8px;transition:color .15s}
 .au-req .rq .m{width:14px;text-align:center;flex-shrink:0}
@@ -1487,8 +1593,9 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .g-new .lb,.g-util .lb{transition:opacity var(--motion-fast) var(--ease);white-space:nowrap}
 .g-new,.g-util{position:relative;min-width:0}
 .g-side.collapsed .g-new .lb,.g-side.collapsed .g-util .lb{opacity:0}
-.g-side.collapsed .g-new,.g-side.collapsed .g-util{padding:0 12px;width:40px;height:40px;flex:none;overflow:visible} /* 아이콘 중심 x 유지(10+14+8=32) */
-.g-side.collapsed .g-new,.g-side.collapsed .g-util{margin-top:0;margin-bottom:0} /* GPT 리듬 유지 */
+.g-side.collapsed .g-new,.g-side.collapsed .g-util{padding:0 10px;width:40px;height:40px;flex:none;overflow:visible}
+.g-new svg,.g-util svg{width:20px;height:20px} /* 아이콘 중심 x 유지(10+14+8=32) */
+.g-side.collapsed .g-new,.g-side.collapsed .g-util{margin-top:0;margin-bottom:6px} /* GPT 리듬 유지 */
 .g-new .lbp,.g-util .lbp{opacity:0;pointer-events:none}
 .g-side.collapsed .g-new:hover .lbp,.g-side.collapsed .g-util:hover .lbp{opacity:1}
 .g-new{margin-top:0}
@@ -1500,9 +1607,9 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .g-ico-row.pill-off .g-ico-pill{opacity:0!important;transition:opacity .3s var(--ease)} /* 메뉴 열릴 때 부드럽게 페이드아웃 */
 /* 하단: 접힘=톱니/사람 세로 스택, 펼침=로그인 pill 좌측 + 톱니 우측 (애니메이션) */
 .g-side-bottom{position:relative;height:58px;transition:height .2s var(--ease)}
-.g-side.collapsed .g-side-bottom{height:100px}
+.g-side.collapsed .g-side-bottom{height:102px}
 #g-gear-row{position:absolute;left:calc(100% - 46px);bottom:6px;transition:left .2s var(--ease),bottom .2s var(--ease)}
-.g-side.collapsed #g-gear-row{left:0;bottom:52px}
+.g-side.collapsed #g-gear-row{left:0;bottom:54px}
 #g-person-row{position:absolute;left:0;bottom:6px;opacity:0;pointer-events:none;transition:opacity .18s var(--ease)}
 .g-side.collapsed #g-person-row{opacity:1;pointer-events:auto;transition-delay:.08s}
 #g-login-btn{position:absolute;left:4px;bottom:11px;height:36px;padding:0 24px;border-radius:999px;background:var(--g3);color:var(--gt);font-size:13.5px;font-weight:600;opacity:1;transition:opacity .18s var(--ease) .08s,background .12s}
@@ -1551,7 +1658,7 @@ img.imgfail{visibility:hidden} /* 로고류 로드 실패 시 깨진 아이콘 �
   #g-hamburger{display:inline-flex;position:fixed;top:10px;left:10px;z-index:70;width:40px;height:40px;border-radius:10px;align-items:center;justify-content:center;color:var(--gt2);background:rgba(15,16,18,.6)}
   /* 모바일 스크롤 시 상단 크롬 뒤로 카드가 비쳐 보이던 문제 — 전폭 불투명 차폐 바 (AGY FINAL P1).
      버튼 기준 absolute 라 배너 유무로 버튼이 내려가도 함께 따라간다 */
-  body:not(.g-inchat) #g-hamburger::before{content:'';position:absolute;top:-10px;left:-10px;width:100vw;height:60px;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:-1;pointer-events:none}
+  body:not(.g-inchat) #g-hamburger::before{content:'';position:absolute;top:-10px;left:-10px;width:100vw;height:60px;background:rgba(16,17,19,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:-1;pointer-events:none}
   #g-hamburger:active{background:rgba(255,255,255,.08)}
   #g-auth-btns{top:12px;right:14px;z-index:71} /* 햄버거 차폐 바(z70, backdrop blur) 위로: 로그인 pill 블러 블록 모바일 버그 수정 */
   body.g-inchat #g-auth-btns{display:none} /* 모바일 게스트 채팅: 인증 버튼이 헤더 제목, 메뉴를 덮던 겹침 제거, 로그인은 드로어에서 (agy IA-10) */
@@ -3167,20 +3274,47 @@ body.tf-route #teth-help{bottom:88px}
 .gbt p.bd{font-size:13px;color:var(--gt2);line-height:1.75;margin:0}
 @media (max-width:560px){ .gbt .kp{grid-template-columns:repeat(2,1fr)} }
 /* T8: 카드형 추가질문 (gcl) */
-.gcl-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--gt3);padding:6px 12px;border:1px solid var(--gl);border-radius:999px;margin-bottom:10px}
-.gcl-badge .dot{width:6px;height:6px;border-radius:50%;background:#8fb2ff}
-.gcl{border:1px solid var(--gl2);border-radius:16px;background:var(--g1);padding:18px;max-width:520px}
-.gcl .hd{display:flex;align-items:flex-start;gap:10px}
-.gcl .hd .pg{flex:none;font-size:11px;color:var(--gt3);border:1px solid var(--gl);border-radius:999px;padding:3px 9px;margin-top:2px}
+.g-chiprow.gclw{flex-direction:column;align-items:flex-start;gap:10px} /* 배지는 카드 위 작은 칩 (사용자 지시) */
+/* 모바일: 질문 번호 칩을 제목 위 줄로 (제목이 칩 때문에 좁아지지 않게, 사용자 지시) */
+@media (max-width:600px){
+  #g-root .gcl{padding:12px}
+  #g-root .gcl .hd{flex-wrap:wrap;row-gap:10px}
+  #g-root .gcl .hd .pg{order:1}
+  #g-root .gcl .hd .x{order:2;margin:-6px -6px -6px auto}
+  #g-root .gcl .hd b{order:3;flex:1 0 100%}
+}
+/* PC 채팅 글자 키움 (사용자 지시) */
+@media (min-width:861px){
+  .g-umsg{font-size:16px;padding:12px 18px}
+  .g-amsg{font-size:17px}
+  .g-amsg h4{font-size:18px}
+  .g-amsg table{font-size:15px}
+  .gcl-badge{font-size:13px}
+  .gcl{width:fit-content;min-width:min(360px,100%);max-width:520px;box-sizing:border-box}
+  .gcl .hd .pg{font-size:12px}
+  .gcl .hd b{font-size:17px}
+  .gcl .sub{font-size:14px}
+  .gcl .op b{font-size:15px}
+  .gcl .op span{font-size:14px}
+  .gcl .free{font-size:14px}
+}
+.gcl-badge{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--gt3);padding:0;border:0;border-radius:0;margin-bottom:0;flex:none}
+.gcl-badge .dot{width:6px;height:6px;border-radius:50%;background:#00feff;animation:gclDot 1.6s ease-in-out infinite}
+@keyframes gclDot{0%,100%{opacity:1}50%{opacity:.4}}
+@media (prefers-reduced-motion:reduce){.gcl-badge .dot{animation:none}}
+.gcl .op,.gcl .free{transition:background .25s ease,border-color .25s ease,color .25s ease}
+.gcl{border:1px solid rgba(255,255,255,.09);border-radius:16px;background:var(--g1);padding:16px;max-width:520px} /* 테두리 한 단계 옅게 13% → 9% (사용자 지시) */
+.gcl .hd{display:flex;align-items:center;gap:10px}
+.gcl .hd .pg{flex:none;font-size:11px;font-weight:600;color:#ececf1;background:#2b2d32;border:0;border-radius:8px;padding:4px 9px;margin-top:0}
 .gcl .hd b{flex:1;font-size:15px;color:var(--gt);line-height:1.5}
-.gcl .hd .x{flex:none;border:0;background:none;color:var(--gt3);font-size:14px;cursor:pointer;padding:4px 6px;border-radius:8px}
+.gcl .hd .x{flex:none;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;margin:-6px -6px -6px 0;box-sizing:border-box;border:0;background:none;color:var(--gt3);cursor:pointer;padding:0;border-radius:8px}
 .gcl .hd .x:hover{background:rgba(255,255,255,.07);color:var(--gt)}
-.gcl .sub{font-size:12.5px;color:var(--gt3);margin:6px 0 14px}
-.gcl .op{display:block;width:100%;text-align:left;border:1px solid var(--gl);background:none;border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:inherit}
-.gcl .op:hover{border-color:var(--gl2);background:rgba(255,255,255,.04)}
-.gcl .op b{display:block;font-size:13.5px;color:var(--gt);font-weight:600}
+.gcl .sub{font-size:12px;color:var(--gt3);margin:6px 0 14px}
+.gcl .op{display:block;width:100%;text-align:left;border:1px solid var(--gl);background:#1e2024;border-radius:12px;padding:12px 14px;margin-bottom:8px;cursor:pointer;font-family:inherit}
+.gcl .op:hover{border-color:var(--gl2);background:#25272c}
+.gcl .op b{display:block;font-size:13px;color:var(--gt);font-weight:600}
 .gcl .op span{display:block;font-size:12px;color:var(--gt3);margin-top:3px;line-height:1.5}
-.gcl .free{display:block;width:100%;border:1px dashed var(--gl);background:none;border-radius:12px;padding:11px 14px;color:var(--gt3);font-size:12.5px;cursor:pointer;font-family:inherit;text-align:left}
+.gcl .free{display:block;width:100%;border:1px dashed var(--gl);background:#1e2024;border-radius:12px;padding:11px 14px;color:var(--gt3);font-size:12px;cursor:pointer;font-family:inherit;text-align:left}
 .gcl .free:hover{border-color:var(--gl2);color:var(--gt2)}
 .ss3-dlg .din .dx{color:#aeb4bd}
 /* 리뷰 작성 — 모바일 바텀 시트 */
@@ -5026,8 +5160,8 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
         <button class="au-btn" onclick="authOauth('Apple')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-top:-2px"><path d="M17.05 12.54c-.03-2.72 2.22-4.02 2.32-4.09-1.27-1.85-3.24-2.1-3.93-2.13-1.67-.17-3.26.98-4.1.98-.85 0-2.16-.96-3.55-.93-1.82.03-3.5 1.06-4.44 2.69-1.9 3.29-.49 8.16 1.36 10.83.9 1.3 1.98 2.77 3.39 2.72 1.36-.05 1.87-.88 3.52-.88 1.64 0 2.11.88 3.55.85 1.47-.02 2.4-1.33 3.29-2.64 1.04-1.52 1.47-2.99 1.49-3.06-.03-.02-2.86-1.1-2.9-4.34zM14.34 4.56c.75-.91 1.25-2.17 1.11-3.43-1.08.04-2.38.72-3.15 1.63-.69.8-1.3 2.09-1.14 3.32 1.2.09 2.43-.61 3.18-1.52z"/></svg>Apple로 계속하기</button>
       </div>
       <div class="au-div">또는</div>
-      <div class="au-input-wrap">
-        <input class="au-input" id="au-email" type="email" placeholder="이메일 주소" autocomplete="off" onkeydown="if(event.key==='Enter')authEmailNext()">
+      <div class="au-field au-field-first">
+        <span class="au-label">이메일 주소</span><input class="au-input" id="au-email" type="email" autocomplete="off" onkeydown="if(event.key==='Enter')authEmailNext()">
       </div>
       <div class="au-err" id="au-email-err">올바른 이메일 주소를 입력해 주십시오.</div>
       <button class="au-btn primary au-gap" onclick="authEmailNext()">계속</button>
@@ -5061,7 +5195,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
       <div class="au-field">
         <span class="au-label" id="au-pwnew-lbl-pw">비밀번호</span>
         <input class="au-input" id="au-pwnew-in" type="password" autocomplete="new-password" oninput="authPwReq()" onkeydown="if(event.key==='Enter')authPwNewNext()">
-        <button class="au-side" onclick="authPwEye('au-pwnew-in',this)" aria-label="비밀번호 표시">👁</button>
+        <button class="au-side" onclick="authPwEye('au-pwnew-in',this)" aria-label="비밀번호 표시"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></button>
       </div>
       <div class="au-req">
         <div id="au-req-h">비밀번호에 포함되어야 하는 사항:</div>
@@ -5099,7 +5233,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
       <div class="au-field">
         <span class="au-label" id="au-pw-lbl">비밀번호</span>
         <input class="au-input" id="au-pw-in" type="password" autocomplete="current-password" onkeydown="if(event.key==='Enter')authPwNext()">
-        <button class="au-side" onclick="authPwEye('au-pw-in',this)" aria-label="비밀번호 표시">👁</button>
+        <button class="au-side" onclick="authPwEye('au-pw-in',this)" aria-label="비밀번호 표시"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></button>
       </div>
       <div class="au-err" id="au-pw-err">비밀번호를 입력해 주십시오.</div>
       <button class="au-btn primary au-gap" id="au-pw-go" onclick="authPwNext()">계속</button>
@@ -5138,7 +5272,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
     <span class="icon"><span class="brand-bg" style="width:26px;height:17px"></span></span>
     <span class="t"><b>TETH AI</b><span>TETH에서 제공하는 AI 트레이딩 에이전트</span></span>
     <a class="dl" href="download/" target="_blank" rel="noopener noreferrer">다운로드</a>
-    <button class="x" onclick="tethBannerClose()" aria-label="닫기">✕</button>
+    <button class="x" onclick="tethBannerClose()" aria-label="닫기"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
   </div>
   <button id="g-hamburger" onclick="gSideToggle()" aria-label="메뉴"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
   <span id="g-auth-btns"><a class="ga-nav" href="about/">TETH 정보</a><a class="ga-nav" href="download/" target="_blank" rel="noopener noreferrer">TETH 앱 다운로드</a><button class="ga-login" onclick="authOpen('login')">로그인</button><button class="ga-signup" onclick="authOpen('signup')">무료로 시작</button></span>
@@ -5152,7 +5286,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
     </div>
     <div class="info"><span class="ii">i</span><span id="glc-info-txt">선택한 언어는 TETH 화면과 알림에 적용됩니다.</span></div>
     <div class="col on" id="glc-lang">
-      <h4><span id="glc-h-lang">언어</span> <span class="qi">i</span><span class="qtip" id="glc-lang-tip">선택한 언어는 TETH 화면과 알림에 적용됩니다.</span></h4>
+      <h4><span id="glc-h-lang">언어</span> <span class="qi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span><span class="qtip" id="glc-lang-tip">선택한 언어는 TETH 화면과 알림에 적용됩니다.</span></h4>
       <div class="srch"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="glc-srch-l" placeholder="검색" oninput="glcFilter(this,'glc-lang')"></div>
       <ul id="glc-lang-list"></ul>
     </div>
@@ -5247,7 +5381,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
         <div class="g-composer">
           <div id="g-ctx-chip"></div>
           <textarea id="g-in" rows="1" placeholder="시장에 대해 무엇이든 물어보십시오" aria-label="AI에게 입력" spellcheck="false" autocomplete="off"></textarea>
-          <div class="g-composer-row"><span class="g-model"></span><button class="g-send" id="g-send-btn" onclick="gSend()" aria-label="전송">↑</button></div>
+          <div class="g-composer-row"><span class="g-model"></span><button class="g-send" id="g-send-btn" onclick="gSend()" aria-label="전송"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></button></div>
         </div>
       </div>
     </main>
@@ -10867,7 +11001,7 @@ function tfTplArt(id,w,h){
   var u='tfa'+(++TF_TPL_UID);
   var AC='#00f0ff', LN='rgba(255,255,255,.72)', LN2='rgba(255,255,255,.28)', SUB='rgba(255,255,255,.14)';
   var s='<svg viewBox="0 0 220 124" width="'+w+'" height="'+h+'" preserveAspectRatio="xMidYMid slice" aria-hidden="true">'
-    +'<defs><linearGradient id="'+u+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1c21"/><stop offset="1" stop-color="#141519"/></linearGradient></defs>'
+    +'<defs><linearGradient id="'+u+'" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1a1b1f"/><stop offset="1" stop-color="#151619"/></linearGradient></defs>'
     +'<rect width="220" height="124" fill="url(#'+u+')"/>'
     +'<path d="M18 84H202" stroke="'+SUB+'" stroke-width="1"/>'; /* 공통 기준선 — 전 카드 동일 문법 */
   var e='</svg>';
@@ -10906,15 +11040,27 @@ function tfTplThumb(t,w,h){
   if(t.img) return '<span class="timg" style="background:'+t.bg+'"><img'+(t.inv?' class="inv"':'')+' src="'+t.img+'" alt="'+t.lb+'"></span>';
   return tfTplArt(t.id,w||220,h||124);
 }
+var TF_TPL_ICO=(function(){ /* 모바일 목록형 아이콘 — Lucide (bot, chart-spline, list-ordered, chart-candlestick, chart-pie), stroke 1.6 */
+  function s(p){ return '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">'+p+'</svg>'; }
+  return {
+    auto:s('<path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>'),
+    ind:s('<path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"/>'),
+    rank:s('<path d="M10 12h11"/><path d="M10 18h11"/><path d="M10 6h11"/><path d="M4 10h2"/><path d="M4 6h1v4"/><path d="M6 18H4c0-1 2-2 2-3s-1-1.5-2-1"/>'),
+    anal:s('<path d="M9 5v4"/><rect width="4" height="6" x="7" y="9" rx="1"/><path d="M9 15v2"/><path d="M17 3v2"/><rect width="4" height="8" x="15" y="5" rx="1"/><path d="M17 13v3"/><path d="M3 3v16a2 2 0 0 0 2 2h16"/>'),
+    port:s('<path d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z"/><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/>'),
+    ck:'<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'
+  };
+})();
 function tfTplCards(){
   function card(kind,t,i){ var on=TF_TPL[kind].indexOf(t.id)>=0;
     var dl=window.TF_TPL_ENTR?(' style="--d:'+((kind==='acts'?0.24+i*0.07:0.55+Math.min(i,14)*0.035)).toFixed(2)+'s"'):'';
     return '<button type="button" class="g-tpl'+(on?' on':'')+'"'+dl+' data-k="'+kind+'" data-id="'+t.id+'" onclick="tfTplPick(\''+kind+'\',\''+t.id+'\')" aria-pressed="'+on+'">'
       +tfTplThumb(t)
       +(t.bdg?'<span class="tbdg'+(t.bdg==='HOT'?' hot':'')+'">'+t.bdg+'</span>':'')
-      +'<span class="lb">'+t.lb+'</span></button>'; } /* 체크 배지 없음 — Gemini 동일 (사용자 지시) */
-  var out=TF_TPL_ACTS.map(function(t,i){ return card('acts',t,i); }).join('')
-    +TF_TPL_ASSETS.map(function(t,i){ return card('assets',t,i); }).join('');
+      +'<span class="tico" aria-hidden="true">'+(kind==='acts'?(TF_TPL_ICO[t.id]||''):'<img src="'+t.img+'" alt=""'+(t.inv?' class="inv"':'')+'>')+'</span>'+'<span class="lb">'+t.lb+'</span>'+'<span class="tck" aria-hidden="true">'+TF_TPL_ICO.ck+'</span>'+'</button>'; } /* 체크 배지 없음 — Gemini 동일 (사용자 지시) */
+  var out='<div class="g-tpl-grp g-tpl-acts">'+TF_TPL_ACTS.map(function(t,i){ return card('acts',t,i); }).join('')+'</div>'
+    +'<div class="g-tpl-sub">어떤 종목으로 하시겠습니까?</div>'
+    +'<div class="g-tpl-grp g-tpl-assets">'+TF_TPL_ASSETS.map(function(t,i){ return card('assets',t,i); }).join('')+'</div>';
   window.TF_TPL_ENTR=false; /* 최초 렌더에서만 소비 */
   return out;
 }
@@ -10954,15 +11100,64 @@ function tfTplPick(kind,id){
   }
   tfTplSync();
 }
+/* 모바일 A안: 종목 칩 줄을 입력창 바로 위에 붙임 — 입력창 높이가 바뀌면 따라감 (사용자 지시) */
+/* A안: 아래 묶음(질문·종목·입력창)에 위 내용이 겹칠 때만 배경을 깔아 "뒤로 지나가는" 느낌 */
+function tmCheckStuck(){ var h=document.querySelector('#g-content .g-home'); if(!h) return; var acts=h.querySelector('.g-tpl-acts'), lead=h.classList.contains('tm-show-assets')?h.querySelector('.g-tpl-sub'):h.querySelector('.g-pillband');
+  if(!acts||!lead) return; h.classList.toggle('tm-stuck',acts.getBoundingClientRect().bottom>lead.getBoundingClientRect().top-4); }
+(function(){ function bind(){ var sc=document.getElementById('g-scroll'); if(!sc) return setTimeout(bind,400); sc.addEventListener('scroll',tmCheckStuck,{passive:true}); } bind(); })();
+function tmPlaceAssets(){ var h=document.querySelector('#g-content .g-home'), p=document.getElementById('g-pill'); if(!h||!p) return;
+  var t=0, el=p; while(el&&el!==h){ t+=el.offsetTop; el=el.offsetParent; } if(el!==h) return; /* offset 기준 — 등장 애니메이션 transform 무시 */
+  h.style.setProperty('--tm-assets-b',(h.clientHeight-t+12)+'px');
+  var band=h.querySelector('.g-pillband'); if(band) h.style.setProperty('--tm-band-h',band.offsetHeight+'px');
+  tmCheckStuck();
+  var top=p.getBoundingClientRect().top, q=h.querySelector('.g-tpl-sub'); if(q&&h.classList.contains('tm-show-assets')) top=Math.min(top,q.getBoundingClientRect().top);
+  document.body.style.setProperty('--tm-fab-b',Math.round(window.innerHeight-top+16)+'px'); }
+(function(){ if(!window.ResizeObserver||!window.MutationObserver) return; var ro=new ResizeObserver(function(){ tmPlaceAssets(); });
+  function hook(){ var p=document.getElementById('g-pill'); if(p&&!p._tmro){ p._tmro=1; ro.observe(p); } tmPlaceAssets(); setTimeout(tmPlaceAssets,1200); }
+  function start(){ var c=document.getElementById('g-content'); if(!c) return setTimeout(start,300); new MutationObserver(hook).observe(c,{childList:true}); hook(); window.addEventListener('resize',tmPlaceAssets); }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',start); else start(); })();
+/* 선택 칩이 자연스럽게 생기고 사라지게 (사용자 지시): 칩은 키로 비교해 추가/삭제만, 입력창 높이는 0.25초 동안 바뀜 */
+function tmAnimH(el,h0){ if(!el) return; el.style.height=''; var h1=el.offsetHeight; if(Math.abs(h1-h0)<1) return;
+  el.style.overflow='hidden'; el.style.height=h0+'px'; void el.offsetHeight; el.style.transition='height .25s ease, box-shadow .3s ease'; el.style.height=h1+'px';
+  clearTimeout(el._tmh); el._tmh=setTimeout(function(){ el.style.height=''; el.style.transition=''; el.style.overflow=''; tmPlaceAssets(); },270); }
+function tmSyncChips(row,keys,html){
+  var pill=$('g-pill'), cur=[].slice.call(row.querySelectorAll('.tchip[data-key]')), exiting=[];
+  cur.forEach(function(c){ if(keys.indexOf(c.getAttribute('data-key'))<0&&!c.classList.contains('out')) exiting.push(c); });
+  keys.forEach(function(k,i){ if(row.querySelector('.tchip[data-key="'+k+'"]:not(.out)')) return;
+    var tmp=document.createElement('div'); tmp.innerHTML=html[i]; var el=tmp.firstChild, before=null;
+    for(var j=i+1;j<keys.length;j++){ var b=row.querySelector('.tchip[data-key="'+keys[j]+'"]:not(.out)'); if(b){ before=b; break; } }
+    if(!before) before=row.querySelector('.tmore'); row.insertBefore(el,before); });
+  if(keys.length) row.style.display='flex';
+  tmClampChips(row);
+  if(exiting.length){ exiting.forEach(function(c){ c.classList.add('out'); });
+    setTimeout(function(){ var h0=pill?pill.offsetHeight:0;
+      exiting.forEach(function(c){ if(c.parentNode) c.parentNode.removeChild(c); });
+      if(!row.querySelector('.tchip:not(.out)')) row.style.display='none';
+      tmClampChips(row); tmAnimH(pill,h0); tmPlaceAssets(); },190); }
+  else if(!keys.length) row.style.display='none';
+}
+
+/* 모바일: 선택 칩 2줄 넘으면 나머지를 "+N" 칩으로 접음 */
+function tmClampChips(row){ if(!row||!window.matchMedia||!matchMedia('(max-width:600px)').matches) return;
+  var cs=[].slice.call(row.querySelectorAll('.tchip:not(.out)')), old=row.querySelector('.tmore'); if(old) old.parentNode.removeChild(old);
+  cs.forEach(function(c){ c.style.display=''; }); if(row.dataset.expanded==='1'||cs.length<3) return;
+  var tops=[]; cs.forEach(function(c){ if(tops.indexOf(c.offsetTop)<0) tops.push(c.offsetTop); }); if(tops.length<=2) return;
+  var row2=tops[1], hidden=0, more=document.createElement('button'); more.type='button'; more.className='tmore'; row.appendChild(more);
+  function upd(){ more.textContent='+'+hidden; more.setAttribute('aria-label','선택한 항목 '+hidden+'개 더 보기'); }
+  var vis=[]; cs.forEach(function(c){ if(c.offsetTop>row2){ c.style.display='none'; hidden++; } else vis.push(c); }); upd();
+  while(more.offsetTop>row2&&vis.length){ vis.pop().style.display='none'; hidden++; upd(); }
+  more.onclick=function(){ row.dataset.expanded='1'; tmClampChips(row); tmPlaceAssets(); }; }
 function tfTplSync(){
-  var g=$('g-tpls'); if(g) g.innerHTML=tfTplCards();
+  var g=$('g-tpls'); if(g){ var tc=g.querySelectorAll('.g-tpl[data-k]'); /* 제자리에서 상태만 바꿔 전환 애니메이션이 보이게 (사용자 지시) */
+    if(tc.length) tc.forEach(function(c){ var on=TF_TPL[c.dataset.k].indexOf(c.dataset.id)>=0; c.classList.toggle('on',on); c.setAttribute('aria-pressed',on); });
+    else g.innerHTML=tfTplCards(); }
+  var pillA=$('g-pill'), h0A=pillA?pillA.offsetHeight:0;
   var row=$('g-tpl-sel');
   if(row){
-    var chips=[];
-    [['acts',TF_TPL.acts],['assets',TF_TPL.assets]].forEach(function(kv){ kv[1].forEach(function(id){ var t=tfTplOf(kv[0],id); if(t)
-      chips.push('<span class="tchip"><span class="th">'+(t.img?tfTplThumb(t):tfTplArt(t.id,42,42))+'</span>'+t.lb+'<button type="button" aria-label="'+t.lb+' 선택 해제" onclick="tfTplPick(\''+kv[0]+'\',\''+id+'\')">×</button></span>'); }); });
-    row.innerHTML=chips.join('');
-    row.style.display=chips.length?'flex':'none';
+    var chips=[], keys=[];
+    [['acts',TF_TPL.acts],['assets',TF_TPL.assets]].forEach(function(kv){ kv[1].forEach(function(id){ var t=tfTplOf(kv[0],id); if(t){
+      keys.push(kv[0]+':'+id); chips.push('<span class="tchip" data-key="'+kv[0]+':'+id+'"><span class="th">'+(t.img?tfTplThumb(t):tfTplArt(t.id,42,42))+'</span>'+t.lb+'<button type="button" aria-label="'+t.lb+' 선택 해제" onclick="tfTplPick(\''+kv[0]+'\',\''+id+'\')"><svg width="8" height="8" viewBox="0 0 8 8" aria-hidden="true" style="display:block"><path d="M1 1l6 6M7 1L1 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></button></span>'); } }); });
+    tmSyncChips(row,keys,chips);
   }
   var inEl=$('g-home-in'), t2=tfTplText();
   if(inEl){
@@ -10970,6 +11165,9 @@ function tfTplSync(){
     if(t2) try{ inEl.focus(); }catch(e){}
   }
   var pill=$('g-pill'); if(pill) pill.classList.toggle('has-tpl',!!t2);
+  tmAnimH(pillA,h0A);
+  var hmB=document.querySelector('#g-content .g-home'); if(hmB) hmB.classList.toggle('tm-show-assets',TF_TPL.acts.length>0||TF_TPL.assets.length>0); /* 모바일 B안 */
+  if(window.requestAnimationFrame) requestAnimationFrame(function(){ tmPlaceAssets(); setTimeout(tmPlaceAssets,260); }); else tmPlaceAssets();
   var sb=$('g-home-send'); /* 칩만 선택해도 전송 가능 — 빈 입력이면 합성 명령이 전송된다 */
   if(sb&&!(inEl&&inEl.value.trim())) sb.style.display=t2?'inline-flex':'none';
 }
@@ -11006,11 +11204,12 @@ function gHome(){
     es:'Prueba una plantilla o describe tu inversión en el chat.\nEl modelo TETH la construye.',
     fr:"Essayez un modèle ou décrivez votre investissement dans le chat.\nLe modèle TETH s'en charge."
   };
-  GR={h:GR.h.split('\n').map(function(t){return '<span class="hseg">'+t+'</span>';}).join(' '),
+  var HWI=0; GR={h:GR.h.split('\n').map(function(t){return '<span class="hseg">'+t.split(' ').map(function(w){ return '<span class="hw" style="--i:'+(HWI++)+'">'+w+'</span>'; }).join(' ')+'</span>';}).join(' '),
     s:(GSUB[LANG]||GSUB.ko).replace('\n',' <br class="sbr">')};
   gContent(
     '<div class="g-home'+(HOME_ENTR?' entr':'')+'" style="min-height:calc(100vh - 120px);position:relative">'+
     '<canvas class="g-cosmos" id="g-cosmos" aria-hidden="true"></canvas>'+
+    '<div class="tm-ripple" aria-hidden="true"><i></i><i></i><i></i><i></i></div>'+
     '<span class="g-hero-spark brand-bg"></span>'+
     '<div class="g-hello">'+GR.h+'</div>'+
     '<div class="g-sub">'+GR.s+'</div>'+
@@ -11021,12 +11220,12 @@ function gHome(){
     '<div class="g-chipstack">'+
     (S.user?'':'<div class="g-free-row"><button class="g-freecta" onclick="authOpen(\'signup\')"><span>'+TR('auth.free','무료로 시작, 카드 등록 없음')+'</span></button></div>')+
     '</div>'+
-    '<div class="g-pill" id="g-pill"><div class="g-tpl-sel" id="g-tpl-sel" style="display:none"></div><span class="plus" onclick="gPlusPop(event)" onmouseenter="gPlusHover()" onmouseleave="gPlusLeave()" role="button" aria-label="'+TR('plus.t','더 많은 기능 사용하기')+'">＋</span><textarea id="g-home-in" rows="1" placeholder="'+TR('home.ph','예: 비트코인이 떨어졌을 때 사는 전략')+'" aria-label="'+TR('home.idea','연구 아이디어')+'"></textarea>'+
+    '<div class="g-pill" id="g-pill"><div class="g-tpl-sel" id="g-tpl-sel" style="display:none"></div><span class="plus" onclick="gPlusPop(event)" onmouseenter="gPlusHover()" onmouseleave="gPlusLeave()" role="button" aria-label="'+TR('plus.t','더 많은 기능 사용하기')+'"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M5 12h14"/><path d="M12 5v14"/></svg></span><textarea id="g-home-in" rows="1" placeholder="'+TR('home.ph','예: 비트코인이 떨어졌을 때 사는 전략')+'" aria-label="'+TR('home.idea','연구 아이디어')+'"></textarea>'+
     '<button class="g-exp" id="g-exp" onclick="gExpToggle(event)" aria-label="'+TR('comp.full','전체 화면')+'">'+
     '<svg class="i-exp" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-7 7M10 20H4v-6M4 20l7-7"/></svg>'+
     '<svg class="i-col" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10h-6V4M14 10l7-7M4 14h6v6M10 14l-7 7"/></svg>'+
     '<span class="tip" id="g-exp-tip">'+TR('comp.full','전체 화면')+'</span></button>'+
-    '<span class="g-pill-sp"></span><button class="g-send" id="g-home-send" onclick="gNew()" aria-label="'+TR('home.send','연구 시작')+'" style="display:none">↑</button>'+
+    '<span class="g-pill-sp"></span><button class="g-send" id="g-home-send" onclick="gNew()" aria-label="'+TR('home.send','연구 시작')+'" style="display:none"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg></button>'+
     '<div class="g-plus-pop" id="g-plus-pop" onmouseenter="gPlusStay()" onmouseleave="gPlusLeave()"><b>'+TR('plus.t','더 많은 기능 사용하기')+'</b><p>'+TR('plus.b','로그인하면 차트와 포트폴리오 파일을 첨부하고, 거래소를 연결하고, 전략을 저장하는 등 더 많은 기능을 사용할 수 있습니다.')+'</p><div class="row"><button class="go" onclick="authOpen(\'login\')">'+TR('nav.login','로그인')+'</button></div></div>'+
     '</div>'+
     '<div class="g-terms">'+TR('home.terms','{T}TETH 약관{/}과 {P}TETH 개인정보처리방침{/}이 적용됩니다.{BR}TETH는 AI이며 실수를 할 수 있습니다.')
@@ -11263,7 +11462,7 @@ function gConvChips(items,card){
       +'<div class="gcl-badge"><span class="dot"></span>입력이 필요합니다, 아래 카드에서 답해주십시오</div>'
       +'<div class="gcl" role="group" aria-label="'+gEsc(card.title)+'">'
       +'<div class="hd"><span class="pg num">질문 '+card.pg[0]+' / '+card.pg[1]+'</span><b>'+gEsc(card.title)+'</b>'
-      +'<button type="button" class="x" data-skip="1" aria-label="이 질문 건너뛰기 (추천값으로 진행)">✕</button></div>'
+      +'<button type="button" class="x" data-skip="1" aria-label="이 질문 건너뛰기 (추천값으로 진행)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
       +(card.sub?'<div class="sub">'+gEsc(card.sub)+'</div>':'')
       +items.map(function(it,i){ return '<button type="button" class="op" data-i="'+i+'"><b>'+gEsc(it.label)+'</b>'+(it.desc?'<span>'+gEsc(it.desc)+'</span>':'')+'</button>'; }).join('')
       +'<button type="button" class="free" data-free="1">직접 답변 작성'+(card.freeHint?'<span style="display:block;font-size:11.5px;margin-top:2px;opacity:.8">'+gEsc(card.freeHint)+'</span>':'')+'</button>'
@@ -13001,7 +13200,7 @@ function taiVote(b,v){
 function taiFeedback(){
   TAI.fn=(TAI.fn||0)+1; var id='gfb'+TAI.fn;
   var opts=['사실과 다름','요청 사항을 따르지 않음','내용이 도움이 되지 않음','오래되거나 부정확한 정보','안전하지 않거나 부적절함'];
-  taiThreadAdd('<div class="g-askcard" id="'+id+'"><div class="hd"><span class="t">무엇이 문제였습니까?</span><span class="x" onclick="taiAskClose(\''+id+'\')">×</span></div>'
+  taiThreadAdd('<div class="g-askcard" id="'+id+'"><div class="hd"><span class="t">무엇이 문제였습니까?</span><span class="x" onclick="taiAskClose(\''+id+'\')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></div>'
     +'<div style="font-size:12.5px;color:var(--gt3)">제공해 주시는 의견은 TETH를 모두에게 더 유용하도록 개선하는 데 도움이 됩니다.</div>'
     +'<div class="fbp">'+opts.map(function(o){ return '<button class="pill" onclick="taiFbPick(\''+id+'\',this)">'+gEsc(o)+'</button>'; }).join('')
     +'<button class="pill" onclick="taiFbEtc(\''+id+'\')">기타</button></div></div>');
@@ -18433,9 +18632,9 @@ function tfBkDropSheet(id){
   var title=btn?btn.textContent.replace('▾','').trim():'선택';
   var w=document.createElement('div'); w.id='tfbk-sheetw';
   w.innerHTML='<div class="sc" onclick="tfBkSheetClose()"></div>'
-    +'<div class="sh" role="listbox" aria-label="'+gEsc(title)+'"><div class="hd"><b>'+gEsc(title)+'</b><button type="button" class="x" aria-label="닫기" onclick="tfBkSheetClose()">✕</button></div>'
+    +'<div class="sh" role="listbox" aria-label="'+gEsc(title)+'"><div class="hd"><b>'+gEsc(title)+'</b><button type="button" class="x" aria-label="닫기" onclick="tfBkSheetClose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
     +[].map.call(m.querySelectorAll('.mi'),function(mi,i){
-      return '<button type="button" class="it'+(mi.classList.contains('on')?' on':'')+'" data-i="'+i+'" onclick="tfBkSheetPick(\''+id+'\','+i+')">'+gEsc(mi.textContent)+(mi.classList.contains('on')?'<span class="ck">✓</span>':'')+'</button>';
+      return '<button type="button" class="it'+(mi.classList.contains('on')?' on':'')+'" data-i="'+i+'" onclick="tfBkSheetPick(\''+id+'\','+i+')">'+gEsc(mi.textContent)+(mi.classList.contains('on')?'<span class="ck"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M20 6 9 17l-5-5"/></svg></span>':'')+'</button>';
     }).join('')
     +'</div>';
   document.body.appendChild(w);
@@ -18724,7 +18923,7 @@ function tfDrawer(title,html){
   var sc=document.createElement('div'); sc.id='tf-scrim'; sc.onclick=tfDrawerClose; document.body.appendChild(sc);
   var d=document.createElement('div'); d.className='tf-drawer'; d.id='tf-drawer'; d.setAttribute('role','dialog'); d.setAttribute('aria-modal','true');
   d.setAttribute('aria-labelledby','tf-drawer-t');
-  d.innerHTML='<div class="dh"><span class="t" id="tf-drawer-t">'+gEsc(title)+'</span><span class="x" role="button" tabindex="0" aria-label="닫기" onclick="tfDrawerClose()" onkeydown="if(event.key===\'Enter\')tfDrawerClose()">✕</span></div>'+html;
+  d.innerHTML='<div class="dh"><span class="t" id="tf-drawer-t">'+gEsc(title)+'</span><span class="x" role="button" tabindex="0" aria-label="닫기" onclick="tfDrawerClose()" onkeydown="if(event.key===\'Enter\')tfDrawerClose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></div>'+html;
   document.body.appendChild(d);
   var gs=$('g-scroll'); if(gs) gs.style.overflow='hidden'; /* 배경 스크롤 잠금 */
   document.addEventListener('keydown',tfDrawerEsc);
@@ -20072,7 +20271,7 @@ function taiAskRender(id){
   var el=$(id),st=(TAI.qcfg||{})[id]; if(!el||!st) return;
   var s=st.steps[st.idx],tp=s.multi?'checkbox':'radio',n=st.steps.length;
   var pg=n>1?'<span class="pg"><button class="pn" onclick="taiAskNav(\''+id+'\',-1)"'+(st.idx===0?' disabled':'')+'>‹</button>'+n+'개 중 '+(st.idx+1)+'<button class="pn" onclick="taiAskNav(\''+id+'\',1)"'+(st.idx===n-1?' disabled':'')+'>›</button></span>':'';
-  el.innerHTML='<div class="hd"><span class="t">'+gEsc(s.title||'몇 가지만 확인하겠습니다')+'</span><span style="display:flex;align-items:center;gap:8px">'+pg+'<span class="x" onclick="taiAskClose(\''+id+'\')">×</span></span></div><div class="ops">'
+  el.innerHTML='<div class="hd"><span class="t">'+gEsc(s.title||'몇 가지만 확인하겠습니다')+'</span><span style="display:flex;align-items:center;gap:8px">'+pg+'<span class="x" onclick="taiAskClose(\''+id+'\')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span></span></div><div class="ops">'
     +s.options.slice(0,7).map(function(o,i){ var on=st.picks[st.idx].indexOf(i)>=0; return '<label class="op"><input type="'+tp+'" name="'+id+'" data-i="'+i+'"'+(on?' checked':'')+'><span class="tt">'+gEsc(o.t)+(o.d?'<span class="dd">'+gEsc(o.d)+'</span>':'')+'</span></label>'; }).join('')
     +'<label class="op"><input type="'+tp+'" name="'+id+'" data-i="-1"><span class="tt">직접 답변 작성</span></label></div>'
     +'<div class="ft"><span style="display:flex;align-items:center;gap:12px"><span class="cnt">'+st.picks[st.idx].length+'개 선택됨</span><button class="skipb" onclick="taiAskSkip(\''+id+'\')">AI가 알아서 판단</button></span><button class="go" onclick="taiAskGo(\''+id+'\')">'+(st.idx<n-1?'다음 →':'→')+'</button></div>';
@@ -23309,7 +23508,7 @@ function acBAuth(){
 function acAuthOpen(){
   var a=acS(), b=acEx(a.ex); if(!b) return; acAuthClose(); a.auth={st:'pending',ex:a.ex}; acSave();
   var w=document.createElement('div'); w.id='ac-auth'; w.className='acx-auth'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); w.setAttribute('aria-label',b.name+' 연결 승인');
-  w.innerHTML='<div class="acx-aw"><button type="button" class="x" aria-label="닫기" onclick="acAuthNo()">✕</button>'
+  w.innerHTML='<div class="acx-aw"><button type="button" class="x" aria-label="닫기" onclick="acAuthNo()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>'
     +'<div class="acx-ac"><div class="pr"><img src="assets/favicon.png" alt="" width="44" height="44" onerror="this.remove()"><i aria-hidden="true"></i>'+acLogo(b.id,44)+'</div><h3>'+b.name+' 계정을 TETH에 연결합니다</h3><p>아래 권한만 연결됩니다</p>'
     +'<ul><li>잔고와 주문 내역 조회</li><li>현물과 선물 주문</li><li class="pm-n">출금은 허용하지 않음</li></ul>'
     +'<div class="bts"><button type="button" class="no" onclick="acAuthNo()">취소</button><button type="button" class="ok" id="ac-auth-ok" onclick="acAuthYes()">승인</button></div><small>승인은 '+b.name+'의 보안 설정에서 언제든 끊을 수 있습니다.</small></div></div>';
@@ -23402,7 +23601,7 @@ function acSheetOpen(ctx){
   ctx.doneHtml=function(){ return '<button type="button" class="bt-cta" onclick="acSheetDone()">'+(af&&af.kind==='copy'?'전략 복사 이어서 하기':af&&af.kind==='bt'?'전략 실행 이어서 하기':'터미널로 이동')+'</button>'; };
   acOpen(ctx);
   var w=document.createElement('div'); w.id='ac-sheet'; w.className='acx-sheet'; w.setAttribute('role','dialog'); w.setAttribute('aria-modal','true'); w.setAttribute('aria-label','TETH 실행 준비');
-  w.innerHTML='<div class="acx-sw"><button type="button" class="x" aria-label="닫기" onclick="acSheetClose()">✕</button><div id="ac-head">'+acHeadHtml()+'</div><div class="btg-flow acx-flow" id="ac-flow">'+acFlowHtml()+'</div></div>';
+  w.innerHTML='<div class="acx-sw"><button type="button" class="x" aria-label="닫기" onclick="acSheetClose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button><div id="ac-head">'+acHeadHtml()+'</div><div class="btg-flow acx-flow" id="ac-flow">'+acFlowHtml()+'</div></div>';
   w.addEventListener('click',function(e){ if(e.target===w) acSheetClose(); });
   document.body.appendChild(w); document.addEventListener('keydown',acSheetKey);
   if(acStep()==='uid') acUidRun();
@@ -24432,7 +24631,7 @@ function pxList(){
       :(st==='fail'||st==='none'?'<a class="pl-cta pl-cta-w px-cta acx-a" href="'+gEsc(acRef(ex))+'" target="_blank" rel="noopener">'+n+'에서 본인 확인하기'+AC_OUT+'</a>':'')+'<p class="px-links"><button type="button" class="pl-link" onclick="acKycRun(\''+ex+'\')">'+(st==='err'?'다시 확인하기':'확인 상태 다시 보기')+'</button></p>';
     return '<div class="px-kyc st-'+st+'" id="ac-kyc"><p class="px-lead">'+s+'</p>'+act+'</div>'; };
   var rg0=acRunGate; acRunGate=function(ex,cb){ var a=acS(); ex=ex||acConnList()[0]; if(!ex||!a.conn[ex]||acRunOk(ex)){ cb(); return; }
-    rg0.call(this,ex,cb); var d=document.getElementById('ac-cf'); if(!d) return; d.classList.add('px-cf'); var h=d.querySelector('h3'); if(h) h.textContent=acName(ex)+' 본인 확인'; var bt=d.querySelector('.bts'); if(bt){ var no=bt.querySelector('button:not(.ok)'); if(no) no.remove(); } var bx=d.querySelector('.bx'); if(bx) bx.insertAdjacentHTML('afterbegin','<button type="button" class="x" aria-label="닫기" onclick="acConfirmClose()">✕</button>'); };
+    rg0.call(this,ex,cb); var d=document.getElementById('ac-cf'); if(!d) return; d.classList.add('px-cf'); var h=d.querySelector('h3'); if(h) h.textContent=acName(ex)+' 본인 확인'; var bt=d.querySelector('.bts'); if(bt){ var no=bt.querySelector('button:not(.ok)'); if(no) no.remove(); } var bx=d.querySelector('.bx'); if(bx) bx.insertAdjacentHTML('afterbegin','<button type="button" class="x" aria-label="닫기" onclick="acConfirmClose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>'); };
 })();
 /* 연결은 됐는데 전략이 없을 때: 빈 안내 화면 대신 트레이딩뷰 차트가 있는 터미널을 바로 연다 */
 var PX_TV={binance:'BINANCE',okx:'OKX',bybit:'BYBIT',bitget:'BITGET',mexc:'MEXC',woox:'WOONETWORK',gate:'GATEIO'};
@@ -24505,13 +24704,13 @@ function skBilling(){
     +'<section class="stg-sec"><header><h2>결제 내역</h2>'+(a.bill.length>3&&!ST.allBill?'<button type="button" class="stg-lk" onclick="ST.allBill=1;stRe()">전체 보기</button>':'')+'</header>'+hist+'</section>';
 }
 function skSubDlg(){ var a=acS(), sub=a.sub||{}, def=a.cards.filter(function(c){ return c.def; })[0]||a.cards[0];
-  stDlg('<button type="button" class="x" aria-label="닫기" onclick="stDlgClose()">✕</button><h3>TETH 구독</h3><div class="stg-card">'
+  stDlg('<button type="button" class="x" aria-label="닫기" onclick="stDlgClose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button><h3>TETH 구독</h3><div class="stg-card">'
     +stRow('요금','<span class="num">'+acUsd(sub.price||AC_CFG.price)+' / 월</span>')
     +stRow('다음 결제일','<span class="num">'+skDate(sub.next||Date.now()+30*864e5)+'</span>')
     +stRow('결제 수단',def?gEsc(def.brand)+' <span class="num">•••• '+gEsc(def.last4)+'</span>':'-')
     +'</div><div class="bts"><button type="button" class="dg" onclick="stDlgClose();stSubCancel()">구독 해지</button></div>','TETH 구독'); }
 function skCardsDlg(){ var a=acS();
-  stDlg('<button type="button" class="x" aria-label="닫기" onclick="stDlgClose()">✕</button><h3>결제 수단</h3><div class="stg-card">'
+  stDlg('<button type="button" class="x" aria-label="닫기" onclick="stDlgClose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button><h3>결제 수단</h3><div class="stg-card">'
     +a.cards.map(function(c){ return stRow(gEsc(c.brand)+' <span class="num">•••• '+gEsc(c.last4)+'</span>','',(c.def?'':stBtn('기본으로 설정','skCardDef(\''+c.id+'\')'))+stBtn('삭제','stDlgClose();stCardDel(\''+c.id+'\')'),(c.def?'기본 결제 수단, ':'')+'<span class="num">'+skExp(c.exp)+'</span>'); }).join('')
     +'</div><div class="bts"><button type="button" class="ok" onclick="stDlgClose();stCardDlg()">결제 수단 추가</button></div>','결제 수단'); }
 function skCardDef(id){ stCardDef(id); skCardsDlg(); }
@@ -24752,7 +24951,7 @@ function skaRender(id){
   var el=document.getElementById(id), st=(TAI.qcfg||{})[id]; if(!el||!st) return;
   var s=st.steps[st.idx], n=st.steps.length, multi=!!s.multi, freeOn=st.freeOn===st.idx;
   var pg=n>1?'<span class="pg"><button type="button" aria-label="이전 질문" onclick="skaNav(\''+id+'\',-1)"'+(st.idx===0?' disabled':'')+'>'+SKA_CHEV_L+'</button><span>'+n+'개 중 '+(st.idx+1)+'</span><button type="button" aria-label="다음 질문" onclick="skaNav(\''+id+'\',1)"'+(st.idx===n-1?' disabled':'')+'>'+SKA_CHEV_R+'</button></span>':'';
-  el.innerHTML='<div class="hd"><b>'+gEsc(s.title||'몇 가지만 확인하겠습니다')+'</b>'+pg+'<button type="button" class="x" aria-label="닫기" onclick="taiAskClose(\''+id+'\')">✕</button></div>'
+  el.innerHTML='<div class="hd"><b>'+gEsc(s.title||'몇 가지만 확인하겠습니다')+'</b>'+pg+'<button type="button" class="x" aria-label="닫기" onclick="taiAskClose(\''+id+'\')"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
     +'<div class="ops">'+s.options.slice(0,6).map(function(o,i){ var on=st.picks[st.idx].indexOf(i)>=0; return '<button type="button" class="op'+(on?' on':'')+'" aria-pressed="'+on+'" onclick="skaPick(\''+id+'\','+i+')"><b>'+gEsc(o.t)+'</b>'+(o.d?'<span>'+gEsc(o.d)+'</span>':'')+'</button>'; }).join('')
     +(freeOn?'<div class="op free"><input id="'+id+'-f" type="text" placeholder="직접 답을 적어 주십시오" value="'+gEsc(st.free[st.idx]||'')+'" onkeydown="if(event.key===\'Enter\'){event.preventDefault();skaFree(\''+id+'\');}"><button type="button" class="send" onclick="skaFree(\''+id+'\')">확인</button></div>'
       :'<button type="button" class="op" onclick="skaFreeOpen(\''+id+'\')"><b>직접 답변 작성</b></button>')+'</div>'
@@ -26238,7 +26437,7 @@ function authPwNext(){
   authGood('au-pw-in','au-pw-err');
   AUTH.pwDone=true; authFinishEmail(); /* 비밀번호 확인 = 로그인 완료, 코드 재요구 금지 */
 }
-function authPwEye(id,btn){ var i=$(id); i.type=i.type==='password'?'text':'password'; btn.textContent=i.type==='password'?'👁':'🙈'; }
+function authPwEye(id,btn){ var i=$(id); i.type=i.type==='password'?'text':'password'; btn.innerHTML=i.type==='password'?'<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0\"/><circle cx=\"12\" cy=\"12\" r=\"3\"/></svg>':'<svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\" style=\"display:block\"><path d=\"M10.733 5.076a10.744 10.744 0 0 1 11.205 6.575 1 1 0 0 1 0 .696 10.747 10.747 0 0 1-1.444 2.49\"/><path d=\"M14.084 14.158a3 3 0 0 1-4.242-4.242\"/><path d=\"M17.479 17.499a10.75 10.75 0 0 1-15.417-5.151 1 1 0 0 1 0-.696 10.75 10.75 0 0 1 4.446-5.143\"/><path d=\"m2 2 20 20\"/></svg>'; }
 function authFinishEmail(){
   AUTH.doneName=AUTH.email.split('@')[0];
   if(AUTH.mode==='signup'){ authAgeShow(); return; } /* 가입은 연령 확인 후 완료 */
@@ -26331,10 +26530,10 @@ function glcRender(){
   var ll=$('glc-lang-list'), cl=$('glc-cur-list');
   if(!ll) return;
   ll.innerHTML=GLC_LANGS.map(function(l){
-    return '<li data-v="'+l.c+'" data-on="'+(GLC.lang===l.c?1:0)+'" onclick="glcSetLang(\''+l.c+'\')">'+l.n+'<span class="ck">✓</span></li>';
+    return '<li data-v="'+l.c+'" data-on="'+(GLC.lang===l.c?1:0)+'" onclick="glcSetLang(\''+l.c+'\')">'+l.n+'<span class="ck"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M20 6 9 17l-5-5"/></svg></span></li>';
   }).join('');
   cl.innerHTML=GLC_CURS.map(function(c){
-    return '<li data-v="'+c.c+'" data-on="'+(GLC.cur===c.c?1:0)+'" onclick="glcSetCur(\''+c.c+'\')">'+c.c+'<span class="ck">✓</span></li>';
+    return '<li data-v="'+c.c+'" data-on="'+(GLC.cur===c.c?1:0)+'" onclick="glcSetCur(\''+c.c+'\')">'+c.c+'<span class="ck"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M20 6 9 17l-5-5"/></svg></span></li>';
   }).join('');
   var lb=$('g-side-glc-label');
   if(lb){ var ln=(GLC_LANGS.find(function(l){return l.c===GLC.lang;})||{}).n||''; lb.textContent=ln+' / '+GLC.cur; }
