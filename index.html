@@ -541,7 +541,7 @@ body.light .g-util.cur{background:#e2e6ec;color:#1f1f1f}
 .g-sec button{color:var(--gt3);font-size:14px}
 .g-sec button:hover{color:var(--gt2)}
 .g-sess{display:flex;align-items:center;gap:8px;min-height:38px;padding:7px 6px 7px 13px;border-radius:999px;font-size:13.5px;color:var(--gt);cursor:pointer;transition:background .12s;position:relative}
-.g-sess:hover{background:rgba(255,255,255,.06)}
+.g-sess:hover{background:#1c1e22}
 /* Gemini식 행 메뉴: 호버 시 ⋮, 고정 행은 핀 상시 표시 */
 .g-sess .pin{flex-shrink:0;color:var(--gt2);margin-right:2px}
 .g-sess-dots{flex-shrink:0;width:26px;height:26px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;color:var(--gt2);font-size:15px;opacity:0;transition:opacity .12s,background .12s}
@@ -566,7 +566,7 @@ body.light .g-util.cur{background:#e2e6ec;color:#1f1f1f}
 .g-dlg .acts .pr:hover{background:#36393f}
 .g-dlg .acts .pr[disabled]{opacity:.4;pointer-events:none}
 @keyframes gFade{from{opacity:0}to{opacity:1}}
-.g-sess.on{background:var(--g3);color:var(--gt)}
+.g-sess.on{background:#25272c;background-image:none;color:var(--gt)}
 .g-sess .t{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .g-sess .m{font-size:11px;color:var(--gt3);flex-shrink:0;display:inline-flex;align-items:center;gap:5px}
 .g-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
@@ -8961,7 +8961,7 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 /* QA 단추: 잘 보이게 흰 알약, 상담 단추 바로 위(로그인 전 머리 단추와 겹치지 않게) */
 #tf-devbtn{top:auto!important;bottom:96px!important;right:22px!important;height:40px;padding:0 18px;border-radius:999px;border:0;background:#45484f;color:#fff;transition:background .2s ease;font-size:14px;font-weight:600;letter-spacing:0;box-shadow:0 4px 16px rgba(0,0,0,.5);backdrop-filter:none}
 #tf-devbtn:hover{background:#50535b;color:#fff}
-#tf-devbtn.on{background:#00feff;color:#101113}
+#tf-devbtn.on{background:#5c6069;color:#fff}
 #qa2-panel{top:auto!important;bottom:148px!important;max-height:calc(100vh - 200px)!important}
 @media (max-width:860px){ #tf-devbtn{bottom:212px!important;right:14px!important} #qa2-panel{bottom:262px!important;max-height:50vh!important} }
 
