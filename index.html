@@ -526,8 +526,8 @@ body{
 .g-new,.g-util,.g-sec,#g-side-links,#g-live-list{flex-shrink:0}
 #g-sess-list{flex:1 1 auto;overflow-y:auto;min-height:60px;scrollbar-width:thin;
   /* 스크롤 상하단 페이드 — 행이 뚝 끊겨 보이지 않게 (Gemini 동일) */
-  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);
-  mask-image:linear-gradient(to bottom,transparent 0,#000 16px,#000 calc(100% - 16px),transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 calc(100% - 16px),transparent 100%);
+  mask-image:linear-gradient(to bottom,#000 calc(100% - 16px),transparent 100%); /* 위쪽 페이드 제거: 첫 항목 위가 그림자처럼 보임 (사용자 지시) */
   padding-top:4px}
 .g-util:hover{background:rgba(255,255,255,.08)}
 /* 현재 위치 표시 — Gemini식 중립 그레이 필 (사용자 지시: 파랑 금지, 호버보다 한 단계 진하게) */
@@ -3284,6 +3284,12 @@ body.tf-route #teth-help{bottom:88px}
   #g-root .gcl .hd .x{order:2;margin:-6px -6px -6px auto}
   #g-root .gcl .hd b{order:3;flex:1 0 100%}
 }
+/* 채팅 전략 리포트 버튼: 버튼답게 (사용자 지시) — 주 버튼 메인색, 보조 버튼 회색 */
+.gbt .acts{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.gbt .acts .wbtn,.gbt .acts .obtn{display:inline-flex;align-items:center;justify-content:center;height:44px;padding:0 20px;border-radius:999px;font-size:14px;font-weight:600;cursor:pointer;border:0;font-family:inherit;transition:background .2s ease,transform .15s ease}
+.gbt .acts .wbtn{background:#00feff;color:#101113}.gbt .acts .wbtn:hover{background:#00d6d8}
+.gbt .acts .obtn{background:#45484f;color:#fff}.gbt .acts .obtn:hover{background:#50535b}
+.gbt .acts .wbtn:active,.gbt .acts .obtn:active{transform:scale(.97)}
 /* PC 채팅 글자 키움 (사용자 지시) */
 @media (min-width:861px){
   .g-umsg{font-size:16px;padding:12px 18px}
