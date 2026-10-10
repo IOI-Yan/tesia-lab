@@ -1029,6 +1029,7 @@ body.light #teth-help svg rect{fill:#1f1f1f}
   @keyframes tmGlowSpread{from{opacity:0;transform:scale(.35)}60%{opacity:1}to{opacity:1;transform:scale(1)}}
   @media (prefers-reduced-motion:reduce){#g-content .g-home::after{animation:none}}
   body.g-dark #g-content .g-home .g-pillband{background-image:linear-gradient(to top,rgba(16,17,19,.6) 40%,rgba(16,17,19,0))}
+  #g-content .g-home{padding-bottom:0}#g-content .g-home .g-pillband{padding-bottom:34px} /* 입력창 띠가 홈 맨 아래까지 닿게: 아래 24px 틈에서 빛이 밝게 드러나던 문제 (사용자 지시) */
 }
 /* 보내기 버튼: 메인색 배경 + 어두운 아이콘 (Gemini·ChatGPT처럼 브랜드색 주 버튼, 사용자 지시) */
 #g-root #g-home-send{background:#00feff;color:#101113;transition:background .2s ease,transform .15s ease}#g-root #g-home-send:hover{background:#00d6d8}#g-root #g-home-send:active{transform:scale(.94)}
