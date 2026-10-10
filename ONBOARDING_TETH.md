@@ -1,0 +1,43 @@
+# TETH 디자인 폴리싱 인수인계
+
+마지막 업데이트: 2026-10-11
+(VOILA는 별도 인수인계 문서로 분리됨. 지금은 TETH가 우선, 마감 ASAP)
+
+## 개요
+- TETH = AI 자동매매 웹앱. 대표(Black Ethereum)가 VOILA보다 먼저 요청. 기획·흐름·기능 범위는 확정 → **디자인만** 다듬기
+- 기준: "슬지가 보고 소액 테스트해보고 싶어지면 통과". 모바일 1순위, PC 2순위
+- 지금 HTML 사이트는 **프로토타입**. 실제 서비스는 개발자가 Flutter(앱)·React(웹)로 새로 만듦 → 내가 정한 값(색·글자·간격·효과)이 기준서가 됨
+- 원본 사이트 디자인 기준 문서: 저장소의 `DESIGN_PROMPT.md` (대표 확정본, 바탕 #000 등). 내 변경이 이와 다른 부분은 의도한 것
+
+## 저장소와 링크
+- 원본: https://github.com/aresjoo/tesia-lab (내 계정 IOI-Yan 쓰기 권한 있음, main = 실제 공개 사이트)
+- **내 포크**: https://github.com/IOI-Yan/tesia-lab
+  - `design-polish` 브랜치: 작업 코드 (반영 요청 PR은 아직 안 보냄)
+  - `design-notes` 브랜치: TETH 작업 메모 3개 (EDIT_NOTES 수정 기록 / COLOR_NOTES 색 / SCREEN_IDS 화면 ID)
+- **공유 링크(누구나 열람)**: https://ioi-yan.github.io/tesia-lab/ — design-polish에 올리면 1~2분 뒤 자동 반영
+- 화면 ID 캡처(AS-IS): TETH Figma 권한이 없어 **임시로** VOILA Figma 파일 안 "AS-IS" 프레임에 둠 https://www.figma.com/design/80IPAc7yRP0pPoCyza1UJE/Volia?node-id=2352-509 (VOILA 작업과는 무관)
+
+## 다른 PC에서 이어서 하기
+1. 저장소 받기: `git clone https://github.com/IOI-Yan/tesia-lab.git` → `git checkout design-polish`
+2. 원본 연결: `git remote add origin-up https://github.com/aresjoo/tesia-lab.git` (원본 최신 내용 확인용)
+3. 메모 받기: `git fetch origin design-notes` 후 별도 폴더에 체크아웃하거나 `git show origin/design-notes:EDIT_NOTES.md`로 확인
+4. 미리보기: PC에 Python/Node가 없으면 PowerShell로 간단 서버를 띄움(Claude에게 "TETH 로컬 미리보기 켜줘"). **캐시 끄기(Cache-Control: no-store) 필수** — 안 그러면 예전 화면이 보여 혼란
+5. 작업 후: design-polish에 커밋·푸시 → 공유 링크 자동 반영. 메모도 design-notes 브랜치에 갱신
+
+## 정한 규칙 (요약, 자세한 값은 메모 파일)
+- 바탕 `#101113`, 메인색 `#00FEFF`, 글꼴 **Pretendard** (버튼 글자 세로 정렬 문제 해결)
+- 주 버튼: 메인색 배경 + `#101113` 글자, 호버 `#00D6D8`
+- 회색(보조) 버튼: 바탕 단계별로 한 단계 밝게 — 페이지·카드 위 `#313339`, 떠 있는 창 위 `#45484F`
+- 아이콘: **Lucide**, 선 1.6 (글자 ✕ ↑ 👁 쓰지 않기, 직접 그리지 않기)
+- 글자 크기: .5px 금지(내림), 1px 차이처럼 애매한 크기 금지 → 같은 크기 + 굵기로 구분하거나 확실히 다르게
+- 메모는 **최종 값만** 기록. 화면은 화면 ID(CO/CH/TR/MK/BT/EX/PL)로 부름
+
+## 진행 현황 (2026-10-11)
+- 완료: 전체 공통(바탕·글꼴·버튼·아이콘·툴팁·사이드바·푸터), 홈 PC·모바일 개편, 채팅(질문 카드·검증 결과·리포트), 로그인·가입 창
+- 남은 후보: 공통 버튼 세트 정리(지금은 화면마다 버튼 스타일이 따로 약 250가지), 메인색 `#00F0FF` 남은 8곳 통일 여부, 나머지 화면(AI 트레이딩·전략 복사·거래소 연결·백테스트·플랜) 순서대로 폴리싱
+- 대표님께 확인할 것: 홈 푸터 청록 배경의 의도, 모바일 홈 종목 선택 순서 변경(기능 → 종목)
+
+## 작업 방식 (중요)
+- **판단은 내가 먼저**: Claude가 먼저 문제 목록을 만들거나 앞서가지 않기. 내가 보고 말한 것만 고치기
+- 고친 뒤에는 반드시 **실제 화면에서 측정해 확인**하고 말하기 (확인 없이 "됐다"고 하지 않기)
+- 모바일 레이아웃 변경은 겹침·스크롤까지 확인
