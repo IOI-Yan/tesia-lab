@@ -17,6 +17,12 @@
 - **공유 링크(누구나 열람)**: https://ioi-yan.github.io/tesia-lab/ — design-polish에 올리면 1~2분 뒤 자동 반영
 - 화면 ID 캡처(AS-IS): TETH Figma 권한이 없어 **임시로** VOILA Figma 파일 안 "AS-IS" 프레임에 둠 https://www.figma.com/design/80IPAc7yRP0pPoCyza1UJE/Volia?node-id=2352-509 (VOILA 작업과는 무관)
 
+## 작업할 때 열어두는 것
+- 로컬 미리보기(내 수정본): http://localhost:8080/
+- 원본 사이트(수정 전 비교용): https://aresjoo.github.io/tesia-lab/
+- 공유용 수정본: https://ioi-yan.github.io/tesia-lab/
+- 모바일 화면 모아보기 PDF: `Downloads\Telegram Desktop\TETH 화면 모아보기 (모바일).pdf` (텔레그램으로 받은 파일, 다른 PC에는 따로 받아야 함)
+
 ## 다른 PC에서 이어서 하기
 1. 저장소 받기: `git clone https://github.com/IOI-Yan/tesia-lab.git` → `git checkout design-polish`
 2. 원본 연결: `git remote add origin-up https://github.com/aresjoo/tesia-lab.git` (원본 최신 내용 확인용)
