@@ -9181,6 +9181,26 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-panel .ph span{font-size:13px}
 #bt-root .bt-panel .cell b,#bt-root .bt-panel .cell b button{font-size:16px;font-weight:700;color:#fff}
 #bt-root .bt-panel .cell > span{font-size:13px;color:#9ea3ad}
+/* 정렬 목록: 트리거 = 글자+아래 화살표 알약, 목록 = #26282D 떠 있는 창(모서리 12px, 테두리 6%), 고른 항목 앞 메인색 체크 */
+#bt-root .bt-sdd{position:relative;display:inline-flex;align-items:center;gap:8px}
+#bt-root .bt-sdd-t{display:inline-flex;align-items:center;gap:4px;height:32px;padding:0 10px 0 12px;border:0;border-radius:999px;background:#25272c;color:#fff;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s ease}
+#bt-root .bt-sdd-t:hover{background:#2f3137}
+#bt-root .bt-sdd-t svg{color:#9ea3ad;transition:transform .2s ease}
+#bt-root .bt-sdd-t[aria-expanded="true"] svg{transform:rotate(180deg)}
+#bt-root .bt-sdd-m{position:absolute;right:0;top:calc(100% + 6px);z-index:30;min-width:160px;padding:6px;border-radius:12px;background:#26282d;border:1px solid rgba(255,255,255,.06);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+#bt-root .bt-sdd-m[hidden]{display:none}
+#bt-root .bt-sdd-m button{display:flex;align-items:center;gap:8px;width:100%;height:36px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:#cdcdcd;font:inherit;font-size:14px;font-weight:500;text-align:left;cursor:pointer;white-space:nowrap}
+#bt-root .bt-sdd-m button:hover{background:#313339;color:#fff}
+#bt-root .bt-sdd-m button svg{color:#00feff;visibility:hidden;flex:none}
+#bt-root .bt-sdd-m button[aria-selected="true"]{color:#fff;font-weight:600}
+#bt-root .bt-sdd-m button[aria-selected="true"] svg{visibility:visible}
+/* 판단 기록 행: 고른·호버 영역을 둥근 모서리(12px) 박스로, 안쪽 좌우 12px. 위아래 4px 띄워 구분선과 붙지 않게 */
+#bt-root .bt-row.v2{padding:4px 0;background:transparent}
+#bt-root .bt-row.v2 .bt-rb{padding-left:12px!important;padding-right:12px!important;border-radius:12px;transition:background .2s ease}
+#bt-root .bt-row.v2 .bt-rb:hover{background:rgba(255,255,255,.03)}
+#bt-root .bt-row.v2.on .bt-rb{background:rgba(255,255,255,.05)}
+/* 모바일 섹션 머리: 제목 왼쪽, 정렬 오른쪽 한 줄 */
+@media (max-width:768px){ #bt-root .bt-sec-b header.v2{flex-direction:row;align-items:center;justify-content:space-between;text-align:left} #bt-root .bt-sec-b header.v2 h3{margin:0;text-align:left} }
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
@@ -24071,11 +24091,15 @@ function btDecRows(){
   L.slice(0,N).forEach(function(x){ var d=x.d||x.ev, dt=idxToDate(d.i), k=dt.getFullYear()+'년 '+(dt.getMonth()+1)+'월'; if(so!=='big'&&k!==ym){ ym=k; var c=0; L.forEach(function(y){ var t=idxToDate((y.d||y.ev).i); if(t.getFullYear()===dt.getFullYear()&&t.getMonth()===dt.getMonth()) c++; }); out+='<div class="bt-ym"><b>'+k+'</b><span class="num">'+c+'건</span></div>'; } out+=btRowHtml(x); });
   return out+(n>N?'<button type="button" class="bt-more" onclick="BT.decN='+(N+BT_PAGE*2)+';btEvRe()">이전 판단 더 보기 <i class="num">'+N+' / '+n+'</i></button>':(n>BT_PAGE?'<p class="bt-end num">'+n+'건을 모두 봤습니다</p>':''));
 }
+/* 정렬 고르기: 기본 select 대신 토스증권식 떠 있는 목록(고른 항목 앞 메인색 체크) */
+function btSdd(b,e){ if(e) e.stopPropagation(); var m=b.nextElementSibling, open=m.hidden; document.querySelectorAll('.bt-sdd-m').forEach(function(x){ x.hidden=true; x.previousElementSibling.setAttribute('aria-expanded','false'); }); if(open){ m.hidden=false; b.setAttribute('aria-expanded','true'); } }
+document.addEventListener('click',function(e){ if(!e.target.closest||!e.target.closest('.bt-sdd')) document.querySelectorAll('.bt-sdd-m').forEach(function(x){ x.hidden=true; if(x.previousElementSibling) x.previousElementSibling.setAttribute('aria-expanded','false'); }); });
+document.addEventListener('keydown',function(e){ if(e.key==='Escape') document.querySelectorAll('.bt-sdd-m').forEach(function(x){ x.hidden=true; }); });
 function btSort(v){ BT.sort=v; BT.decN=BT_PAGE; BT.sel=null; var e=$('bt-ev'); if(e) e.innerHTML=btEvidence(); btPin(); }
 function btFilt(k){ BT.filt=k; BT.decN=BT_PAGE; BT.grp=null; if(BT.sel&&BT.sel.t!=='t') BT.sel=null; var e=$('bt-ev'); if(e) e.innerHTML=btEvidence(); btPin(); }
 function btEvidence(){
   var R=BT.R, tf=BT.trf, so=BT.sort||'new', f=BT.filt, S4=btSum4(), fut=!!(BT.s.cfg&&BT.s.cfg.fut);
-  return '<section class="bt-sec-b" id="bt-dec"><header class="v2"><h3>어떻게 판단했나</h3><label class="bt-sort"><span>정렬</span><select onchange="btSort(this.value)" aria-label="정렬">'+[['new','최신순'],['old','오래된순'],['big','결과가 큰 순']].map(function(o){ return '<option value="'+o[0]+'"'+(so===o[0]?' selected':'')+'>'+o[1]+'</option>'; }).join('')+'</select></label></header>'
+  return '<section class="bt-sec-b" id="bt-dec"><header class="v2"><h3>어떻게 판단했나</h3><div class="bt-sort bt-sdd"><span>정렬</span>'+(function(){ var O=[['new','최신순'],['old','오래된순'],['big','결과가 큰 순']], cur=O.filter(function(o){ return o[0]===so; })[0]||O[0]; return '<button type="button" class="bt-sdd-t" aria-haspopup="listbox" aria-expanded="false" onclick="btSdd(this,event)">'+cur[1]+'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="bt-sdd-m" role="listbox" aria-label="정렬" hidden>'+O.map(function(o){ return '<button type="button" role="option" aria-selected="'+(so===o[0])+'" onclick="btSort(\''+o[0]+'\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+o[1]+'</button>'; }).join('')+'</div>'; })()+'</div></header>'
     +'<div class="bt-s4 n'+(S4.length+1)+'" role="tablist" aria-label="판단 종류">'+S4.map(function(c){ return '<button type="button" role="tab" aria-selected="'+(f===c[0])+'" class="k-'+c[0]+'" onclick="btFilt(\''+c[0]+'\')"><small>'+c[1]+'</small><b class="num">'+c[2]+'<i>'+(c[0]==='opp'&&BT.s.kind==='agent'?'일':c[0]==='skip'&&BT.s.kind==='agent'?'일':c[0]==='opp'?'번':'건')+'</i></b></button>'; }).join('')
     +'<button type="button" role="tab" aria-selected="'+(f==='all')+'" class="k-all" onclick="btFilt(\'all\')"><small>전체 기록</small><b class="num">'+btDecList('all').length+'<i>건</i></b></button></div>'
     +'<div class="bt-list v2" id="bt-dl">'+btDecRows()+'</div></section>'
