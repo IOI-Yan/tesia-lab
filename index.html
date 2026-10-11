@@ -9088,7 +9088,7 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 @media (max-width:1120px){ #g-content .nfz-open h1{font-size:32px} }
 @media (max-width:760px){ #g-content .nfz-open h1{font-size:28px} #g-content .nfz-open h1 em{font-size:16px} #g-content .nfz-sh h2{font-size:18px} }
 /* ═══ 백테스트 (토스증권 패널 느낌): 페이지 #101113 위에 채운 박스 #17181B, 모서리 16px, 박스 사이 8px ═══ */
-#bt-root .bt-grid{gap:8px}
+#bt-root .bt-grid{gap:16px}
 #bt-root .bt-main{display:flex;flex-direction:column;gap:0}
 #bt-root .bt-cap{margin:0;padding:20px 20px 8px;background:#17181B;border-radius:16px 16px 0 0;min-height:0}
 #bt-root .bt-chart{margin:0;padding:0 20px 16px;background:#17181B;border-radius:0 0 16px 16px}
@@ -9096,12 +9096,12 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-cap-l b.num{font-size:28px;font-weight:700}
 #bt-root .bt-leg span{font-size:13px;color:#cdcdcd}
 #bt-root .bt-leg span.a{color:#fff}
-#bt-root .bt-panel{margin:8px 0 0;background:#17181B;border:0;border-radius:16px}
+#bt-root .bt-panel{margin:16px 0 0;background:#17181B;border:0;border-radius:16px}
 #bt-root .bt-panel .ph{min-height:48px;padding:0 20px;border-bottom:1px solid rgba(255,255,255,.06)}
 #bt-root .bt-panel .ph span{font-size:14px;color:#cdcdcd}
 #bt-root .bt-panel .cell{padding:14px 20px;border-right-color:rgba(255,255,255,.06)}
 #bt-root .bt-panel .cell small{font-size:13px;color:#9ea3ad}
-#bt-root .bt-rail{gap:8px;top:8px}
+#bt-root .bt-rail{gap:16px;top:16px}
 #bt-root .bt-box{background:#17181B;border:0;border-radius:16px;padding:20px}
 #bt-root .bt-box h3,#bt-root .bt-box summary h3{font-size:16px;font-weight:700;color:#fff}
 #bt-root .bt-set h3{margin-bottom:16px}
@@ -9235,12 +9235,19 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
   #bt-root .bt-row.v2 .bt-rb,#bt-root .bt-row.bt-tr .bt-rb,#bt-root #bt-trs .bt-th{padding-left:20px!important;padding-right:14px!important}
   #bt-root .bt-tr .bt-rb{grid-template-columns:minmax(0,1fr) auto auto 16px!important;column-gap:12px;row-gap:2px}
   #bt-root .bt-tr .bt-rb .cv{grid-column:4;grid-row:1/4;align-self:center}
+  #bt-root .bt-tr .bt-rb > b{grid-column:1;grid-row:1}
+  #bt-root .bt-tr .bt-rb > time{grid-column:1;grid-row:2}
+  #bt-root .bt-tr .bt-rb > time + time{grid-column:1;grid-row:3}
+  #bt-root .bt-tr .bt-rb > span.r{grid-column:2;grid-row:1/4;align-self:center}
+  #bt-root .bt-tr .bt-rb > span.r + span.r{grid-column:3}
   #bt-root .bt-tr .bt-rb time i{display:inline;color:#9ea3ad;margin-right:6px}
   #bt-root .bt-row.bt-tr .bt-rb{padding-right:16px!important}
   #bt-root .bt-tlist{overflow:visible}
 }
 /* "내린 판단" 목록: 마지막 행 아래 선 없앰 */
 #bt-root .bt-feed .bt-fr:last-child{border-bottom:0}
+/* 분류 칩(차트 규칙·BTC·현물): 회색 #212121(누런 회색) → 화면 공통 푸른 회색 #25272C */
+#bt-root .bt-id-m b,#bt-root .bt-id-m span{background:#25272c}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
