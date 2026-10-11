@@ -9126,6 +9126,12 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-box,#bt-root .bt-panel{border:1px solid rgba(255,255,255,.06)}
 #bt-root .bt-cap{border:1px solid rgba(255,255,255,.06);border-bottom:0}
 #bt-root .bt-chart{border:1px solid rgba(255,255,255,.06);border-top:0}
+/* 접는 박스(이 전략의 규칙·계산 기준): 누르는 영역 = 박스 머리 전체. 여백을 박스 대신 머리·내용에 준다 */
+#bt-root .bt-box.bt-fold{padding:0;overflow:hidden}
+#bt-root .bt-fold summary{padding:20px;margin:0;transition:background .2s ease}
+#bt-root .bt-fold[open] summary{margin:0;padding-bottom:16px}
+#bt-root .bt-fold > :not(summary){margin:0 20px 20px}
+@media (max-width:900px){ #bt-root .bt-fold summary:hover{background:rgba(255,255,255,.03)} }
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
