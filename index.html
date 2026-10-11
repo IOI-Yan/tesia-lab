@@ -9227,16 +9227,16 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-row.bt-tr.on .bt-rb{background:rgba(255,255,255,.05)}
 #bt-root .bt-row.bt-tr.on{background:transparent}
 #bt-root #bt-trs .bt-th{padding-left:12px;padding-right:6px}
-/* 모바일 판단 기록·거래 내역 행: 호버·고른 영역이 화면 좌우 끝까지(페이지 여백 16px만큼 밖으로), 글자 왼쪽 28px · 화살표 오른쪽 24px(아이콘 칸 여유 2px + 안쪽 4px 포함 28px). 거래 내역 행은 모바일에서 종목·손익 윗줄, 산 날·판 날 아랫줄, 화살표는 오른쪽 가운데 */
+/* 모바일 판단 기록·거래 내역 행: 호버·고른 영역이 화면 좌우 끝까지(페이지 여백 16px만큼 밖으로), 글자 왼쪽 16px(페이지 여백과 같게) · 화살표 오른쪽도 보이는 거리 16px(아이콘 칸 여유·안쪽 빈칸 포함). 거래 내역 행은 모바일에서 종목·손익 윗줄, 산 날·판 날 아랫줄, 화살표는 오른쪽 가운데 */
 @media (max-width:768px){
   #bt-root .bt-list.v2{overflow:visible}
   #bt-root .bt-sec-b#bt-dec{overflow:visible}
   #bt-root .bt-row.v2,#bt-root .bt-row.bt-tr,#bt-root #bt-trs .bt-th{margin:0 -16px;width:calc(100% + 32px);max-width:none}
-  #bt-root .bt-row.v2 .bt-rb,#bt-root .bt-row.bt-tr .bt-rb,#bt-root #bt-trs .bt-th{padding-left:28px!important;padding-right:22px!important}
+  #bt-root .bt-row.v2 .bt-rb,#bt-root .bt-row.bt-tr .bt-rb,#bt-root #bt-trs .bt-th{padding-left:16px!important;padding-right:10px!important}
   #bt-root .bt-tr .bt-rb{grid-template-columns:minmax(0,1fr) auto auto 16px!important;column-gap:12px;row-gap:2px}
   #bt-root .bt-tr .bt-rb .cv{grid-column:4;grid-row:1/4;align-self:center}
   #bt-root .bt-tr .bt-rb time i{display:inline;color:#9ea3ad;margin-right:6px}
-  #bt-root .bt-row.bt-tr .bt-rb{padding-right:24px!important}
+  #bt-root .bt-row.bt-tr .bt-rb{padding-right:12px!important}
   #bt-root .bt-tlist{overflow:visible}
 }
 /* "내린 판단" 목록: 마지막 행 아래 선 없앰 */
