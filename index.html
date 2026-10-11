@@ -9201,6 +9201,9 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-row.v2.on .bt-rb{background:rgba(255,255,255,.05)}
 /* 모바일 섹션 머리: 제목 왼쪽, 정렬 오른쪽 한 줄 */
 @media (max-width:768px){ #bt-root .bt-sec-b header.v2{flex-direction:row;align-items:center;justify-content:space-between;text-align:left} #bt-root .bt-sec-b header.v2 h3{margin:0;text-align:left} }
+/* 거래 내역 머리: 거르개를 제목 아래 왼쪽으로(판단 기록과 같은 배치) */
+#bt-root #bt-trs > header{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:12px}
+#bt-root #bt-trs > header .bt-chips{margin-left:0}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
