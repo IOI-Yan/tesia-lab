@@ -514,6 +514,7 @@ body{
 .g-titlebar .g-brand-sub{color:var(--gt3)}
 .g-iconbtn{width:28px;height:28px;border-radius:6px;display:inline-flex;align-items:center;justify-content:center;color:var(--gt3);transition:background .12s}
 .g-iconbtn:hover{background:rgba(255,255,255,.06);color:var(--gt2)}
+#g-chead-dots{width:36px;height:36px;border-radius:10px;color:var(--gt2)} /* 채팅 상단 더보기: 36px 정사각형 + Lucide 세로 점 아이콘 20px (사용자 지시) */
 .g-body{flex:1;display:flex;min-height:0}
 /* sidebar */
 /* Gemini식: 사이드바는 보더 없이 배경 색조 차이만 — 접힘 레일은 콘텐츠와 같은 색으로 녹아든다 */
@@ -5372,7 +5373,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
         <span class="g-tabs" id="g-tabs"></span>
         <span style="flex:1"></span>
         <span id="g-chead-status" class="g-tag" hidden></span>
-        <button class="g-iconbtn" id="g-chead-dots" onclick="gSessMenu(event)" aria-label="메뉴" aria-haspopup="true">⋮</button>
+        <button class="g-iconbtn" id="g-chead-dots" onclick="gSessMenu(event)" aria-label="메뉴" aria-haspopup="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><circle cx="12" cy="12" r="1"/><circle cx="12" cy="5" r="1"/><circle cx="12" cy="19" r="1"/></svg></button>
       </div>
       <div id="g-sess-menu" hidden>
         <div id="g-sess-items">
