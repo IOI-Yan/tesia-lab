@@ -9248,6 +9248,15 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-feed .bt-fr:last-child{border-bottom:0}
 /* 분류 칩(차트 규칙·BTC·현물): 회색 #212121(누런 회색) → 화면 공통 푸른 회색 #25272C */
 #bt-root .bt-id-m b,#bt-root .bt-id-m span{background:#25272c}
+/* 모바일 월별 수익률 칸: 회색은 화면 공통 카드색, 수익 칸은 초록 바탕(12%)+초록 글자, 손실 칸은 빨강 바탕(12%)+빨강 글자. 색은 손익 숫자와 같은 #2FB98A·#F0566A */
+#bt-root .skb-mtm .c{background:#17181b;border:1px solid rgba(255,255,255,.06)}
+#bt-root .skb-mtm .c em,#bt-root .skb-mtm .c small{color:#9ea3ad}
+#bt-root .skb-mtm .c.e b{color:#5c6069}
+#bt-root .skb-mtm .c:has(b.u){background:rgba(47,185,138,.12);border-color:rgba(47,185,138,.2)}
+#bt-root .skb-mtm .c:has(b.d){background:rgba(240,86,106,.12);border-color:rgba(240,86,106,.2)}
+#bt-root .skb-mtm .c b.u,#bt-root .skb-mtm .y span.u{color:#2fb98a}
+#bt-root .skb-mtm .c b.d,#bt-root .skb-mtm .y span.d{color:#f0566a}
+#bt-root .skb-mtm .y span{color:#cdcdcd}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
