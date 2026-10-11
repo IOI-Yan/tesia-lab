@@ -9146,6 +9146,18 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 @media (prefers-reduced-motion:reduce){ #bt-root[data-phase=ready] .bt-set h3::after{animation:none} }
 #bt-root[data-phase=ready] .bt-chart svg{opacity:.5;filter:blur(3px)}
 #bt-root[data-phase=ready] .bt-chart::after{content:'오른쪽에서 기간과 금액을 고르고\A\2018과거를 다시 돌려 보기\2019를 누르면 여기에 결과가 그려집니다';position:absolute;left:calc(50% + 22px);top:calc(50% - 16px);white-space:pre-line;transform:translate(-50%,-50%);width:max-content;max-width:min(480px,85%);padding:14px 20px;border-radius:12px;background:#25272c;border:1px solid rgba(255,255,255,.06);font-size:15px;line-height:1.6;color:#cdcdcd;text-align:center;pointer-events:none}
+/* 결과 카드(손익 요약)·해석: 손익 숫자만 굵게 크게, 나머지는 한 단계 작게 */
+#bt-root .bt-verdict small{font-size:13px;color:#9ea3ad}
+#bt-root .bt-verdict .bt-v1b b.num{font-size:28px;font-weight:700;letter-spacing:-.01em}
+#bt-root .bt-verdict .bt-v2 span,#bt-root .bt-verdict .bt-v2 span i,#bt-root .bt-verdict .bt-v2 b.num{font-size:13px;color:#cdcdcd}
+#bt-root .bt-k3 small{font-size:14px;color:#cdcdcd}
+#bt-root .bt-k3 b.num{font-size:14px;font-weight:600;color:#fff}
+#bt-root .bt-k3 b.num.mk-dn{color:#f0566a}
+#bt-root .bt-k3 em{font-size:12px;color:#9ea3ad}
+#bt-root .bt-read h3{font-size:16px;font-weight:700;color:#fff}
+#bt-root .bt-read p{font-size:14px;line-height:1.6;color:#ececec}
+#bt-root .bt-read p.l{font-size:13px;color:#9ea3ad}
+#bt-root .bt-sec{height:44px;font-size:15px;font-weight:600}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
