@@ -9179,7 +9179,11 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-chips{gap:4px}
 /* 판단 패널 결과 칸(조건 충족·거래 결과): 값 굵게 작게, 보조 글자 작게 */
 #bt-root .bt-panel .ph span{font-size:13px}
-#bt-root .bt-panel .cell b,#bt-root .bt-panel .cell b button{font-size:16px;font-weight:700;color:#fff}
+#bt-root .bt-panel .cell b,#bt-root .bt-panel .cell b button{font-size:14px;font-weight:700;color:#fff}
+/* 결과 칸 숫자 단추: 호버 때 연두색(옛 강조색) 대신 화살표만 흰색으로 밝아지며 살짝 이동 */
+#bt-root .bt-panel .cell b button:hover{color:#fff}
+#bt-root .bt-panel .cell b button svg{color:#9ea3ad}
+#bt-root .bt-panel .cell b button:hover svg{color:#fff}
 #bt-root .bt-panel .cell > span{font-size:13px;color:#9ea3ad}
 /* 정렬 목록: 트리거 = 글자+아래 화살표 알약, 목록 = #26282D 떠 있는 창(모서리 12px, 테두리 6%), 고른 항목 앞 메인색 체크 */
 #bt-root .bt-sdd{position:relative;display:inline-flex;align-items:center;gap:8px}
