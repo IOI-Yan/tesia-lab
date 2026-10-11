@@ -9132,6 +9132,12 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-fold[open] summary{margin:0;padding-bottom:16px}
 #bt-root .bt-fold > :not(summary){margin:0 20px 20px}
 @media (max-width:900px){ #bt-root .bt-fold summary:hover{background:rgba(255,255,255,.03)} }
+/* 뒤로 버튼: 큰 네모 → 아이콘+"백테스트" 글자를 함께 감싼 알약(누르는 영역 = 아이콘+글자) */
+#bt-root .bt-hd{gap:8px}
+#bt-root .bt-hd .bk{width:auto;height:36px;padding:0 12px 0 6px;margin-left:-6px;gap:4px;border-radius:999px;color:#fff;background:transparent;border:0;font:inherit;transition:background .2s ease}
+#bt-root .bt-hd .bk:hover{background:rgba(255,255,255,.07)}
+#bt-root .bt-hd .bk svg{display:block;flex:none}
+#bt-root .bt-hd .bk .ti{font-size:16px;font-weight:600;color:#fff}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
@@ -22843,7 +22849,7 @@ function btLegend(){
 }
 function btPage(){
   return '<div class="bt" id="bt-root" data-phase="'+BT.phase+'" data-kind="'+BT.s.kind+'">'
-    +'<div class="tfw-hd bt-hd"><button class="bk" onclick="btBack()" aria-label="뒤로"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button><span class="ti">백테스트</span><span class="sb" id="bt-sub"></span></div>'
+    +'<div class="tfw-hd bt-hd"><button class="bk" onclick="btBack()" aria-label="뒤로"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg><span class="ti">백테스트</span></button><span class="sb" id="bt-sub"></span></div>'
     +btHeadHtml()
     +'<div class="bt-grid"><div class="bt-main">'
     +'<div class="bt-cap"><div class="bt-cap-l"><small id="bt-cap-k"></small><b class="num" id="bt-cap-v"></b><i class="num" id="bt-cap-p"></i></div>'+btLegend()+'</div>'
