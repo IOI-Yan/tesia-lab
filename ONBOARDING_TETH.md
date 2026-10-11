@@ -13,7 +13,7 @@
 - 원본: https://github.com/aresjoo/tesia-lab (내 계정 IOI-Yan 쓰기 권한 있음, main = 실제 공개 사이트)
 - **내 포크**: https://github.com/IOI-Yan/tesia-lab
   - `design-polish` 브랜치: 작업 코드 (반영 요청 PR은 아직 안 보냄)
-  - `design-notes` 브랜치: TETH 작업 메모 3개 (EDIT_NOTES 수정 기록 / COLOR_NOTES 색 / SCREEN_IDS 화면 ID)
+  - `design-notes` 브랜치: TETH 작업 메모 3개 (EDIT_NOTES 수정 기록 / COLOR_NOTES 색 / SCREEN_IDS 화면 ID) + 모바일 화면 PDF + 확인용 페이지 `_demo.html` + 미리보기 서버 `serve.ps1`
 - **공유 링크(누구나 열람)**: https://ioi-yan.github.io/tesia-lab/ — design-polish에 올리면 1~2분 뒤 자동 반영
 - 화면 ID 캡처(AS-IS): TETH Figma 권한이 없어 **임시로** VOILA Figma 파일 안 "AS-IS" 프레임에 둠 https://www.figma.com/design/80IPAc7yRP0pPoCyza1UJE/Volia?node-id=2352-509 (VOILA 작업과는 무관)
 
@@ -21,14 +21,16 @@
 - 로컬 미리보기(내 수정본): http://localhost:8080/
 - 원본 사이트(수정 전 비교용): https://aresjoo.github.io/tesia-lab/
 - 공유용 수정본: https://ioi-yan.github.io/tesia-lab/
-- 모바일 화면 모아보기 PDF: `Downloads\Telegram Desktop\TETH 화면 모아보기 (모바일).pdf` (텔레그램으로 받은 파일, 다른 PC에는 따로 받아야 함)
+- 모바일 화면 모아보기 PDF: `design-notes` 브랜치의 `TETH 화면 모아보기 (모바일).pdf` (원본은 집 PC `Downloads\Telegram Desktop`)
 
 ## 다른 PC에서 이어서 하기
 1. 저장소 받기: `git clone https://github.com/IOI-Yan/tesia-lab.git` → `git checkout design-polish`
 2. 원본 연결: `git remote add origin-up https://github.com/aresjoo/tesia-lab.git` (원본 최신 내용 확인용)
 3. 메모 받기: `git fetch origin design-notes` 후 별도 폴더에 체크아웃하거나 `git show origin/design-notes:EDIT_NOTES.md`로 확인
 4. 미리보기: PC에 Python/Node가 없으면 PowerShell로 간단 서버를 띄움(Claude에게 "TETH 로컬 미리보기 켜줘"). **캐시 끄기(Cache-Control: no-store) 필수** — 안 그러면 예전 화면이 보여 혼란
-5. 작업 후: design-polish에 커밋·푸시 → 공유 링크 자동 반영. 메모도 design-notes 브랜치에 갱신
+5. 확인용 페이지: design-notes 브랜치의 `_demo.html`을 tesia-lab 폴더 맨 위(index.html 옆)에 복사 → `.git/info/exclude`에 `_demo.html` 한 줄 추가(저장소에 안 올라가게) → http://localhost:8080/_demo.html
+   미리보기 서버 파일 `serve.ps1`도 design-notes 브랜치에 있음: `powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1 -Root <tesia-lab 폴더> -Port 8080`
+6. 작업 후: design-polish에 커밋·푸시 → 공유 링크 자동 반영. 메모도 design-notes 브랜치에 갱신
 
 ## 정한 규칙 (요약, 자세한 값은 메모 파일)
 - 바탕 `#101113`, 메인색 `#00FEFF`, 글꼴 **Pretendard** (버튼 글자 세로 정렬 문제 해결)
@@ -44,7 +46,7 @@
 
 ## 진행 현황 (2026-10-11)
 - 완료: 전체 공통(바탕·글꼴·버튼·아이콘·툴팁·사이드바·푸터, `#212121` 회색 교체), 홈 PC·모바일 개편, 채팅(질문 카드·검증 결과·리포트·예약 카드 상태 3종·바뀔 조건 카드), 로그인·가입 창, **백테스트 준비·돌리는 중·결과 화면 전체**(토스증권식 박스, 세그먼트, 정렬 목록, 판단 기록·거래 내역·월별 수익률·자세한 지표)
-- 확인용 페이지: http://localhost:8080/_demo.html (내 PC에만, 저장소 제외) — AI·가격 자료 없이 화면을 띄우는 버튼 모음. 백테스트 결과 화면은 가격 자료가 headless에서 안 불러와져 비슷한 내용으로 만들어 띄움
+- 확인용 페이지: http://localhost:8080/_demo.html (design-notes 브랜치에 사본 있음, design-polish에는 안 올림) — AI·가격 자료 없이 화면을 띄우는 버튼 모음. 백테스트 결과 화면은 가격 자료가 headless에서 안 불러와져 비슷한 내용으로 만들어 띄움
 - 남은 후보: 공통 버튼 세트 정리(지금은 화면마다 버튼 스타일이 따로 약 250가지), 메인색 `#00F0FF` 남은 8곳 통일 여부, 나머지 화면(AI 트레이딩·전략 복사·거래소 연결·플랜) 순서대로 폴리싱. `#212121` 교체로 바뀐 다른 화면(플랜·터미널·인사이트·연구 기록·설정) 눈으로 확인 필요
 - 대표님께 확인할 것: 홈 푸터 청록 배경의 의도, 모바일 홈 종목 선택 순서 변경(기능 → 종목), 모바일 백테스트 준비 단계에서 차트가 숨겨진 것(원래 설계)이 초보자에게 괜찮은지
 
