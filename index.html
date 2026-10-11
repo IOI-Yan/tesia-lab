@@ -9212,6 +9212,10 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-rtry:hover{background:#3a3d44}
 #bt-root .bt-sec{background:#313339;border:0;color:#fff;transition:background .2s ease}
 #bt-root .bt-sec:hover{background:#3a3d44}
+/* 판단 패널 머리: 모바일에서 점이 혼자 윗줄로 떨어지던 것 → 점은 첫 줄 옆에 고정, 문장은 점 옆에서 줄바꿈 */
+#bt-root .bt-panel .ph{align-items:flex-start;padding-top:14px;padding-bottom:14px}
+#bt-root .bt-panel .ph #bt-pstate{flex:1 1 0;min-width:0;line-height:20px}
+#bt-root .bt-panel .ph .bt-dot{flex:none;margin-top:6px}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
