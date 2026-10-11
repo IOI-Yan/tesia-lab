@@ -9261,6 +9261,11 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .skb-mtm .c b.u,#bt-root .skb-mtm .y span.u{color:#2fb98a}
 #bt-root .skb-mtm .c b.d,#bt-root .skb-mtm .y span.d{color:#f0566a}
 #bt-root .skb-mtm .y span{color:#cdcdcd}
+/* 행을 열면 나오는 작은 가격 차트: 안쪽 여백 16px(선·글자가 박스 끝에 붙지 않게), 바탕 카드색, 모서리 12px */
+#bt-root .bt-mini{box-sizing:border-box;padding:16px;border-radius:12px;background:#17181b}
+/* 열린 행 안쪽 내용: 좌우 여백을 행 글자와 같게(PC 12px, 모바일 20px), 아래 20px */
+#bt-root .bt-row .bt-dd-in{padding:4px 12px 20px}
+@media (max-width:768px){ #bt-root .bt-row .bt-dd-in{padding:4px 20px 20px} }
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
