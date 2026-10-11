@@ -1370,7 +1370,9 @@ body.light .au-free{color:#1e8e3e}
 .tai-txt+.g-gauge{margin-top:14px}
 /* 실행 액션 버튼 — 유도칩과 같은 풀폭 로우 포맷, TETH 로고 그라데이션 소프트 필 (시안 B) */
 .g-acrow{display:flex;flex-direction:column;gap:10px;max-width:720px;margin-top:4px;animation:gFadeUp .3s var(--ease) both}
-.g-acbtn{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(97deg in oklab,rgba(0,150,255,.16),rgba(0,212,255,.13) 34%,rgba(0,254,255,.11) 66%,rgba(61,255,176,.13));background-size:160% 100%;color:#fff;font-size:14px;font-weight:600;word-break:keep-all;cursor:pointer;transition:filter .12s,border-color .12s;animation:acbtnSweep 7s ease-in-out infinite alternate}
+.g-acbtn{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(97deg in oklab,rgba(0,150,255,.16),rgba(0,212,255,.13) 34%,rgba(0,254,255,.11) 66%,rgba(61,255,176,.13));background-size:160% 100%;color:#fff;font-size:14px;font-weight:600;word-break:keep-all;cursor:pointer;transition:filter .12s,border-color .12s;animation:acbtnSweep 5s ease-in-out infinite alternate,acbtnHum 2.4s ease-in-out infinite}
+@keyframes acbtnHum{0%,100%{box-shadow:0 0 0 0 rgba(0,230,255,0),inset 0 0 0 0 rgba(0,254,255,0)}50%{box-shadow:0 0 18px 0 rgba(0,230,255,.16),inset 0 0 12px 0 rgba(0,254,255,.07)}} /* 바로 실행 줄 숨 쉬듯 웅웅 (사용자 지시) */
+@media (prefers-reduced-motion:reduce){.g-acbtn{animation:none}}
 @keyframes acbtnSweep{from{background-position:0% 0}to{background-position:100% 0}}
 .g-acbtn:active{transform:scale(.985)}
 .g-acbtn:hover{filter:brightness(1.18);border-color:rgba(255,255,255,.2)}
