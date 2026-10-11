@@ -9172,10 +9172,10 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-tr .bt-rb time{font-size:13px}
 #bt-root .bt-s4{gap:4px}
 #bt-root .bt-s4 .k-all{order:-1}
-#bt-root .bt-s4 button,#bt-root .bt-chips button{height:32px!important;padding:0 12px!important;gap:4px;border:0!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important;color:#9ea3ad;font-size:14px;font-weight:600;transition:background .2s ease,color .2s ease}
-#bt-root .bt-s4 button small,#bt-root .bt-s4 button b.num,#bt-root .bt-s4 button b.num i{font-size:14px!important;font-weight:600;color:inherit}
+#bt-root .bt-s4 button,#bt-root .bt-chips button{height:32px!important;padding:0 12px!important;gap:4px;border:0!important;border-radius:999px!important;background:transparent!important;box-shadow:none!important;color:#9ea3ad;font-size:14px;font-weight:400;transition:background .2s ease,color .2s ease}
+#bt-root .bt-s4 button small,#bt-root .bt-s4 button b.num,#bt-root .bt-s4 button b.num i{font-size:14px!important;font-weight:inherit;color:inherit}
 #bt-root .bt-s4 button:hover,#bt-root .bt-chips button:hover{color:#fff}
-#bt-root .bt-s4 button[aria-selected=true],#bt-root .bt-chips button[aria-pressed="true"],#bt-root .bt-chips button.on{background:#313339!important;color:#fff;box-shadow:none!important;border:0!important}
+#bt-root .bt-s4 button[aria-selected=true],#bt-root .bt-chips button[aria-pressed="true"],#bt-root .bt-chips button.on{background:#313339!important;color:#fff;font-weight:600;box-shadow:none!important;border:0!important}
 #bt-root .bt-chips{gap:4px}
 /* 판단 패널 결과 칸(조건 충족·거래 결과): 값 굵게 작게, 보조 글자 작게 */
 #bt-root .bt-panel .ph span{font-size:13px}
@@ -9207,6 +9207,11 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 /* 정렬 앞 "정렬" 글자 없앰(목록 이름은 화면 읽기용으로 유지), 목록 맨 위 선 없앰 */
 #bt-root .bt-sdd > span{display:none}
 #bt-root .bt-list{border-top:0}
+/* 보조 버튼 = 회색 알약(바탕 규칙): 카드 안 "다시 시도", 페이지 위 "이 전략 실행하기" 모두 #313339, 호버 #3A3D44, 테두리 없음 */
+#bt-root .bt-rtry{display:inline-flex;align-items:center;height:36px;padding:0 16px;border:0;border-radius:999px;background:#313339;color:#fff;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s ease}
+#bt-root .bt-rtry:hover{background:#3a3d44}
+#bt-root .bt-sec{background:#313339;border:0;color:#fff;transition:background .2s ease}
+#bt-root .bt-sec:hover{background:#3a3d44}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
