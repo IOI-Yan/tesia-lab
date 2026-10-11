@@ -7841,6 +7841,9 @@ body.g-dark #g-appbanner{background:#101113}
 .ska .go{height:34px;padding:0 16px;border:0;border-radius:999px;background:#fff;color:#000;font:inherit;font-size:14px;font-weight:500;cursor:pointer}
 .ska-note{display:inline-flex;align-items:center;gap:6px;margin:4px 0 8px;padding:8px 14px;border-radius:12px;border:1px solid rgba(255,255,255,.09);background:var(--g1);font-size:14px;color:#ececec}
 .ska-note.done{color:#9a9a9a;background:transparent}
+.ska-note::before{content:"";width:6px;height:6px;border-radius:50%;background:#00feff;flex:none;margin-right:2px;animation:gclDot 1.6s ease-in-out infinite} /* 답 기다리는 중 점 (입력 필요 배지와 동일) */
+.ska-note.done::before{display:none}
+@media (prefers-reduced-motion:reduce){.ska-note::before{animation:none}}
 @media (max-width:760px){ #g-askdock{margin:0 0 8px} .ska .ops{max-height:40vh} }
 /* 채팅의 전략 카드(tf-sum): #303030 카드, 16/14 글자, 흰 알약 단추 */
 .tf-sum{max-width:560px;background:var(--g1);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:16px} /* 질문 카드와 같은 카드 색 (사용자 지시) */
