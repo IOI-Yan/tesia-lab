@@ -1373,7 +1373,7 @@ body.light .au-free{color:#1e8e3e}
 .g-acrow{display:flex;flex-direction:column;gap:10px;max-width:720px;margin-top:4px;animation:gFadeUp .3s var(--ease) both}
 .g-acbtn{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;width:100%;padding:14px 18px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:linear-gradient(97deg in oklab,rgba(0,150,255,.16),rgba(0,212,255,.13) 34%,rgba(0,254,255,.11) 66%,rgba(61,255,176,.13));background-size:160% 100%;color:#fff;font-size:14px;font-weight:600;word-break:keep-all;cursor:pointer;transition:filter .12s,border-color .12s;animation:acbtnSweep 5s ease-in-out infinite alternate}
 .g-acbtn{position:relative;overflow:hidden;isolation:isolate}
-.g-acbtn::before{content:"";position:absolute;top:0;bottom:0;left:-50%;width:200%;z-index:-1;pointer-events:none;background:radial-gradient(35% 180% at 50% 50% in oklab,rgba(0,230,255,.22) 0%,rgba(61,255,176,.08) 45%,rgba(0,230,255,0) 80%);opacity:.35;animation:acbtnHum 3.6s ease-in-out infinite,acbtnDrift 7s ease-in-out infinite alternate} /* 안쪽 배경이 숨 쉬듯 웅웅 (사용자 지시) */
+.g-acbtn::before{content:"";position:absolute;top:0;bottom:0;left:-50%;width:200%;z-index:-1;pointer-events:none;background:radial-gradient(35% 180% at 50% 50% in oklab,rgba(0,230,255,.22) 0%,rgba(61,255,176,.08) 45%,rgba(0,230,255,0) 80%);opacity:.35;animation:acbtnHum 3s ease-in-out infinite,acbtnDrift 6s ease-in-out infinite alternate} /* 안쪽 배경이 숨 쉬듯 웅웅 (사용자 지시) */
 @keyframes acbtnHum{0%,100%{opacity:.35}50%{opacity:1}}
 @keyframes acbtnDrift{from{transform:translateX(-22%)}to{transform:translateX(22%)}}
 @media (prefers-reduced-motion:reduce){.g-acbtn::before{animation:none}}
