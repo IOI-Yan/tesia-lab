@@ -9159,7 +9159,7 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-read p.l{font-size:13px;color:#9ea3ad}
 #bt-root .bt-sec{height:44px;font-size:15px;font-weight:600}
 /* 판단 기록·거래 내역: 제목 굵게, 목록 글자 한 단계 작게, 거르개는 토스증권식 글자 탭(고른 탭만 회색 알약), "전체 기록"을 맨 왼쪽으로 */
-#bt-root .bt-sec-b h3{font-size:16px;font-weight:700;color:#fff}
+#bt-root .bt-sec-b h3{font-size:18px;font-weight:700;color:#fff}
 #bt-root .bt-sort span{font-size:13px;color:#9ea3ad}
 #bt-root .bt-sort select{height:32px;padding:0 12px;border-radius:999px;background:#25272c;font-size:13px;color:#ececec}
 #bt-root .bt-row .bt-rb time,#bt-root .bt-row.v2 .bt-rb time{font-size:13px;color:#9ea3ad}
@@ -9204,6 +9204,9 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 /* 거래 내역 머리: 거르개를 제목 아래 왼쪽으로(판단 기록과 같은 배치) */
 #bt-root #bt-trs > header{flex-direction:column;align-items:flex-start;justify-content:flex-start;gap:12px}
 #bt-root #bt-trs > header .bt-chips{margin-left:0}
+/* 정렬 앞 "정렬" 글자 없앰(목록 이름은 화면 읽기용으로 유지), 목록 맨 위 선 없앰 */
+#bt-root .bt-sdd > span{display:none}
+#bt-root .bt-list{border-top:0}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
