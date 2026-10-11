@@ -9194,9 +9194,9 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-sdd-m button svg{color:#00feff;visibility:hidden;flex:none}
 #bt-root .bt-sdd-m button[aria-selected="true"]{color:#fff;font-weight:600}
 #bt-root .bt-sdd-m button[aria-selected="true"] svg{visibility:visible}
-/* 판단 기록 행: 고른·호버 영역을 둥근 모서리(12px) 박스로, 안쪽 좌우 12px. 위아래 4px 띄워 구분선과 붙지 않게 */
-#bt-root .bt-row.v2{padding:4px 0;background:transparent}
-#bt-root .bt-row.v2 .bt-rb{padding-left:12px!important;padding-right:12px!important;border-radius:12px;transition:background .2s ease}
+/* 판단 기록 행: 고른·호버 영역 = 구분선 사이 칸 전체(모서리 없음, 빈틈 없음), 안쪽 좌우 12px */
+#bt-root .bt-row.v2{padding:0;background:transparent}
+#bt-root .bt-row.v2 .bt-rb{padding-left:12px!important;padding-right:12px!important;border-radius:0;transition:background .2s ease}
 #bt-root .bt-row.v2 .bt-rb:hover{background:rgba(255,255,255,.03)}
 #bt-root .bt-row.v2.on .bt-rb{background:rgba(255,255,255,.05)}
 /* 모바일 섹션 머리: 제목 왼쪽, 정렬 오른쪽 한 줄 */
