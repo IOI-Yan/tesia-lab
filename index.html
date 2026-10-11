@@ -1382,7 +1382,7 @@ body.light .au-free{color:#1e8e3e}
 .g-acbtn .bdg{font-size:11px;font-weight:800;letter-spacing:.02em;color:#fff;padding:3.5px 9px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);white-space:nowrap}
 .g-nextq{display:flex;align-items:center;justify-content:space-between;gap:12px;text-align:left;padding:14px 18px;border:1px solid var(--gl);border-radius:12px;background:rgba(255,255,255,.02);color:var(--gt2);font-size:14.5px;word-break:keep-all;cursor:pointer;transition:background .12s,color .12s}
 .g-nextq:hover{background:rgba(255,255,255,.05);color:var(--gt)}
-.g-nextq .ar{color:var(--gt3);flex-shrink:0}
+.g-nextq .ar{color:var(--gt3);flex-shrink:0;display:inline-flex;align-items:center;justify-content:center}.g-nextq .lf svg{display:block;flex:none}
 /* 확인 질문 카드 (선택지) */
 .g-askcard{border:1px solid var(--gl);border-radius:16px;background:var(--g1);padding:16px;display:flex;flex-direction:column;gap:12px;max-width:700px}
 .g-askcard .hd{display:flex;align-items:center;justify-content:space-between;gap:10px}
@@ -12555,7 +12555,7 @@ function taiIsStratText(t){ return /전략|자동매매|매매|매수|매도|사
 function taiOffline(t,retry){
   var id='goff'+Date.now(); window.TAI_OFFQ=window.TAI_OFFQ||{}; TAI_OFFQ[id]=retry;
   gConvAI('지금 AI 서버에 연결되지 않아 답을 드리지 못했습니다. 잠시 뒤 다시 보내 주십시오.');
-  try{ var th=$('g-thread'); if(th) th.insertAdjacentHTML('beforeend','<div class="g-nextcol" id="'+id+'"><button class="g-nextq" onclick="taiOffRetry(\''+id+'\')"><span>다시 보내기</span><span class="ar">→</span></button></div>'); }catch(e){}
+  try{ var th=$('g-thread'); if(th) th.insertAdjacentHTML('beforeend','<div class="g-nextcol" id="'+id+'"><button class="g-nextq" onclick="taiOffRetry(\''+id+'\')"><span>다시 보내기</span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button></div>'); }catch(e){}
 }
 function taiOffRetry(id){ var f=(window.TAI_OFFQ||{})[id], e=$(id); if(e) e.remove(); if(!f) return; TAI.ok=null; taiEnsure(function(ok){ if(ok) f(); else toast('아직 AI 서버에 연결되지 않습니다'); }); }
 function taiSystem(fin){
@@ -12631,7 +12631,7 @@ function taiBusySync(){
 function taiCancelChips(showContinue){
   var items=[]; if(showContinue) items.push(['이어서 계속','방금 끊긴 답변을 이어서 계속 작성해줘']);
   if(!items.length) return;
-  taiThreadAdd('<div class="g-nextcol">'+items.map(function(x){ return '<button class="g-nextq" data-q="'+gEsc(x[1]).replace(/"/g,'&quot;')+'" onclick="taiChipSend(this)"><span>'+gEsc(x[0])+'</span><span class="ar">→</span></button>'; }).join('')+'</div>');
+  taiThreadAdd('<div class="g-nextcol">'+items.map(function(x){ return '<button class="g-nextq" data-q="'+gEsc(x[1]).replace(/"/g,'&quot;')+'" onclick="taiChipSend(this)"><span>'+gEsc(x[0])+'</span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>'; }).join('')+'</div>');
 }
 function taiChipSend(b){ var q=b.getAttribute('data-q'); var col=b.closest('.g-nextcol'); if(col) col.remove(); if(q){ var f=$('g-in'); if(f){ f.value=q; gSend(); } } }
 /* 에러 카드 + 실제 재시도 */
@@ -13248,8 +13248,8 @@ function taiNext(items,acts){
   acts.forEach(function(a,i){ rows.splice(i,0,{t:'a',a:a,i:i}); });
   /* 액션 설정을 버튼에 직접 내장(data-act) + 문서 위임 클릭 — 새로고침 복원 후에도 칩이 작동한다 (핸들러 미복원 결함 수정) */
   taiThreadAdd('<div class="g-nextcol" id="'+id+'">'+rows.map(function(r){
-    if(r.t==='a') return '<button class="g-acbtn" data-a="'+r.i+'" data-act="'+gEsc(JSON.stringify(r.a)).replace(/"/g,'&quot;')+'"><span class="lf">'+TAI_ACT_IC[r.a.type]+'<span class="tx">'+gEsc(r.a.label)+'</span></span><span class="rt">'+(badge?'<span class="bdg">바로 실행</span>':'')+'<span class="ar">→</span></span></button>';
-    return '<button class="g-nextq" data-q="'+gEsc(r.q).replace(/"/g,'&quot;')+'"><span>'+gEsc(r.q)+'</span><span class="ar">→</span></button>';
+    if(r.t==='a') return '<button class="g-acbtn" data-a="'+r.i+'" data-act="'+gEsc(JSON.stringify(r.a)).replace(/"/g,'&quot;')+'"><span class="lf">'+TAI_ACT_IC[r.a.type]+'<span class="tx">'+gEsc(r.a.label)+'</span></span><span class="rt">'+(badge?'<span class="bdg">바로 실행</span>':'')+'<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></button>';
+    return '<button class="g-nextq" data-q="'+gEsc(r.q).replace(/"/g,'&quot;')+'"><span>'+gEsc(r.q)+'</span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>';
   }).join('')+(acts.length?'<div class="g-actnote">모두 무료입니다.</div>':'')+'</div>');
 }
 /* 후속, 액션 칩 문서 위임 (1회 설치). 인라인 onclick 이 있는 구형 칩은 이중 발화 방지를 위해 건너뛴다 */
@@ -13374,10 +13374,10 @@ function taiGaugeGo(host){
 }
 /* ── 실행 액션 버튼: alert는 즉시 등록 연출, 나머지는 해당 요청을 대화로 실행(퍼널 진입) ── */
 var TAI_ACT_IC={
-  alert:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></svg>',
-  backtest:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18M6 16l4-6 3 3 5-8"/></svg>',
-  delegate_trade:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h10M10 6l6 6-6 6"/><path d="M20 5v14"/></svg>',
-  auto_trade:'<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h6l-1 8 9-12h-6z"/></svg>'
+  alert:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>',
+  backtest:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v16a2 2 0 0 0 2 2h16"/><path d="M7 16c.5-2 1.5-7 4-7 2 0 2 3 4 3 2.5 0 4.5-5 5-7"/></svg>',
+  delegate_trade:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>',
+  auto_trade:'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>'
 };
 function taiActChips(items){ taiNext([],items); } /* 단독 호출도 통합 목록으로 */
 function taiActClear(){
@@ -20726,7 +20726,7 @@ function taiMarket(t,fin,fallback){
     if(kind==='abort'){
       taiThreadAdd('<div class="g-status done"><span class="lb">여기서 멈췄습니다</span></div>');
       /* 세션 이동 등으로 끊긴 경우에도 죽은 끝이 아니게 재생성 경로 제공 (agy QA 6-2) */
-      if(TAI.lastQ) taiThreadAdd('<div class="g-nextcol"><button class="g-nextq" data-q="'+gEsc(TAI.lastQ).replace(/"/g,'&quot;')+'" onclick="taiChipSend(this)"><span>다시 생성</span><span class="ar">→</span></button></div>');
+      if(TAI.lastQ) taiThreadAdd('<div class="g-nextcol"><button class="g-nextq" data-q="'+gEsc(TAI.lastQ).replace(/"/g,'&quot;')+'" onclick="taiChipSend(this)"><span>다시 생성</span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button></div>');
       delay(300,taiSpacerTrim); return;
     }
     taiErrCard(t); delay(300,taiSpacerTrim);
@@ -20873,7 +20873,7 @@ function taiMarket(t,fin,fallback){
       /* 채팅→전략 공유 연결 칩: 전략 탐색 의도가 보이면 세션당 1회 허브 진입점 제공 (spec A5 — 목록은 pass-8 컷이라 '검증된' 문구 금지) */
       if(live&&conv&&!setup&&!sess.ss3Chip&&/전략[^.]{0,14}(추천|찾아|둘러|골라|어떤 게|뭐가|보여)|따라\s?(할|가|하고 싶)|카피\s?트레이딩|다른 사람[^.]{0,10}전략|잘 하는 사람|고수[^.]{0,8}(전략|따라)/.test(t)){
         sess.ss3Chip=true;
-        delay(700,function(){ if(G.cur===sess){ tfTrack('chat_share_chip',{}); taiThreadAdd('<div class="g-nextcol"><button class="g-nextq" onclick="TF_ONSHARE=false;tfShareHub(&quot;find&quot;)"><span>공유 전략 둘러보기</span><span class="ar">→</span></button></div>'); } });
+        delay(700,function(){ if(G.cur===sess){ tfTrack('chat_share_chip',{}); taiThreadAdd('<div class="g-nextcol"><button class="g-nextq" onclick="TF_ONSHARE=false;tfShareHub(&quot;find&quot;)"><span>공유 전략 둘러보기</span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button></div>'); } });
       }
       if(live) delay(1600,taiSpacerTrim); /* 차트/후속칩 렌더가 자리 잡은 뒤 과잉 여백 정리 */
       STORE.save();
