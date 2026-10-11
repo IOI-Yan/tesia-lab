@@ -9279,6 +9279,12 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-more:hover .u{color:#fff}
 #bt-root .bt-more i{font-size:12px;color:#9ea3ad}
 #bt-root .bt-end{font-size:12px;color:#9ea3ad}
+/* 자세한 지표: 이름 칸이 80px로 눌려 3줄로 꺾이던 것 → 이름 왼쪽 한 줄, 값 오른쪽. 제목은 다른 섹션 제목과 같게 18/700, 이름 14px #CDCDCD, 값 14px/600 흰색, 줄 사이 구분선 6% */
+#bt-root .bt-tech summary{font-size:18px;font-weight:700;color:#fff;padding:20px 0}
+#bt-root .bt-tech-g{gap:0 32px;padding:0 0 12px}
+#bt-root .bt-tech-g>div{grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
+#bt-root .bt-tech-g dt,#bt-root .bt-tech .mkd-term{font-size:14px;color:#cdcdcd;text-align:left;line-height:1.5}
+#bt-root .bt-tech-g dd{font-size:14px;font-weight:600;color:#fff;text-align:right;white-space:nowrap;line-height:1.5}
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cdcdcd}
