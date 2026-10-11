@@ -23270,7 +23270,7 @@ function btTech(){
   return '<details class="bt-tech"><summary>자세한 지표<svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary><dl class="bt-dl bt-tech-g">'
     +row('승률',Math.round(R.win)+'%','끝난 거래 중 이익으로 끝난 거래의 비율입니다.')
     +row('손익비',(r.pf||0).toFixed(2),'이긴 거래에서 번 돈을 진 거래에서 잃은 돈으로 나눈 값입니다. 1보다 크면 번 돈이 더 많습니다.')
-    +row('1년으로 환산한 수익률',mkPct0(r.cagr||0,1),'이 기간의 수익률을 1년 기준으로 바꾼 값입니다.')
+    +row('1년으로 환산한 수익률','<span class="'+mkSign(r.cagr||0).trim()+'">'+mkPct0(r.cagr||0,1)+'</span>','이 기간의 수익률을 1년 기준으로 바꾼 값입니다.')
     +row('종목을 들고 있던 시간',Math.round(Math.min(100,r.exposure||0))+'%','전체 기간 중 종목을 들고 있던 날의 비율입니다. 나머지는 현금으로 기다렸습니다.')
     +row('낸 수수료',btUsd(BT.amt*(r.costImpact||0)/100,1),'살 때와 팔 때 낸 수수료를 모두 더한 값입니다. 위 결과는 이 수수료를 뺀 뒤의 값입니다.')
     +row('가장 길게 회복을 기다린 기간',(r.underwaterDays||0)+'일','잔고가 그 전 가장 높았던 값으로 돌아오기까지 걸린 가장 긴 기간입니다.')
