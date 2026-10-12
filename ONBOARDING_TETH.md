@@ -19,6 +19,7 @@
 
 ## 작업할 때 열어두는 것
 - 로컬 미리보기(내 수정본): http://localhost:8080/
+- **화면 찾아보기: http://localhost:8080/_screens.html** — 화면 모아보기 PDF와 같은 묶음·같은 이름으로 212개를 모아 둔 곳. 플로우를 처음부터 타지 않고 고치려는 화면을 바로 띄운다
 - 원본 사이트(수정 전 비교용): https://aresjoo.github.io/tesia-lab/
 - 공유용 수정본: https://ioi-yan.github.io/tesia-lab/
 - 모바일 화면 모아보기 PDF: `design-notes` 브랜치의 `TETH 화면 모아보기 (모바일).pdf` (원본은 집 PC `Downloads\Telegram Desktop`)
@@ -28,8 +29,10 @@
 2. 원본 연결: `git remote add origin-up https://github.com/aresjoo/tesia-lab.git` (원본 최신 내용 확인용)
 3. 메모 받기: `git fetch origin design-notes` 후 별도 폴더에 체크아웃하거나 `git show origin/design-notes:EDIT_NOTES.md`로 확인
 4. 미리보기: PC에 Python/Node가 없으면 PowerShell로 간단 서버를 띄움(Claude에게 "TETH 로컬 미리보기 켜줘"). **캐시 끄기(Cache-Control: no-store) 필수** — 안 그러면 예전 화면이 보여 혼란
-5. 확인용 페이지: design-notes 브랜치의 `_demo.html`을 tesia-lab 폴더 맨 위(index.html 옆)에 복사 → `.git/info/exclude`에 `_demo.html` 한 줄 추가(저장소에 안 올라가게) → http://localhost:8080/_demo.html
-   미리보기 서버 파일 `serve.ps1`도 design-notes 브랜치에 있음: `powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1 -Root <tesia-lab 폴더> -Port 8080`
+5. 확인용 페이지: design-notes 브랜치의 `_screens.html` 을 tesia-lab 폴더 맨 위(index.html 옆)에 복사 → `.git/info/exclude` 에 `_screens.html` 한 줄 추가(저장소에 안 올라가게) → http://localhost:8080/_screens.html
+   `git show origin/design-notes:_screens.html > _screens.html` 한 줄이면 된다. 글꼴 말고는 바깥에 기대는 것이 없어 파일 하나만 있으면 된다.
+   미리보기 서버 파일 `serve.ps1` 도 design-notes 브랜치에 있음: `powershell -NoProfile -ExecutionPolicy Bypass -File serve.ps1 -Root <tesia-lab 폴더> -Port 8080`
+   (예전 `_demo.html` 도 아직 남아 있지만 묶음이 PDF와 다르다. `_screens.html` 을 쓴다)
 6. 작업 후: design-polish에 커밋·푸시 → 공유 링크 자동 반영. 메모도 design-notes 브랜치에 갱신
 
 ## 정한 규칙 (요약, 자세한 값은 메모 파일)
