@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ko">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TETH 화면 찾아보기</title>
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+:root{
+  --bg:#101113; --card:#17181B; --line:rgba(255,255,255,.06); --line2:rgba(255,255,255,.12);
+  --accent:#00FEFF; --accent-dim:#5CFEFF;
+  --t1:#ececec; --t2:#cfd2d6; --t3:#9ea3ad;
+  --chip:#25272C; --chip2:#313339; --chip3:#45484F;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:var(--bg);color:var(--t1);font-family:Pretendard,-apple-system,system-ui,sans-serif;font-size:14px;line-height:1.5;display:flex;flex-direction:column}
+
+header{padding:18px 20px 14px;border-bottom:1px solid var(--line);flex:none}
+h1{margin:0 0 4px;font-size:17px;font-weight:700;letter-spacing:-.01em}
+.sub{margin:0;font-size:12.5px;color:var(--t3)}
+
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line);flex:none}
+.seg{display:inline-flex;gap:4px;padding:4px;background:var(--chip);border-radius:999px;border:1px solid var(--line)}
+.seg button{height:30px;padding:0 13px;border:0;border-radius:999px;background:transparent;color:var(--t3);font:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
+.seg button:hover{color:#fff;background:var(--chip2)}
+.seg button[aria-pressed=true]{background:var(--chip3);color:#fff;font-weight:600}
+.search{flex:1 1 200px;min-width:170px;height:38px;padding:0 14px;border-radius:999px;border:1px solid var(--line2);background:var(--chip);color:var(--t1);font:inherit;font-size:13.5px;outline:none}
+.search:focus{border-color:var(--accent)}
+.search::placeholder{color:var(--t3)}
+.count{font-size:12.5px;color:var(--t3);font-variant-numeric:tabular-nums}
+
+.main{flex:1;display:grid;grid-template-columns:minmax(300px,380px) 1fr;min-height:0}
+@media (max-width:900px){ .main{grid-template-columns:1fr;grid-template-rows:auto 1fr} }
+
+.list{overflow-y:auto;padding:12px 14px 40px;border-right:1px solid var(--line)}
+.areahd{position:sticky;top:0;z-index:2;margin:14px 0 8px;padding:6px 2px;background:var(--bg);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--t3)}
+.areahd:first-child{margin-top:0}
+.row{display:flex;align-items:center;gap:10px;width:100%;margin-bottom:4px;padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--t1);font:inherit;text-align:left;cursor:pointer;transition:background .16s var(--ease),border-color .16s var(--ease)}
+.row:hover{background:var(--chip2);border-color:var(--line2)}
+.row[aria-pressed=true]{border-color:var(--accent);background:var(--chip2)}
+.row .id{flex:none;font-size:11.5px;font-weight:600;color:var(--t3);font-variant-numeric:tabular-nums;letter-spacing:.01em}
+.row .nm{flex:1;min-width:0;font-size:13px;color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .w{flex:none;font-size:10.5px;color:var(--t3);border:1px solid var(--line2);border-radius:5px;padding:1px 5px}
+.row.off{opacity:.5;cursor:not-allowed}
+.row.off:hover{background:var(--card);border-color:var(--line)}
+.dot{flex:none;width:6px;height:6px;border-radius:50%;background:var(--chip3)}
+.row.on .dot{background:var(--accent)}
+.empty{padding:22px 4px;color:var(--t3);font-size:13px}
+
+.stage{display:flex;flex-direction:column;min-width:0;min-height:0;background:#0b0c0e}
+.stagebar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);flex:none;font-size:12.5px;color:var(--t3)}
+.stagebar b{color:var(--t1);font-size:13px;font-weight:600}
+.frames{flex:1;overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding:20px}
+iframe{border:0;border-radius:20px;background:var(--bg);box-shadow:0 18px 48px rgba(0,0,0,.55)}
+.hint{margin:auto;color:var(--t3);font-size:13px;text-align:center;line-height:1.7}
+kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--line2);border-radius:5px;padding:1px 5px;color:var(--t2)}
+</style>
+
+<header>
+  <h1>TETH 화면 찾아보기</h1>
+  <p class="sub">화면 ID로 바로 띄웁니다. 플로우를 처음부터 타지 않아도 됩니다. 내 PC에서만 열리고 저장소에는 올라가지 않습니다.</p>
+</header>
+
+<div class="bar">
+  <div class="seg" role="group" aria-label="화면 크기">
+    <button type="button" data-w="390" aria-pressed="true">모바일 390</button>
+    <button type="button" data-w="1440" aria-pressed="false">PC 1440</button>
+  </div>
+  <div class="seg" role="group" aria-label="연결 상태">
+    <button type="button" data-f="all" aria-pressed="true">전체</button>
+    <button type="button" data-f="on" aria-pressed="false">연결됨</button>
+  </div>
+  <input class="search" id="q" type="search" placeholder="화면 ID나 이름으로 찾기 (예: BT, 사이드바, toast)" autocomplete="off">
+  <span class="count" id="count"></span>
+</div>
+
+<div class="main">
+  <div class="list" id="list"></div>
+  <div class="stage">
+    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span></div>
+    <div class="frames" id="frames"><p class="hint">왼쪽에서 화면을 고르면 여기에 뜹니다.<br>검색창에 <kbd>BT</kbd> 처럼 영역 코드만 넣어도 걸러집니다.</p></div>
+  </div>
+</div>
+
+<script src="_demo_acts.js"></script>
+<script>
+var AREAS={"CO":"앱 셸","CH":"새 전략 채팅","TR":"AI 트레이딩","MK":"전략 복사","BT":"백테스트","EX":"거래소 연결","PL":"플랜·결제"};
+var SCREENS=[{"id":"CO-LY-01-01","a":"CO","n":"sidebar rail collapsed guest","w":[1440]},{"id":"CO-LY-01-04","a":"CO","n":"drawer mobile guest","w":[390,1440]},{"id":"CO-LY-02-01","a":"CO","n":"topbar mobile guest appbanner","w":[390,1440]},{"id":"CO-LY-03-01","a":"CO","n":"chat header","w":[390,1440]},{"id":"CO-LY-03-05","a":"CO","n":"chat header delete armed","w":[1440]},{"id":"CO-LY-04-01","a":"CO","n":"feedback empty","w":[390,1440]},{"id":"CO-LY-06-01","a":"CO","n":"toast","w":[1440]},{"id":"CO-LY-07-01","a":"CO","n":"right drawer","w":[390,1440]},{"id":"CO-PO-01-01","a":"CO","n":"lang sheet","w":[390,1440]},{"id":"CO-PO-02-01","a":"CO","n":"settings sheet guest","w":[390,1440]},{"id":"CO-PO-03-01","a":"CO","n":"session row menu","w":[1440]},{"id":"CO-PO-04-01","a":"CO","n":"rename dialog disabled","w":[1440]},{"id":"CO-PO-05-01","a":"CO","n":"delete dialog","w":[1440]},{"id":"CO-PO-06-01","a":"CO","n":"common dialog","w":[1440]},{"id":"CH-NA-01-01","a":"CH","n":"home guest","w":[390,1440]},{"id":"CH-NA-01-05","a":"CH","n":"home typed","w":[390,1440]},{"id":"CH-LY-01-01","a":"CH","n":"plus popover guest","w":[390,1440]},{"id":"CH-PO-01-01","a":"CH","n":"guest send auth modal","w":[390,1440]},{"id":"CH-NA-02-01","a":"CH","n":"chat ai offline retry","w":[390,1440]},{"id":"CH-NA-02-03","a":"CH","n":"intake mode card","w":[390,1440]},{"id":"CH-NA-02-06","a":"CH","n":"intake risk card","w":[390,1440]},{"id":"CH-NA-02-08","a":"CH","n":"inline backtest result","w":[390,1440]},{"id":"CH-NA-02-12","a":"CH","n":"user msg copy toast","w":[390,1440]},{"id":"CH-NA-02-16","a":"CH","n":"ai working timeline","w":[390,1440]},{"id":"CH-NA-02-19","a":"CH","n":"ai vote up toast","w":[390,1440]},{"id":"CH-NA-02-23","a":"CH","n":"ask dock step1 multi","w":[390,1440]},{"id":"CH-NA-02-27","a":"CH","n":"ai strategy card","w":[390,1440]},{"id":"CH-NA-02-28","a":"CH","n":"order card draft","w":[390,1440]},{"id":"CH-NA-02-32","a":"CH","n":"ai action chips","w":[390,1440]},{"id":"CH-NA-02-36","a":"CH","n":"ai event timeline","w":[390,1440]},{"id":"CH-LY-02-01","a":"CH","n":"usage banner 80","w":[390,1440]},{"id":"CH-NA-03-01","a":"CH","n":"history empty","w":[1440]},{"id":"CH-NA-04-01","a":"CH","n":"research plan doc","w":[390,1440]},{"id":"CH-NA-04-05","a":"CH","n":"research done","w":[1440]},{"id":"CH-NA-04-08","a":"CH","n":"connect","w":[1440]},{"id":"TR-NA-01-01","a":"TR","n":"landing guest s01 1","w":[390,1440]},{"id":"TR-NA-02-01","a":"TR","n":"term empty s03","w":[390,1440]},{"id":"TR-NA-03-01","a":"TR","n":"term rule live agent tab 1","w":[390,1440]},{"id":"TR-NA-03-04","a":"TR","n":"term rule paused","w":[390,1440]},{"id":"TR-NA-03-08","a":"TR","n":"term no api connect empty","w":[390,1440]},{"id":"TR-NA-03-12","a":"TR","n":"term bottom orders","w":[1440]},{"id":"TR-NA-03-16","a":"TR","n":"term rail open","w":[390,1440]},{"id":"TR-NA-03-21","a":"TR","n":"term ready later","w":[390,1440]},{"id":"TR-NA-05-01","a":"TR","n":"copy only 1","w":[390,1440]},{"id":"TR-NA-05-05","a":"TR","n":"copy two 1","w":[390,1440]},{"id":"TR-NA-06-01","a":"TR","n":"bot live 1","w":[390,1440]},{"id":"TR-NA-06-05","a":"TR","n":"bot no conn resume","w":[1440]},{"id":"TR-PO-01-01","a":"TR","n":"halt confirm","w":[390,1440]},{"id":"TR-PO-02-01","a":"TR","n":"rename","w":[390,1440]},{"id":"TR-PO-03-01","a":"TR","n":"clone other ex","w":[390,1440]},{"id":"TR-PO-04-01","a":"TR","n":"delete blocked live","w":[390,1440]},{"id":"TR-PO-05-01","a":"TR","n":"version log empty","w":[390,1440]},{"id":"TR-PO-06-01","a":"TR","n":"trade lifecycle","w":[390,1440]},{"id":"TR-PO-07-01","a":"TR","n":"symbol picker","w":[390,1440]},{"id":"TR-PO-08-01","a":"TR","n":"bot edit","w":[390,1440]},{"id":"TR-BS-01-01","a":"TR","n":"mobile drawer","w":[390]},{"id":"TR-LY-02-01","a":"TR","n":"strategy menu","w":[1440]},{"id":"TR-LY-03-01","a":"TR","n":"ans why no entry","w":[390,1440]},{"id":"TR-LY-03-04","a":"TR","n":"proposal conservative","w":[390,1440]},{"id":"TR-LY-03-08","a":"TR","n":"applied paused","w":[1440]},{"id":"TR-LY-05-01","a":"TR","n":"help popup","w":[1440]},{"id":"MK-LY-01-01","a":"MK","n":"market drop open","w":[390,1440]},{"id":"MK-LY-02-01","a":"MK","n":"myex menu 2","w":[390,1440]},{"id":"MK-LY-03-01","a":"MK","n":"detail more menu","w":[390,1440]},{"id":"MK-LY-04-01","a":"MK","n":"detail chart hover","w":[1440]},{"id":"MK-LY-05-01","a":"MK","n":"detail gloss pop","w":[390,1440]},{"id":"MK-LY-06-01","a":"MK","n":"toast stop now","w":[390,1440]},{"id":"MK-NA-01-01","a":"MK","n":"hub guest full_p1","w":[390,1440]},{"id":"MK-NA-01-05","a":"MK","n":"hub kind mix","w":[390,1440]},{"id":"MK-NA-01-09","a":"MK","n":"hub search hit","w":[390,1440]},{"id":"MK-NA-01-13","a":"MK","n":"hub myex 1 off","w":[390,1440]},{"id":"MK-NA-01-17","a":"MK","n":"hub me row","w":[390,1440]},{"id":"MK-NA-02-01","a":"MK","n":"detail rule fut full_p1","w":[390,1440]},{"id":"MK-NA-02-05","a":"MK","n":"detail agent fut","w":[390,1440]},{"id":"MK-NA-02-09","a":"MK","n":"detail chart bal all month","w":[390,1440]},{"id":"MK-NA-02-13","a":"MK","n":"detail me_p1","w":[390,1440]},{"id":"MK-NA-03-01","a":"MK","n":"trades all","w":[390,1440]},{"id":"MK-NA-04-01","a":"MK","n":"info","w":[390,1440]},{"id":"MK-NA-05-01","a":"MK","n":"cpx waiting_p1","w":[390,1440]},{"id":"MK-NA-05-05","a":"MK","n":"cpx amount detail","w":[390,1440]},{"id":"MK-NA-05-09","a":"MK","n":"cpx missing","w":[390,1440]},{"id":"MK-PO-01-01","a":"MK","n":"copy sheet default","w":[390,1440]},{"id":"MK-PO-01-05","a":"MK","n":"copy sheet adv open","w":[390,1440]},{"id":"MK-PO-01-09","a":"MK","n":"copy deeplink","w":[390,1440]},{"id":"MK-PO-02-01","a":"MK","n":"adj add","w":[390,1440]},{"id":"MK-PO-02-05","a":"MK","n":"adj loss notice","w":[390,1440]},{"id":"MK-PO-03-01","a":"MK","n":"edit sheet","w":[390,1440]},{"id":"MK-PO-04-01","a":"MK","n":"stop 3way","w":[390,1440]},{"id":"MK-PO-05-01","a":"MK","n":"flat dlg","w":[390,1440]},{"id":"BT-NA-01-00","a":"BT","n":"guest redirect","w":[390,1440]},{"id":"BT-NA-01-02","a":"BT","n":"ready mixgate h1","w":[390,1440]},{"id":"BT-NA-01-10","a":"BT","n":"run prep","w":[390,1440]},{"id":"BT-NA-01-12","a":"BT","n":"run stop stage0","w":[390,1440]},{"id":"BT-NA-01-20","a":"BT","n":"result good h6_dec","w":[390,1440]},{"id":"BT-NA-01-23","a":"BT","n":"result notrade h5_ev","w":[390,1440]},{"id":"BT-NA-01-27","a":"BT","n":"result futures f7_dec","w":[390,1440]},{"id":"BT-NA-01-30","a":"BT","n":"dec expand skip","w":[390,1440]},{"id":"BT-NA-01-33","a":"BT","n":"trade expand","w":[390,1440]},{"id":"BT-NA-01-40","a":"BT","n":"mine ready","w":[390,1440]},{"id":"BT-NA-01-43","a":"BT","n":"mine compare prev","w":[390,1440]},{"id":"BT-NA-02-01","a":"BT","n":"go public free","w":[390,1440]},{"id":"BT-NA-02-04","a":"BT","n":"go mine connected start","w":[390,1440]},{"id":"BT-NA-02-09","a":"BT","n":"go public connected done_after click","w":[390,1440]},{"id":"BT-NA-03-01","a":"BT","n":"done view","w":[390,1440]},{"id":"BT-NA-04-01","a":"BT","n":"review detail","w":[390,1440]},{"id":"BT-NA-05-01","a":"BT","n":"periodic detail","w":[390,1440]},{"id":"EX-NA-02-01","a":"EX","n":"exselect invite","w":[390,1440]},{"id":"EX-NA-03-01","a":"EX","n":"account before signup","w":[390,1440]},{"id":"EX-NA-04-01","a":"EX","n":"approve invite","w":[390,1440]},{"id":"EX-PO-01-01","a":"EX","n":"approve dialog","w":[390,1440]},{"id":"EX-NA-05-01","a":"EX","n":"check running","w":[390,1440]},{"id":"EX-NA-06-01","a":"EX","n":"done invite","w":[390,1440]},{"id":"EX-NA-07-01","a":"EX","n":"list one invite","w":[390,1440]},{"id":"EX-PO-02-01","a":"EX","n":"disconnect confirm","w":[390,1440]},{"id":"EX-PO-03-01","a":"EX","n":"kyc checking","w":[390,1440]},{"id":"EX-BS-01-01","a":"EX","n":"dropdown sheet mobile","w":[390]},{"id":"PL-NA-01-01","a":"PL","n":"plan guest","w":[390,1440]},{"id":"PL-NA-02-01","a":"PL","n":"checkout new","w":[390,1440]},{"id":"PL-NA-02-05","a":"PL","n":"checkout applepay busy","w":[390,1440]},{"id":"PL-NA-05-01","a":"PL","n":"hash plan member redirect","w":[390,1440]},{"id":"PL-NA-06-01","a":"PL","n":"alerts","w":[390,1440]},{"id":"PL-NA-07-02","a":"PL","n":"usage status preset02","w":[390,1440]},{"id":"PL-NA-07-13","a":"PL","n":"usage status free soon","w":[390,1440]}];
+var LEGACY=[["strat","전략 요약 카드","채팅에서 전략을 만들어 요약 카드까지"],["ask","질문 카드","여러 개 고르기 질문"],["next","다음 질문 제안","답변 아래 바로 실행 줄"],["order","예약 주문 카드","조건 주문 만들기"],["contract","조건 확정","질문에 다 답한 뒤"],["revise","수정 제안","바뀔 조건 카드"],["orderst","예약 상태 3종","대기·체결·취소"],["reviseold","수정 전 비교",""],["reviseopen","규칙 전체 보기",""],["bt","백테스트 준비","기간·금액 고르기"],["btopen","백테스트 준비 (펼침)","접는 박스 열린 상태"],["btrun","백테스트 돌리는 중","판단 목록"],["btfeed","백테스트 진행 피드",""],["btres","백테스트 결과","손익·판단 기록·월별"],["go","전략 실행 준비",""],["call","상담 연결",""],["term","용어 말풍선",""]];
+
+/* 화면 ID -> 진입 동작. 조사 결과가 나오는 대로 여기에 채운다.
+   값은 function(w){...} 형태이며 w 는 index.html 창이다. */
+var ENTRY={};
+
+var W=390, FILTER='all', CUR=null, frame=null;
+
+function wired(id){ return typeof ENTRY[id]==='function'; }
+
+function render(){
+  var q=document.getElementById('q').value.trim().toLowerCase();
+  var list=document.getElementById('list');
+  var shown=0, html='', lastArea=null;
+  SCREENS.forEach(function(s){
+    if(FILTER==='on' && !wired(s.id)) return;
+    if(q && (s.id+' '+s.n+' '+(AREAS[s.a]||'')).toLowerCase().indexOf(q)<0) return;
+    if(s.a!==lastArea){ lastArea=s.a; html+='<div class="areahd">'+s.a+' '+(AREAS[s.a]||'')+'</div>'; }
+    var on=wired(s.id);
+    html+='<button type="button" class="row'+(on?' on':' off')+'" data-id="'+s.id+'"'+(on?'':' disabled')+' aria-pressed="'+(CUR===s.id)+'">'
+      +'<span class="dot"></span><span class="id">'+s.id+'</span><span class="nm">'+s.n+'</span>'
+      +s.w.map(function(x){ return '<span class="w">'+x+'</span>'; }).join('')+'</button>';
+    shown++;
+  });
+  if(!shown) html='<p class="empty">찾는 화면이 없습니다.</p>';
+  if(FILTER!=='on'){
+    html+='<div class="areahd">기존 확인용 버튼 (화면 ID 확정 전)</div>';
+    LEGACY.forEach(function(L){
+      if(q && (L[0]+' '+L[1]+' '+L[2]).toLowerCase().indexOf(q)<0) return;
+      html+='<button type="button" class="row on" data-act="'+L[0]+'" aria-pressed="'+(CUR==='act:'+L[0])+'">'
+        +'<span class="dot"></span><span class="id">'+L[0]+'</span><span class="nm">'+L[1]+(L[2]?' — '+L[2]:'')+'</span></button>';
+    });
+  }
+  list.innerHTML=html;
+  document.getElementById('count').textContent=shown+' / '+SCREENS.length+' 화면'+(FILTER==='on'?' (연결됨)':'');
+}
+
+function makeFrame(){
+  var box=document.getElementById('frames');
+  box.innerHTML='';
+  frame=document.createElement('iframe');
+  frame.id='f';
+  frame.style.width=W+'px';
+  frame.style.height=(W===390?844:900)+'px';
+  box.appendChild(frame);
+  return frame;
+}
+
+/* 저장된 옛 상태를 지우고 새로 불러온 뒤 run 을 실행한다 */
+function fresh(run){
+  var f=makeFrame();
+  try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
+  f.onload=function(){
+    f.onload=null;
+    try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
+    setTimeout(function(){ try{ run(f.contentWindow); }catch(e){ console.error(e); } },600);
+  };
+  f.src='index.html?'+Date.now();
+}
+
+function openScreen(id){
+  CUR=id;
+  var s=null; SCREENS.forEach(function(x){ if(x.id===id) s=x; });
+  document.getElementById('curId').textContent=id;
+  document.getElementById('curNm').textContent=s?s.n:'';
+  render();
+  fresh(ENTRY[id]);
+}
+
+function openAct(name){
+  CUR='act:'+name;
+  var L=null; LEGACY.forEach(function(x){ if(x[0]===name) L=x; });
+  document.getElementById('curId').textContent=L?L[1]:name;
+  document.getElementById('curNm').textContent=L&&L[2]?L[2]:'';
+  render();
+  var f=makeFrame();
+  /* 기존 _demo.html 의 동작을 그대로 쓴다 */
+  window.makeActs(f)[name]();
+}
+
+document.getElementById('list').addEventListener('click',function(e){
+  var b=e.target.closest('.row'); if(!b||b.disabled) return;
+  if(b.dataset.id) openScreen(b.dataset.id);
+  else if(b.dataset.act) openAct(b.dataset.act);
+});
+document.getElementById('q').addEventListener('input',render);
+document.querySelectorAll('.seg [data-w]').forEach(function(b){
+  b.onclick=function(){
+    W=+b.dataset.w;
+    document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+    if(frame){ frame.style.width=W+'px'; frame.style.height=(W===390?844:900)+'px'; }
+  };
+});
+document.querySelectorAll('.seg [data-f]').forEach(function(b){
+  b.onclick=function(){
+    FILTER=b.dataset.f;
+    document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+    render();
+  };
+});
+render();
+</script>
+</html>
