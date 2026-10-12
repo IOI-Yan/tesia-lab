@@ -3,25 +3,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>TETH 화면 찾아보기</title>
-<link rel="preconnect" href="https://cdn.jsdelivr.net">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
 <style>
-:root{
-  --bg:#101113; --card:#17181B; --line:rgba(255,255,255,.06); --line2:rgba(255,255,255,.12);
-  --accent:#00FEFF; --accent-dim:#5CFEFF;
-  --t1:#ececec; --t2:#cfd2d6; --t3:#9ea3ad;
-  --chip:#25272C; --chip2:#313339; --chip3:#45484F;
-  --ease:cubic-bezier(.16,1,.3,1);
-}
+:root{--bg:#101113;--card:#17181B;--line:rgba(255,255,255,.06);--line2:rgba(255,255,255,.12);
+ --accent:#00FEFF;--t1:#ececec;--t2:#cfd2d6;--t3:#9ea3ad;--chip:#25272C;--chip2:#313339;--chip3:#45484F;
+ --ease:cubic-bezier(.16,1,.3,1)}
 *{box-sizing:border-box}
 html,body{margin:0;height:100%}
 body{background:var(--bg);color:var(--t1);font-family:Pretendard,-apple-system,system-ui,sans-serif;font-size:14px;line-height:1.5;display:flex;flex-direction:column}
-
-header{padding:18px 20px 14px;border-bottom:1px solid var(--line);flex:none}
-h1{margin:0 0 4px;font-size:17px;font-weight:700;letter-spacing:-.01em}
+header{padding:16px 20px 12px;border-bottom:1px solid var(--line);flex:none}
+h1{margin:0 0 3px;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .sub{margin:0;font-size:12.5px;color:var(--t3)}
-
-.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:12px 20px;border-bottom:1px solid var(--line);flex:none}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:11px 20px;border-bottom:1px solid var(--line);flex:none}
 .seg{display:inline-flex;gap:4px;padding:4px;background:var(--chip);border-radius:999px;border:1px solid var(--line)}
 .seg button{height:30px;padding:0 13px;border:0;border-radius:999px;background:transparent;color:var(--t3);font:inherit;font-size:13px;font-weight:500;cursor:pointer;transition:background .2s var(--ease),color .2s var(--ease)}
 .seg button:hover{color:#fff;background:var(--chip2)}
@@ -30,37 +23,35 @@ h1{margin:0 0 4px;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .search:focus{border-color:var(--accent)}
 .search::placeholder{color:var(--t3)}
 .count{font-size:12.5px;color:var(--t3);font-variant-numeric:tabular-nums}
-
-.main{flex:1;display:grid;grid-template-columns:minmax(300px,380px) 1fr;min-height:0}
-@media (max-width:900px){ .main{grid-template-columns:1fr;grid-template-rows:auto 1fr} }
-
-.list{overflow-y:auto;padding:12px 14px 40px;border-right:1px solid var(--line)}
-.areahd{position:sticky;top:0;z-index:2;margin:14px 0 8px;padding:6px 2px;background:var(--bg);font-size:12px;font-weight:700;letter-spacing:.04em;color:var(--t3)}
-.areahd:first-child{margin-top:0}
-.row{display:flex;align-items:center;gap:10px;width:100%;margin-bottom:4px;padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--t1);font:inherit;text-align:left;cursor:pointer;transition:background .16s var(--ease),border-color .16s var(--ease)}
+.main{flex:1;display:grid;grid-template-columns:minmax(300px,400px) 1fr;min-height:0}
+@media (max-width:900px){.main{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
+.list{overflow-y:auto;padding:10px 14px 40px;border-right:1px solid var(--line)}
+.ghd{position:sticky;top:0;z-index:2;margin:16px 0 6px;padding:7px 2px;background:var(--bg);font-size:12.5px;font-weight:700;color:var(--t2)}
+.ghd:first-child{margin-top:0}
+.ghd em{font-style:normal;color:var(--t3);font-weight:500;margin-left:6px}
+.shd{margin:10px 0 4px;padding:3px 2px;font-size:11.5px;color:var(--t3);font-weight:600}
+.row{display:flex;align-items:center;gap:9px;width:100%;margin-bottom:3px;padding:8px 11px;border:1px solid var(--line);border-radius:11px;background:var(--card);color:var(--t1);font:inherit;text-align:left;cursor:pointer;transition:background .16s var(--ease),border-color .16s var(--ease)}
 .row:hover{background:var(--chip2);border-color:var(--line2)}
 .row[aria-pressed=true]{border-color:var(--accent);background:var(--chip2)}
-.row .id{flex:none;font-size:11.5px;font-weight:600;color:var(--t3);font-variant-numeric:tabular-nums;letter-spacing:.01em}
 .row .nm{flex:1;min-width:0;font-size:13px;color:var(--t2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row .w{flex:none;font-size:10.5px;color:var(--t3);border:1px solid var(--line2);border-radius:5px;padding:1px 5px}
-.row.off{opacity:.5;cursor:not-allowed}
+.row .id{flex:none;font-size:11px;color:var(--t3);font-variant-numeric:tabular-nums}
+.row.off{opacity:.45;cursor:not-allowed}
 .row.off:hover{background:var(--card);border-color:var(--line)}
 .dot{flex:none;width:6px;height:6px;border-radius:50%;background:var(--chip3)}
 .row.on .dot{background:var(--accent)}
-.empty{padding:22px 4px;color:var(--t3);font-size:13px}
-
+.empty{padding:20px 4px;color:var(--t3);font-size:13px}
 .stage{display:flex;flex-direction:column;min-width:0;min-height:0;background:#0b0c0e}
-.stagebar{display:flex;align-items:center;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);flex:none;font-size:12.5px;color:var(--t3)}
-.stagebar b{color:var(--t1);font-size:13px;font-weight:600}
+.stagebar{display:flex;align-items:baseline;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);flex:none;font-size:12.5px;color:var(--t3)}
+.stagebar b{color:var(--t1);font-size:13.5px;font-weight:600}
 .frames{flex:1;overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding:20px}
 iframe{border:0;border-radius:20px;background:var(--bg);box-shadow:0 18px 48px rgba(0,0,0,.55)}
-.hint{margin:auto;color:var(--t3);font-size:13px;text-align:center;line-height:1.7}
+.hint{margin:auto;color:var(--t3);font-size:13px;text-align:center;line-height:1.8}
 kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--line2);border-radius:5px;padding:1px 5px;color:var(--t2)}
 </style>
 
 <header>
   <h1>TETH 화면 찾아보기</h1>
-  <p class="sub">화면 ID로 바로 띄웁니다. 플로우를 처음부터 타지 않아도 됩니다. 내 PC에서만 열리고 저장소에는 올라가지 않습니다.</p>
+  <p class="sub">화면 모아보기 PDF와 같은 묶음·같은 이름입니다. PDF에서 본 화면을 여기서 바로 띄워 고칠 수 있습니다.</p>
 </header>
 
 <div class="bar">
@@ -70,9 +61,9 @@ kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--
   </div>
   <div class="seg" role="group" aria-label="연결 상태">
     <button type="button" data-f="all" aria-pressed="true">전체</button>
-    <button type="button" data-f="on" aria-pressed="false">연결됨</button>
+    <button type="button" data-f="on" aria-pressed="false">열리는 것만</button>
   </div>
-  <input class="search" id="q" type="search" placeholder="화면 ID나 이름으로 찾기 (예: BT, 사이드바, toast)" autocomplete="off">
+  <input class="search" id="q" type="search" placeholder="화면 이름으로 찾기 (예: 홈, 결제, 백테스트)" autocomplete="off">
   <span class="count" id="count"></span>
 </div>
 
@@ -80,114 +71,180 @@ kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--
   <div class="list" id="list"></div>
   <div class="stage">
     <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span></div>
-    <div class="frames" id="frames"><p class="hint">왼쪽에서 화면을 고르면 여기에 뜹니다.<br>검색창에 <kbd>BT</kbd> 처럼 영역 코드만 넣어도 걸러집니다.</p></div>
+    <div class="frames" id="frames"><p class="hint">왼쪽에서 화면을 고르면 여기에 뜹니다.<br><kbd>/</kbd> 로 검색창, <kbd>Esc</kbd> 로 비우기<br>주소 끝에 <kbd>#09-01</kbd> 처럼 붙이면 그 화면이 바로 열립니다.</p></div>
   </div>
 </div>
 
-<script src="_demo_acts.js"></script>
 <script>
-var AREAS={"CO":"앱 셸","CH":"새 전략 채팅","TR":"AI 트레이딩","MK":"전략 복사","BT":"백테스트","EX":"거래소 연결","PL":"플랜·결제"};
-var SCREENS=[{"id":"CO-LY-01-01","a":"CO","n":"sidebar rail collapsed guest","w":[1440]},{"id":"CO-LY-01-04","a":"CO","n":"drawer mobile guest","w":[390,1440]},{"id":"CO-LY-02-01","a":"CO","n":"topbar mobile guest appbanner","w":[390,1440]},{"id":"CO-LY-03-01","a":"CO","n":"chat header","w":[390,1440]},{"id":"CO-LY-03-05","a":"CO","n":"chat header delete armed","w":[1440]},{"id":"CO-LY-04-01","a":"CO","n":"feedback empty","w":[390,1440]},{"id":"CO-LY-06-01","a":"CO","n":"toast","w":[1440]},{"id":"CO-LY-07-01","a":"CO","n":"right drawer","w":[390,1440]},{"id":"CO-PO-01-01","a":"CO","n":"lang sheet","w":[390,1440]},{"id":"CO-PO-02-01","a":"CO","n":"settings sheet guest","w":[390,1440]},{"id":"CO-PO-03-01","a":"CO","n":"session row menu","w":[1440]},{"id":"CO-PO-04-01","a":"CO","n":"rename dialog disabled","w":[1440]},{"id":"CO-PO-05-01","a":"CO","n":"delete dialog","w":[1440]},{"id":"CO-PO-06-01","a":"CO","n":"common dialog","w":[1440]},{"id":"CH-NA-01-01","a":"CH","n":"home guest","w":[390,1440]},{"id":"CH-NA-01-05","a":"CH","n":"home typed","w":[390,1440]},{"id":"CH-LY-01-01","a":"CH","n":"plus popover guest","w":[390,1440]},{"id":"CH-PO-01-01","a":"CH","n":"guest send auth modal","w":[390,1440]},{"id":"CH-NA-02-01","a":"CH","n":"chat ai offline retry","w":[390,1440]},{"id":"CH-NA-02-03","a":"CH","n":"intake mode card","w":[390,1440]},{"id":"CH-NA-02-06","a":"CH","n":"intake risk card","w":[390,1440]},{"id":"CH-NA-02-08","a":"CH","n":"inline backtest result","w":[390,1440]},{"id":"CH-NA-02-12","a":"CH","n":"user msg copy toast","w":[390,1440]},{"id":"CH-NA-02-16","a":"CH","n":"ai working timeline","w":[390,1440]},{"id":"CH-NA-02-19","a":"CH","n":"ai vote up toast","w":[390,1440]},{"id":"CH-NA-02-23","a":"CH","n":"ask dock step1 multi","w":[390,1440]},{"id":"CH-NA-02-27","a":"CH","n":"ai strategy card","w":[390,1440]},{"id":"CH-NA-02-28","a":"CH","n":"order card draft","w":[390,1440]},{"id":"CH-NA-02-32","a":"CH","n":"ai action chips","w":[390,1440]},{"id":"CH-NA-02-36","a":"CH","n":"ai event timeline","w":[390,1440]},{"id":"CH-LY-02-01","a":"CH","n":"usage banner 80","w":[390,1440]},{"id":"CH-NA-03-01","a":"CH","n":"history empty","w":[1440]},{"id":"CH-NA-04-01","a":"CH","n":"research plan doc","w":[390,1440]},{"id":"CH-NA-04-05","a":"CH","n":"research done","w":[1440]},{"id":"CH-NA-04-08","a":"CH","n":"connect","w":[1440]},{"id":"TR-NA-01-01","a":"TR","n":"landing guest s01 1","w":[390,1440]},{"id":"TR-NA-02-01","a":"TR","n":"term empty s03","w":[390,1440]},{"id":"TR-NA-03-01","a":"TR","n":"term rule live agent tab 1","w":[390,1440]},{"id":"TR-NA-03-04","a":"TR","n":"term rule paused","w":[390,1440]},{"id":"TR-NA-03-08","a":"TR","n":"term no api connect empty","w":[390,1440]},{"id":"TR-NA-03-12","a":"TR","n":"term bottom orders","w":[1440]},{"id":"TR-NA-03-16","a":"TR","n":"term rail open","w":[390,1440]},{"id":"TR-NA-03-21","a":"TR","n":"term ready later","w":[390,1440]},{"id":"TR-NA-05-01","a":"TR","n":"copy only 1","w":[390,1440]},{"id":"TR-NA-05-05","a":"TR","n":"copy two 1","w":[390,1440]},{"id":"TR-NA-06-01","a":"TR","n":"bot live 1","w":[390,1440]},{"id":"TR-NA-06-05","a":"TR","n":"bot no conn resume","w":[1440]},{"id":"TR-PO-01-01","a":"TR","n":"halt confirm","w":[390,1440]},{"id":"TR-PO-02-01","a":"TR","n":"rename","w":[390,1440]},{"id":"TR-PO-03-01","a":"TR","n":"clone other ex","w":[390,1440]},{"id":"TR-PO-04-01","a":"TR","n":"delete blocked live","w":[390,1440]},{"id":"TR-PO-05-01","a":"TR","n":"version log empty","w":[390,1440]},{"id":"TR-PO-06-01","a":"TR","n":"trade lifecycle","w":[390,1440]},{"id":"TR-PO-07-01","a":"TR","n":"symbol picker","w":[390,1440]},{"id":"TR-PO-08-01","a":"TR","n":"bot edit","w":[390,1440]},{"id":"TR-BS-01-01","a":"TR","n":"mobile drawer","w":[390]},{"id":"TR-LY-02-01","a":"TR","n":"strategy menu","w":[1440]},{"id":"TR-LY-03-01","a":"TR","n":"ans why no entry","w":[390,1440]},{"id":"TR-LY-03-04","a":"TR","n":"proposal conservative","w":[390,1440]},{"id":"TR-LY-03-08","a":"TR","n":"applied paused","w":[1440]},{"id":"TR-LY-05-01","a":"TR","n":"help popup","w":[1440]},{"id":"MK-LY-01-01","a":"MK","n":"market drop open","w":[390,1440]},{"id":"MK-LY-02-01","a":"MK","n":"myex menu 2","w":[390,1440]},{"id":"MK-LY-03-01","a":"MK","n":"detail more menu","w":[390,1440]},{"id":"MK-LY-04-01","a":"MK","n":"detail chart hover","w":[1440]},{"id":"MK-LY-05-01","a":"MK","n":"detail gloss pop","w":[390,1440]},{"id":"MK-LY-06-01","a":"MK","n":"toast stop now","w":[390,1440]},{"id":"MK-NA-01-01","a":"MK","n":"hub guest full_p1","w":[390,1440]},{"id":"MK-NA-01-05","a":"MK","n":"hub kind mix","w":[390,1440]},{"id":"MK-NA-01-09","a":"MK","n":"hub search hit","w":[390,1440]},{"id":"MK-NA-01-13","a":"MK","n":"hub myex 1 off","w":[390,1440]},{"id":"MK-NA-01-17","a":"MK","n":"hub me row","w":[390,1440]},{"id":"MK-NA-02-01","a":"MK","n":"detail rule fut full_p1","w":[390,1440]},{"id":"MK-NA-02-05","a":"MK","n":"detail agent fut","w":[390,1440]},{"id":"MK-NA-02-09","a":"MK","n":"detail chart bal all month","w":[390,1440]},{"id":"MK-NA-02-13","a":"MK","n":"detail me_p1","w":[390,1440]},{"id":"MK-NA-03-01","a":"MK","n":"trades all","w":[390,1440]},{"id":"MK-NA-04-01","a":"MK","n":"info","w":[390,1440]},{"id":"MK-NA-05-01","a":"MK","n":"cpx waiting_p1","w":[390,1440]},{"id":"MK-NA-05-05","a":"MK","n":"cpx amount detail","w":[390,1440]},{"id":"MK-NA-05-09","a":"MK","n":"cpx missing","w":[390,1440]},{"id":"MK-PO-01-01","a":"MK","n":"copy sheet default","w":[390,1440]},{"id":"MK-PO-01-05","a":"MK","n":"copy sheet adv open","w":[390,1440]},{"id":"MK-PO-01-09","a":"MK","n":"copy deeplink","w":[390,1440]},{"id":"MK-PO-02-01","a":"MK","n":"adj add","w":[390,1440]},{"id":"MK-PO-02-05","a":"MK","n":"adj loss notice","w":[390,1440]},{"id":"MK-PO-03-01","a":"MK","n":"edit sheet","w":[390,1440]},{"id":"MK-PO-04-01","a":"MK","n":"stop 3way","w":[390,1440]},{"id":"MK-PO-05-01","a":"MK","n":"flat dlg","w":[390,1440]},{"id":"BT-NA-01-00","a":"BT","n":"guest redirect","w":[390,1440]},{"id":"BT-NA-01-02","a":"BT","n":"ready mixgate h1","w":[390,1440]},{"id":"BT-NA-01-10","a":"BT","n":"run prep","w":[390,1440]},{"id":"BT-NA-01-12","a":"BT","n":"run stop stage0","w":[390,1440]},{"id":"BT-NA-01-20","a":"BT","n":"result good h6_dec","w":[390,1440]},{"id":"BT-NA-01-23","a":"BT","n":"result notrade h5_ev","w":[390,1440]},{"id":"BT-NA-01-27","a":"BT","n":"result futures f7_dec","w":[390,1440]},{"id":"BT-NA-01-30","a":"BT","n":"dec expand skip","w":[390,1440]},{"id":"BT-NA-01-33","a":"BT","n":"trade expand","w":[390,1440]},{"id":"BT-NA-01-40","a":"BT","n":"mine ready","w":[390,1440]},{"id":"BT-NA-01-43","a":"BT","n":"mine compare prev","w":[390,1440]},{"id":"BT-NA-02-01","a":"BT","n":"go public free","w":[390,1440]},{"id":"BT-NA-02-04","a":"BT","n":"go mine connected start","w":[390,1440]},{"id":"BT-NA-02-09","a":"BT","n":"go public connected done_after click","w":[390,1440]},{"id":"BT-NA-03-01","a":"BT","n":"done view","w":[390,1440]},{"id":"BT-NA-04-01","a":"BT","n":"review detail","w":[390,1440]},{"id":"BT-NA-05-01","a":"BT","n":"periodic detail","w":[390,1440]},{"id":"EX-NA-02-01","a":"EX","n":"exselect invite","w":[390,1440]},{"id":"EX-NA-03-01","a":"EX","n":"account before signup","w":[390,1440]},{"id":"EX-NA-04-01","a":"EX","n":"approve invite","w":[390,1440]},{"id":"EX-PO-01-01","a":"EX","n":"approve dialog","w":[390,1440]},{"id":"EX-NA-05-01","a":"EX","n":"check running","w":[390,1440]},{"id":"EX-NA-06-01","a":"EX","n":"done invite","w":[390,1440]},{"id":"EX-NA-07-01","a":"EX","n":"list one invite","w":[390,1440]},{"id":"EX-PO-02-01","a":"EX","n":"disconnect confirm","w":[390,1440]},{"id":"EX-PO-03-01","a":"EX","n":"kyc checking","w":[390,1440]},{"id":"EX-BS-01-01","a":"EX","n":"dropdown sheet mobile","w":[390]},{"id":"PL-NA-01-01","a":"PL","n":"plan guest","w":[390,1440]},{"id":"PL-NA-02-01","a":"PL","n":"checkout new","w":[390,1440]},{"id":"PL-NA-02-05","a":"PL","n":"checkout applepay busy","w":[390,1440]},{"id":"PL-NA-05-01","a":"PL","n":"hash plan member redirect","w":[390,1440]},{"id":"PL-NA-06-01","a":"PL","n":"alerts","w":[390,1440]},{"id":"PL-NA-07-02","a":"PL","n":"usage status preset02","w":[390,1440]},{"id":"PL-NA-07-13","a":"PL","n":"usage status free soon","w":[390,1440]}];
-var LEGACY=[["strat","전략 요약 카드","채팅에서 전략을 만들어 요약 카드까지"],["ask","질문 카드","여러 개 고르기 질문"],["next","다음 질문 제안","답변 아래 바로 실행 줄"],["order","예약 주문 카드","조건 주문 만들기"],["contract","조건 확정","질문에 다 답한 뒤"],["revise","수정 제안","바뀔 조건 카드"],["orderst","예약 상태 3종","대기·체결·취소"],["reviseold","수정 전 비교",""],["reviseopen","규칙 전체 보기",""],["bt","백테스트 준비","기간·금액 고르기"],["btopen","백테스트 준비 (펼침)","접는 박스 열린 상태"],["btrun","백테스트 돌리는 중","판단 목록"],["btfeed","백테스트 진행 피드",""],["btres","백테스트 결과","손익·판단 기록·월별"],["go","전략 실행 준비",""],["call","상담 연결",""],["term","용어 말풍선",""]];
-
-/* 화면 ID -> 진입 동작. 조사 결과가 나오는 대로 여기에 채운다.
-   값은 function(w){...} 형태이며 w 는 index.html 창이다. */
-var ENTRY={};
+var GROUPS=[{"no":"01","title":"홈과 가입"},{"no":"02","title":"AI 대화 (응답 유형)"},{"no":"03","title":"이용 방식, 거래소 연결, 실행 시작"},{"no":"04","title":"백테스팅 플로우"},{"no":"05","title":"전략 복사 (목록, 상세, 복사 창)"},{"no":"06","title":"AI 트레이딩과 실행 뒤 관리"},{"no":"07","title":"서비스 소개와 앱 다운로드"},{"no":"08","title":"우선순위 낮음"},{"no":"09","title":"계정 상태별 검수 (과금 11케이스와 계정 4종)"}];
+var SCREENS=[{"id":"01-01","g":"01","head":null,"name":"01 홈 (손님)","page":2},{"id":"01-02","g":"01","head":null,"name":"02 홈 (로그인)","page":2},{"id":"01-03","g":"01","head":null,"name":"03 홈 입력 중","page":2},{"id":"01-04","g":"01","head":null,"name":"04 홈 메뉴 열림","page":2},{"id":"01-05","g":"01","head":null,"name":"05 가입 창","page":2},{"id":"01-06","g":"01","head":null,"name":"06 로그인 창","page":2},{"id":"01-07","g":"01","head":"가입과 로그인 단계","name":"1 가입 시작","page":2},{"id":"01-08","g":"01","head":"가입과 로그인 단계","name":"2 이메일 형식 오류","page":2},{"id":"01-09","g":"01","head":"가입과 로그인 단계","name":"3 비밀번호 만들기","page":3},{"id":"01-10","g":"01","head":"가입과 로그인 단계","name":"3b 비밀번호 조건 일부만 충족","page":3},{"id":"01-11","g":"01","head":"가입과 로그인 단계","name":"3c 비밀번호 조건 모두 충족","page":3},{"id":"01-12","g":"01","head":"가입과 로그인 단계","name":"4 비밀번호 다음 단계","page":3},{"id":"01-13","g":"01","head":"가입과 로그인 단계","name":"5 인증 코드 입력 (재전송 대기)","page":3},{"id":"01-14","g":"01","head":"가입과 로그인 단계","name":"5b 인증 코드 오류","page":3},{"id":"01-15","g":"01","head":"가입과 로그인 단계","name":"6 로그인 시작","page":3},{"id":"01-16","g":"01","head":"가입과 로그인 단계","name":"7 로그인 인증 코드","page":3},{"id":"01-17","g":"01","head":"가입과 로그인 단계","name":"8 로그인 비밀번호","page":4},{"id":"01-18","g":"01","head":"가입과 로그인 단계","name":"8b 로그인 비밀번호 오류","page":4},{"id":"02-01","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"01 짧은 답변과 후속 질문","page":5},{"id":"02-02","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"03 방향 질문 (생각 중)","page":5},{"id":"02-03","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"03 방향 질문 (시세 데이터 확인 중)","page":5},{"id":"02-04","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"03 방향 질문 답변 (확률, 실행 단추, 후속 질문)","page":5},{"id":"02-05","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"03b 방향 질문 답변 아래쪽 (실행 단추와 후속","page":5},{"id":"02-06","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"03c 사고 과정 펼침","page":5},{"id":"02-07","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"03d 실행 단추를 누른 뒤 (전략 카드로 이어짐)","page":5},{"id":"02-08","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"06 질문 카드 1단계 (여러 개 고르기)","page":5},{"id":"02-09","g":"02","head":null,"name":"질문)","page":5},{"id":"02-10","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"06b 질문 카드 고른 상태","page":6},{"id":"02-11","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"06c 질문 카드 2단계 (하나 고르기)","page":6},{"id":"02-12","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"06d 질문 카드 직접 답변 작성","page":6},{"id":"02-13","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"06e 질문 카드에 답한 뒤 (고른 내용 요약과","page":6},{"id":"02-14","g":"02","head":null,"name":"답변)","page":6},{"id":"02-15","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"07 전략 질문 카드 1단계 (4개 중 1)","page":6},{"id":"02-16","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"07b 전략 질문 카드 2단계","page":6},{"id":"02-17","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"07c 전략 질문 카드 마지막 단계","page":6},{"id":"02-18","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"07d 전략 카드 (전략 테스트로 이어짐)","page":6},{"id":"02-19","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"08 전략 카드 (조건 그대로)","page":7},{"id":"02-20","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"08b 전략 카드 (검증에서 뺀 조건 표시)","page":7},{"id":"02-21","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"09 자동매매로 바꾸기 (이어서 질문 카드)","page":7},{"id":"02-22","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"13 초보자 질문 답변","page":7},{"id":"02-23","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"14 답변 실패 (다시 시도)","page":7},{"id":"02-24","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"15 답변 쓰는 중 (중지 단추)","page":7},{"id":"02-25","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"15b 중지한 뒤 (이어서 계속)","page":7},{"id":"02-26","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"16 손님이 보내면 (가입 창)","page":7},{"id":"02-27","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"17 AI에 연결되지 않을 때","page":8},{"id":"02-28","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"18 사용량 80% 배너(닫을 수 있음)","page":8},{"id":"02-29","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"18 사용량 100%(구독만, 초대 계정 연결)","page":8},{"id":"02-30","g":"02","head":"1 핵심 (전략을 만들기까지)","name":"18 사용량 100%(초대 계정, 카드 등록)","page":8},{"id":"02-31","g":"02","head":"2 나머지 응답 유형","name":"01b 별로입니다 사유 고르기","page":8},{"id":"02-32","g":"02","head":"2 나머지 응답 유형","name":"02 시세 확인과 차트 열림","page":8},{"id":"02-33","g":"02","head":"2 나머지 응답 유형","name":"04 원인 질문 (답변 쓰는 중)","page":8},{"id":"02-34","g":"02","head":"2 나머지 응답 유형","name":"04 원인 질문 (웹 검색 중)","page":8},{"id":"02-35","g":"02","head":"2 나머지 응답 유형","name":"04 원인 질문 (페이지 읽는 중)","page":9},{"id":"02-36","g":"02","head":"2 나머지 응답 유형","name":"04 원인 질문 답변 (출처, 사건 타임라인)","page":9},{"id":"02-37","g":"02","head":"2 나머지 응답 유형","name":"04b 검색 과정 펼침","page":9},{"id":"02-38","g":"02","head":"2 나머지 응답 유형","name":"05 상세 리포트 (제목, 표, 주의 한 줄, 검증","page":9},{"id":"02-39","g":"02","head":null,"name":"단추)","page":9},{"id":"02-40","g":"02","head":"2 나머지 응답 유형","name":"10 예약 주문 유효 기간 질문","page":9},{"id":"02-41","g":"02","head":"2 나머지 응답 유형","name":"10b 예약 카드 (예약 전)","page":9},{"id":"02-42","g":"02","head":"2 나머지 응답 유형","name":"10c 예약 카드 (조건 대기)","page":9},{"id":"02-43","g":"02","head":"2 나머지 응답 유형","name":"10d 예약 카드 (체결됨)","page":9},{"id":"02-44","g":"02","head":"2 나머지 응답 유형","name":"10e 예약 카드 (롱 3배)","page":10},{"id":"02-45","g":"02","head":"2 나머지 응답 유형","name":"10f 예약 카드 (취소됨)","page":10},{"id":"02-46","g":"02","head":"2 나머지 응답 유형","name":"11 알림 단추","page":10},{"id":"02-47","g":"02","head":"2 나머지 응답 유형","name":"11b 알림 단추 누른 뒤 (저장됨, 안내 문구)","page":10},{"id":"02-48","g":"02","head":"2 나머지 응답 유형","name":"12 범위 밖 질문 (짧은 안내와 후속 질문)","page":10},{"id":"02-49","g":"02","head":"2 나머지 응답 유형","name":"19 분석시키기 누른 직후","page":10},{"id":"02-50","g":"02","head":"2 나머지 응답 유형","name":"19b 분석시키기 답변 (화면 캡처 카드와 답변)","page":10},{"id":"03-01","g":"03","head":"1 대화에서 오는 길","name":"1 대화에서 전략 카드","page":11},{"id":"03-02","g":"03","head":"1 대화에서 오는 길","name":"2 백테스트 준비","page":11},{"id":"03-03","g":"03","head":"1 대화에서 오는 길","name":"3 백테스트 도는 중","page":11},{"id":"03-04","g":"03","head":"1 대화에서 오는 길","name":"3b 백테스트 도는 중 (판단이 쌓임)","page":11},{"id":"03-05","g":"03","head":"1 대화에서 오는 길","name":"4 백테스트 결과","page":11},{"id":"03-06","g":"03","head":"1 대화에서 오는 길","name":"5 이 전략 실행하기를 누르면 (이용 방식","page":11},{"id":"03-07","g":"03","head":"1 대화에서 오는 길","name":"6 연결된 회원이 실행하기를 누르면 (실행 준비)","page":11},{"id":"03-08","g":"03","head":"1 대화에서 오는 길","name":"6b 실행할 거래소를 고른 뒤","page":11},{"id":"03-09","g":"03","head":null,"name":"고르기)","page":11},{"id":"03-10","g":"03","head":"1 대화에서 오는 길","name":"7 전략 시작하기를 누른 직후","page":12},{"id":"03-11","g":"03","head":"1 대화에서 오는 길","name":"8 전략을 시작한 뒤 화면","page":12},{"id":"03-12","g":"03","head":"2 전략 복사에서 오는 길","name":"0 손님이 전략 복사하기를 누르면 (가입 창)","page":12},{"id":"03-13","g":"03","head":"2 전략 복사에서 오는 길","name":"1 전략 목록","page":12},{"id":"03-14","g":"03","head":"2 전략 복사에서 오는 길","name":"2 전략 상세","page":12},{"id":"03-15","g":"03","head":"2 전략 복사에서 오는 길","name":"3 전략 복사하기를 누르면 (이용 방식 고르기)","page":12},{"id":"03-16","g":"03","head":"2 전략 복사에서 오는 길","name":"4 복사 창(연결됨)","page":12},{"id":"03-17","g":"03","head":"2 전략 복사에서 오는 길","name":"4b 복사 창 최소 금액보다 적을 때","page":12},{"id":"03-18","g":"03","head":"2 전략 복사에서 오는 길","name":"4c 복사 창 쓸 수 있는 금액보다 많을 때","page":13},{"id":"03-19","g":"03","head":"2 전략 복사에서 오는 길","name":"4d 복사 창 금액 입력과 세부 설정 펼침","page":13},{"id":"03-20","g":"03","head":"2 전략 복사에서 오는 길","name":"4e 전략 복사 시작 직후","page":13},{"id":"03-21","g":"03","head":"2 전략 복사에서 오는 길","name":"5 복사한 전략 상세(진입 대기)","page":13},{"id":"03-22","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"01 플랜(무료 초대 계정 구독)","page":13},{"id":"03-23","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"02 거래소 선택","page":13},{"id":"03-24","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"03 계정(가입 안내)","page":13},{"id":"03-25","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"04 가입한 계정 연결","page":13},{"id":"03-26","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"05 승인 화면","page":14},{"id":"03-27","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"05b 승인 창이 열린 상태","page":14},{"id":"03-28","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"06 연결 확인 중","page":14},{"id":"03-29","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"07 구독 결제","page":14},{"id":"03-30","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"07b 구독 결제 카드 입력","page":14},{"id":"03-31","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"08 연결된 계정 목록","page":14},{"id":"03-32","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"09 연결 완료","page":14},{"id":"03-33","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"10 구독 결제 뒤 거래소 고르기","page":14},{"id":"03-34","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"11 구독 회원의 승인 화면","page":15},{"id":"03-35","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"12 본인 확인이 필요한 경우","page":15},{"id":"03-36","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"12b 본인 확인을 거래소가 검토 중인 경우","page":15},{"id":"03-37","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"12c 본인 확인 상태를 불러오지 못한 경우","page":15},{"id":"03-38","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"13 승인을 취소한 경우","page":15},{"id":"03-39","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"14 초대 계정이 아닌 경우","page":15},{"id":"03-40","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"15 결제가 승인되지 않은 경우","page":15},{"id":"03-41","g":"03","head":"3 거래소 연결 단계와 막히는 경우","name":"16 연결된 곳과 다른 거래소가 필요한 경우","page":15},{"id":"03-42","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"04 결제(이용 방식 없음)","page":16},{"id":"03-43","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"05 결제(초대 계정)","page":16},{"id":"03-44","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"06 결제(구독)","page":16},{"id":"03-45","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"07 결제(구독과 초대 계정, 크레딧 차감)","page":16},{"id":"03-46","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"08 결제(구독 해지됨)","page":16},{"id":"03-47","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"09 결제(결제 실패)","page":16},{"id":"03-48","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"10 사용량 20%","page":16},{"id":"03-49","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"11 사용량 85%","page":16},{"id":"03-50","g":"03","head":"4 결제와 사용량 (설정 화면)","name":"12 사용량 100%","page":17},{"id":"04-01","g":"04","head":null,"name":"01 돌리기 전","page":18},{"id":"04-02","g":"04","head":null,"name":"02 도는 중","page":18},{"id":"04-03","g":"04","head":null,"name":"03 도는 중 (판단이 쌓임)","page":18},{"id":"04-04","g":"04","head":null,"name":"04 결과 (좋음)","page":18},{"id":"04-05","g":"04","head":null,"name":"05 결과 아래 판단 기록","page":18},{"id":"04-06","g":"04","head":null,"name":"06 판단 하나 펼침","page":18},{"id":"04-07","g":"04","head":null,"name":"07 거래 하나 펼침","page":18},{"id":"04-08","g":"04","head":null,"name":"08 결과 (나쁨, 공개 전략)","page":18},{"id":"04-09","g":"04","head":null,"name":"09 결과 (나쁨, 내 전략, 규칙 수정하기)","page":19},{"id":"04-10","g":"04","head":null,"name":"09b 규칙 수정하기를 누르면 (결과 카드를 붙여 대화로)","page":19},{"id":"04-11","g":"04","head":null,"name":"09c 바꿀 규칙 제안 (이전 규칙과 바뀐 규칙)","page":19},{"id":"04-12","g":"04","head":null,"name":"09d 바꾼 규칙으로 다시 돌리는 중","page":19},{"id":"04-13","g":"04","head":null,"name":"09e 다시 검증한 결과 (이전 규칙과 비교)","page":19},{"id":"04-14","g":"04","head":null,"name":"11 실행 준비 (연결 전 회원)","page":19},{"id":"04-15","g":"04","head":null,"name":"12 손님이 백테스트를 누르면","page":19},{"id":"05-01","g":"05","head":null,"name":"01 목록","page":20},{"id":"05-02","g":"05","head":null,"name":"02 목록(내 거래소 하나 연결)","page":20},{"id":"05-03","g":"05","head":null,"name":"03 목록(내 거래소 둘 연결)","page":20},{"id":"05-04","g":"05","head":null,"name":"04 상세 개요","page":20},{"id":"05-05","g":"05","head":null,"name":"05 상세 전략 정보 탭","page":20},{"id":"05-06","g":"05","head":null,"name":"06 복사 창(연결됨)","page":20},{"id":"05-07","g":"05","head":null,"name":"06b 복사 창 최소 금액보다 적을 때","page":20},{"id":"05-08","g":"05","head":null,"name":"06c 복사 창 쓸 수 있는 금액보다 많을 때","page":20},{"id":"05-09","g":"05","head":null,"name":"06d 복사 창 금액 입력과 세부 설정 펼침","page":21},{"id":"05-10","g":"05","head":null,"name":"06e 전략 복사 시작 직후","page":21},{"id":"05-11","g":"05","head":null,"name":"07 복사 창 대신 플랜(미연결)","page":21},{"id":"05-12","g":"05","head":null,"name":"목록 정렬 열림","page":21},{"id":"06-01","g":"06","head":null,"name":"01 게스트","page":22},{"id":"06-02","g":"06","head":null,"name":"02 로그인, 거래소 미연결","page":22},{"id":"06-03","g":"06","head":null,"name":"03 연결, 전략 없음","page":22},{"id":"06-04","g":"06","head":null,"name":"04 복사한 전략만","page":22},{"id":"06-05","g":"06","head":null,"name":"05 전략 있음, 포지션 있음","page":22},{"id":"06-06","g":"06","head":null,"name":"06 전략 있음, 포지션 없음","page":22},{"id":"06-07","g":"06","head":null,"name":"07 전략 오류","page":22},{"id":"06-08","g":"06","head":null,"name":"08 예약 주문 대기(미체결 주문)","page":22},{"id":"06-09","g":"06","head":null,"name":"09 복사한 전략, 포지션 있음","page":23},{"id":"06-10","g":"06","head":null,"name":"10 복사한 AI 전략(여러 종목)","page":23},{"id":"06-11","g":"06","head":null,"name":"11 복사한 혼합 전략","page":23},{"id":"06-12","g":"06","head":null,"name":"12 복사한 전략 둘(AI와 규칙)","page":23},{"id":"06-13","g":"06","head":"복사한 전략 관리","name":"08 복사한 전략 상세(진입 대기)","page":23},{"id":"06-14","g":"06","head":"복사한 전략 관리","name":"09 복사한 전략 상세(포지션 있음)","page":23},{"id":"06-15","g":"06","head":"복사한 전략 관리","name":"10 복사한 전략 상세(청산 이력)","page":23},{"id":"06-16","g":"06","head":"복사한 전략 관리","name":"11 복사한 전략 상세(자금 이동)","page":23},{"id":"06-17","g":"06","head":null,"name":"아래 탭 미체결 주문","page":24},{"id":"06-18","g":"06","head":null,"name":"아래 탭 주문 내역","page":24},{"id":"06-19","g":"06","head":null,"name":"아래 탭 체결 내역","page":24},{"id":"06-20","g":"06","head":null,"name":"아래 탭 판단","page":24},{"id":"06-21","g":"06","head":null,"name":"아래 탭 포지션","page":24},{"id":"07-01","g":"07","head":null,"name":"01 서비스 소개","page":25},{"id":"07-02","g":"07","head":null,"name":"02 앱 다운로드","page":25},{"id":"08-01","g":"08","head":"설정","name":"01 일반","page":26},{"id":"08-02","g":"08","head":"설정","name":"02 계정","page":26},{"id":"08-03","g":"08","head":"설정","name":"03 알림","page":26},{"id":"08-04","g":"08","head":"설정","name":"13 보안","page":26},{"id":"08-05","g":"08","head":"연구 기록","name":"01 비어 있음","page":26},{"id":"08-06","g":"08","head":"연구 기록","name":"02 기록 있음","page":26},{"id":"08-07","g":"08","head":"인사이트","name":"01 인사이트 목록","page":26},{"id":"08-08","g":"08","head":"인사이트","name":"02 인사이트 글","page":26},{"id":"09-01","g":"09","head":"01 게스트","name":"1 홈","page":27},{"id":"09-02","g":"09","head":"01 게스트","name":"2 AI 트레이딩","page":27},{"id":"09-03","g":"09","head":"01 게스트","name":"3 거래소 연결","page":27},{"id":"09-04","g":"09","head":"01 게스트","name":"4 설정을 누르면","page":27},{"id":"09-05","g":"09","head":"02 로그인만","name":"1 홈","page":27},{"id":"09-06","g":"09","head":"02 로그인만","name":"2 AI 트레이딩","page":27},{"id":"09-07","g":"09","head":"02 로그인만","name":"3 거래소 연결","page":27},{"id":"09-08","g":"09","head":"02 로그인만","name":"4 설정 사용량","page":27},{"id":"09-09","g":"09","head":"02 로그인만","name":"5 설정 결제","page":28},{"id":"09-10","g":"09","head":"02 로그인만","name":"6 대화 화면 (사용량 알림 줄)","page":28},{"id":"09-11","g":"09","head":"04 연결, 저거래","name":"1 홈","page":28},{"id":"09-12","g":"09","head":"04 연결, 저거래","name":"2 AI 트레이딩","page":28},{"id":"09-13","g":"09","head":"04 연결, 저거래","name":"3 거래소 연결","page":28},{"id":"09-14","g":"09","head":"04 연결, 저거래","name":"4 설정 사용량","page":28},{"id":"09-15","g":"09","head":"04 연결, 저거래","name":"5 설정 결제","page":28},{"id":"09-16","g":"09","head":"04 연결, 저거래","name":"6 대화 화면 (사용량 알림 줄)","page":28},{"id":"09-17","g":"09","head":"06 카드, AI 많이, 미연결","name":"1 홈","page":29},{"id":"09-18","g":"09","head":"06 카드, AI 많이, 미연결","name":"2 AI 트레이딩","page":29},{"id":"09-19","g":"09","head":"06 카드, AI 많이, 미연결","name":"3 거래소 연결","page":29},{"id":"09-20","g":"09","head":"06 카드, AI 많이, 미연결","name":"4 설정 사용량","page":29},{"id":"09-21","g":"09","head":"06 카드, AI 많이, 미연결","name":"5 설정 결제","page":29},{"id":"09-22","g":"09","head":"06 카드, AI 많이, 미연결","name":"6 대화 화면 (사용량 알림 줄)","page":29},{"id":"09-23","g":"09","head":"08 카드, 연결, AI 많이, 고거래","name":"1 홈","page":29},{"id":"09-24","g":"09","head":"08 카드, 연결, AI 많이, 고거래","name":"2 AI 트레이딩","page":29},{"id":"09-25","g":"09","head":"08 카드, 연결, AI 많이, 고거래","name":"3 거래소 연결","page":30},{"id":"09-26","g":"09","head":"08 카드, 연결, AI 많이, 고거래","name":"4 설정 사용량","page":30},{"id":"09-27","g":"09","head":"08 카드, 연결, AI 많이, 고거래","name":"5 설정 결제","page":30},{"id":"09-28","g":"09","head":"08 카드, 연결, AI 많이, 고거래","name":"6 대화 화면 (사용량 알림 줄)","page":30},{"id":"09-29","g":"09","head":"09 카드, 연결, AI 많이, 저거래","name":"1 홈","page":30},{"id":"09-30","g":"09","head":"09 카드, 연결, AI 많이, 저거래","name":"2 AI 트레이딩","page":30},{"id":"09-31","g":"09","head":"09 카드, 연결, AI 많이, 저거래","name":"3 거래소 연결","page":30},{"id":"09-32","g":"09","head":"09 카드, 연결, AI 많이, 저거래","name":"4 설정 사용량","page":30},{"id":"09-33","g":"09","head":"09 카드, 연결, AI 많이, 저거래","name":"5 설정 결제","page":31},{"id":"09-34","g":"09","head":"09 카드, 연결, AI 많이, 저거래","name":"6 대화 화면 (사용량 알림 줄)","page":31},{"id":"09-35","g":"09","head":"10 카드, 연결, AI 적게, 고거래","name":"1 홈","page":31},{"id":"09-36","g":"09","head":"10 카드, 연결, AI 적게, 고거래","name":"2 AI 트레이딩","page":31},{"id":"09-37","g":"09","head":"10 카드, 연결, AI 적게, 고거래","name":"3 거래소 연결","page":31},{"id":"09-38","g":"09","head":"10 카드, 연결, AI 적게, 고거래","name":"4 설정 사용량","page":31},{"id":"09-39","g":"09","head":"10 카드, 연결, AI 적게, 고거래","name":"5 설정 결제","page":31},{"id":"09-40","g":"09","head":"10 카드, 연결, AI 적게, 고거래","name":"6 대화 화면 (사용량 알림 줄)","page":31}];
+var ENTRY={
+  "01-01":{w:390,go:function(w){}},
+  "01-02":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/';}},
+  "01-03":{w:390,go:function(w){try{var e=w.document.getElementById('g-home-in'); e.value="비트코인이 크게 떨어지면 사고 10% 오르면 팔아줘"; e.dispatchEvent(new w.Event('input',{bubbles:true}));}catch(e){} }},
+  "01-04":{w:390,go:function(w){w.gSideToggle();}},
+  "01-05":{w:390,go:function(w){w.authOpen('signup');}},
+  "01-06":{w:390,go:function(w){w.authOpen('login');}},
+  "01-07":{w:390,go:function(w){w.authOpen('signup');}},
+  "01-08":{w:390,go:function(w){w.authOpen('signup');},wait:500,then:function(w){try{var e=w.document.getElementById('au-email'); e.value="dohyun"; e.dispatchEvent(new w.Event('input',{bubbles:true}));}catch(e){} w.authEmailNext();}},
+  "01-09":{w:390,go:function(w){w.authOpen('signup'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-pw-new');}},
+  "01-10":{w:390,go:function(w){w.authOpen('signup'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-pw-new'); try{var e=w.document.getElementById('au-pwnew-in'); e.value="teth1234"; e.dispatchEvent(new w.Event('input',{bubbles:true}));}catch(e){} w.authPwReq();}},
+  "01-11":{w:390,go:function(w){w.authOpen('signup'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-pw-new'); try{var e=w.document.getElementById('au-pwnew-in'); e.value="teth1234!@#$"; e.dispatchEvent(new w.Event('input',{bubbles:true}));}catch(e){} w.authPwReq();}},
+  "01-12":{w:390,go:function(w){w.authOpen('signup'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-pw-new'); try{var e=w.document.getElementById('au-pwnew-in'); e.value="teth1234!@#$"; e.dispatchEvent(new w.Event('input',{bubbles:true}));}catch(e){} w.authPwReq(); w.authPwNewNext();}},
+  "01-13":{w:390,go:function(w){w.authOpen('signup'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-code'); w.authStartCool();}},
+  "01-14":{w:390,go:function(w){w.authOpen('signup'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-code'); try{var e=w.document.getElementById('au-code-in'); e.value="123"; e.dispatchEvent(new w.Event('input',{bubbles:true}));}catch(e){} w.authCodeNext();}},
+  "01-15":{w:390,go:function(w){w.authOpen('login');}},
+  "01-16":{w:390,go:function(w){w.authOpen('login'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-code');}},
+  "01-17":{w:390,go:function(w){w.authOpen('login'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-pw');}},
+  "01-18":{w:390,go:function(w){w.authOpen('login'); w.AUTH.email='dohyun@example.com';},wait:500,then:function(w){w.authShow('au-pw'); try{var e=w.document.getElementById('au-pw-in'); e.value=""; e.dispatchEvent(new w.Event('input',{bubbles:true}));}catch(e){} w.authPwNext();}},
+  "04-01":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.btOpen('f1');}},
+  "04-02":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.btOpen('f1');},wait:2200,then:function(w){w.btStart();}},
+  "04-03":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.btOpen('f1');},wait:2200,then:function(w){w.btStart();}},
+  "04-04":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.btOpen('f1');},wait:2200,then:function(w){w.btStart(); w.setTimeout(function(){ try{w.btSkip();}catch(e){} },1500);}},
+  "04-15":{w:390,go:function(w){w.btOpen('f1');}},
+  "07-01":{w:390,go:function(w){w.location.href='about/';}},
+  "07-02":{w:390,go:function(w){w.location.href='download/';}},
+  "08-01":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/settings';},wait:900,then:function(w){w.stGo('general');}},
+  "08-02":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/settings';},wait:900,then:function(w){w.stGo('account');}},
+  "08-03":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/settings';},wait:900,then:function(w){w.stGo('notify');}},
+  "08-04":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/settings';},wait:900,then:function(w){w.stGo('security');}},
+  "08-05":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.gHistory();}},
+  "08-06":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.gNew('비트코인 지금 어때?');},wait:2200,then:function(w){w.gHistory();}},
+  "08-07":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/insight';}},
+  "08-08":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/insight';},wait:1600,then:function(w){var a=w.document.querySelector('#g-content a[href*="insight/"], #g-content [onclick*="insight"], .ins-card, .ins-row'); if(a) a.click();}},
+  "09-01":{w:390,go:function(w){try{w.tfQaPreset('01');}catch(e){} w.location.hash='#/';}},
+  "09-02":{w:390,go:function(w){try{w.tfQaPreset('01');}catch(e){} w.location.hash='#/trade';}},
+  "09-03":{w:390,go:function(w){try{w.tfQaPreset('01');}catch(e){} w.location.hash='#/strategy/connect';}},
+  "09-04":{w:390,go:function(w){try{w.tfQaPreset('01');}catch(e){} w.location.hash='#/settings';}},
+  "09-05":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/';}},
+  "09-06":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/trade';}},
+  "09-07":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/strategy/connect';}},
+  "09-08":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/settings';}},
+  "09-09":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/settings/billing';}},
+  "09-10":{w:390,go:function(w){try{w.tfQaPreset('02');}catch(e){} w.location.hash='#/';},wait:1200,then:function(w){(function(){ var tries=0, added=false; var fix=function(){   var th=w.document.getElementById('g-thread');   if(!th){ if(tries++<6){ try{w.TAI.ok=false;}catch(e){} try{w.gNew('비트코인 지금 어때?');}catch(e){} w.setTimeout(fix,900); } return; }   var bad=/연결되지 않아|불러오지 못했|작업 오류|다시 보내기|다시 시도/;   [].slice.call(th.children).forEach(function(e){ if(bad.test(e.textContent||'')||/^goff/.test(e.id||'')) e.remove(); });   if(!added && !/오르내렸습니다/.test(th.textContent||'')){     try{ w.taiThreadAdd('<div class="g-amsg">비트코인은 최근 한 달 동안 큰 폭으로 오르내렸습니다. 지금은 단기 고점에서 조금 내려온 자리입니다.</div>'); added=true; }catch(e){}   }   if(tries++<8) w.setTimeout(fix,900); }; fix();})();}},
+  "09-11":{w:390,go:function(w){try{w.tfQaPreset('04');}catch(e){} w.location.hash='#/';}},
+  "09-12":{w:390,go:function(w){try{w.tfQaPreset('04');}catch(e){} w.location.hash='#/trade';}},
+  "09-13":{w:390,go:function(w){try{w.tfQaPreset('04');}catch(e){} w.location.hash='#/strategy/connect';}},
+  "09-14":{w:390,go:function(w){try{w.tfQaPreset('04');}catch(e){} w.location.hash='#/settings';}},
+  "09-15":{w:390,go:function(w){try{w.tfQaPreset('04');}catch(e){} w.location.hash='#/settings/billing';}},
+  "09-16":{w:390,go:function(w){try{w.tfQaPreset('04');}catch(e){} w.location.hash='#/';},wait:1200,then:function(w){(function(){ var tries=0, added=false; var fix=function(){   var th=w.document.getElementById('g-thread');   if(!th){ if(tries++<6){ try{w.TAI.ok=false;}catch(e){} try{w.gNew('비트코인 지금 어때?');}catch(e){} w.setTimeout(fix,900); } return; }   var bad=/연결되지 않아|불러오지 못했|작업 오류|다시 보내기|다시 시도/;   [].slice.call(th.children).forEach(function(e){ if(bad.test(e.textContent||'')||/^goff/.test(e.id||'')) e.remove(); });   if(!added && !/오르내렸습니다/.test(th.textContent||'')){     try{ w.taiThreadAdd('<div class="g-amsg">비트코인은 최근 한 달 동안 큰 폭으로 오르내렸습니다. 지금은 단기 고점에서 조금 내려온 자리입니다.</div>'); added=true; }catch(e){}   }   if(tries++<8) w.setTimeout(fix,900); }; fix();})();}},
+  "09-17":{w:390,go:function(w){try{w.tfQaPreset('06');}catch(e){} w.location.hash='#/';}},
+  "09-18":{w:390,go:function(w){try{w.tfQaPreset('06');}catch(e){} w.location.hash='#/trade';}},
+  "09-19":{w:390,go:function(w){try{w.tfQaPreset('06');}catch(e){} w.location.hash='#/strategy/connect';}},
+  "09-20":{w:390,go:function(w){try{w.tfQaPreset('06');}catch(e){} w.location.hash='#/settings';}},
+  "09-21":{w:390,go:function(w){try{w.tfQaPreset('06');}catch(e){} w.location.hash='#/settings/billing';}},
+  "09-22":{w:390,go:function(w){try{w.tfQaPreset('06');}catch(e){} w.location.hash='#/';},wait:1200,then:function(w){(function(){ var tries=0, added=false; var fix=function(){   var th=w.document.getElementById('g-thread');   if(!th){ if(tries++<6){ try{w.TAI.ok=false;}catch(e){} try{w.gNew('비트코인 지금 어때?');}catch(e){} w.setTimeout(fix,900); } return; }   var bad=/연결되지 않아|불러오지 못했|작업 오류|다시 보내기|다시 시도/;   [].slice.call(th.children).forEach(function(e){ if(bad.test(e.textContent||'')||/^goff/.test(e.id||'')) e.remove(); });   if(!added && !/오르내렸습니다/.test(th.textContent||'')){     try{ w.taiThreadAdd('<div class="g-amsg">비트코인은 최근 한 달 동안 큰 폭으로 오르내렸습니다. 지금은 단기 고점에서 조금 내려온 자리입니다.</div>'); added=true; }catch(e){}   }   if(tries++<8) w.setTimeout(fix,900); }; fix();})();}},
+  "09-23":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/';}},
+  "09-24":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/trade';}},
+  "09-25":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/strategy/connect';}},
+  "09-26":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/settings';}},
+  "09-27":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/settings/billing';}},
+  "09-28":{w:390,go:function(w){try{w.tfQaPreset('08');}catch(e){} w.location.hash='#/';},wait:1200,then:function(w){(function(){ var tries=0, added=false; var fix=function(){   var th=w.document.getElementById('g-thread');   if(!th){ if(tries++<6){ try{w.TAI.ok=false;}catch(e){} try{w.gNew('비트코인 지금 어때?');}catch(e){} w.setTimeout(fix,900); } return; }   var bad=/연결되지 않아|불러오지 못했|작업 오류|다시 보내기|다시 시도/;   [].slice.call(th.children).forEach(function(e){ if(bad.test(e.textContent||'')||/^goff/.test(e.id||'')) e.remove(); });   if(!added && !/오르내렸습니다/.test(th.textContent||'')){     try{ w.taiThreadAdd('<div class="g-amsg">비트코인은 최근 한 달 동안 큰 폭으로 오르내렸습니다. 지금은 단기 고점에서 조금 내려온 자리입니다.</div>'); added=true; }catch(e){}   }   if(tries++<8) w.setTimeout(fix,900); }; fix();})();}},
+  "09-29":{w:390,go:function(w){try{w.tfQaPreset('09');}catch(e){} w.location.hash='#/';}},
+  "09-30":{w:390,go:function(w){try{w.tfQaPreset('09');}catch(e){} w.location.hash='#/trade';}},
+  "09-31":{w:390,go:function(w){try{w.tfQaPreset('09');}catch(e){} w.location.hash='#/strategy/connect';}},
+  "09-32":{w:390,go:function(w){try{w.tfQaPreset('09');}catch(e){} w.location.hash='#/settings';}},
+  "09-33":{w:390,go:function(w){try{w.tfQaPreset('09');}catch(e){} w.location.hash='#/settings/billing';}},
+  "09-34":{w:390,go:function(w){try{w.tfQaPreset('09');}catch(e){} w.location.hash='#/';},wait:1200,then:function(w){(function(){ var tries=0, added=false; var fix=function(){   var th=w.document.getElementById('g-thread');   if(!th){ if(tries++<6){ try{w.TAI.ok=false;}catch(e){} try{w.gNew('비트코인 지금 어때?');}catch(e){} w.setTimeout(fix,900); } return; }   var bad=/연결되지 않아|불러오지 못했|작업 오류|다시 보내기|다시 시도/;   [].slice.call(th.children).forEach(function(e){ if(bad.test(e.textContent||'')||/^goff/.test(e.id||'')) e.remove(); });   if(!added && !/오르내렸습니다/.test(th.textContent||'')){     try{ w.taiThreadAdd('<div class="g-amsg">비트코인은 최근 한 달 동안 큰 폭으로 오르내렸습니다. 지금은 단기 고점에서 조금 내려온 자리입니다.</div>'); added=true; }catch(e){}   }   if(tries++<8) w.setTimeout(fix,900); }; fix();})();}},
+  "09-35":{w:390,go:function(w){try{w.tfQaPreset('10');}catch(e){} w.location.hash='#/';}},
+  "09-36":{w:390,go:function(w){try{w.tfQaPreset('10');}catch(e){} w.location.hash='#/trade';}},
+  "09-37":{w:390,go:function(w){try{w.tfQaPreset('10');}catch(e){} w.location.hash='#/strategy/connect';}},
+  "09-38":{w:390,go:function(w){try{w.tfQaPreset('10');}catch(e){} w.location.hash='#/settings';}},
+  "09-39":{w:390,go:function(w){try{w.tfQaPreset('10');}catch(e){} w.location.hash='#/settings/billing';}},
+  "09-40":{w:390,go:function(w){try{w.tfQaPreset('10');}catch(e){} w.location.hash='#/';},wait:1200,then:function(w){(function(){ var tries=0, added=false; var fix=function(){   var th=w.document.getElementById('g-thread');   if(!th){ if(tries++<6){ try{w.TAI.ok=false;}catch(e){} try{w.gNew('비트코인 지금 어때?');}catch(e){} w.setTimeout(fix,900); } return; }   var bad=/연결되지 않아|불러오지 못했|작업 오류|다시 보내기|다시 시도/;   [].slice.call(th.children).forEach(function(e){ if(bad.test(e.textContent||'')||/^goff/.test(e.id||'')) e.remove(); });   if(!added && !/오르내렸습니다/.test(th.textContent||'')){     try{ w.taiThreadAdd('<div class="g-amsg">비트코인은 최근 한 달 동안 큰 폭으로 오르내렸습니다. 지금은 단기 고점에서 조금 내려온 자리입니다.</div>'); added=true; }catch(e){}   }   if(tries++<8) w.setTimeout(fix,900); }; fix();})();}}
+};
 
 var W=390, FILTER='all', CUR=null, frame=null;
-
-function wired(id){ return typeof ENTRY[id]==='function'; }
+function wired(id){ return !!ENTRY[id]; }
+function save(){ try{ localStorage.setItem('teth.screens',JSON.stringify({W:W,F:FILTER})); }catch(e){} }
+function load(){ try{ var o=JSON.parse(localStorage.getItem('teth.screens')||'{}'); if(o.W) W=o.W; if(o.F) FILTER=o.F; }catch(e){} }
 
 function render(){
   var q=document.getElementById('q').value.trim().toLowerCase();
-  var list=document.getElementById('list');
-  var shown=0, html='', lastArea=null;
-  SCREENS.forEach(function(s){
-    if(FILTER==='on' && !wired(s.id)) return;
-    if(q && (s.id+' '+s.n+' '+(AREAS[s.a]||'')).toLowerCase().indexOf(q)<0) return;
-    if(s.a!==lastArea){ lastArea=s.a; html+='<div class="areahd">'+s.a+' '+(AREAS[s.a]||'')+'</div>'; }
-    var on=wired(s.id);
-    html+='<button type="button" class="row'+(on?' on':' off')+'" data-id="'+s.id+'"'+(on?'':' disabled')+' aria-pressed="'+(CUR===s.id)+'">'
-      +'<span class="dot"></span><span class="id">'+s.id+'</span><span class="nm">'+s.n+'</span>'
-      +s.w.map(function(x){ return '<span class="w">'+x+'</span>'; }).join('')+'</button>';
-    shown++;
-  });
-  if(!shown) html='<p class="empty">찾는 화면이 없습니다.</p>';
-  if(FILTER!=='on'){
-    html+='<div class="areahd">기존 확인용 버튼 (화면 ID 확정 전)</div>';
-    LEGACY.forEach(function(L){
-      if(q && (L[0]+' '+L[1]+' '+L[2]).toLowerCase().indexOf(q)<0) return;
-      html+='<button type="button" class="row on" data-act="'+L[0]+'" aria-pressed="'+(CUR==='act:'+L[0])+'">'
-        +'<span class="dot"></span><span class="id">'+L[0]+'</span><span class="nm">'+L[1]+(L[2]?' — '+L[2]:'')+'</span></button>';
+  var html='', shown=0, lastG=null, lastH=null;
+  GROUPS.forEach(function(g){
+    var rows=SCREENS.filter(function(s){
+      if(s.g!==g.no) return false;
+      if(FILTER==='on' && !wired(s.id)) return false;
+      if(q && (s.id+' '+(s.head||'')+' '+s.name+' '+g.title).toLowerCase().indexOf(q)<0) return false;
+      return true;
     });
-  }
-  list.innerHTML=html;
-  document.getElementById('count').textContent=shown+' / '+SCREENS.length+' 화면'+(FILTER==='on'?' (연결됨)':'');
+    if(!rows.length) return;
+    var onN=rows.filter(function(s){ return wired(s.id); }).length;
+    html+='<div class="ghd">'+g.no+' '+g.title+'<em>'+onN+' / '+rows.length+'</em></div>';
+    lastH=null;
+    rows.forEach(function(s){
+      if(s.head&&s.head!==lastH){ lastH=s.head; html+='<div class="shd">'+s.head+'</div>'; }
+      var on=wired(s.id);
+      html+='<button type="button" class="row'+(on?' on':' off')+'" data-id="'+s.id+'"'+(on?'':' disabled')+' aria-pressed="'+(CUR===s.id)+'">'
+        +'<span class="dot"></span><span class="nm">'+s.name+'</span><span class="id">'+s.id+'</span></button>';
+      shown++;
+    });
+  });
+  document.getElementById('list').innerHTML=html||'<p class="empty">찾는 화면이 없습니다.</p>';
+  var total=SCREENS.length, onTotal=SCREENS.filter(function(s){ return wired(s.id); }).length;
+  document.getElementById('count').textContent=shown+'개 보임 · 열리는 것 '+onTotal+' / '+total;
 }
 
 function makeFrame(){
-  var box=document.getElementById('frames');
-  box.innerHTML='';
-  frame=document.createElement('iframe');
-  frame.id='f';
-  frame.style.width=W+'px';
-  frame.style.height=(W===390?844:900)+'px';
-  box.appendChild(frame);
-  return frame;
+  var box=document.getElementById('frames'); box.innerHTML='';
+  frame=document.createElement('iframe'); frame.id='f';
+  frame.style.width=W+'px'; frame.style.height=(W===390?844:900)+'px';
+  box.appendChild(frame); return frame;
 }
-
-/* 저장된 옛 상태를 지우고 새로 불러온 뒤 run 을 실행한다 */
 function fresh(run){
   var f=makeFrame();
   try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
-  f.onload=function(){
-    f.onload=null;
+  f.onload=function(){ f.onload=null;
     try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
-    setTimeout(function(){ try{ run(f.contentWindow); }catch(e){ console.error(e); } },600);
-  };
+    setTimeout(function(){ try{ run(f.contentWindow); }catch(e){ console.error(e); } },600); };
   f.src='index.html?'+Date.now();
 }
-
 function openScreen(id){
+  if(!wired(id)) return;
   CUR=id;
   var s=null; SCREENS.forEach(function(x){ if(x.id===id) s=x; });
-  document.getElementById('curId').textContent=id;
-  document.getElementById('curNm').textContent=s?s.n:'';
+  document.getElementById('curId').textContent=s?s.name:id;
+  document.getElementById('curNm').textContent=s&&s.head?s.head:'';
+  if(location.hash.slice(1)!==id) history.replaceState(null,'','#'+id);
+  var E=ENTRY[id];
+  if(E.w&&E.w!==W){ W=E.w; save();
+    document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('aria-pressed',+x.dataset.w===W); }); }
   render();
-  fresh(ENTRY[id]);
+  fresh(function(w){ E.go(w); if(E.then) setTimeout(function(){ try{ E.then(w); }catch(e){ console.error(e); } },E.wait||800); });
 }
-
-function openAct(name){
-  CUR='act:'+name;
-  var L=null; LEGACY.forEach(function(x){ if(x[0]===name) L=x; });
-  document.getElementById('curId').textContent=L?L[1]:name;
-  document.getElementById('curNm').textContent=L&&L[2]?L[2]:'';
-  render();
-  var f=makeFrame();
-  /* 기존 _demo.html 의 동작을 그대로 쓴다 */
-  window.makeActs(f)[name]();
+function openFromHash(){
+  var h=decodeURIComponent(location.hash.slice(1)); if(!h) return;
+  if(wired(h)){ openScreen(h); return; }
+  var s=null; SCREENS.forEach(function(x){ if(x.id===h) s=x; });
+  if(s){ document.getElementById('q').value=s.name; render();
+    document.getElementById('curId').textContent=s.name;
+    document.getElementById('curNm').textContent='아직 열리지 않는 화면입니다'; }
 }
 
 document.getElementById('list').addEventListener('click',function(e){
-  var b=e.target.closest('.row'); if(!b||b.disabled) return;
-  if(b.dataset.id) openScreen(b.dataset.id);
-  else if(b.dataset.act) openAct(b.dataset.act);
+  var b=e.target.closest('.row'); if(!b||b.disabled) return; openScreen(b.dataset.id);
 });
 document.getElementById('q').addEventListener('input',render);
-document.querySelectorAll('.seg [data-w]').forEach(function(b){
-  b.onclick=function(){
-    W=+b.dataset.w;
-    document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
-    if(frame){ frame.style.width=W+'px'; frame.style.height=(W===390?844:900)+'px'; }
-  };
+document.querySelectorAll('.seg [data-w]').forEach(function(b){ b.onclick=function(){
+  W=+b.dataset.w;
+  document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+  if(frame){ frame.style.width=W+'px'; frame.style.height=(W===390?844:900)+'px'; } save(); }; });
+document.querySelectorAll('.seg [data-f]').forEach(function(b){ b.onclick=function(){
+  FILTER=b.dataset.f;
+  document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
+  render(); save(); }; });
+document.addEventListener('keydown',function(e){
+  var q=document.getElementById('q');
+  if(e.key==='/'&&document.activeElement!==q){ e.preventDefault(); q.focus(); }
+  if(e.key==='Escape'&&document.activeElement===q){ q.value=''; render(); q.blur(); }
 });
-document.querySelectorAll('.seg [data-f]').forEach(function(b){
-  b.onclick=function(){
-    FILTER=b.dataset.f;
-    document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x===b); });
-    render();
-  };
-});
+window.addEventListener('hashchange',openFromHash);
+
+load();
+document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('aria-pressed',+x.dataset.w===W); });
+document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x.dataset.f===FILTER); });
 render();
+openFromHash();
 </script>
 </html>
