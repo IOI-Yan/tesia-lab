@@ -535,8 +535,6 @@ body{
 .g-util.cur{background:rgba(255,255,255,.12);color:#fff}
 .g-util.cur:hover{background:rgba(255,255,255,.15)}
 .g-util.cur svg{opacity:1}
-body.light .g-util:hover{background:rgba(0,0,0,.05)}
-body.light .g-util.cur{background:#e2e6ec;color:#1f1f1f}
 .g-util svg{flex-shrink:0;stroke:currentColor;opacity:.9}
 .g-sec{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--gt3);padding:14px 13px 5px}
 .g-sec button{color:var(--gt3);font-size:14px}
@@ -596,7 +594,6 @@ body.tf-route .g-chead{display:none} /* 전략 라우트는 콘텐츠의 tfw-hd(
 /* cosmic hero: 타이틀 뒤 가로 밴드 하나만 차지, 콘텐츠는 항상 위 레이어 */
 .g-cosmos{display:none!important;position:absolute;left:50%;top:50%;transform:translate(-50%,-55%);width:min(980px,100%);height:min(480px,74%);pointer-events:none;z-index:0}
 .g-home .g-hero-spark,.g-home .g-hello,.g-home .g-sub{position:relative;z-index:1} /* fixed 배치인 .g-terms, 모바일 .g-chipstack은 건드리지 않는다 */
-body.light .g-cosmos{opacity:.8}
 @media (min-width:861px){.g-home .g-chipstack{position:relative;z-index:1}}
 @media (max-width:860px){.g-cosmos{height:min(400px,60%)}}
 .g-hero-spark{display:none;width:76px;height:47px;margin:0 auto 12px}
@@ -772,11 +769,6 @@ body.light .g-cosmos{opacity:.8}
   .gm-sub.on::before{content:"";position:static;left:auto;top:auto;bottom:auto;display:block;width:110px;height:5px;border-radius:3px;background:var(--gl2);margin:8px auto 16px}
   .gm-sub .st{display:block;font-size:15px;font-weight:600;color:var(--gt);padding:0 4px 14px}
   .gm-sub button,.gm-sub a{height:56px;font-size:15px;background:rgba(128,128,128,.1);border-radius:14px;margin-bottom:8px}
-  body.light #g-setmenu,body.light .gm-sub,body.light #gm-sub-theme,body.light #gm-sub-help{box-shadow:0 -6px 28px rgba(60,64,67,.2)}
-  body.has-banner.light #g-appbanner{background:#fff;border-bottom-color:#e7e9ee}
-  body.light #g-appbanner .t b{color:#1f1f1f}
-  body.light #g-appbanner .x{color:#5f6368}
-  body.light #g-hamburger{color:#3c4043;background:rgba(255,255,255,.7)}
 }
 @keyframes gSheetUp{from{transform:translateY(60%);opacity:.4}to{transform:none;opacity:1}}
 
@@ -814,58 +806,6 @@ body.light .g-cosmos{opacity:.8}
 #fb-done .cls{margin-top:26px;height:40px;padding:0 30px;border-radius:8px;background:var(--gb);color:#fff;font-size:14px;font-weight:600}
 
 /* ══ 라이트 테마 — 토큰 재정의가 중심, 컴포넌트 오버라이드는 최소화 ══ */
-body.light #g-root{background:#fff;color:#1f1f1f}
-body.light{
-  --g0:#fff;          /* canvas */
-  --g1:#f7f8fa;       /* surface (사이드바, 패널) */
-  --g2:#fff;          /* elevated (메뉴, 시트: 흰색 + 그림자) */
-  --g3:#f1f3f4;       /* hover/active surface */
-  --gl:#e7e9ee;       /* border subtle */
-  --gl2:#d6d9df;      /* border */
-  --gt:#1f1f1f;--gt2:#3c4043;--gt3:#5f6368;
-  --pill:#f0f4f9;--pop:#fff;--hoverline:rgba(0,0,0,.05);
-  --tip-bg:#1f1f1f;--tip-fg:#fff;--inv-bg:#1f1f1f;--inv-fg:#fff;
-  --shadow-pop:0 6px 26px rgba(60,64,67,.18);--shadow-pill:0 1px 3px rgba(60,64,67,.1);
-  --glow:rgba(163,203,255,.55)}    /* Gemini 라이트의 맑은 스카이블루 글로우 (탁한 네이비 금지) */
-body.light .g-home{background:radial-gradient(ellipse 780px 540px at 50% 56%,var(--glow),rgba(255,255,255,0) 72%)}
-@media (max-width:860px){ /* 모바일: 화면 전체가 뿌옇지 않게 글로우를 중앙에만 작고 옅게 */
-  body.light .g-home{background:radial-gradient(ellipse 340px 300px at 50% 44%,rgba(163,203,255,.38),rgba(255,255,255,0) 68%)}
-}
-body.light .g-pill textarea{color:#1f1f1f}
-body.light .g-qchip{background:#fff;border-color:#dadce0;color:#3c4043}
-body.light .g-qchip:hover{background:#f8f9fa}
-body.light #g-setmenu,body.light .gm-sub{border-color:var(--gl)}
-body.light .g-ico-pill{box-shadow:0 2px 10px rgba(60,64,67,.25)}
-body.light .ga-signup{background:#0b57d0;color:#fff}
-body.light .ga-login{background:#fff;color:#1f1f1f;border-color:#1f1f1f}
-body.light .ga-nav{color:#444746}
-body.light .ga-nav:hover{background:rgba(0,0,0,.06);color:#1f1f1f}
-body.light #g-appbanner{background:#fff;border-bottom-color:rgba(0,0,0,.08)}
-body.light #g-appbanner .t b{color:#1f1f1f}
-body.light #g-appbanner .icon{border:1px solid rgba(0,0,0,.08)}
-body.light #g-hamburger{color:#444746;background:rgba(255,255,255,.7)}
-body.light .g-ico-pill{background:#1f1f1f;color:#fff}
-body.light #g-login-btn{background:#e8eaed;color:#1f1f1f}
-body.light #g-scrim{background:rgba(0,0,0,.3)}
-body.light #modal-auth .modal{background:#fff;color:#1f1f1f}
-body.light .au-title{color:#1f1f1f}
-body.light .au-sub{color:#444746}
-body.light .au-btn{background:#f1f3f4;border-color:rgba(0,0,0,.12);color:#1f1f1f}
-body.light .au-btn:hover{background:#e8eaed}
-body.light .au-btn.ghost{background:transparent}
-body.light .au-btn.primary{background:#1f1f1f;border-color:#1f1f1f;color:#fff}
-body.light .au-input{background:#fff;border-color:rgba(0,0,0,.2);color:#1f1f1f}
-body.light .au-field .au-label{background:#fff;color:#5f6368}
-body.light .au-field .au-input{background:#fff}
-body.light #modal-auth .au-x{color:#5f6368}
-body.light .au-req{border-color:rgba(0,0,0,.15);color:#444746}
-body.light .au-div{color:#5f6368}
-body.light .au-div::before,body.light .au-div::after{border-color:rgba(0,0,0,.15)}
-body.light .au-foot,body.light .au-foot a{color:#5f6368}
-body.light .au-textbtn{color:#1f1f1f}
-body.light #teth-help{background:linear-gradient(160deg,#fff,#eef0f3);border-color:rgba(0,0,0,.12)}
-body.light #teth-help svg path[stroke],body.light #teth-help svg circle{stroke:#1f1f1f}
-body.light #teth-help svg rect{fill:#1f1f1f}
 
 @keyframes gSendPop{from{opacity:0;transform:scale(.3)}to{opacity:1;transform:scale(1)}}
 .g-send.pop{animation:gSendPop .25s cubic-bezier(.34,1.56,.64,1) both}
@@ -1077,7 +1017,6 @@ body.kb-open .g-home-chips{opacity:0;transform:translateY(16px);pointer-events:n
 .g-freecta:hover{transform:skewX(-4deg) translateY(-1px);filter:brightness(1.08)}
 .g-freecta:active{transform:skewX(-4deg) translateY(0);filter:none}
 .au-free{margin-top:14px;text-align:center;font-size:12.5px;font-weight:600;color:#62d69a}
-body.light .au-free{color:#1e8e3e}
 .g-qchip:hover{background:rgba(255,255,255,.05)}
 /* conversation */
 .g-thread{display:flex;flex-direction:column;gap:16px;padding-bottom:8px}
@@ -1133,8 +1072,8 @@ body.light .au-free{color:#1e8e3e}
 .g-evtl .tl-src{font-size:11.5px;color:var(--gt3);margin-top:2px}
 .g-evtl .tl-dis{margin-top:4px;padding-top:10px;border-top:1px solid var(--gl);font-size:11px;color:var(--gt3);line-height:1.6}
 /* 시세 헤드라인 카드 — 질문의 답(가격, 등락, 기준)을 차트보다 먼저 */
-.g-pxcard{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap;margin:2px 0 10px;padding:12px 16px;border:1px solid var(--gl);border-radius:14px;background:rgba(255,255,255,.03);max-width:640px;animation:gFadeUp .3s var(--ease) both}
-.g-pxcard .as{font-size:13px;font-weight:600;color:var(--gt2)}
+.g-pxcard{display:flex;align-items:center;gap:2px 10px;flex-wrap:wrap;margin:2px 0 10px;padding:12px 16px;border:1px solid var(--gl);border-radius:14px;background:rgba(255,255,255,.03);max-width:640px;animation:gFadeUp .3s var(--ease) both}
+.g-pxcard .as{flex:0 0 100%;font-size:13px;font-weight:600;color:var(--gt2)}
 .g-pxcard .pv{font-size:20px;font-weight:700;color:var(--gt)}
 .g-pxcard .chg{font-size:13px;font-weight:600}
 .g-pxcard .chg.u{color:#56c486}
@@ -1436,8 +1375,6 @@ body.light .au-free{color:#1e8e3e}
 @media(min-width:861px){
   .g-composer{max-width:840px;min-height:58px;background:var(--pill);border:0;border-radius:999px;box-shadow:var(--shadow-pill);padding:8px 10px 8px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:0 12px}
   .g-composer:focus-within{outline:1px solid rgba(255,255,255,.14)}
-  body.light .g-composer:focus-within{outline-color:rgba(60,64,67,.22)}
-  body.light .g-composer textarea{color:#1f1f1f}
   .g-composer textarea{flex:1;min-width:0;width:auto;font-size:14.5px;line-height:21px;height:21px;max-height:147px;padding:0;margin:6px 0}
   .g-composer #g-ctx-chip:not(:empty){flex:0 0 100%;order:-2}
   .g-composer-row{flex:0 0 auto}
@@ -1551,7 +1488,7 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 #modal-auth .au-x{position:absolute;top:18px;right:18px;width:32px;height:32px;border-radius:8px;display:flex;align-items:center;justify-content:center;color:#a6aab2;font-size:18px;transition:background .12s}
 #modal-auth .au-x:hover{background:rgba(255,255,255,.07)}
 .au-title{font-size:24px;font-weight:700;letter-spacing:-.01em;color:#fff}
-.au-sub{font-size:14px;color:#b7bac1;line-height:1.65;margin-top:12px}
+.au-sub{font-size:14px;color:#b7bac1;line-height:1.65;margin-top:8px}
 .au-btns{display:flex;flex-direction:column;gap:12px;margin-top:26px}
 .au-btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:52px;border-radius:999px;border:1px solid #3c3f45;background:#232529;color:#ececf1;font-size:15px;font-weight:500;transition:background .12s}
 .au-agree{font-size:12.5px;color:var(--gt3,#9aa0a6);text-align:center;line-height:1.7;margin-top:14px}
@@ -1560,8 +1497,8 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .au-spin{display:inline-block;width:18px;height:18px;border-radius:50%;border:2.5px solid rgba(20,22,26,.25);border-top-color:#17191d;animation:auSpin .8s linear infinite}
 @keyframes auSpin{to{transform:rotate(360deg)}}
 .au-btn:hover{background:#2b2d32}
-.au-btn.ghost{background:transparent}
-.au-btn.ghost:hover{background:#232529}
+.au-btn.ghost{background:#313339;border-color:transparent} /* 창 배경(#1b1c1f)이 카드 단계라 카드 위 회색 버튼 기준 (사용자 지시) */
+.au-btn.ghost:hover{background:#3A3D44}
 .au-btn.primary{background:#00feff;border-color:#00feff;color:#101113;font-weight:600}
 .au-btn.primary:hover{background:#5cfeff;border-color:#5cfeff}
 .au-btn:disabled{opacity:.5;cursor:default}
@@ -1571,21 +1508,28 @@ body.g-dark .modal .e-btn{background:#26282c;border-color:rgba(255,255,255,.14);
 .au-input{width:100%;height:52px;border-radius:999px;border:1px solid #3c3f45;background:#101114;color:#ececf1;padding:0 20px;font-size:15px;outline:none;transition:border-color .12s}
 .au-input:focus{border-color:#00feff}
 .au-field:has(.au-input:focus) .au-label{color:#00feff} /* 포커스하면 라벨도 테두리와 같은 메인색 (사용자 지시) */
+.au-field:has(.au-input.bad) .au-label{color:#e5484d} /* 오류면 포커스 중이어도 테두리와 같은 오류색 (사용자 지시) */
+.au-field:has(.au-input:focus) .au-side{color:#00feff}
+.au-field:has(.au-input.bad) .au-side{color:#e5484d} /* 눈 아이콘도 라벨·테두리와 같은 상태색 (사용자 지시) */
 .au-input[type=number]{-moz-appearance:textfield;appearance:textfield}.au-input[type=number]::-webkit-inner-spin-button,.au-input[type=number]::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}
 .au-input::placeholder{color:#6f747d}
 .au-field{position:relative;text-align:left;margin-top:16px}.au-field.au-field-first{margin-top:26px}.au-field .au-side svg{display:block}
 .au-field .au-label{position:absolute;top:-7px;left:18px;background:#1b1c1f;padding:0 6px;font-size:11.5px;color:#a6aab2;z-index:1}
 .au-field .au-input{border-radius:16px;background:#1b1c1f}
-.au-field .au-side{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:13px;color:#00feff;background:none}
-.au-req{border:1px solid #3c3f45;border-radius:12px;padding:14px 16px;margin-top:16px;text-align:left;font-size:13px;color:#b7bac1;line-height:1.7}
+.au-field .au-side{position:absolute;right:16px;top:50%;transform:translateY(-50%);font-size:13px;color:#a6aab2;background:none;transition:color .15s}
+.au-req{border:0;background:#25272C;border-radius:16px;padding:14px 16px;margin-top:16px;text-align:left;font-size:13px;color:#b7bac1;line-height:1.7}
+#au-req-h{margin-bottom:8px} /* 제목과 목록이 붙어 보여 띄움 (사용자 지시) */
 .au-req .rq{display:flex;align-items:center;gap:8px;transition:color .15s}
+body.g-dark .modal .au-req .rq{color:#8d9199} /* 창 안 div 는 색을 물려받게 되어 있어 여기서 따로 지정 (사용자 지시) */
+body.g-dark .modal .au-req .rq.ok{color:#00feff} /* 조건 줄은 제목보다 옅게 (사용자 지시) */
 .au-req .rq .m{width:14px;text-align:center;flex-shrink:0}
-.au-req .rq.ok{color:#4ade80}
+.au-req .rq.ok{color:#00feff} /* 초록 대신 메인색 (사용자 지시) */
 .au-btn.primary.dis{opacity:.45}
 .au-input.bad{border-color:#e5484d!important}
 @keyframes auShake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-6px)}40%,80%{transform:translateX(6px)}}
 .au-input.shake{animation:auShake .3s var(--ease)}
-.au-err{font-size:12.5px;color:#f87171;margin-top:10px;text-align:left;padding-left:18px;display:none}
+.au-err{font-size:12px;color:#e5484d;margin-top:10px;margin-left:4px;text-align:left;padding-left:0;display:none}
+body.g-dark .modal .au-err{color:#e5484d} /* 창 안 div 는 색을 물려받게 되어 있어 여기서 따로 지정 (사용자 지시) */
 .au-err.on{display:block}
 .au-textbtn{display:block;margin:16px auto 0;font-size:14px;color:#ececf1;background:none}
 .au-textbtn:hover{text-decoration:underline}
@@ -1697,8 +1641,12 @@ img.imgfail{visibility:hidden} /* 로고류 로드 실패 시 깨진 아이콘 �
   .g-sub{animation:gRiseIn .55s var(--ease) .12s both}
   .g-pillband{position:sticky;bottom:0;z-index:30;align-self:stretch;margin:auto calc(50% - 50vw) 0;display:flex;flex-direction:column;gap:8px;padding:14px 16px calc(8px + env(safe-area-inset-bottom,0px));background:linear-gradient(to top,#0f1012 76%,rgba(15,16,18,0));animation:gRiseIn .5s var(--ease) .1s both}
   .g-pill{width:auto;margin:0}
+  /* 창 소제목: 제목보다 옅게, 13px (사용자 지시). 같은 꼴을 쓰는 다른 팝업도 함께 */
+  .au-sub,.g-dlg p{font-size:13px;line-height:1.6}
+  body.g-dark .modal .au-sub,body.g-dark .g-dlg p{color:#8d9199}
   /* 글자만 있을 때 윗여백이 모자라 글이 위에 붙어 보이던 문제 — 위아래를 고르게 (사용자 지시, 모바일만) */
-  .g-pill textarea,.g-pill.multi textarea{margin:8px 0 10px;padding:0 8px}
+  .g-pill textarea{margin:8px 0 10px;padding:0}
+  .g-pill.multi textarea{margin:8px 0 10px;padding:0 8px} /* 좌우 여백은 글자가 전체 폭을 쓸 때만 (사용자 지시) */
   /* + 를 옆 보내기 단추와 같은 크기·모양으로 (사용자 지시) */
   .g-pill .plus{width:40px;height:40px;margin-left:0;background:#313339;color:var(--gt2)}
   .g-pill .plus:hover{background:#3A3D44}
@@ -5184,7 +5132,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
       <div class="au-sub">TETH를 잠금 해제하고 AI 투자 전략<br>연구, 검증, 실행을 시작하십시오</div>
       <div class="au-btns">
         <button class="au-btn" onclick="authOauth('Google')"><svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>Google로 계속하기</button>
-        <button class="au-btn" onclick="authOauth('Apple')"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style="margin-top:-2px"><path d="M17.05 12.54c-.03-2.72 2.22-4.02 2.32-4.09-1.27-1.85-3.24-2.1-3.93-2.13-1.67-.17-3.26.98-4.1.98-.85 0-2.16-.96-3.55-.93-1.82.03-3.5 1.06-4.44 2.69-1.9 3.29-.49 8.16 1.36 10.83.9 1.3 1.98 2.77 3.39 2.72 1.36-.05 1.87-.88 3.52-.88 1.64 0 2.11.88 3.55.85 1.47-.02 2.4-1.33 3.29-2.64 1.04-1.52 1.47-2.99 1.49-3.06-.03-.02-2.86-1.1-2.9-4.34zM14.34 4.56c.75-.91 1.25-2.17 1.11-3.43-1.08.04-2.38.72-3.15 1.63-.69.8-1.3 2.09-1.14 3.32 1.2.09 2.43-.61 3.18-1.52z"/></svg>Apple로 계속하기</button>
+        <button class="au-btn" onclick="authOauth('Apple')"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="margin-top:-2px"><path d="M17.05 12.54c-.03-2.72 2.22-4.02 2.32-4.09-1.27-1.85-3.24-2.1-3.93-2.13-1.67-.17-3.26.98-4.1.98-.85 0-2.16-.96-3.55-.93-1.82.03-3.5 1.06-4.44 2.69-1.9 3.29-.49 8.16 1.36 10.83.9 1.3 1.98 2.77 3.39 2.72 1.36-.05 1.87-.88 3.52-.88 1.64 0 2.11.88 3.55.85 1.47-.02 2.4-1.33 3.29-2.64 1.04-1.52 1.47-2.99 1.49-3.06-.03-.02-2.86-1.1-2.9-4.34zM14.34 4.56c.75-.91 1.25-2.17 1.11-3.43-1.08.04-2.38.72-3.15 1.63-.69.8-1.3 2.09-1.14 3.32 1.2.09 2.43-.61 3.18-1.52z"/></svg>Apple로 계속하기</button>
       </div>
       <div class="au-div">또는</div>
       <div class="au-field au-field-first">
@@ -5199,8 +5147,9 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
     <div class="au-step" id="au-code" hidden>
       <div class="au-title" id="au-code-title">받은 편지함을 확인하십시오</div>
       <div class="au-sub" id="au-code-sub"></div>
-      <div class="au-input-wrap">
-        <input class="au-input" id="au-code-in" inputmode="numeric" maxlength="12" oninput="this.value=this.value.replace(/\D/g,'').slice(0,6)" placeholder="코드" autocomplete="one-time-code" onkeydown="if(event.key==='Enter')authCodeNext()"><!-- '123-456' 붙여넣기가 maxlength 선컷으로 5자리가 되던 유실 방지 (agy QA2) -->
+      <div class="au-field au-field-first">
+        <span class="au-label" id="au-code-lab">코드</span>
+        <input class="au-input" id="au-code-in" inputmode="numeric" maxlength="12" oninput="this.value=this.value.replace(/\D/g,'').slice(0,6)" autocomplete="one-time-code" onkeydown="if(event.key==='Enter')authCodeNext()"><!-- '123-456' 붙여넣기가 maxlength 선컷으로 5자리가 되던 유실 방지 (agy QA2) -->
       </div>
       <div class="au-err" id="au-code-err">6자리 숫자 코드를 입력해 주십시오.</div>
       <button class="au-btn primary au-gap" id="au-code-go" onclick="authCodeNext()">계속</button>
@@ -5225,7 +5174,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
         <button class="au-side" onclick="authPwEye('au-pwnew-in',this)" aria-label="비밀번호 표시"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"/><circle cx="12" cy="12" r="3"/></svg></button>
       </div>
       <div class="au-req">
-        <div id="au-req-h">비밀번호에 포함되어야 하는 사항:</div>
+        <div id="au-req-h">비밀번호에 포함되어야 하는 사항</div>
         <div class="rq" id="au-req-len"><span class="m">•</span><span class="t">12자 이상</span></div>
         <div class="rq" id="au-req-num"><span class="m">•</span><span class="t">숫자 1개 이상</span></div>
         <div class="rq" id="au-req-spec"><span class="m">•</span><span class="t">특수문자 1개 이상 (!@#$ 등)</span></div>
@@ -7073,7 +7022,6 @@ a.btg-out{text-decoration:none}
 .stg-rc{margin:6px 0 0;display:grid;gap:0;border:1px solid rgba(255,255,255,.09);border-radius:12px;overflow:hidden}
 .stg-rc div{display:flex;justify-content:space-between;gap:16px;padding:11px 14px;border-top:1px solid rgba(255,255,255,.07);font-size:13.5px}
 .stg-rc div:first-child{border-top:0}.stg-rc dt{color:#8b9096}.stg-rc dd{margin:0;color:#f2f3f5;text-align:right}
-body.light .stg,body.light .acx-page,body.light .acx-entry{color:#16181b}
 @media (max-width:900px){
   .stg{grid-template-columns:1fr;padding:12px 16px 80px}
   .stg-nav{position:static;display:flex;gap:4px;overflow-x:auto;padding:0 0 12px;scrollbar-width:none;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:18px}
@@ -23995,13 +23943,12 @@ function stBtn(l,fn,cls){ return '<button type="button" class="stg-b'+(cls?' '+c
 function stSec(t,rows,act){ return '<section class="stg-sec">'+(t?'<header><h2>'+t+'</h2>'+(act||'')+'</header>':'')+'<div class="stg-card">'+rows+'</div></section>'; }
 /* ── 일반 ── */
 function stGeneral(){
-  var cur=(GLC_LANGS.find(function(l){ return l.c===GLC.lang; })||GLC_LANGS[0]), th=document.body.classList.contains('light')?'light':'dark';
+  var cur=(GLC_LANGS.find(function(l){ return l.c===GLC.lang; })||GLC_LANGS[0]);
   return '<h1>일반</h1>'+stSec('',
     stRow('언어','','<select class="stg-sel" aria-label="언어" onchange="stLang(this.value)">'+GLC_LANGS.map(function(l){ return '<option value="'+l.c+'"'+(l.c===cur.c?' selected':'')+'>'+l.n+'</option>'; }).join('')+'</select>','화면과 알림에 쓰는 언어입니다')
     +stRow('금액 표시','<span class="num">USD</span>','','모든 금액은 미국 달러로 표시합니다. 자산 수량은 BTC, ETH, USDT처럼 자산 단위 그대로입니다'));
 }
 function stLang(c){ GLC.lang=c; try{ localStorage.setItem('tethLang',c); }catch(e){} try{ applyLang(); }catch(e){} stView(); }
-function stTheme(v){ try{ if(typeof gThemeSet==='function') gThemeSet(v); else { document.body.classList.toggle('light',v==='light'); localStorage.setItem('tethTheme',v); } }catch(e){} stRe(); }
 /* ── 계정 ── */
 function stAccessTxt(){ var acc=acAccess(), L=acConnList(); return acc==='paid'?'구독 이용 중':acc==='partner'?'TETH 초대 계정 이용 중':(L.length?'구독 종료':'실행 환경 미연결'); }
 function stAccount(){
@@ -26636,7 +26583,7 @@ function authI18n(){ /* 딥 화면 정적 텍스트를 현재 언어로, 화면 
   var T=function(id,k){var el=$(id); if(el) el.textContent=L(k);};
   T('au-code-title','code.title'); T('au-code-go','auth.continue');
   T('au-code-err','code.err'); T('au-code-div','auth.or'); T('au-code-pwbtn','code.pwbtn');
-  var ci=$('au-code-in'); if(ci) ci.placeholder=L('code.ph');
+  var cl=$('au-code-lab'); if(cl) cl.textContent=L('code.ph'); /* 떠 있는 라벨로 바뀌어 placeholder 대신 라벨에 넣는다 (사용자 지시) */
   T('au-pwnew-title','pwnew.title'); var ps=$('au-pwnew-sub'); if(ps) ps.innerHTML=L('pwnew.sub');
   T('au-pwnew-lbl-email','auth.email'); T('au-pwnew-lbl-pw','pw.label'); T('au-edit','pwnew.edit');
   T('au-req-h','req.head');
@@ -26961,7 +26908,7 @@ var I18N={
   'pwnew.sub':{ko:'이 비밀번호를 사용해 TETH에<br>로그인하게 됩니다',en:"You'll use this password to<br>log in to TETH",ja:'このパスワードでTETHに<br>ログインします','zh-CN':'您将使用此密码<br>登录TETH','zh-TW':'您將使用此密碼<br>登入TETH',es:'Usarás esta contraseña para<br>iniciar sesión en TETH',fr:'Vous utiliserez ce mot de passe pour<br>vous connecter à TETH'},
   'pwnew.edit':{ko:'편집',en:'Edit',ja:'編集','zh-CN':'编辑','zh-TW':'編輯',es:'Editar',fr:'Modifier'},
   'pwnew.codebtn':{ko:'일회용 코드로 회원 가입',en:'Sign up with one-time code',ja:'ワンタイムコードで登録','zh-CN':'使用一次性验证码注册','zh-TW':'使用一次性驗證碼註冊',es:'Regístrate con código de un solo uso',fr:"S'inscrire avec un code à usage unique"},
-  'req.head':{ko:'비밀번호에 포함되어야 하는 사항:',en:'Your password must include:',ja:'パスワードに必要な条件:','zh-CN':'密码必须包含：','zh-TW':'密碼必須包含：',es:'Tu contraseña debe incluir:',fr:'Votre mot de passe doit contenir :'},
+  'req.head':{ko:'비밀번호에 포함되어야 하는 사항',en:'Your password must include:',ja:'パスワードに必要な条件:','zh-CN':'密码必须包含：','zh-TW':'密碼必須包含：',es:'Tu contraseña debe incluir:',fr:'Votre mot de passe doit contenir :'},
   'req.len':{ko:'12자 이상',en:'At least 12 characters',ja:'12文字以上','zh-CN':'至少12个字符','zh-TW':'至少12個字元',es:'Mínimo 12 caracteres',fr:'Au moins 12 caractères'},
   'req.num':{ko:'숫자 1개 이상',en:'At least 1 number',ja:'数字を1つ以上','zh-CN':'至少1个数字','zh-TW':'至少1個數字',es:'Al menos 1 número',fr:'Au moins 1 chiffre'},
   'req.spec':{ko:'특수문자 1개 이상 (!@#$ 등)',en:'At least 1 special character (!@#$)',ja:'記号を1つ以上 (!@#$など)','zh-CN':'至少1个特殊字符 (!@#$等)','zh-TW':'至少1個特殊字元 (!@#$等)',es:'Al menos 1 carácter especial (!@#$)',fr:'Au moins 1 caractère spécial (!@#$)'},
