@@ -13633,6 +13633,33 @@ if(!window._tethDetailsAnim){
     a.finished.then(function(){ if(d._tAnim!==a) return; d._tAnim=null; if(closing) d.open=false; d.style.overflow=''; d.style.boxSizing=''; kids.forEach(function(k){ k.getAnimations&&k.getAnimations().forEach(function(x){ x.cancel(); }); }); },function(){});
   },true);
 }
+/* [공통 규칙 G34] 팝업이 닫힐 때 스르륵: 바탕 막은 0.2초 동안 흐려지고, 창은 살짝 내려가며 작아짐. 메뉴는 살짝 올라가며 사라짐.
+   닫는 순간 id를 떼어 같은 이름으로 새로 여는 창과 섞이지 않게 하고, 누르기도 막는다. 움직임 줄이기 설정이면 바로 닫힘 */
+var POP_OV='.g-dlg-w,.mk-follow-w,.ss3-dlgw,.mkp-ov';
+var POP_MENU='.g-rowmenu,#g-rowmenu';
+(function(){
+  if(window._tethPopClose||!Element.prototype.animate) return; window._tethPopClose=1;
+  var rm0=Element.prototype.remove;
+  var calm=function(){ return window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches; };
+  Element.prototype.remove=function(){
+    var el=this, ov=false, mn=false;
+    try{ ov=el.matches&&el.matches(POP_OV); mn=!ov&&el.matches&&el.matches(POP_MENU); }catch(e){}
+    if(!(ov||mn)||el._closing||!el.isConnected||calm()||!el.offsetParent&&getComputedStyle(el).position!=='fixed'){ return rm0.call(el); }
+    el._closing=1; el.removeAttribute('id'); el.style.pointerEvents='none';
+    var done=function(){ rm0.call(el); };
+    if(ov){
+      var box=el.firstElementChild;
+      if(box&&box.animate) box.animate([{transform:'none',opacity:1},{transform:'translateY(8px) scale(.98)',opacity:0}],{duration:200,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'});
+      el.animate([{opacity:1},{opacity:0}],{duration:200,easing:'ease',fill:'forwards'}).finished.then(done,done);
+    } else {
+      el.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(-4px)'}],{duration:150,easing:'ease',fill:'forwards'}).finished.then(done,done);
+    }
+  };
+  /* 로그인 창 등 .modal-bg(열림 class로 켜고 끄는 창)도 같은 방식 */
+  if(typeof closeModal==='function'){ var cm0=closeModal; closeModal=function(id){ var m=document.getElementById(id); if(!m||!m.classList.contains('open')||calm()||m._closing) return cm0.apply(this,arguments); var args=arguments, self=this; m._closing=1; var box=m.firstElementChild;
+    if(box&&box.animate) box.animate([{transform:'none',opacity:1},{transform:'translateY(8px) scale(.98)',opacity:0}],{duration:200,easing:'cubic-bezier(.4,0,1,1)'});
+    m.animate([{opacity:1},{opacity:0}],{duration:200,easing:'ease'}).finished.then(function(){ m._closing=0; cm0.apply(self,args); },function(){ m._closing=0; cm0.apply(self,args); }); }; }
+})();
 /* [공통 규칙 G31] 세그먼트 컨트롤: 고른 칸 바탕을 따로 떼어(.segt) 새로 고른 칸으로 미끄러지게 옮긴다 */
 var SEG_SEL='.skc-pills,.mkp-seg,.mk-seg,.stg-seg,.mkd-seg,.mk3-seg';
 function segPick(c){ return c.querySelector(':scope>button.on,:scope>button[aria-pressed="true"],:scope>button[aria-checked="true"]'); }
