@@ -8240,9 +8240,28 @@ body #g-root .tft-page .tb-rfeed>details.tb-rl>summary{padding-top:14px;padding-
 body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary{padding-top:10px;padding-bottom:10px}
 body #g-root .tft-page .tm-foldw{margin-bottom:12px}
 /* 아래 표 매수·매도·LONG·SHORT 뱃지: 좌우 8 → 6, 위아래 2 → 4 */
-body #g-root .tft-page .sd{padding:4px 6px}
+body #g-root .tft-page .sd{padding:4px 6px;border-radius:100px}
 /* 자산 탭 거래소 카드: 카드색 #17181B + 테두리 → 채운 칸 #1E2024, 테두리 없음, 모서리 12 */
 body #g-root .tft-page .tft-asx{background:#1E2024;border-color:transparent;border-radius:12px}
+/* 판단 기록 줄 호버 바탕: 줄 상자를 묶음 상자와 같은 너비로 넓히고 안쪽 여백도 묶음과 같게(14) → 호버하면 #1E2024 둥근 칸. 줄 사이 선은 글자 폭(양옆 14)만, 호버한 줄 위아래 선은 숨김 */
+body #g-root .tft-page #tft-bbody>.tb-rfeed{margin:0 -8px}
+@media (max-width:960px){ body #g-root .tft-page #tft-bbody>.tb-rfeed{margin:0 -4px} }
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc{border-top:0;position:relative}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc+details.tb-fc::before{content:"";position:absolute;left:15px;right:15px;top:0;height:1px;background:rgba(255,255,255,.08);transition:opacity .15s ease}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc:hover::before,body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc:hover+details.tb-fc::before{opacity:0}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary{padding-left:15px;padding-right:41px;border-radius:12px;transition:background .15s ease}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary:hover{background:#1E2024}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary .tb-fx{right:15px}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc>.tb-fr{margin:4px 0 14px}
+/* 묶음 안 한 줄 목록도 같은 방식: 호버 #25272C, 글자는 묶음 머리 글자 선(14) 그대로 */
+body #g-root .tft-page .tm-foldx .tb-rfeed{margin:0 -8px}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-fc{border-top:0;position:relative}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-fc+details.tb-fc::before{content:"";position:absolute;left:8px;right:8px;top:0;height:1px;background:rgba(255,255,255,.06);transition:opacity .15s ease}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-fc:hover::before,body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-fc:hover+details.tb-fc::before{opacity:0}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary{padding-left:9px;padding-right:36px;border-radius:8px;transition:background .15s ease}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary:hover{background:#25272C}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary .tb-fx{right:8px}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-fc>.tb-fr{margin:0 8px 10px}
 /* PC 판단 카드: 판단 기록만 남은 틈(24px)에서 스크롤되던 것 → 카드 전체가 한 번에 스크롤. 위 "전략 6개"·탭과 아래 바꾸기·입력줄은 제자리에 붙어 있음 */
 @media (min-width:961px){
   body #g-root .nfxh-wrap.tft-page .tft-brainin{overflow-y:auto;scrollbar-width:none}
