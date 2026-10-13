@@ -46,6 +46,8 @@ h1{margin:0 0 3px;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .stage{display:flex;flex-direction:column;min-width:0;min-height:0;background:#0b0c0e}
 .stagebar{display:flex;align-items:baseline;gap:10px;padding:10px 16px;border-bottom:1px solid var(--line);flex:none;font-size:12.5px;color:var(--t3)}
 .stagebar b{color:var(--t1);font-size:13.5px;font-weight:600}
+.fsb{margin-left:auto;align-self:center;height:28px;padding:0 12px;border:0;border-radius:999px;background:#313339;color:#fff;font:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s ease}
+.fsb:hover{background:#3a3d44}
 .frames{flex:1;overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding:20px}
 iframe{border:0;border-radius:20px;background:var(--bg);box-shadow:0 18px 48px rgba(0,0,0,.55)}
 .hint{margin:auto;color:var(--t3);font-size:13px;text-align:center;line-height:1.8}
@@ -73,7 +75,7 @@ kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--
 <div class="main">
   <div class="list" id="list"></div>
   <div class="stage">
-    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span></div>
+    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span><button type="button" class="fsb" id="fsBtn" title="지금 화면을 모니터 전체로 봅니다. Esc로 돌아옵니다">전체 화면</button></div>
     <div class="frames" id="frames"><p class="hint">왼쪽에서 화면을 고르면 여기에 뜹니다.<br><kbd>/</kbd> 로 검색창, <kbd>Esc</kbd> 로 비우기<br>주소 끝에 <kbd>#09-01</kbd> 처럼 붙이면 그 화면이 바로 열립니다.</p></div>
   </div>
 </div>
@@ -391,6 +393,8 @@ document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('
 document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x.dataset.f===FILTER); });
 render();
 openFromHash();
+/* 전체 화면: 지금 띄운 화면(iframe)을 모니터 전체로. 화면 폭에 맞게 PC·모바일 모양이 바뀜. Esc로 돌아옴 */
+document.getElementById('fsBtn').onclick=function(){ var fr=document.querySelector('#frames iframe'); if(!fr) return; var go=fr.requestFullscreen||fr.webkitRequestFullscreen; if(go) go.call(fr); };
 /* 왼쪽 목록 스크롤 위치 기억: 새로고침·반영하기 뒤에도 보던 자리 그대로 */
 (function(){
   var L=document.getElementById('list'); if(!L) return;
