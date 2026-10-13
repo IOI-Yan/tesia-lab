@@ -48,7 +48,6 @@ h1{margin:0 0 3px;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .stagebar b{color:var(--t1);font-size:13.5px;font-weight:600}
 .fsb{margin-left:auto;align-self:center;height:28px;padding:0 12px;border:0;border-radius:999px;background:#313339;color:#fff;font:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s ease}
 .fsb:hover{background:#3a3d44}
-.fsb2{margin-left:8px}
 /* 새 탭 단독 보기(?solo=1): 머리·목록·이름 줄 없이 화면만 창 전체에 */
 body.solo{max-width:none;margin:0;padding:0}
 body.solo>header,body.solo .bar,body.solo .list,body.solo .stagebar{display:none!important}
@@ -81,7 +80,7 @@ kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--
 <div class="main">
   <div class="list" id="list"></div>
   <div class="stage">
-    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span><button type="button" class="fsb" id="tabBtn" title="지금 화면만 새 탭에 크게 엽니다">새 탭으로 열기</button><button type="button" class="fsb fsb2" id="fsBtn" title="지금 화면을 모니터 전체로 봅니다. Esc로 돌아옵니다">전체 화면</button></div>
+    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span><button type="button" class="fsb" id="tabBtn" title="지금 화면만 새 탭에 크게 엽니다">새 탭으로 열기</button></div>
     <div class="frames" id="frames"><p class="hint">왼쪽에서 화면을 고르면 여기에 뜹니다.<br><kbd>/</kbd> 로 검색창, <kbd>Esc</kbd> 로 비우기<br>주소 끝에 <kbd>#09-01</kbd> 처럼 붙이면 그 화면이 바로 열립니다.</p></div>
   </div>
 </div>
@@ -401,8 +400,6 @@ if(/[?&]solo=1/.test(location.search)) document.body.classList.add('solo');
 render();
 openFromHash();
 document.getElementById('tabBtn').onclick=function(){ window.open(location.pathname+'?solo=1&v='+Date.now()+location.hash,'_blank'); };
-/* 전체 화면: 지금 띄운 화면(iframe)을 모니터 전체로. 화면 폭에 맞게 PC·모바일 모양이 바뀜. Esc로 돌아옴 */
-document.getElementById('fsBtn').onclick=function(){ var fr=document.querySelector('#frames iframe'); if(!fr) return; var go=fr.requestFullscreen||fr.webkitRequestFullscreen; if(go) go.call(fr); };
 /* 왼쪽 목록 스크롤 위치 기억: 새로고침·반영하기 뒤에도 보던 자리 그대로 */
 (function(){
   var L=document.getElementById('list'); if(!L) return;
