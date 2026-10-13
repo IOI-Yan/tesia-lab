@@ -8184,8 +8184,8 @@ body #g-root .tft-page details.tb-fc>.tb-fr b.dn{color:#f0566a!important}
 /* 간격 넓힘: "전략 6개" 단추 ↔ 판단 탭 6 → 16. 모바일은 차트 ↔ 포지션 탭 0 → 16, 구분선 ↔ "전략 6개" 단추 10 → 16 */
 body #g-root .tft-page .mks-hd{padding-bottom:16px}
 @media (max-width:960px){
-  body #g-root .nfxh-wrap.tft-page>.tft-bottom{padding-top:16px}
-  body #g-root .nfxh-wrap.tft-page .tft-brain .mks-hd{padding-top:16px}
+  body #g-root .nfxh-wrap.tft-page>.tft-bottom,body #g-root .nfxh-wrap.tft-page .tft-brain{padding-top:16px}
+  body #g-root .nfxh-wrap.tft-page .tft-brain .mks-hd{display:none}  /* 모바일: 맨 위 전략 이름(꺾쇠)으로 같은 서랍이 열려서 "전략 6개" 단추는 숨김. PC는 그대로 */
 }
 /* 카드 위 고르기 단추(현재 전략·전략 고르기): 고르기 목록 단추색 #25272C, 호버 #2F3137, 테두리 없음 */
 body #g-root .tft-page .tft-bottom .csel-t,body #g-root .tft-page .mks-btn{background:#25272C;border-color:transparent}
@@ -13944,7 +13944,7 @@ if(!window._tethSrchX){ window._tethSrchX=1;
   document.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.srch-x'); if(!b) return; e.preventDefault(); e.stopPropagation();
     var inp=b.parentNode.querySelector('input'); if(!inp) return; inp.value=''; inp.dispatchEvent(new Event('input',{bubbles:true})); var again=b.parentNode.querySelector('input')||document.querySelector('[aria-label="'+inp.getAttribute('aria-label')+'"]'); if(again) again.focus(); },true); }
 /* tab rows wider than the screen (bottom panel tabs etc.): mouse wheel and drag scroll them sideways, and the cut-off edge fades so it is clear there is more */
-var HSCR_SEL='.tft-page .nfxh-tabs,.tft-page .tft-btabs,.tft-page .tft-tblw';
+var HSCR_SEL='.tft-page .nfxh-tabs,.tft-page .tft-btabs,.tft-page .tft-tblw,.tft-page .tft-comp .chips,.tft-page .tft-comp .tm-manage';
 function hscrEdge(el){ var m=el.scrollWidth-el.clientWidth; el.classList.toggle('hs-r',m>2&&el.scrollLeft<m-2); el.classList.toggle('hs-l',el.scrollLeft>2); }
 if(!window._tethHscr){ window._tethHscr=1;
   var hsOf=function(t){ var el=t&&t.closest&&t.closest(HSCR_SEL); return el&&el.scrollWidth>el.clientWidth+2?el:null; };
