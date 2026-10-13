@@ -8324,6 +8324,12 @@ body #g-root .tft-page .tft-brain .tft-mg .c5 small{white-space:nowrap}
 /* 칸이 좁아 값이 넘치면 값을 이름 아래 줄로 내림(오른쪽 정렬) — 넘침 없음 */
 body #g-root .tft-page .tft-brain .tft-mg .c5{flex-wrap:wrap;row-gap:2px}
 body #g-root .tft-page .tft-brain .tft-mg .c5 b{margin-left:auto;text-align:right;min-width:0;overflow-wrap:anywhere}
+/* 데이터 탭 기간 칩: 테두리 알약 → 탭 규칙(안 고른 것 #9EA3AD 글자만, 고른 것 #313339 알약 흰색), 한 줄 + 스크롤바 숨김, 마우스로 끌어 옆으로 넘김 */
+body #g-root .tft-page .mkx-per{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:4px}
+body #g-root .tft-page .mkx-per::-webkit-scrollbar{display:none}
+body #g-root .tft-page .mkx-per button{flex:none;height:32px;padding:0 14px;border:0;background:transparent;color:#9ea3ad;transition:background .15s ease,color .15s ease}
+body #g-root .tft-page .mkx-per button:hover{color:#fff}
+body #g-root .tft-page .mkx-per button.on{border:0;background:#313339;color:#fff}
 /* "버전 기록 보기": 파란 글자 → 작은 보조 링크 규칙(13 · #8D9199 · 밑줄, 호버 #B0B4BB) */
 body #g-root .tft-page .tft-vh a{font-size:13px;color:#8d9199;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(141,145,153,.5);transition:color .15s ease}
 body #g-root .tft-page .tft-vh a:hover{color:#b0b4bb}
@@ -14186,7 +14192,7 @@ if(!window._tethSrchX){ window._tethSrchX=1;
   document.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.srch-x'); if(!b) return; e.preventDefault(); e.stopPropagation();
     var inp=b.parentNode.querySelector('input'); if(!inp) return; inp.value=''; inp.dispatchEvent(new Event('input',{bubbles:true})); var again=b.parentNode.querySelector('input')||document.querySelector('[aria-label="'+inp.getAttribute('aria-label')+'"]'); if(again) again.focus(); },true); }
 /* tab rows wider than the screen (bottom panel tabs etc.): mouse wheel and drag scroll them sideways, and the cut-off edge fades so it is clear there is more */
-var HSCR_SEL='.tft-page .nfxh-tabs,.tft-page .tft-btabs,.tft-page .tft-tblw,.tft-page .tft-comp .chips,.tft-page .tft-comp .tm-manage';
+var HSCR_SEL='.tft-page .nfxh-tabs,.tft-page .tft-btabs,.tft-page .tft-tblw,.tft-page .tft-comp .chips,.tft-page .tft-comp .tm-manage,.tft-page .mkx-per';
 function hscrEdge(el){ var m=el.scrollWidth-el.clientWidth; el.classList.toggle('hs-r',m>2&&el.scrollLeft<m-2); el.classList.toggle('hs-l',el.scrollLeft>2); }
 if(!window._tethHscr){ window._tethHscr=1;
   var hsOf=function(t){ var el=t&&t.closest&&t.closest(HSCR_SEL); return el&&el.scrollWidth>el.clientWidth+2?el:null; };
