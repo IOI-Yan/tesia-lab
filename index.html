@@ -7944,6 +7944,21 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .acx-help{margin-top:16px;padding-top:0}
 @media (max-width:900px){ #g-root .acx-help{padding-left:8px;padding-right:8px} }
 #g-root .pl-items li{color:#cfd2d6} /* 기능 목록 글자 한 단계 옅게 #ECECF1 → #CFD2D6 (설명과 같음) */
+/* 거래소 연결 단계 화면(승인 등) 정리 (사용자 지시) */
+#g-root .px-head h1{font-weight:700;line-height:1.3}
+#g-root .px-head{margin-bottom:6px}
+#g-root .px-card:not(.px-hi){background:#17181B;border-color:rgba(255,255,255,.06)}
+#g-root .px-cta.pl-cta-w{background:#00feff;border-color:#00feff;color:#101113;font-weight:600}
+#g-root .px-cta.pl-cta-w:hover{background:#5cfeff;border-color:#5cfeff}
+#g-root .btg-me{background:#17181B;border-color:rgba(255,255,255,.06)}
+#g-root .btg-me .hd b,#g-root .btg-me .fig b{font-weight:700}
+/* 권한 목록: 체크를 두 줄 가운데에, 이름 굵게 16px, 설명 14px, 이름-설명 4px · 항목 사이 20px. 박스 모서리 16px(박스 규칙) */
+#g-root .px-card{border-radius:16px}
+#g-root .px-perm{gap:20px}
+#g-root .px-perm li{align-items:center}
+#g-root .px-perm li svg{margin-top:0;width:20px;height:20px}
+#g-root .px-perm li>span{font-size:14px;line-height:1.5}
+#g-root .px-perm li>span b{font-size:16px;font-weight:700;margin-bottom:4px}
 #g-root .pl-sub{color:#fff;font-weight:600} /* "포함된 기능"·"구독 혜택" 묶음 제목: 흰색·굵게로 목록과 구분 */
 #g-root .pl-foot{color:#8b9096;padding-top:16px} /* 카드 맨 아래 안내 한 단계 옅게 #B0B4BB → #8B9096 (상담원 안내와 같음) */
 #g-root .pl-card.pl-hi .pl-lb{color:#00feff} #g-root .pl-card:not(.pl-hi) .pl-lb{color:#9ea3ad} /* 카드 이름: 초대 계정 메인색, 구독 옅은 회색 */
@@ -24913,7 +24928,7 @@ function pxBack(k){
   if(k==='acct'){ a.has=null; a.g=0; a.edit=null; acSave(); acRe(); return; }
   if(k==='result'){ btGoTo(''); return; }
 }
-function pxHelp(){ return '<p class="px-help"><span>막히면 상담원이 24시간 답합니다.</span><button type="button" class="pl-link" onclick="tfTxHelp()">상담원에게 묻기</button></p>'; }
+function pxHelp(){ return acHelp(); } /* 상담원 안내: 플랜 화면과 같은 모양(안내 글 + 회색 버튼), 위 선 없음 */
 /* 거래소: 타일을 누르면 바로 다음 화면 */
 function pxBEx(){
   var a=acS(), ctx=AC_CTX||{};
