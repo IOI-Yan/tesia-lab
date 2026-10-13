@@ -26417,9 +26417,10 @@ function mktRailMount(){ var br=document.getElementById('tft-brainin'); if(!br||
   br.insertAdjacentHTML('afterbegin','<div class="mks-hd"><button type="button" class="mks-btn" onclick="event.stopPropagation();mktRailTgl()" aria-haspopup="true"><span>전략 '+all.length+'개</span><b>'+gEsc(s?s.name:'전략 선택')+'</b>'+MKT_CHEV+'</button></div>'); }
 function mktRailTgl(on){ var pg=document.querySelector('#g-content .tft-page'); if(!pg) return; var o=on==null?!pg.classList.contains('rail-open'):!!on; pg.classList.toggle('rail-open',o); mktRailFit(pg,o); }
 /* 전략 고르기 창 너비·왼쪽을 여는 단추("전략 6개 …")와 같게 맞춤 */
-function mktRailFit(pg,o){ var rl=pg.querySelector('.tft-rail'); if(!rl) return; rl.style.left=rl.style.right=rl.style.width='';
+function mktRailFit(pg,o){ var rl=pg.querySelector('.tft-rail'); if(!rl) return; rl.style.left=rl.style.right=rl.style.width=rl.style.top='';
   var b=[].filter.call(pg.querySelectorAll('.mks-btn'),function(e){ return e.offsetParent; })[0]; if(!o||!b) return;
-  var r=b.getBoundingClientRect(), p=getComputedStyle(rl).position==='fixed'?{left:0}:(rl.offsetParent||pg).getBoundingClientRect();
+  var fx=getComputedStyle(rl).position==='fixed'; var r=b.getBoundingClientRect(), p=fx?{left:0}:(rl.offsetParent||pg).getBoundingClientRect();
+  if(!fx) rl.style.top=(r.bottom-p.top+8)+'px'; /* 단추와 창 사이 8px */
   rl.style.left=(r.left-p.left)+'px'; rl.style.right='auto'; rl.style.width=r.width+'px'; }
 window.addEventListener('resize',function(){ var pg=document.querySelector('#g-content .tft-page.rail-open'); if(pg) mktRailFit(pg,true); });
 document.addEventListener('click',function(e){ var pg=document.querySelector('#g-content .tft-page.rail-open'); if(!pg) return; if(e.target.closest('.tft-rail')||e.target.closest('.mks-btn')) return; pg.classList.remove('rail-open'); });
