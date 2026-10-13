@@ -391,6 +391,14 @@ document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('
 document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x.dataset.f===FILTER); });
 render();
 openFromHash();
+/* 왼쪽 목록 스크롤 위치 기억: 새로고침·반영하기 뒤에도 보던 자리 그대로 */
+(function(){
+  var L=document.getElementById('list'); if(!L) return;
+  try{ var y=+sessionStorage.getItem('teth.screens.y'); if(y) L.scrollTop=y; }catch(e){}
+  var save=function(){ try{ sessionStorage.setItem('teth.screens.y',String(L.scrollTop)); }catch(e){} };
+  L.addEventListener('scroll',function(){ clearTimeout(L._t); L._t=setTimeout(save,150); });
+  window.addEventListener('pagehide',save);
+})();
 /* 바뀐 내용 알림: index.html·_screens.html 이 바뀌면 아래에 "반영하기" 버튼을 띄운다. 누르면 새 주소로 다시 열어 확실히 새로 받음(저절로 깜빡이지 않음).
    미리보기 서버(serve.ps1)의 /__ver 가 없으면 조용히 멈춘다 */
 (function(){
