@@ -26939,6 +26939,20 @@ function tbText(){ try{ var b=document.querySelector('#g-content .tft-brain'); i
   kill.forEach(function(e){ e.remove(); }); }catch(e){} }
 (function(){ var t=0; var go=function(){ clearTimeout(t); t=setTimeout(tbText,200); };
   try{ new MutationObserver(go).observe(document.getElementById('g-content'),{childList:true,subtree:true}); }catch(e){} })();
+/* 데이터 탭 기간 칩: 누르면 다시 그려져 맨 앞으로 스크롤되던 것 → 스크롤 위치 그대로, 고른 칸 바탕이 이전 칩에서 새 칩으로 0.26초 미끄러짐(G31) */
+(function(){ if(typeof mktData!=='function'||mktData._keep) return; var d0=mktData;
+  mktData=function(){ var op=document.querySelector('#g-content .mkx-per'), sl=op?op.scrollLeft:0, ob=op&&op.querySelector('button.on'), from=ob?{x:ob.offsetLeft,w:ob.offsetWidth,h:ob.offsetHeight,y:ob.offsetTop}:null;
+    var r=d0.apply(this,arguments);
+    try{ var np=document.querySelector('#g-content .mkx-per'); if(np&&op){ np.scrollLeft=sl; var nb=np.querySelector('button.on');
+      if(from&&nb&&nb.offsetLeft!==from.x&&Element.prototype.animate&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){
+        if(getComputedStyle(np).position==='static') np.style.position='relative';
+        var g=document.createElement('i'); g.setAttribute('aria-hidden','true'); g.style.cssText='position:absolute;left:0;top:0;border-radius:999px;background:#313339;pointer-events:none;z-index:0';
+        np.insertBefore(g,np.firstChild); [].forEach.call(np.querySelectorAll('button'),function(b){ b.style.position='relative'; b.style.zIndex='1'; }); nb.style.background='transparent';
+        var a=g.animate([{transform:'translate('+from.x+'px,'+from.y+'px)',width:from.w+'px',height:from.h+'px'},{transform:'translate('+nb.offsetLeft+'px,'+nb.offsetTop+'px)',width:nb.offsetWidth+'px',height:nb.offsetHeight+'px'}],{duration:260,easing:'cubic-bezier(.2,.8,.3,1)',fill:'forwards'});
+        var done=function(){ nb.style.background=''; g.remove(); }; a.finished.then(done,done);
+        var nr=nb.offsetLeft+nb.offsetWidth, vis=np.scrollLeft+np.clientWidth; if(nr>vis||nb.offsetLeft<np.scrollLeft) np.scrollTo({left:Math.max(0,nb.offsetLeft-(np.clientWidth-nb.offsetWidth)/2),behavior:'smooth'}); } } }catch(e){}
+    return r; };
+  mktData._keep=1; })();
 /* 판단 카드 다시 그릴 때 깜박임 없애기: 예전 글자·예전 판단 카드가 잠깐 보였다가 0.2초 뒤 바뀌던 것 → 다시 그린 바로 그 자리에서 바로 바꿈. 카드 스크롤 위치도 그대로 */
 (function(){ if(typeof tfTmBrain!=='function'||tfTmBrain._tbNow) return; var b0=tfTmBrain;
   tfTmBrain=function(){ var bi=document.querySelector('#g-content .tft-brainin'), st=bi?bi.scrollTop:0;
