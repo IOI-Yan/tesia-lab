@@ -7862,6 +7862,8 @@ body.g-dark #g-appbanner{background:#101113}
 #g-root .ska .hd .pg{order:1;margin-left:-8px}
 #g-root .ska .hd .x{order:2;margin-left:auto}
 #g-root .ska .hd b{order:3;flex:1 0 100%}
+/* 질문이 하나라 페이지 표시가 없으면: 제목과 닫기를 한 줄에 (첫 줄이 닫기만 남아 위가 비던 것) */
+#g-root .ska .hd:not(:has(.pg)) b{order:1;flex:1 1 0}
 @media (max-width:600px){#g-root .ska .op span{font-size:13px}}
 .ska .ops{gap:2px;padding:2px 8px 4px;max-height:none;overflow:visible}
 .ska .op{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:baseline;gap:10px;padding:10px 12px;border:0;border-radius:12px;background:transparent}
