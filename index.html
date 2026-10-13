@@ -8215,6 +8215,9 @@ body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary .tb-fs{grid-are
 /* 바꾸기·질문 칩 작게: 높이 36 → 30, 글자 14 → 13, 좌우 14 → 12, "바꾸기" 14 → 13 */
 body #g-root .tft-page .tft-comp .tm-manage button,body #g-root .tft-page .tft-comp .chips button{height:30px;padding:0 12px;font-size:13px}
 body #g-root .tft-page .tft-comp .tm-manage small{font-size:13px}
+/* 조건 미충족 표시: 글자 ✗ → Lucide x 아이콘 14, 빨강 태그 글자색 */
+.xmk{display:inline-block;vertical-align:middle;color:var(--tag-red,#d9707d)}
+i.no .xmk{color:var(--tag-red,#d9707d)}
 /* PC 판단 카드: 판단 기록만 남은 틈(24px)에서 스크롤되던 것 → 카드 전체가 한 번에 스크롤. 위 "전략 6개"·탭과 아래 바꾸기·입력줄은 제자리에 붙어 있음 */
 @media (min-width:961px){
   body #g-root .nfxh-wrap.tft-page .tft-brainin{overflow-y:auto;scrollbar-width:none}
@@ -20662,7 +20665,7 @@ function mkOpenPos(p,r){
   for(var i=Math.max(from,61);i<=endI;i++){ var e=mkRuleEval(p,i); if(e.rsiOk&&e.bounceOk&&e.trendOk) return {entry:i,entryP:PRICE[i],chg:(PRICE[endI]/PRICE[i]-1)*100,held:endI-i}; }
   return null;
 }
-function mkRow(lb,val,ok){ return '<div class="mk-rr"><span class="k">'+lb+'</span><span class="v num">'+val+'</span><i class="'+(ok?'ok':'no')+'" aria-label="'+(ok?'충족':'미충족')+'">'+(ok?'✓':'✗')+'</i></div>'; }
+function mkRow(lb,val,ok){ return '<div class="mk-rr"><span class="k">'+lb+'</span><span class="v num">'+val+'</span><i class="'+(ok?'ok':'no')+'" aria-label="'+(ok?'충족':'미충족')+'">'+(ok?'✓':'<svg class="xmk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>')+'</i></div>'; }
 function mkRuleRows(p,e){
   var h=mkRow('RSI(14) 전봉 < '+p.rsiTh,'전봉 '+e.rsiPrev.toFixed(0),e.rsiOk)+mkRow('반등 +0.5% 초과','이번 봉 '+mkPct(e.bounce,2),e.bounceOk);
   if(p.trendFilter) h+=mkRow('이평 괴리 3% 초과 (20일, 60일)','괴리 '+e.gap.toFixed(1)+'%',e.trendOk);
@@ -20998,7 +21001,7 @@ function tfTmStatusBlock(s,c){
 }
 /* 규칙 카드 — 행은 실제 판정식에서만 (D24): 전봉 RSI < 임계 / 반등 +0.5% 초과 / |SMA20-SMA60|/가격 > 3% / 손절, 익절, 25봉 */
 function tfTmRow(label,val,state){
-  var mark=state==='ok'?'✓':state==='no'?'✗':state==='hit'?'✓ 도달':'미도달';
+  var mark=state==='ok'?'✓':state==='no'?'<svg class="xmk" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>':state==='hit'?'✓ 도달':'미도달';
   var pl=/^손절/.test(label)?' tm-sl':/^익절/.test(label)?' tm-tp':'';
   return '<div class="tm-row'+pl+'"><span>'+label+'</span><b class="num'+(/^\s*\+/.test(val)?' up':/^\s*[-−]/.test(val)?' dn':'')+'">'+val+'</b><i class="'+state+'">'+mark+'</i></div>';
 }
