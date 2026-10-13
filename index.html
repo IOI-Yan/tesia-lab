@@ -8144,6 +8144,8 @@ body .mkp .mkp-st.on svg{fill:currentColor}
 /* 목록 머리 "종목": 별 칸까지 당겨 별 아이콘 왼쪽 끝과 맞춤 */
 body .mkp .mkp-th::before{display:none}
 body .mkp .mkp-th button:first-child{grid-column:1 / 3;padding-left:5px}
+/* 종목 선택 고른 줄: 회색 바탕 + 2px 회색 테두리 → 모바일 홈 고른 칩과 같은 메인색 10% 바탕, 테두리 없음 */
+body .mkp .mkp-r.on,body .mkp .mkp-r.on:hover,body .mkp .mkp-r.on:focus{background:rgba(0,254,255,.10);box-shadow:none}
 /* 터미널 아래 표(주문·체결 내역, 종료 포지션): 본문 16 → 14, 머리와 같게 */
 body #g-root .tft-page .tft-tbl td{font-size:14px}
 /* 모바일 전략 선택 서랍: 고른 카드 파랑 테두리 → 전략 고르기 창과 같게 #25272C + 테두리 10% */
@@ -8160,6 +8162,8 @@ body #g-root .tft-page .tb-list{background:#1E2024;border-color:transparent}
 /* TETH의 생각: 제목 14 → 13, 본문 16 → 14 (위 상자 글자 14와 같게) */
 body #g-root .tft-page .tb-th .tb-thl{font-size:13px}
 body #g-root .tft-page .tb-th .tb-tht{font-size:14px;line-height:1.6}
+/* 모바일 운용·누적 줄: 14 → 13 */
+body #g-root .tft-page .tm-msummary,body #g-root .tft-page .tm-msummary span,body #g-root .tft-page .tm-msummary b{font-size:13px}
 /* [공통 규칙 G36] 상태·태그 색 4종(어두운 바탕 + 같은 계열 글자): 빨강(오류) · 파랑(성공·종류) · 주황(확인 필요·위험) · 초록(참고). 토큰 --tag-*. 백테스트 분류 배지: 종류=파랑, 종목=초록, 상품·배수=주황 */
 #bt-root .bt-id-m b,#bt-root .bt-id-m span{font-weight:500}
 body #bt-root .bt-id-m>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
