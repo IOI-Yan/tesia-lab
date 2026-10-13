@@ -23578,7 +23578,7 @@ function btGoMe(){
   return '<aside class="btg-me"><small class="lb">실행할 전략</small><div class="hd">'+mkGlyph(s,34)+'<div><b>'+gEsc(mkHook(s))+'</b><span>'+MK_KIND[s.kind]+', '+gEsc(mkScope(s))+'</span></div><button type="button" class="mret" onclick="btGoTo(\'\')"><i class="num'+mkSign(R.ret)+'">'+mkPct0(R.ret,1)+'</i><em>'+btPerL()+' 결과 보기</em></button></div>'
     +'<div class="fig"><div><small>'+btPerL()+' 백테스트</small><b class="num'+mkSign(R.ret)+'">'+mkPct0(R.ret,1)+'</b></div><div class="r"><small>'+btUsd(BT.amt)+'가</small><b class="num">'+btUsd(R.final)+'</b></div></div>'
     +btGoSpark()
-    +'<dl><div><dt>그냥 들고 있었을 때보다</dt><dd class="num '+(diff>=0?'mk-up':'mk-dn')+'">'+btUsdS(diff)+'</dd></div><div><dt>가장 크게 내려간 폭</dt><dd class="num">'+R.mdd.toFixed(1)+'%</dd></div>'
+    +'<dl><div><dt>그냥 들고 있었을 때보다</dt><dd class="num '+(diff>=0?'mk-up':'mk-dn')+'">'+btUsdS(diff)+'</dd></div><div><dt>가장 크게 내려간 폭</dt><dd class="num'+(R.mdd<0?' mk-dn':'')+'">'+R.mdd.toFixed(1)+'%</dd></div>'
     +(ai?'<div><dt>'+btOppL(s)+' '+R.nOpp+'번 중</dt><dd class="num">'+btSkipL(s)+' '+R.nSkip+'번</dd></div>':'<div><dt>이긴 거래</dt><dd class="num">'+btWinTxt()+'</dd></div>')+'</dl>'
     +'<button type="button" class="lk" onclick="btGoTo(\'\')">백테스트 결과 다시 보기</button></aside>';
 }
