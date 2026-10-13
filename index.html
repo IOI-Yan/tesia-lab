@@ -8337,6 +8337,28 @@ body #g-root .tft-page #mkt-data{padding-top:24px}
 body #g-root .tft-page .mkx-per{margin-bottom:16px}
 /* 데이터 탭 카드 제목(미결제약정 등) 굵게 700 */
 body #g-root .tft-page .mkx-card h4{font-weight:700}
+/* 복사한 전략 상세의 판단 기록도 AI 트레이딩 판단 기록과 같은 모양(색 태그 알약 + 날짜 / 문장 / 꺾쇠, 줄 사이 선, 펼친 내용 채운 상자) */
+body .tb-cfeed>details.tb-fc{border-top:1px solid rgba(255,255,255,.08)}
+body .tb-cfeed>.tb-fh+details.tb-fc{border-top:0}
+body .tb-cfeed>details.tb-fc>summary{display:grid!important;grid-template-columns:auto 1fr;grid-template-areas:"k t" "s s";column-gap:8px;row-gap:6px;align-items:center;padding:14px 32px 14px 0;position:relative;list-style:none;cursor:pointer}
+body .tb-cfeed>details.tb-fc.no-more>summary{padding-right:0;cursor:default}
+body .tb-cfeed>details.tb-fc>summary::-webkit-details-marker{display:none}
+body .tb-cfeed .tb-k{grid-area:k;justify-self:start;display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:100px;font-size:12px!important;font-weight:500!important;background:rgba(255,255,255,.06);color:#9ea3ad!important}
+body .tb-cfeed .tb-k.k-en{background:var(--tag-blue-bg);color:var(--tag-blue)!important}
+body .tb-cfeed .tb-k.k-tm{background:var(--tag-orange-bg);color:var(--tag-orange)!important}
+body .tb-cfeed .tb-ft{grid-area:t;font-size:12px;color:#8d9199}
+body .tb-cfeed .tb-fs{grid-area:s;font-size:14px;line-height:1.55;color:#ececf1}
+body .tb-cfeed .tb-fx{position:absolute;right:0;top:50%;width:16px;height:16px;margin-top:-8px;font-size:0;text-decoration:none;background-color:#8d9199;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") center/16px 16px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") center/16px 16px no-repeat;transition:transform .3s cubic-bezier(.2,.8,.3,1),background-color .15s ease}
+body .tb-cfeed>details.tb-fc>summary:hover .tb-fx{background-color:#e3e5ea}
+body .tb-cfeed>details[open].tb-fc .tb-fx{transform:rotate(180deg)}
+body .tb-cfeed .tb-fr{margin:0 0 14px;padding:12px 16px;border-radius:12px;background:#1E2024;font-size:13px;line-height:1.6;color:#cfd2d6}
+/* 복사 전략 판단 기록: 제목 16/700, 호버하면 카드 끝에서 끝까지 꽉 찬 바탕(PC #1E2024 · 모바일 #17181B), 글자 선은 그대로 */
+body .tb-cfeed>.tb-fh{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px}
+body .tft-page .tb-cfeed>details.tb-fc>summary{margin:0 -20px;padding-left:20px;padding-right:46px;transition:background .15s ease}
+body .tft-page .tb-cfeed>details.tb-fc.no-more>summary{padding-right:20px}
+body .tft-page .tb-cfeed>details.tb-fc>summary .tb-fx{right:20px}
+body .tft-page .tb-cfeed>details.tb-fc>summary:hover{background:#1E2024}
+@media (max-width:960px){ body .tft-page .tb-cfeed>details.tb-fc>summary{margin:0 -16px;padding-left:16px;padding-right:42px} body .tft-page .tb-cfeed>details.tb-fc>summary .tb-fx{right:16px} body .tft-page .tb-cfeed>details.tb-fc>summary:hover{background:#17181B} }
 /* "버전 기록 보기": 파란 글자 → 작은 보조 링크 규칙(13 · #8D9199 · 밑줄, 호버 #B0B4BB) */
 body #g-root .tft-page .tft-vh a{font-size:13px;color:#8d9199;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(141,145,153,.5);transition:color .15s ease}
 body #g-root .tft-page .tft-vh a:hover{color:#b0b4bb}
@@ -27111,8 +27133,9 @@ tbThought=function(t,lab){ if(!t) return ''; var s=tbSent(t,2);
 /* 복사 전략 기록: 꼬리표 중립색, 판단 전문 표시, 문장 다듬기 */
 tbFeed=function(msgs){ var L=(msgs||[]).filter(function(m){ return m.k!=='now'&&m.k!=='intro'; }); if(!L.length) return '';
   var fix=function(x){ return String(x||'').replace(/ ([\d,.$]+)을\(를\) 넘음\.?/g,' $1를 넘었습니다.').replace(/([가-힣A-Z]+), 종가가 최근 20일 최고가/g,'$1 종가가 최근 20일 최고가인'); };
-  return '<div class="tb-feed"><p class="tb-fh">판단 기록</p>'+L.map(function(m){ var s=tbSent(fix(m.t),2);
-    return '<details class="tb-fc"><summary><span class="tb-ft num">'+gEsc(m.ts||'')+'</span><b>'+gEsc(m.tag||'')+(m.cnt>1?' '+m.cnt+'회':'')+'</b><span class="tb-fs">'+gEsc(s.head)+(s.rest?' <u class="tb-fx">판단 전문</u>':'')+'</span></summary>'+(s.rest?'<p class="tb-fr">'+gEsc(s.rest)+'</p>':'')+'</details>'; }).join('')+'</div>'; };
+  var KC={buy:'en',sell:'tm'}; /* AI 트레이딩 판단 기록과 같은 줄 모양: 윗줄 색 태그 + 날짜, 아랫줄 문장, 이어지는 내용이 있으면 오른쪽 꺾쇠 */
+  return '<div class="tb-feed tb-cfeed"><p class="tb-fh">판단 기록</p>'+L.map(function(m){ var s=tbSent(fix(m.t),2);
+    return '<details class="tb-fc'+(s.rest?'':' no-more')+'"><summary><b class="tb-k k-'+(KC[m.k]||'ho')+'">'+gEsc(m.tag||'')+(m.cnt>1?' '+m.cnt+'회':'')+'</b><span class="tb-ft num">'+gEsc(m.ts||'')+'</span><span class="tb-fs">'+gEsc(s.head)+'</span>'+(s.rest?'<u class="tb-fx" aria-hidden="true"></u>':'')+'</summary>'+(s.rest?'<p class="tb-fr">'+gEsc(s.rest)+'</p>':'')+'</details>'; }).join('')+'</div>'; };
 /* 규칙형 기록: 검사표 카드 → 날짜, 꼬리표, 한 문장, 펼치면 검사표. 연속 보유 유지와 관망은 묶는다 */
 var TB_RULE={ho:['보유 유지','손절과 익절 조건에 닿지 않아 그대로 들고 있습니다.'],wa:['관망','진입 조건이 맞지 않아 주문을 내지 않았습니다.'],en:['진입','진입 조건이 모두 맞아 롱 포지션을 열었습니다.'],tp:['익절 청산','익절 목표에 닿아 정리했습니다.'],sl:['손절 청산','손절 기준에 닿아 정리했습니다.'],tm:['기간 청산','최대 보유 기간이 지나 정리했습니다.']};
 function tbRuleLog(){ try{ var box=document.getElementById('tft-bbody'); if(!box||box.getAttribute('data-tb')==='1') return;
