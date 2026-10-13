@@ -8337,6 +8337,9 @@ body #g-root .tft-page #mkt-data{padding-top:24px}
 body #g-root .tft-page .mkx-per{margin-bottom:16px}
 /* 데이터 탭 카드 제목(미결제약정 등) 굵게 700 */
 body #g-root .tft-page .mkx-card h4{font-weight:700}
+/* 데이터 탭 카드 칸 수: 화면 폭에 맞춰 자동(카드 최소 440) — 큰 모니터 3~4칸, 노트북 2칸, 좁으면 1칸. 그래프가 카드 폭대로 커지며 글자까지 커지던 것 막음(1칸일 때도 그래프 최대 640) */
+@media (min-width:961px){ body #g-root .tft-page .mkx-grid{grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px} }
+body #g-root .tft-page .mkx-card svg{max-width:640px}
 /* 복사한 전략 상세의 판단 기록도 AI 트레이딩 판단 기록과 같은 모양(색 태그 알약 + 날짜 / 문장 / 꺾쇠, 줄 사이 선, 펼친 내용 채운 상자) */
 body .tb-cfeed>details.tb-fc{border-top:1px solid rgba(255,255,255,.08)}
 body .tb-cfeed>.tb-fh+details.tb-fc{border-top:0}
