@@ -391,15 +391,24 @@ document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('
 document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x.dataset.f===FILTER); });
 render();
 openFromHash();
-/* 자동 새로고침: index.html·_screens.html 이 바뀌면 1.5초 안에 새 주소로 다시 연다 (브라우저가 예전 페이지를 붙잡아도 확실히 새로 받음).
+/* 바뀐 내용 알림: index.html·_screens.html 이 바뀌면 아래에 "반영하기" 버튼을 띄운다. 누르면 새 주소로 다시 열어 확실히 새로 받음(저절로 깜빡이지 않음).
    미리보기 서버(serve.ps1)의 /__ver 가 없으면 조용히 멈춘다 */
 (function(){
-  var last=null, off=false;
+  var last=null, off=false, el=null;
+  function show(){
+    if(el) return;
+    var st=document.createElement('style');
+    st.textContent='.upd{position:fixed;left:50%;bottom:24px;transform:translate(-50%,8px);opacity:0;z-index:99;display:flex;align-items:center;gap:12px;padding:8px 8px 8px 18px;border-radius:999px;background:#26282d;border:1px solid rgba(255,255,255,.06);box-shadow:0 8px 30px rgba(0,0,0,.45);font:14px Pretendard,system-ui,sans-serif;color:#fff;transition:opacity .3s ease,transform .3s cubic-bezier(.2,.8,.3,1)}.upd.on{opacity:1;transform:translate(-50%,0)}.upd button{height:36px;padding:0 16px;border:0;border-radius:999px;background:#00feff;color:#101113;font:600 13px Pretendard,system-ui,sans-serif;cursor:pointer;transition:background .2s ease}.upd button:hover{background:#5cfeff}';
+    document.head.appendChild(st);
+    el=document.createElement('div'); el.className='upd'; el.innerHTML='바뀐 내용이 있습니다<button type="button">반영하기</button>';
+    el.querySelector('button').onclick=function(){ location.replace(location.pathname+'?v='+Date.now()+location.hash); };
+    document.body.appendChild(el); requestAnimationFrame(function(){ el.classList.add('on'); });
+  }
   function tick(){
     if(off||document.hidden) return;
     fetch('__ver?'+Date.now(),{cache:'no-store'}).then(function(r){ if(!r.ok){ off=true; return null; } return r.text(); }).then(function(v){
       if(v==null) return;
-      if(last!==null&&v!==last){ location.replace(location.pathname+'?v='+Date.now()+location.hash); return; }
+      if(last!==null&&v!==last){ show(); }
       last=v;
     }).catch(function(){});
   }
