@@ -8124,6 +8124,18 @@ body #g-root .tft-page .tft-card.on{background:#25272c!important;box-shadow:inse
 .csel-m button svg{flex:none;color:#00feff;visibility:hidden}
 .csel-m button[aria-selected="true"]{color:#fff;font-weight:600}
 .csel-m button[aria-selected="true"] svg{visibility:visible}
+/* 터미널 아래 패널: 탭 글자 16 → 14(판단·대시보드 탭과 같게), 탭 아래 선 없앰 */
+body #g-root .tft-page .tft-bottom .nfxh-tabs{border-bottom:0}
+body #g-root .tft-page .tft-bottom .nfxh-tab{font-size:14px;padding:10px 12px}
+/* 탭 ↔ 현재 전략 간격 6 → 12 */
+body #g-root .tft-page .tft-bottom .tm-botbar{padding-top:12px;padding-bottom:12px}
+/* 카드 위 고르기 단추(현재 전략·전략 고르기): 카드 위 회색 단추 규칙 #313339, 호버 #3A3D44, 테두리 없음 */
+body #g-root .tft-page .tft-bottom .csel-t,body #g-root .tft-page .mks-btn{background:#313339;border-color:transparent}
+body #g-root .tft-page .tft-bottom .csel-t:hover,body #g-root .tft-page .mks-btn:hover{background:#3a3d44}
+/* 전략 고르기 창 카드: 종목·거래소 줄과 버전 14 → 13 */
+body #g-root .tft-page .tft-rail .tft-card .sy,body #g-root .tft-page .tft-rail .tft-card .ver{font-size:13px}
+/* 종목 선택 창 제목 굵게(다른 팝업 제목과 같게) */
+body .mkp .mkp-hd h3{font-weight:700}
 /* [공통 규칙 G36] 상태·태그 색 4종(어두운 바탕 + 같은 계열 글자): 빨강(오류) · 파랑(성공·종류) · 주황(확인 필요·위험) · 초록(참고). 토큰 --tag-*. 백테스트 분류 배지: 종류=파랑, 종목=초록, 상품·배수=주황 */
 #bt-root .bt-id-m b,#bt-root .bt-id-m span{font-weight:500}
 body #bt-root .bt-id-m>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
@@ -26364,7 +26376,13 @@ function mktData(){
 function mktRailMount(){ var br=document.getElementById('tft-brainin'); if(!br||br.querySelector('.mks-hd')) return; var all=[]; try{ all=tfTmAll(); }catch(e){} if(!all.length) return;
   var s=TF_TM.sel?tfTmOf(TF_TM.sel):null;
   br.insertAdjacentHTML('afterbegin','<div class="mks-hd"><button type="button" class="mks-btn" onclick="event.stopPropagation();mktRailTgl()" aria-haspopup="true"><span>전략 '+all.length+'개</span><b>'+gEsc(s?s.name:'전략 선택')+'</b>'+MKT_CHEV+'</button></div>'); }
-function mktRailTgl(on){ var pg=document.querySelector('#g-content .tft-page'); if(!pg) return; var o=on==null?!pg.classList.contains('rail-open'):!!on; pg.classList.toggle('rail-open',o); }
+function mktRailTgl(on){ var pg=document.querySelector('#g-content .tft-page'); if(!pg) return; var o=on==null?!pg.classList.contains('rail-open'):!!on; pg.classList.toggle('rail-open',o); mktRailFit(pg,o); }
+/* 전략 고르기 창 너비·왼쪽을 여는 단추("전략 6개 …")와 같게 맞춤 */
+function mktRailFit(pg,o){ var rl=pg.querySelector('.tft-rail'); if(!rl) return; rl.style.left=rl.style.right=rl.style.width='';
+  var b=[].filter.call(pg.querySelectorAll('.mks-btn'),function(e){ return e.offsetParent; })[0]; if(!o||!b) return;
+  var r=b.getBoundingClientRect(), p=getComputedStyle(rl).position==='fixed'?{left:0}:(rl.offsetParent||pg).getBoundingClientRect();
+  rl.style.left=(r.left-p.left)+'px'; rl.style.right='auto'; rl.style.width=r.width+'px'; }
+window.addEventListener('resize',function(){ var pg=document.querySelector('#g-content .tft-page.rail-open'); if(pg) mktRailFit(pg,true); });
 document.addEventListener('click',function(e){ var pg=document.querySelector('#g-content .tft-page.rail-open'); if(!pg) return; if(e.target.closest('.tft-rail')||e.target.closest('.mks-btn')) return; pg.classList.remove('rail-open'); });
 /* ── 붙이기 ── */
 function mktMount(){ var pg=document.querySelector('#g-content .tft-page'); if(!pg||!pg.querySelector('.tft-grid')) return;
