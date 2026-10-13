@@ -8011,6 +8011,12 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .px-perm{gap:20px}
 #g-root .px-perm li{align-items:center}
 #g-root .px-perm li svg{margin-top:0;width:20px;height:20px}
+/* 연결된 계정 줄: 글자 16 → 14, 거래소 이름·UID 굵게, 오른쪽 안내 13. PC 카드 안쪽 여백 24·26 → 16·20 */
+#g-root .px-acct{font-size:14px}
+#g-root .px-acct b{font-weight:700}
+#g-root .px-acct .num{color:#fff;font-weight:700}
+#g-root .px-acct em{font-size:13px;color:#9ea3ad}
+@media (min-width:901px){ #g-root .px-card:has(>.px-acct:only-child){padding:16px 20px} }
 #g-root .px-perm li>span{font-size:14px;line-height:1.5}
 #g-root .px-perm li>span b{font-size:16px;font-weight:700;margin-bottom:4px}
 @media (max-width:900px){ #g-root .px-perm li>span{font-size:13px} #g-root .px-perm li>span b{font-size:15px} } /* 모바일 권한 이름 15 · 설명 13 */
