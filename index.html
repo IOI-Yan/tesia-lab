@@ -5142,7 +5142,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
 <!-- auth modal (teth ai 로그인/회원가입) -->
 <div class="modal-bg" id="modal-auth" onclick="if(event.target===this)closeModal('modal-auth')">
   <div class="modal" role="dialog" aria-modal="true" aria-label="로그인 또는 회원가입">
-    <button class="au-x" onclick="closeModal('modal-auth')" aria-label="닫기">✕</button>
+    <button class="au-x" onclick="closeModal('modal-auth')" aria-label="닫기"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
 
     <!-- step 1: 시작 (Google / Apple / 이메일) -->
     <div class="au-step" id="au-start">
@@ -5273,7 +5273,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
   <button id="g-globe" onclick="glcOpen(event)" aria-label="언어 및 통화"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.5 3.9 5.5 3.9 9S14.6 18.5 12 21c-2.6-2.5-3.9-5.5-3.9-9S9.4 5.5 12 3z"/></svg><span class="gtip" id="g-globe-tip">언어 및 통화</span></button>
   <div id="glc-panel">
     <div class="grab2" onclick="glcClose()"></div>
-    <button class="x2" onclick="glcClose()" aria-label="닫기">✕</button>
+    <button class="x2" onclick="glcClose()" aria-label="닫기"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
     <div class="tabs2">
       <button class="on" id="glc-tab-l" onclick="glcTab(0,this)">언어</button>
       <button id="glc-tab-c" onclick="glcTab(1,this)">통화</button>
@@ -5440,7 +5440,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
   <!-- 의견 보내기 패널 -->
   <div id="fb-panel">
     <div id="fb-main" style="display:flex;flex-direction:column;flex:1;min-height:0">
-      <div class="fb-hd"><span id="fb-title">TETH에 의견 보내기</span><button class="fb-x" onclick="fbClose()" aria-label="닫기">✕</button></div>
+      <div class="fb-hd"><span id="fb-title">TETH에 의견 보내기</span><button class="fb-x" onclick="fbClose()" aria-label="닫기"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>
       <div class="fb-body">
         <label id="fb-lbl">의견을 설명해 주십시오. (필수)</label>
         <textarea id="fb-text" placeholder="이 의견을 제시한 이유를 알려주십시오."></textarea>
@@ -5457,7 +5457,7 @@ body.tm-helpon #teth-help-pop.on{display:block!important}
         <input type="file" id="fb-file" accept="image/*" hidden onchange="fbAttach(this)">
         <div class="fb-prev" id="fb-prev">
           <img id="fb-prev-img" alt="첨부된 스크린샷">
-          <button class="rm" onclick="fbRemove()" aria-label="첨부 제거">✕</button>
+          <button class="rm" onclick="fbRemove()" aria-label="첨부 제거"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button>
           <div class="nm" id="fb-prev-nm"></div>
         </div>
         <div class="fb-fine" id="fb-fine">일부 계정 및 시스템 정보가 TETH에 전송될 수 있습니다. 이 정보는 <a href="policies/#privacy" target="_blank" rel="noopener noreferrer">개인정보처리방침</a> 및 <a href="policies/#terms" target="_blank" rel="noopener noreferrer">서비스 약관</a>에 따라 문제를 해결하고 서비스를 개선하는 데 사용됩니다. 이메일로 추가 정보와 소식을 전달해 드릴 수 있습니다.</div>
@@ -16340,7 +16340,7 @@ function tfSS3Dlg(title,html,wide){
   TF_SS3_TRIG=document.activeElement;
   var w=document.createElement('div'); w.className='ss3-dlgw'; w.id='ss3-dlgw';
   w.innerHTML='<div class="ss3-dlg'+(wide?' wide':'')+'" role="dialog" aria-modal="true" aria-labelledby="ss3-dlg-t"><div class="din">'
-    +'<div class="dh2"><b id="ss3-dlg-t">'+gEsc(title)+'</b><button type="button" class="dx" aria-label="닫기" onclick="tfSS3DlgClose()">✕</button></div>'
+    +'<div class="dh2"><b id="ss3-dlg-t">'+gEsc(title)+'</b><button type="button" class="dx" aria-label="닫기" onclick="tfSS3DlgClose()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
     +html+'</div></div>';
   w.addEventListener('click',function(e){ if(e.target===w) tfSS3DlgClose(); });
   document.body.appendChild(w);
@@ -16671,7 +16671,7 @@ function tfSS3ObRender(){
       +'<button type="button" class="wbtn" onclick="tfSS3Publish()">공개하고 랭킹 등록하기</button></div>';
   }
   var w=$('ss3-dlgw');
-  if(w){ var din=w.querySelector('.din'); din.innerHTML='<div class="dh2"><b id="ss3-dlg-t">내 전략 공유하기</b><button type="button" class="dx" aria-label="닫기" onclick="tfSS3DlgClose()">✕</button></div>'+steps+body; }
+  if(w){ var din=w.querySelector('.din'); din.innerHTML='<div class="dh2"><b id="ss3-dlg-t">내 전략 공유하기</b><button type="button" class="dx" aria-label="닫기" onclick="tfSS3DlgClose()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'+steps+body; }
   else tfSS3Dlg('내 전략 공유하기',steps+body,true);
 }
 function tfSS3StratP(t,s0){
@@ -19821,7 +19821,7 @@ function tfAcSheetView(kind,opt){
   var sc=document.createElement('div'); sc.className='ac-scrim'; sc.id='ac-scrim'; sc.onclick=tfAcClose;
   var m=document.createElement('div'); m.className='ac-sheet'; m.id='ac-sheet';
   m.setAttribute('role','dialog'); m.setAttribute('aria-modal','true'); m.setAttribute('aria-label','TETH 활성화');
-  m.innerHTML='<button class="ac-x" onclick="tfAcClose()" aria-label="닫기">✕</button><div class="ac-body" id="ac-body">'+tfAcBodyHtml()+'</div>';
+  m.innerHTML='<button class="ac-x" onclick="tfAcClose()" aria-label="닫기"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button><div class="ac-body" id="ac-body">'+tfAcBodyHtml()+'</div>';
   var host=$('g-root')||document.body;
   host.appendChild(sc); host.appendChild(m);
   if(!window.TF_AC_ESC){ window.TF_AC_ESC=true; document.addEventListener('keydown',function(ev){ if(ev.key==='Escape'&&$('ac-sheet')) tfAcClose(); }); }
@@ -25234,7 +25234,7 @@ function skcSheet(ne){
   var cp=cpState(), min=mkMin(s2), lev=skcLev(s2); TF_MKF.min=min;
   var w=document.createElement('div'); w.className='mk-follow-w skc-w'; w.id='mk-follow';
   w.innerHTML='<div class="mk-follow skc" role="dialog" aria-modal="true" aria-labelledby="mk-f-t">'
-    +'<div class="skc-body">'+'<div class="skc-hd"><h2 id="mk-f-t">전략 복사</h2><button type="button" class="mk-f-x" aria-label="닫기" onclick="mkFollowClose()">✕</button></div>'
+    +'<div class="skc-body">'+'<div class="skc-hd"><h2 id="mk-f-t">전략 복사</h2><button type="button" class="mk-f-x" aria-label="닫기" onclick="mkFollowClose()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
     +'<div class="skc-strat"><div class="nm">'+mkGlyph(s2,32)+'<div><b>'+gEsc(mkTitle(s2))+'</b><span>'+gEsc(skcSub(s2))+'</span></div></div>'
     +(lev?'<p class="skc-lev">현재 레버리지는 <span class="num">'+lev+'배</span>입니다. 원본에서 바꾸면 내 복사에도 적용됩니다.</p>':'')+'</div>'
     +'<div class="skc-fld" id="cps-amt-fld"><label for="cps-amt">복사 예산</label>'
@@ -25976,7 +25976,7 @@ function mktAll(){ if(MKT.all&&Date.now()-MKT.allAt<15000) return Promise.resolv
 function mktPick(){
   mktPickClose(); var ov=document.createElement('div'); ov.id='mkp'; ov.className='mkp-ov';
   ov.addEventListener('click',function(e){ if(e.target===ov) mktPickClose(); });
-  ov.innerHTML='<div class="mkp" role="dialog" aria-label="종목 선택"><div class="mkp-hd"><div><h3>종목 선택</h3><p>거래할 종목을 검색해 고릅니다.</p></div><button type="button" class="mkp-x" aria-label="닫기" onclick="mktPickClose()">✕</button></div>'
+  ov.innerHTML='<div class="mkp" role="dialog" aria-label="종목 선택"><div class="mkp-hd"><div><h3>종목 선택</h3><p>거래할 종목을 검색해 고릅니다.</p></div><button type="button" class="mkp-x" aria-label="닫기" onclick="mktPickClose()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
     +'<label class="mkp-q"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="mkp-q" type="search" placeholder="종목 검색" autocomplete="off" value="'+gEsc(MKT.q)+'"></label>'
     +'<div class="mkp-tabs"><div class="mkp-seg" id="mkp-src">'+[['all','무기한'],['fav','즐겨찾기']].map(function(x){ return '<button type="button" data-v="'+x[0]+'" class="'+(MKT.src===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div>'
     +'<div class="mkp-seg" id="mkp-cat">'+MKT_CATS.map(function(x){ return '<button type="button" data-v="'+x[0]+'" class="'+(MKT.cat===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div></div>'
@@ -26743,7 +26743,7 @@ var QA_PAGES=[
 var QA_OPEN={};
 try{ QA_OPEN=JSON.parse(localStorage.getItem('teth.qa.open')||'{}'); }catch(e){}
 function qaPanelHtml(){
-  return '<div class="qa2-hd"><b>화면 상태</b><button type="button" class="qa2-x" aria-label="닫기" onclick="qaPanelTgl()">✕</button></div>'
+  return '<div class="qa2-hd"><b>화면 상태</b><button type="button" class="qa2-x" aria-label="닫기" onclick="qaPanelTgl()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
     +'<p class="qa2-note">단추를 누르면 계정 상태를 맞추고 그 화면으로 이동합니다.</p><div class="qa2-cur" id="qa2-cur"></div>'
     +QA_PAGES.map(function(pg,pi){ var open=QA_OPEN[pi]!==false; return '<details class="qa2-sec"'+(open?' open':'')+' ontoggle="qaSecTgl('+pi+',this.open)"><summary>'+pg[0]+'<i>'+pg[1].length+'</i></summary><div class="qa2-list">'+pg[1].map(function(it,ii){ return '<button type="button" class="qa2-it" onclick="qaRun('+pi+','+ii+')">'+it[0]+'</button>'; }).join('')+'</div></details>'; }).join('')
     +'<details class="qa2-sec"><summary>계정 시나리오(과금 11케이스)<i>11</i></summary><div class="qa2-list">'+TF_QA_PRESETS.map(function(x){ return '<button type="button" class="qa2-it" onclick="tfQaPreset(\''+x.id+'\');qaMark(\''+gEsc(x.label)+'\')">'+x.label+'</button>'; }).join('')+'</div></details>'
