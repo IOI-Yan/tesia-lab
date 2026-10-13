@@ -8004,6 +8004,8 @@ body #g-root .tfbk-drop{background:#25272C;border:1px solid rgba(255,255,255,.06
 body #g-root .ss3-search{background:#25272C;border:1px solid rgba(255,255,255,.06)}
 body #g-root .skf-sort select:hover,body #g-root .tfbk-drop:hover,body #g-root .ss3-search:hover{background-color:#2f3137}
 body #g-root .ss3-search:focus-within{border-color:#00feff}
+body #g-root .mk3-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;width:fit-content}
+@media (max-width:900px){ body #g-root .mk3-seg{width:100%;box-sizing:border-box} body #g-root .mk3-seg button{padding:0 6px} body #g-root .mk3-flt .ss3-search{flex:1 0 100%} } /* 모바일: 세그먼트 칸 너비 똑같이·글자 가운데, 검색 칸은 한 줄 전체 */
 /* [공통 규칙 G31] 세그먼트 컨트롤 고른 칸이 미끄러지듯 옮겨감(백테스트 기간·금액과 같음) — 복사 창·종목 선택·설정 등 공통 */
 .seg-anim{position:relative}
 .seg-anim>button{position:relative;z-index:1}
