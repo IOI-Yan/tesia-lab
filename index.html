@@ -9295,6 +9295,9 @@ details.cq-det[open]>summary .z::after{transform:translateY(-30%) rotate(-135deg
 #bt-root .bt-tech-g>div{grid-template-columns:minmax(0,1fr) auto;align-items:baseline;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.06)}
 #bt-root .bt-tech-g dt,#bt-root .bt-tech .mkd-term{font-size:14px;color:#cfd2d6;text-align:left;line-height:1.5}
 #bt-root .bt-tech-g dd{font-size:14px;font-weight:600;color:#fff;text-align:right;white-space:nowrap;line-height:1.5}
+/* 마지막 줄 아래 선은 없앰: 묶음 아래 선과 겹쳐 두 줄로 보이던 것. PC 두 칸이면 마지막 줄 왼쪽 칸도 */
+#bt-root .bt-tech-g>div:last-child{border-bottom:0}
+@media (min-width:641px){ #bt-root .bt-tech-g>div:nth-last-child(2):nth-child(odd){border-bottom:0} }
 /* 전략 이름·설명: 이름 28/700, 설명 15px */
 #bt-root .bt-id-t h2{font-size:28px;font-weight:700;letter-spacing:-.01em}
 #bt-root .bt-id-t p{margin-top:8px;font-size:15px;line-height:1.55;color:#cfd2d6} /* 중성 회색 #cfd2d6 → 같은 밝기의 푸른 회색 (사용자 지시) */
