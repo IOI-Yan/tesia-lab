@@ -8283,7 +8283,31 @@ body #g-root .tft-page .tgk.k-tm{background:var(--tag-orange-bg);color:var(--tag
 /* 완료된 거래 카드 머리(LONG · BTC · 손익): 세로 가운데 정렬 */
 body #g-root .tft-page .tft-ct .h4{display:flex;align-items:center}
 /* 완료된 거래 카드 이유 문장: #CFD2D6 → #ECECF1 (값과 같은 밝기) */
-body #g-root .tft-page .tft-ct .wy{color:#ececf1}
+body #g-root .tft-page .tft-ct .wy{color:#ececf1!important}
+/* 거래 추적 창: 글자 키우고 줄 맞춤 — 단계 이름 16/600 흰색, 값 14 #CFD2D6, 설명 14 #9EA3AD, 번호 동그라미 24(#25272C)를 첫 줄 가운데에, 줄 위아래 16 */
+body .tft-lc .lc1{gap:14px;padding:16px 0;align-items:center}
+body .tft-lc .n2{width:24px;height:24px;font-size:12px;font-weight:600;background:#25272C;border:0;color:#cfd2d6}
+body .tft-lc .b2 b{font-size:16px;font-weight:600;line-height:24px;color:#fff}
+body .tft-lc .b2 .v2{margin-left:8px;font-size:14px;line-height:24px;color:#cfd2d6}
+body .tft-lc .b2 p{margin:4px 0 0;font-size:14px;line-height:1.55;color:#9ea3ad}
+/* 팝업(ss3-dlg, 거래 추적 등)을 기존 확인 팝업과 같은 틀로: 바탕 #1B1C1F, 모서리 22, 안쪽 24, 제목 20/700, 닫기 = 종목 선택 창과 같은 32 동그라미(Lucide x 20, #CFD2D6, 호버 #2E3036) */
+body .ss3-dlg .din{padding:24px;border-radius:22px}
+body .ss3-dlg{border-radius:22px}
+body .ss3-dlg .dh2{margin-bottom:12px;gap:12px}
+body .ss3-dlg .dh2 b{font-size:20px;font-weight:700}
+body .ss3-dlg .dx{display:inline-flex;align-items:center;justify-content:center;flex:none;width:32px;height:32px;padding:0;margin:-4px -6px -4px 0;border-radius:999px;color:#cfd2d6;transition:background .15s ease,color .15s ease}
+body .ss3-dlg .dx:hover{background:#2E3036;color:#fff}
+/* 판단 기록 종류 태그: 모서리 8 → 알약(100), 좌우 8 → 10 */
+body #g-root .tft-page .tb-rl .tb-k{border-radius:100px;padding:0 10px}
+/* 팝업 닫기: 열릴 때 생기는 파란 포커스 테두리 없앰(키보드로 옮길 때만 흰 테두리), 거래 추적 마지막 줄 선 없앰, 최종 결과 손익 색 */
+body .ss3-dlg .dx:focus{outline:none;box-shadow:none}
+body .ss3-dlg .dx:focus-visible{outline:2px solid rgba(255,255,255,.5);outline-offset:2px}
+body .tft-lc .lc1:last-child{border-bottom:0;padding-bottom:0}
+body .tft-lc .v2.up{color:#2fb98a}
+body .tft-lc .v2.dn{color:#f0566a}
+/* 팝업(ss3-dlg) 바깥 테두리: 한쪽만 하얗게 비치던 1px 그라데이션 테두리 → 없앰. 기존 팝업처럼 그림자 + 테두리 6% */
+body .ss3-dlg{background:none!important;padding:0!important;box-shadow:0 16px 48px rgba(0,0,0,.45)}
+body .ss3-dlg .din{border:1px solid rgba(255,255,255,.06)}
 body #g-root .tft-page .tft-ct .h4 .sd{line-height:14px;padding:2px 6px}  /* 완료된 거래 카드 LONG: 높이 22 → 18 (종목·손익과 균형) */
 /* 대시보드 구역 제목(현재 포지션·최근 거래): 왼쪽 20 → 12, 아래 숫자 칸·표 글자 시작선(12)과 맞춤 */
 body #g-root .tft-page .tft-brain .tft-fsec:has(+.tft-tblw),body #g-root .tft-page .tft-brain .tft-fsec:has(+.tft-empty),body #g-root .tft-page .tft-brain .tft-fsec:has(+.tft-posb){padding-left:12px}
@@ -15538,7 +15562,7 @@ function tfTmTradeDlg(key,entryI){
     ['최종 결과',tfTmWonS(t2.krw)+' ('+tfTmPct(t2.pnl*100,1)+')','수수료 왕복 0.2% 반영']
   ];
   tfSS3Dlg(s.asset+' LONG 거래 추적','<div class="tft-lc num">'
-    +steps.map(function(sp,i2){ return '<div class="lc1"><span class="n2">'+(i2+1)+'</span><div class="b2"><b>'+sp[0]+'</b><span class="v2">'+gEsc(sp[1])+'</span><p>'+gEsc(sp[2])+'</p></div></div>'; }).join('')
+    +steps.map(function(sp,i2){ return '<div class="lc1"><span class="n2">'+(i2+1)+'</span><div class="b2"><b>'+sp[0]+'</b><span class="v2'+(/^\+/.test(sp[1])?' up':/^[-−]/.test(sp[1])?' dn':'')+'">'+gEsc(sp[1])+'</span><p>'+gEsc(sp[2])+'</p></div></div>'; }).join('')
     +'</div>',true);
 }
 function tfTmVerDlg(key){
