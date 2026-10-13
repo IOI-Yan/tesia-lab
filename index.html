@@ -8262,6 +8262,27 @@ body #g-root .mki .mki-lk{display:inline-flex;align-items:center;gap:6px;text-de
 body #g-root .mki .mki-lk>svg:first-child{flex:none;color:#9ea3ad}
 body #g-root .mki .mki-lk .mki-out{flex:none;color:#8d9199;transition:transform .15s ease,color .15s ease}
 body #g-root .mki .mki-lk:hover .mki-out{color:#fff;transform:translate(1px,-1px)}
+/* 판단 카드 "완료된 거래" 표 전체 줄임: 머리 14 → 12, 본문 16 → 13, 칸 여백 12 → 10/12 */
+body #g-root .tft-page .tft-brain .tft-tbl th{font-size:12px;padding:8px 12px}
+body #g-root .tft-page .tft-brain .tft-tbl td{font-size:13px;padding:10px 12px}
+/* 구역 제목 옆 작은 설명(29건 중 최근 12, 시뮬레이션 등): 13 · 400 · #8D9199 */
+body #g-root .tft-page .tft-fsec small{font-size:13px;font-weight:400;color:#8d9199;margin-left:6px}
+/* "TETH의 생각" 글자: #8D9199 → 푸른빛이 더 도는 #9EA3AD (위 운용 줄과 같은 회색) */
+body #g-root .tft-page .tb-th .tb-thl{color:#9ea3ad}
+/* 완료된 거래 카드: 글자 9.5~12.5 → 읽히게(이름 12 · 값 14/600 · 이유 13), 바탕은 놓인 바탕보다 한 단계 밝게(PC 카드 위 #1E2024 · 모바일 페이지 위 #17181B), 테두리 없음, 모서리 12, 안쪽 16 */
+body #g-root .tft-page .tft-ct{background:#1E2024;border:0;border-radius:12px;padding:16px;margin-bottom:8px}
+@media (max-width:960px){ body #g-root .tft-page .tft-ct{background:#17181B} }
+body #g-root .tft-page .tft-ct .h4{gap:8px;margin-bottom:12px}
+body #g-root .tft-page .tft-ct .h4>b{font-size:14px;font-weight:700;color:#fff}
+body #g-root .tft-page .tft-ct .h4>span:last-child{font-size:14px}
+body #g-root .tft-page .tft-ct .h4>span:last-child small{font-size:12px;font-weight:600}
+body #g-root .tft-page .tft-ct .g4{gap:12px 16px;margin-bottom:12px}
+body #g-root .tft-page .tft-ct .g4 small{font-size:12px;color:#8d9199}
+body #g-root .tft-page .tft-ct .g4 b{font-size:14px;font-weight:600;color:#ececf1}
+body #g-root .tft-page .tft-ct .wy{font-size:13px;color:#cfd2d6;line-height:1.55;margin-top:10px}
+body #g-root .tft-page .tft-ct .wy small{display:block;font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:#8d9199;margin-bottom:2px}
+body #g-root .tft-page .tft-ct .dt2{display:inline-flex;align-items:center;gap:2px;margin-top:12px;padding:0;border:0;background:none;font:inherit;font-size:13px;color:#8d9199;cursor:pointer;transition:color .15s ease}
+body #g-root .tft-page .tft-ct .dt2:hover{color:#b0b4bb}
 @media (max-width:960px){ body #g-root .mki .mki-c>h4:first-child{margin-top:28px} }  /* 모바일은 한 줄로 쌓여서 첫 제목도 위 목록과 띄움 */
 /* 차트·정보·데이터 세그먼트: 알약이라 둥근 끝 때문에 안쪽으로 들어가 보여서 왼쪽 여백 12 → 8 (위 "운용" 글자 선 14에 시각 보정) */
 @media (min-width:961px){ body #g-root .tft-page .mkt-tabs{padding-left:8px} }
@@ -15447,9 +15468,9 @@ function tfTmDone(s,c){
         +'<span class="'+tfTmSign(t2.krw)+'" style="margin-left:auto;font-weight:700">'+tfTmWonS(t2.krw)+' <small>('+tfTmPct(t2.pnl*100,1)+')</small></span></div>'
         +'<div class="g4"><span><small>진입</small><b>$'+Math.round(tfSPx(s)[t2.entry]).toLocaleString()+'</b></span><span><small>청산</small><b>$'+Math.round(xp).toLocaleString()+'</b></span>'
         +'<span><small>보유</small><b>'+(t2.exit-t2.entry)+'봉</b></span><span><small>수수료</small><b>'+tfTmWon(t2.capB*0.002)+'</b></span></div>'
-        +'<div class="wy"><small>WHY ENTERED</small>'+gEsc(evE?evE.txt:'진입 조건 충족')+'</div>'
-        +'<div class="wy"><small>WHY EXITED</small>'+gEsc(evX?evX.txt:'청산 규칙 실행')+'</div>'
-        +'<button type="button" class="dt2" onclick="tfTmTradeDlg(&quot;'+s.key+'&quot;,'+t2.entry+')">전체 판단 기록 →</button></div>';
+        +'<div class="wy"><small>진입 이유</small>'+gEsc(evE?evE.txt:'진입 조건 충족')+'</div>'
+        +'<div class="wy"><small>정리 이유</small>'+gEsc(evX?evX.txt:'청산 규칙 실행')+'</div>'
+        +'<button type="button" class="dt2" onclick="tfTmTradeDlg(&quot;'+s.key+'&quot;,'+t2.entry+')">전체 판단 기록<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></div>';
     }).join('');
 }
 /* 거래 라이프사이클 상세 (spec AA) */
