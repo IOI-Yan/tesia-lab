@@ -7211,7 +7211,10 @@ body.pl-page #g-chead{background:transparent}
 body.pl-page #g-appbanner{display:none!important}
 .pl{max-width:1080px;margin:0 auto;padding:8px 24px 100px;color:#ececf1;font-weight:400}
 .pl-head{text-align:center;margin:0 0 26px}
-.pl-head h1{margin:0;font-size:32px;font-weight:400;letter-spacing:-.01em;color:#fff}
+.pl-head h1{margin:0;font-size:32px;font-weight:700;letter-spacing:-.01em;color:#fff}
+/* 플랜 카드 제목·가격 굵게 (사용자 지시) */
+#g-root .pl-h{font-weight:700}
+#g-root .pl-grad{font-weight:700}
 .pl-need{margin:10px 0 0;font-size:15px;color:#b0b4bb}
 .pl-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:27px;align-items:stretch}
 .pl-grid.has-bt{grid-template-columns:repeat(3,minmax(0,1fr))}
@@ -7297,6 +7300,14 @@ body.pl-page #g-appbanner{display:none!important}
 @media (max-width:1100px){ .pl-grid.has-bt{grid-template-columns:repeat(2,minmax(0,1fr))} .pl-bt{grid-column:1/-1} .pl-cogrid{grid-template-columns:minmax(0,1fr) 380px;gap:32px} }
 @media (max-width:900px){
   .pl{padding:4px 5px 110px}
+  body:not(.g-inchat) .pl{padding-top:60px} /* 모바일 위쪽 흐린 띠(60px) 아래에서 시작: "거래소 연결" 제목이 띠에 가려 안 보이던 것 */
+  /* 모바일 플랜 카드 글자 정리(사용자 지시): 안내·카드 이름 13px, 포함된 기능 묶음은 한 단계 작게 */
+  #g-root .pl-need{font-size:13px}
+  #g-root .pl-lb{font-size:13px}
+  #g-root .pl-sub{font-size:14px}
+  #g-root .pl-items li span{font-size:14px}
+  #g-root .pl-items li svg{width:18px;height:18px}
+  #g-root .pl-foot{font-size:12px}
   .pl-head{margin-bottom:16px}.pl-head h1{font-size:26px}
   .pl-grid,.pl-grid.has-bt{grid-template-columns:1fr;gap:14px}
   .pl-bt{grid-column:auto;order:0}.pl-hi{order:1}.pl-card:not(.pl-hi):not(.pl-bt){order:2}
@@ -8255,7 +8266,7 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 /* ═══ 파운더 지적(백테스트 아래쪽 난잡함) ═══ */
 /* 분류 메타: 작은 회색 알약 셋 */
 #bt-root .bt-id-m{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-#bt-root .bt-id-m b,#bt-root .bt-id-m span{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:999px;background:#25272c;font-size:13px;font-weight:400;color:#cfd2d6}
+#bt-root .bt-id-m b,#bt-root .bt-id-m span{display:inline-flex;align-items:center;height:28px;padding:0 12px;border-radius:12px;background:#25272c;font-size:13px;font-weight:400;color:#cfd2d6}
 /* 판단 기록 숫자 칸 → 한 줄 필터 알약 */
 #bt-root .bt-s4{display:flex!important;flex-wrap:wrap;gap:8px;grid-template-columns:none!important;margin:12px 0 8px;overflow:visible}
 #bt-root .bt-s4 button{display:inline-flex;align-items:baseline;gap:6px;height:36px;padding:0 14px;border-radius:999px!important;border:1px solid rgba(255,255,255,.14)!important;background:transparent!important;box-shadow:none!important;min-width:0;flex:none;width:auto}
