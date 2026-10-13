@@ -3276,7 +3276,7 @@ body.tf-route #teth-help{bottom:88px}
 /* PC 채팅 글자 키움 (사용자 지시) */
 @media (min-width:861px){
   .g-umsg{font-size:16px;padding:12px 18px}
-  .g-amsg{font-size:17px}
+  .g-amsg{font-size:16px}
   .g-amsg h4{font-size:18px}
   .g-amsg table{font-size:15px}
   .gcl-badge{font-size:13px}
@@ -7116,8 +7116,10 @@ body:not(.st-full) .stg-tg{display:none}
 /* TETH에게 분석시키기: 카드 말풍선과 화면 캡처 */
 .an-umsg{max-width:min(440px,92%);padding:8px;background:transparent}
 .an-card .mk-card{margin:0;pointer-events:none}
+.an-card .mk-card.skf{width:360px;max-width:100%;box-sizing:border-box} /* 말풍선 안 전략 카드는 폭 고정: 내용만큼 줄어 로고가 이름에 붙던 것 */
 .an-card .mk3-t{cursor:default}
 .an-line{margin:8px 0 0 auto;width:fit-content;background:var(--g2);border-radius:18px;padding:10px 16px;font-size:14px;color:var(--gt)}
+@media (min-width:861px){ .an-line{font-size:16px} } /* PC: 다른 내 메시지와 같은 16px */
 .an-shot{display:block;width:100%;max-width:560px;height:auto;border-radius:10px;border:1px solid rgba(255,255,255,.12);margin:4px 0 2px;box-shadow:0 8px 30px rgba(0,0,0,.4)}
 .an-frame{visibility:visible}
 html.an-inner #tf-devbtn,html.an-inner #tf-devpanel,html.an-inner .g-terms{display:none!important}
