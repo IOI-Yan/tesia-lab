@@ -26951,7 +26951,7 @@ function tbText(){ try{ var b=document.querySelector('#g-content .tft-brain'); i
         if(getComputedStyle(np).position==='static') np.style.position='relative';
         var g=document.createElement('i'); g.setAttribute('aria-hidden','true'); g.style.cssText='position:absolute;left:0;top:0;border-radius:999px;background:#313339;pointer-events:none;z-index:0';
         np.insertBefore(g,np.firstChild); [].forEach.call(np.querySelectorAll('button'),function(b){ b.style.position='relative'; b.style.zIndex='1'; }); nb.style.background='transparent';
-        var a=g.animate([{transform:'translate('+from.x+'px,'+from.y+'px)',width:from.w+'px',height:from.h+'px'},{transform:'translate('+nb.offsetLeft+'px,'+nb.offsetTop+'px)',width:nb.offsetWidth+'px',height:nb.offsetHeight+'px'}],{duration:260,easing:'cubic-bezier(.2,.8,.3,1)',fill:'forwards'});
+        var a=g.animate([{transform:'translate('+from.x+'px,'+from.y+'px)',width:from.w+'px',height:from.h+'px'},{transform:'translate('+nb.offsetLeft+'px,'+nb.offsetTop+'px)',width:nb.offsetWidth+'px',height:nb.offsetHeight+'px'}],{duration:380,easing:'cubic-bezier(.4,0,.2,1)',fill:'forwards'}); /* 기간 칩은 칩 사이가 멀어 0.26초는 빨라 보여서 0.38초 + 부드러운 가속·감속 */
         var done=function(){ nb.style.background=''; g.remove(); }; a.finished.then(done,done);
         var nr=nb.offsetLeft+nb.offsetWidth, vis=np.scrollLeft+np.clientWidth; if(nr>vis||nb.offsetLeft<np.scrollLeft) np.scrollTo({left:Math.max(0,nb.offsetLeft-(np.clientWidth-nb.offsetWidth)/2),behavior:'smooth'}); } } }catch(e){}
     return r; };
