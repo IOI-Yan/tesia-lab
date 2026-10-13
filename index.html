@@ -8224,6 +8224,11 @@ body #g-root .tft-page details.tb-fc>.tb-fr .tm-out small{color:#6e737b!importan
 body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>span{font-weight:600}
 /* "판단 기록" 구역 제목: Pretendard 16 · 400 → 700 */
 body #g-root .tft-page .tft-fsec{font-weight:700}
+/* "이전 판단 더 보기": 목록 맨 끝, 작은 보조 링크(13 · #8D9199 → 호버 #B0B4BB), 위아래 여백 16 */
+body #g-root .tft-page .tft-more{width:auto;margin:16px auto;font-size:13px;color:#8d9199;text-decoration-color:rgba(141,145,153,.5);transition:color .15s ease}
+body #g-root .tft-page .tft-more:hover{color:#b0b4bb}
+/* 판단 상태 제목(진입 조건을 기다리고 있습니다 등): 20 → 18 */
+body #g-root .tft-page .tm-status .tb-t{font-size:18px}
 /* PC 판단 카드: 판단 기록만 남은 틈(24px)에서 스크롤되던 것 → 카드 전체가 한 번에 스크롤. 위 "전략 6개"·탭과 아래 바꾸기·입력줄은 제자리에 붙어 있음 */
 @media (min-width:961px){
   body #g-root .nfxh-wrap.tft-page .tft-brainin{overflow-y:auto;scrollbar-width:none}
@@ -26903,13 +26908,14 @@ function tbRuleLog(){ try{ var box=document.getElementById('tft-bbody'); if(!box
     cs.forEach(function(cd){ cd.remove(); }); var w=document.createElement('div'); w.className='tb-feed tb-rfeed'; w.innerHTML=h; fx.insertBefore(w,fx.firstChild); });
   var cards=[].slice.call(box.querySelectorAll('.tm-card.rule')).filter(function(c){ return !c.closest('.tm-foldx'); }); if(!cards.length){ box.setAttribute('data-tb','1'); return; }
   var groups=[]; cards.forEach(function(cd){ var res=cd.querySelector('.tm-res'), cls=res?(['ho','wa','en','tp','sl','tm'].filter(function(k){ return res.classList.contains(k); })[0]||'ho'):'ho', d=(cd.querySelector('.tm-t')||{}).textContent||'';
-    var g=groups[groups.length-1]; if(g&&g.cls===cls&&(cls==='ho'||cls==='wa')){ g.n++; g.from=d; g.inner=g.inner||cd.querySelector('.tm-rows'); return; }
-    groups.push({cls:cls,n:1,to:d,from:d,el:cd}); });
-  var html=groups.map(function(g){ var m=TB_RULE[g.cls]||TB_RULE.ho, rows=g.el.querySelector('.tm-rows'), outs=[].map.call(g.el.querySelectorAll('.tm-out'),function(o){ return o.outerHTML; }).join('');
+    var g=groups[groups.length-1]; if(g&&g.cls===cls&&(cls==='ho'||cls==='wa')){ g.n++; g.from=d; g.inner=g.inner||cd.querySelector('.tm-rows'); g.last=cd; return; }
+    groups.push({cls:cls,n:1,to:d,from:d,el:cd,last:cd}); });
+  var hs=groups.map(function(g){ var m=TB_RULE[g.cls]||TB_RULE.ho, rows=g.el.querySelector('.tm-rows'), outs=[].map.call(g.el.querySelectorAll('.tm-out'),function(o){ return o.outerHTML; }).join('');
     var when=g.n>1?g.from.replace(/^\d{4}\. /,'')+' ~ '+g.to.replace(/^\d{4}\. /,''):g.to;
-    return '<details class="tb-fc tb-rl"><summary><span class="tb-ft num">'+gEsc(when)+'</span><b class="tb-k k-'+g.cls+'">'+m[0]+(g.n>1?' '+g.n+'회':'')+'</b><span class="tb-fs">'+m[1]+' <u class="tb-fx">판단 전문</u></span></summary><div class="tb-fr">'+(rows?rows.outerHTML:'')+outs+'</div></details>'; }).join('');
-  cards.forEach(function(cd){ cd.remove(); });
-  var w=document.createElement('div'); w.className='tb-feed tb-rfeed'; w.innerHTML=html; box.appendChild(w); box.setAttribute('data-tb','1'); }catch(e){} }
+    return '<details class="tb-fc tb-rl"><summary><span class="tb-ft num">'+gEsc(when)+'</span><b class="tb-k k-'+g.cls+'">'+m[0]+(g.n>1?' '+g.n+'회':'')+'</b><span class="tb-fs">'+m[1]+' <u class="tb-fx">판단 전문</u></span></summary><div class="tb-fr">'+(rows?rows.outerHTML:'')+outs+'</div></details>'; });
+  /* 바꾼 줄은 원래 카드가 있던 자리에 넣음(묶음·"이전 판단 더 보기"와 날짜 순서가 섞이지 않게). 붙어 있던 카드끼리는 한 목록으로 */
+  var w=null, prevLast=null; groups.forEach(function(g,k){ if(!w||g.el.previousElementSibling!==prevLast){ w=document.createElement('div'); w.className='tb-feed tb-rfeed'; g.el.parentNode.insertBefore(w,g.el); } w.insertAdjacentHTML('beforeend',hs[k]); prevLast=g.last; });
+  cards.forEach(function(cd){ cd.remove(); }); box.setAttribute('data-tb','1'); }catch(e){} }
 (function(){ var t=0; var go=function(){ clearTimeout(t); t=setTimeout(function(){ var b=document.getElementById('tft-bbody'); if(b&&b.getAttribute('data-tb')==='1'&&b.querySelector('.tm-card.rule')) b.removeAttribute('data-tb'); tbRuleLog(); },120); };
   try{ new MutationObserver(go).observe(document.getElementById('g-content'),{childList:true,subtree:true}); }catch(e){} })();
 TB_TXT.push(['거래만','거래 기록']);
