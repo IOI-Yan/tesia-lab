@@ -8212,6 +8212,9 @@ body #g-root .tft-page .tb-rfeed>details.tb-rl>summary .tb-fx,body #g-root .tft-
 body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary{grid-template-columns:max-content 1fr;grid-template-areas:none;row-gap:0;align-items:baseline;padding-right:28px}
 body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary .tb-ft{grid-area:auto;grid-column:1}
 body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary .tb-fs{grid-area:auto;grid-column:2}
+/* 바꾸기·질문 칩 작게: 높이 36 → 30, 글자 14 → 13, 좌우 14 → 12, "바꾸기" 14 → 13 */
+body #g-root .tft-page .tft-comp .tm-manage button,body #g-root .tft-page .tft-comp .chips button{height:30px;padding:0 12px;font-size:13px}
+body #g-root .tft-page .tft-comp .tm-manage small{font-size:13px}
 /* PC 판단 카드: 판단 기록만 남은 틈(24px)에서 스크롤되던 것 → 카드 전체가 한 번에 스크롤. 위 "전략 6개"·탭과 아래 바꾸기·입력줄은 제자리에 붙어 있음 */
 @media (min-width:961px){
   body #g-root .nfxh-wrap.tft-page .tft-brainin{overflow-y:auto;scrollbar-width:none}
