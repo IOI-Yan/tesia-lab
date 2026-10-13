@@ -1121,7 +1121,7 @@ body.kb-open .g-home-chips{opacity:0;transform:translateY(16px);pointer-events:n
 .fbt{background:rgba(128,128,128,.08);border:1px solid var(--gl);border-radius:10px;color:var(--gt);font-size:13px;font-family:inherit;padding:9px 12px;resize:vertical;outline:none;width:100%}
 .fbt:focus{border-color:var(--gb2,#8fb2ff)}
 .g-amsg p{margin:0 0 10px}
-.g-amsg .tai-txt>*:last-child,.g-amsg>*:last-child{margin-bottom:0} .g-nextcol+.g-acts{margin-top:-4px} /* 마지막 문단의 10px 이 아이콘 줄 위에 얹혀 묶임이 흐려진다 (사용자 지시) */
+.g-amsg .tai-txt>*:last-child,.g-amsg>*:last-child{margin-bottom:0} .g-thread>:not(.g-amsg)+.g-acts{margin-top:-4px} /* 마지막 문단의 10px 이 아이콘 줄 위에 얹혀 묶임이 흐려진다 (사용자 지시) */
 .g-amsg ul{margin:6px 0 14px;padding-left:22px}
 .g-amsg li{margin:6px 0}
 /* 번호 서술 문단: 불릿 마커 없이 번호를 행잉 인덴트로, 항목 간 여유 */
@@ -13437,6 +13437,23 @@ function taiSources(){
   ];
   taiThreadAdd('<div class="g-srcs">'+items.map(function(x){ return '<a class="g-src" href="https://'+x.dom+'" target="_blank" rel="noopener noreferrer"><span class="t">'+gEsc(x.t)+'</span><div class="d">'+gEsc(x.d)+'</div><div class="s"><img class="fv" src="https://www.google.com/s2/favicons?domain='+x.dom+'&sz=32" alt="">'+gEsc(x.s)+'</div></a>'; }).join('')+'</div>');
 }
+/* 따봉·복사 줄은 답변 맨 끝으로: 답변 뒤에 붙는 카드·다음 행동 목록·안내 아래로 옮긴다.
+   다음 내 메시지·다음 AI 글·다른 따봉 줄을 만나면 멈춘다. 새로 붙을 때와 저장된 대화를 다시 열 때 모두 적용 */
+function taiActsTidy(th){
+  if(!th) return;
+  [].slice.call(th.children).forEach(function(a){
+    if(!a.classList.contains('g-acts')) return;
+    var last=a, n=a.nextElementSibling;
+    while(n&&!(n.classList.contains('g-urow')||n.classList.contains('g-amsg')||n.classList.contains('g-acts'))){ last=n; n=n.nextElementSibling; }
+    if(last!==a) last.after(a);
+  });
+}
+if(!window._tethActsObs&&window.MutationObserver){
+  window._tethActsObs=new MutationObserver(function(ms){
+    for(var i=0;i<ms.length;i++){ var t=ms[i].target; if(t&&(t.id==='g-thread'||t.id==='g-doc-thread')&&ms[i].addedNodes.length){ taiActsTidy(t); } }
+  });
+  window._tethActsObs.observe(document.documentElement,{childList:true,subtree:true});
+}
 /* AI 답변 액션 (복사/피드백) */
 function taiActs(){
   return '<div class="g-acts">'
@@ -13504,7 +13521,7 @@ function taiNext(items,acts){
   taiThreadAdd('<div class="g-nextcol" id="'+id+'">'+rows.map(function(r){
     if(r.t==='a') return '<button class="g-acbtn" data-a="'+r.i+'" data-act="'+gEsc(JSON.stringify(r.a)).replace(/"/g,'&quot;')+'"><span class="lf">'+TAI_ACT_IC[r.a.type]+'<span class="tx">'+gEsc(r.a.label)+'</span></span><span class="rt">'+(badge?'<span class="bdg">바로 실행</span>':'')+'<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></button>';
     return '<button class="g-nextq" data-q="'+gEsc(r.q).replace(/"/g,'&quot;')+'"><span>'+gEsc(r.q)+'</span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>';
-  }).join('')+(acts.length?'<div class="g-actnote">모두 무료입니다.</div>':'')+'</div>'); /* 따봉·복사 줄은 답변 맨 끝으로: 바로 위 답변의 줄을 다음 행동 목록 아래로 옮긴다 */ var nx=document.getElementById(id), pa=nx&&nx.previousElementSibling; if(pa&&pa.classList.contains('g-acts')) nx.after(pa);
+  }).join('')+(acts.length?'<div class="g-actnote">모두 무료입니다.</div>':'')+'</div>');
 }
 /* 후속, 액션 칩 문서 위임 (1회 설치). 인라인 onclick 이 있는 구형 칩은 이중 발화 방지를 위해 건너뛴다 */
 if(!window._tethChipDeleg){
