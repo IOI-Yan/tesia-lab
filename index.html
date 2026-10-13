@@ -7301,7 +7301,7 @@ body.pl-page #g-appbanner{display:none!important}
 @media (max-width:1100px){ .pl-grid.has-bt{grid-template-columns:repeat(2,minmax(0,1fr))} .pl-bt{grid-column:1/-1} .pl-cogrid{grid-template-columns:minmax(0,1fr) 380px;gap:32px} }
 @media (max-width:900px){
   .pl{padding:4px 5px 110px}
-  body:not(.g-inchat) .pl{padding-top:60px} /* 모바일 위쪽 흐린 띠(60px) 아래에서 시작: "거래소 연결" 제목이 띠에 가려 안 보이던 것 */
+  body:not(.g-inchat) .pl{padding-top:80px} /* 모바일 위쪽 흐린 띠(60px) 아래 20px에서 시작: "거래소 연결" 제목이 띠에 가려 안 보이던 것 */
   /* 모바일 플랜 카드 글자 정리(사용자 지시): 안내·카드 이름 13px, 포함된 기능 묶음은 한 단계 작게 */
   #g-root .pl-need{font-size:13px}
   #g-root .pl-lb{font-size:13px}
@@ -7910,6 +7910,13 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 .px-card.px-hi{border-color:rgba(0,240,255,.55);background:linear-gradient(180deg,#131519 0%,#0a2a2e 48%,#0b4851 100%)}
 .pl-cta-hi,.px-cta.pl-cta-hi{background:#00f0ff;border-color:#00f0ff;color:#000;font-weight:500}
 #g-root .pl-cta,#g-root .pl-cta-hi,#g-root .px-cta{font-weight:600} /* 플랜 시작 버튼 굵게: 사이트 버튼 글자 굵기 600과 같게 */
+/* 강조 플랜 카드 "웅웅거리는" 배경: 바탕 그라데이션 위로 청록·민트·파랑 빛이 14초에 걸쳐 천천히 떠다님. 움직임 줄이기면 멈춤 */
+#g-root .pl-card.pl-hi{overflow:hidden;isolation:isolate}
+#g-root .pl-card.pl-hi::before{content:"";position:absolute;inset:-40%;z-index:-1;pointer-events:none;background:radial-gradient(38% 32% at 28% 30%,rgba(0,254,255,.18),transparent 70%),radial-gradient(42% 38% at 72% 68%,rgba(47,185,138,.16),transparent 70%),radial-gradient(34% 30% at 62% 22%,rgba(64,128,255,.14),transparent 70%);filter:blur(12px);animation:plHum 14s ease-in-out infinite alternate}
+@keyframes plHum{0%{transform:translate(-6%,-4%) rotate(0deg) scale(1)}50%{transform:translate(5%,6%) rotate(8deg) scale(1.08)}100%{transform:translate(-3%,8%) rotate(-6deg) scale(1)}}
+@media (prefers-reduced-motion:reduce){#g-root .pl-card.pl-hi::before{animation:none}}
+#g-root .pl-head{margin-bottom:32px} /* 제목 묶음과 카드 사이 넓힘 (사용자 지시) */
+@media (max-width:900px){ #g-root .pl-head{margin-bottom:24px} }
 .pl-cta-hi:hover,.px-cta.pl-cta-hi:hover{background:#5cf6ff;border-color:#5cf6ff}
 .pl-grad{background:linear-gradient(120deg,#e0feff 0%,#00f0ff 55%,#7ff7ff 100%);-webkit-background-clip:text;background-clip:text}
 .pl-hi .pl-items li svg,.pl-sumcard .pl-items li svg,.px-perm li,.px-hi .px-steps li.ok b svg{color:#00f0ff}
