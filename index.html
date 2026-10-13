@@ -7991,6 +7991,12 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .px-head{margin-bottom:6px}
 #g-root .px-links{justify-content:center} /* 버튼 아래 글자 버튼("TETH 초대 계정으로 연결" 등)은 버튼과 같이 가운데 */
 #g-root .px-links .pl-link:hover{color:#e3e5ea} #g-root .px-links.px-sm .pl-link:hover{color:#b0b4bb} /* 글자 버튼 호버: 흰색 대신 한 단계 밝은 회색 */
+/* [공통 규칙 G31] 세그먼트 컨트롤 고른 칸이 미끄러지듯 옮겨감(백테스트 기간·금액과 같음) — 복사 창·종목 선택·설정 등 공통 */
+.seg-anim{position:relative}
+.seg-anim>button{position:relative;z-index:1}
+.seg-anim>button.on,.seg-anim>button[aria-pressed="true"],.seg-anim>button[aria-checked="true"]{background:transparent!important;box-shadow:none!important;outline:none!important}
+.segt{position:absolute;left:0;top:0;z-index:0;pointer-events:none;transition:transform .26s cubic-bezier(.2,.8,.3,1),width .26s cubic-bezier(.2,.8,.3,1)}
+@media (prefers-reduced-motion:reduce){ .segt{transition:none} }
 /* [공통 규칙 G30] 팝업·떠 있는 창 바탕 = 로그인 창과 같은 #1B1C1F (확인 팝업·메뉴·알림·질문 창·토스트·정렬 목록·용어 설명·공유 창·종목 선택·시트) */
 body .nfx-btn.sec:hover{background:#26282d}
 body #bt-root .bt-sdd-m,body #toast,body .mkg-pop,body.g-dark .modal,body .mkp,body .ss3-dlg .din,body .mk-follow,body #ssheet .sheet{background:#1b1c1f}
@@ -13611,6 +13617,32 @@ if(!window._tethDetailsAnim){
     kids.forEach(function(k){ if(k.animate) k.animate(closing?[{opacity:1},{opacity:0}]:[{opacity:0},{opacity:1}],{duration:closing?200:300,easing:'ease',fill:'both'}); });
     a.finished.then(function(){ if(d._tAnim!==a) return; d._tAnim=null; if(closing) d.open=false; d.style.overflow=''; d.style.boxSizing=''; kids.forEach(function(k){ k.getAnimations&&k.getAnimations().forEach(function(x){ x.cancel(); }); }); },function(){});
   },true);
+}
+/* [공통 규칙 G31] 세그먼트 컨트롤: 고른 칸 바탕을 따로 떼어(.segt) 새로 고른 칸으로 미끄러지게 옮긴다 */
+var SEG_SEL='.skc-pills,.mkp-seg,.mk-seg,.stg-seg,.mkd-seg';
+function segPick(c){ return c.querySelector(':scope>button.on,:scope>button[aria-pressed="true"],:scope>button[aria-checked="true"]'); }
+function segSync(c){
+  var b=segPick(c); if(!b||!c.offsetParent) return;
+  var t=c.querySelector(':scope>.segt'), first=false;
+  if(!t){ var cs=getComputedStyle(b); t=document.createElement('i'); t.className='segt'; t.setAttribute('aria-hidden','true');
+    t.style.background=cs.backgroundColor; t.style.boxShadow=cs.boxShadow; t.style.borderRadius=cs.borderRadius;
+    if(cs.outlineStyle!=='none'&&parseFloat(cs.outlineWidth)) t.style.boxShadow='inset 0 0 0 '+cs.outlineWidth+' '+cs.outlineColor;
+    c.insertBefore(t,c.firstChild); c.classList.add('seg-anim'); first=true; }
+  var x=b.offsetLeft, y=b.offsetTop, w=b.offsetWidth, h=b.offsetHeight;
+  if(first){ t.style.transition='none'; }
+  t.style.width=w+'px'; t.style.height=h+'px'; t.style.transform='translate('+x+'px,'+y+'px)';
+  if(first){ void t.offsetWidth; t.style.transition=''; }
+}
+if(!window._tethSegObs&&window.MutationObserver){
+  var segQ=[], segRaf=0;
+  var segRun=function(){ segRaf=0; var L=segQ; segQ=[]; L.forEach(function(c){ if(c.isConnected) segSync(c); }); };
+  var segAdd=function(c){ if(c&&segQ.indexOf(c)<0) segQ.push(c); if(!segRaf) segRaf=setTimeout(segRun,0); };
+  window._tethSegObs=new MutationObserver(function(ms){ ms.forEach(function(m){
+    if(m.type==='attributes'&&m.attributeName==='hidden'){ if(m.target.querySelectorAll) [].forEach.call(m.target.querySelectorAll(SEG_SEL),segAdd); return; } if(m.type==='attributes'){ var c=m.target.parentElement; if(c&&c.matches&&c.matches(SEG_SEL)) segAdd(c); return; }
+    [].forEach.call(m.addedNodes,function(n){ if(n.nodeType!==1) return; if(n.matches&&n.matches(SEG_SEL)) segAdd(n); if(n.querySelectorAll) [].forEach.call(n.querySelectorAll(SEG_SEL),segAdd); });
+  }); });
+  window._tethSegObs.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class','aria-pressed','aria-checked','hidden']});
+  window.addEventListener('resize',function(){ [].forEach.call(document.querySelectorAll(SEG_SEL),segAdd); });
 }
 /* 따봉·복사 줄은 답변 맨 끝으로: 답변 뒤에 붙는 카드·다음 행동 목록·안내 아래로 옮긴다.
    다음 내 메시지(답변 요약 포함)·다음 AI 글·다른 따봉 줄·스크롤 여백을 만나면 멈춘다. 새로 붙을 때와 저장된 대화를 다시 열 때 모두 적용 */
