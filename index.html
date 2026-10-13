@@ -502,7 +502,7 @@ body{
   --gt:#e3e5ea;--gt2:#c4c7c5;--gt3:#9aa0a6; /* Gemini 다크 실측 톤(#e3e5ea/#c4c7c5/#9aa0a6)으로 상향 — 가독성 (사용자 지시) */
   --gb:#3d6ef0;--gb2:#5b8af7;--gg:#4ec08d;--ga:#d9a84e;--gr:#e0604b;
   /* 확장 토큰: 표면/반전/툴팁/그림자/글로우, 라이트 테마가 이 값만 재정의한다 */
-  --pill:#1e2024;--pop:#1b1c1f;--hoverline:rgba(255,255,255,.05);
+  --pill:#1e2024;--pop:#1b1c1f;--tag-red-bg:#33060a;--tag-red:#f0566a;--tag-blue-bg:#001533;--tag-blue:#4d8dff;--tag-orange-bg:#331a06;--tag-orange:#ff9a4d;--tag-green-bg:#032a1f;--tag-green:#2fd39a;--hoverline:rgba(255,255,255,.05);
   --tip-bg:#313339;--tip-fg:#fff;--inv-bg:#eceef2;--inv-fg:#17181b;
   --shadow-pop:0 16px 48px rgba(0,0,0,.45);--shadow-pill:none;
   --glow:rgba(24,42,94,.55);}
@@ -8012,6 +8012,11 @@ body #g-root .mk3-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;w
 .seg-anim>button.on,.seg-anim>button[aria-pressed="true"],.seg-anim>button[aria-checked="true"]{background:transparent!important;box-shadow:none!important;outline:none!important}
 .segt{position:absolute;left:0;top:0;z-index:0;pointer-events:none;transition:transform .26s cubic-bezier(.2,.8,.3,1),width .26s cubic-bezier(.2,.8,.3,1)}
 @media (prefers-reduced-motion:reduce){ .segt{transition:none} }
+/* [공통 규칙 G36] 상태·태그 색 4종(어두운 바탕 + 같은 계열 글자): 빨강(오류) · 파랑(성공·종류) · 주황(확인 필요·위험) · 초록(참고). 토큰 --tag-*. 백테스트 분류 배지: 종류=파랑, 종목=초록, 상품·배수=주황 */
+#bt-root .bt-id-m b,#bt-root .bt-id-m span{font-weight:500}
+body #bt-root .bt-id-m>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
+body #bt-root .bt-id-m>span:nth-of-type(1){background:var(--tag-green-bg);color:var(--tag-green)}
+body #bt-root .bt-id-m>span:nth-of-type(2){background:var(--tag-orange-bg);color:var(--tag-orange)}
 /* [공통 규칙 G35] 고르기 목록(드롭다운) = 판단 기록 정렬(최신순)과 같은 모양: 펼침 꺾쇠 Lucide 16px(열면 위로 돎), 목록 창 #1B1C1F·모서리 12·테두리 6%, 항목 36px·모서리 8·14/500 #CFD2D6, 호버 #313339, 고른 항목은 흰색 600 + 메인색 체크(흰 바탕 없음) */
 body .tfbk-drop .car{font-size:0;opacity:1;flex:none;color:#cfd2d6;transition:transform .3s cubic-bezier(.2,.8,.3,1)}
 body .tfbk-drop[aria-expanded="true"] .car{transform:rotate(180deg)}
@@ -23120,7 +23125,7 @@ function btCompute(){
         why:gate?('오름세 종목이 '+e.of+'개 중 '+e.up+'개라 샀습니다'):('떨어진 뒤 하루 만에 '+mkPct0(e.bounce,1)+' 다시 올랐습니다'),
         p0:[tk+' 하루 반등 '+mkPct0(e.bounce,1),pkT],p1:gate&&e.of?brd(e):null,p2:[tk+' 매수',gate?'기준을 넘어 샀습니다':'조건이 맞아 샀습니다'],ups:gate&&e.of?upsOf(e):null,
         facts:(pk2?pkFacts(pk2,e):[]).concat([['하루 반등',mkPct0(e.bounce,1)+', 기준 0.5% 넘게'],['되돌림 점수',Math.round(e.rsi)+', 기준 '+c.rsiTh+' 아래']]).concat(gate&&e.of?[['오름세 종목',e.of+'개 중 '+e.up+'개, 기준 '+need+'개 이상']]:[]).concat(c.fng!=null&&e.fng!=null?[['공포 탐욕 지수',e.fng+', 기준 '+c.fng+' 이하']]:[]).concat([['산 가격',btPx(e.px)]])},e); return; }
-    if(e.t==='exit'){ push({k:'sell',tag:'매도',title:tk,pnl:e.pnl,cmp:MK_WHY[e.why]||'',why:MK_WHY[e.why]||'',facts:[['판 가격',btPx(e.px)],['이 거래의 손익',mkPct0(e.pnl,1)],['판 이유',MK_WHY[e.why]||'']]},e); return; }
+    if(e.t==='exit'){ push({k:'sell',tag:'매도',title:tk,pnl:e.pnl,cmp:MK_WHY[e.why]||'',why:MK_WHY[e.why]||'',facts:[['판 가격',btPx(e.px)],['이 거래의 손익',mkPct0(e.pnl,1),e.pnl],['판 이유',MK_WHY[e.why]||'']]},e); return; }
     if(e.t==='veto'){ var pk3=lastPick[e.a];
       push({k:'skip',tag:'보류',title:tk,chain:1,cmp:'오름세 '+e.up+' / '+e.of+', 기준 '+need,why:'오름세 종목이 '+e.of+'개 중 '+e.up+'개뿐이라 사지 않았습니다',
         p0:[tk+' 하루 반등 '+mkPct0(e.bounce,1),pk3?pkTxt(pk3):'떨어진 뒤 다시 올랐습니다'],p1:brd(e),p2:['보류','기준에 못 미쳐 사지 않았습니다'],ups:upsOf(e),
@@ -23545,7 +23550,7 @@ function btDecDetail(d){
   var after=''; if(d.k==='skip'&&d.a){ var P=mkPx(d.a), q=Math.min(R.T,d.i+25), ch=(P[q]/P[d.i]-1)*100; after='<div class="bt-blk"><h4>그 뒤 가격</h4><p class="bt-after">그 뒤 '+(q-d.i)+'일 동안 '+gEsc(mkTk(d.a))+'의 가격은 <b class="num'+mkSign(ch)+'">'+mkPct0(ch,1)+'</b> 움직였습니다.</p></div>'; }
   return '<div class="bt-dd-in">'+(d.chain?'<div class="bt-dd-ch">'+btChainHtml(d)+'</div>':'')
     +(mini?'<div class="bt-dd-c"><small>'+gEsc(d.a)+' 가격, '+(t?'매수 전후':'그 무렵')+' <i>USD</i></small>'+mini+'</div>':'')
-    +'<div class="bt-dd-f"><div class="bt-blk"><h4>'+(d.k==='sell'?'판 내용':'그날 확인한 조건')+'</h4>'+btFacts(d.facts.map(function(f){ return [f[0],gEsc(f[1])]; }),1)+btUpsHtml(d.ups)+'</div>'+after+'</div></div>';
+    +'<div class="bt-dd-f"><div class="bt-blk"><h4>'+(d.k==='sell'?'판 내용':'그날 확인한 조건')+'</h4>'+btFacts(d.facts.map(function(f){ return [f[0],f[2]!=null?'<i class="num'+mkSign(f[2])+'">'+gEsc(f[1])+'</i>'+gEsc(f[3]||''):gEsc(f[1])]; }),1) /* 손익 숫자는 수익 초록·손실 빨강 */+btUpsHtml(d.ups)+'</div>'+after+'</div></div>';
 }
 /* AI 판단 전략의 재평가 하루 */
 function btEvDetail(E){
@@ -24611,7 +24616,7 @@ function fuBtDec(s,e,x){
       p0:s1,p1:mix?brd:null,p2:[tk+' '+sd+' 진입',lv+', 다음 날 시가'],ups:mix?x.upsOf(e):null,
       facts:[['신호',s1[0]+(s1[1]?', '+s1[1]:'')]].concat(mix&&e.up!=null?[['오름세 종목',e.of+'개 중 '+e.up+'개']]:[]).concat([['진입 가격',btPx(e.px)],['방향과 배수',sd+' '+lv],['강제 청산 가격',liq]])}; }
   return {k:'sell',tag:sd+' 청산',title:tk,side:e.side,pnl:e.pnl,cmp:FU_WHY[e.why]||'',why:FU_WHY[e.why]||'',
-    facts:[['청산 가격',btPx(e.px)],['진입 가격',btPx(e.ep)],['이 거래의 손익',mkPct0(e.pnl,1)+', 넣은 돈 기준'],['청산한 이유',FU_WHY[e.why]||''],['낸 펀딩비',mkPct0(-(e.fund||0)/(e.cost||1)*100,1)]]};
+    facts:[['청산 가격',btPx(e.px)],['진입 가격',btPx(e.ep)],['이 거래의 손익',mkPct0(e.pnl,1),e.pnl,', 넣은 돈 기준'],['청산한 이유',FU_WHY[e.why]||''],['낸 펀딩비',mkPct0(-(e.fund||0)/(e.cost||1)*100,1)]]};
 }
 function fuBtRules(s){ var c=s.cfg, o=[];
   if(c.kind!=='rule') o.push([c.kind==='agent'?'AI 판단':'방향과 종목',(c.kind==='mix'?'AI가 ':'')+fuAiTxt(s)]);
