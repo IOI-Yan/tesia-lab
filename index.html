@@ -8229,6 +8229,16 @@ body #g-root .tft-page .tft-more{width:auto;margin:16px auto;font-size:13px;colo
 body #g-root .tft-page .tft-more:hover{color:#b0b4bb}
 /* 판단 상태 제목(진입 조건을 기다리고 있습니다 등): 20 → 18 */
 body #g-root .tft-page .tm-status .tb-t{font-size:18px}
+/* 판단 카드 구역 위아래 여백 넓힘(시원하게): 상태 16/14 → 24/24, TETH의 생각 14 → 24, 판단 기록 머리 16/8 → 24/12. 운용 줄 ↔ 상자 12 → 16, 생각 제목 ↔ 본문 6 → 8 */
+body #g-root .tft-page .tm-status{padding-top:24px;padding-bottom:24px}
+body #g-root .tft-page .tb-th{padding-top:24px;padding-bottom:24px}
+body #g-root .tft-page .tft-fsec{padding-top:24px;padding-bottom:12px}
+body #g-root .tft-page .tm-status .tb-list{margin-top:16px}
+body #g-root .tft-page .tb-th .tb-thl{margin-bottom:8px}
+/* 판단 기록 줄 위아래 10 → 14, 묶음 상자 사이 10 → 12 (묶음 안 한 줄 목록은 그대로 10) */
+body #g-root .tft-page .tb-rfeed>details.tb-rl>summary{padding-top:14px;padding-bottom:14px}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary{padding-top:10px;padding-bottom:10px}
+body #g-root .tft-page .tm-foldw{margin-bottom:12px}
 /* PC 판단 카드: 판단 기록만 남은 틈(24px)에서 스크롤되던 것 → 카드 전체가 한 번에 스크롤. 위 "전략 6개"·탭과 아래 바꾸기·입력줄은 제자리에 붙어 있음 */
 @media (min-width:961px){
   body #g-root .nfxh-wrap.tft-page .tft-brainin{overflow-y:auto;scrollbar-width:none}
