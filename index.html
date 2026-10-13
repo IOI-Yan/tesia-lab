@@ -8253,6 +8253,17 @@ body #g-root .tft-page .tft-asx .ah2 .mut{font-size:12px}
 body #g-root .tft-page .tft-asx .ag2 b{font-weight:600}
 /* 아래 패널 안내 문구(계정 전체 범위… / 검증 구간 기록, 현재 전략 기준 등) 14 → 13 */
 body #g-root .tft-page .tft-tnote{font-size:13px}
+/* 정보 탭 "링크"·"거래 규칙" 구역 제목: 14 · 400 · 회색 → 14 · 700 · 흰색, 위 28(구역 사이를 확실히 띄움)·아래 12. 열 맨 위 제목은 위 여백 0 */
+body #g-root .mki h4{margin:28px 0 12px;font-size:14px;font-weight:700;color:#fff}
+body #g-root .mki .mki-c>h4:first-child{margin-top:0}
+body #g-root .mki .mki-lks{margin-bottom:0}
+@media (max-width:960px){ body #g-root .mki .mki-c>h4:first-child{margin-top:28px} }  /* 모바일은 한 줄로 쌓여서 첫 제목도 위 목록과 띄움 */
+/* 모바일: 정보·데이터 탭이면 차트 카드 높이 고정(60vh) 없이 내용대로 나열(안쪽 스크롤 없음). 차트 탭은 그대로 */
+@media (max-width:960px){
+  body #g-root .nfxh-wrap.tft-page .tft-chart.tc-pane{height:auto!important;min-height:0!important;overflow:visible!important}
+  body #g-root .nfxh-wrap.tft-page .tft-chart.tc-pane>*:not(.mkt-tabs):not(.mkt-pane){display:none!important}
+  body #g-root .nfxh-wrap.tft-page .tft-chart.tc-pane .mkt-pane{position:static;overflow:visible}
+}
 /* 판단 기록 줄 호버 바탕: 줄 상자를 묶음 상자와 같은 너비로 넓히고 안쪽 여백도 묶음과 같게(14) → 호버하면 #1E2024 둥근 칸. 줄 사이 선은 글자 폭(양옆 14)만, 호버한 줄 위아래 선은 숨김 */
 body #g-root .tft-page #tft-bbody>.tb-rfeed{margin:0 -8px}
 @media (max-width:960px){ body #g-root .tft-page #tft-bbody>.tb-rfeed{margin:0 -4px} }
@@ -26587,7 +26598,7 @@ function mktTabsMount(){ var c=document.querySelector('#g-content .tft-page .tft
   c.insertAdjacentHTML('beforeend','<div class="mkt-pane" id="mkt-info" hidden></div><div class="mkt-pane" id="mkt-data" hidden></div>');
   c.querySelector('.mkt-tabs').addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) mktTab(b.dataset.t); });
   mktTab(MKT.tab,true); }
-function mktTab(t,quiet){ MKT.tab=t; var c=document.querySelector('#g-content .tft-page .tft-chart'); if(!c) return;
+function mktTab(t,quiet){ MKT.tab=t; var c=document.querySelector('#g-content .tft-page .tft-chart'); if(!c) return; c.classList.toggle('tc-pane',t!=='chart');
   [].forEach.call(c.querySelectorAll('.mkt-tabs button'),function(b){ var on=b.dataset.t===t; b.classList.toggle('on',on); b.setAttribute('aria-selected',on); });
   var tv=document.getElementById('nfxh-tv'); if(tv) tv.style.visibility=t==='chart'?'':'hidden';
   var i=document.getElementById('mkt-info'), d=document.getElementById('mkt-data'); if(i) i.hidden=t!=='info'; if(d) d.hidden=t!=='data';
