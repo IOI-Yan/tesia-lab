@@ -8129,6 +8129,46 @@ body #g-root .tft-page .tft-bottom .nfxh-tabs{border-top:0;border-bottom:0}
 body #g-root .tft-page .tft-bottom .nfxh-tab{font-size:14px;padding:10px 12px}
 /* 탭 ↔ 현재 전략 간격 6 → 12 */
 body #g-root .tft-page .tft-bottom .tm-botbar{padding-top:12px;padding-bottom:12px}
+/* no line under the strategy picker; the note (검증 구간 기록…) sits right under it: gap 12+1+16 -> 12 */
+body #g-root .tft-page .tft-bottom .tm-botbar{border-bottom:0}
+body #g-root .tft-page .tft-bottom .nfxh-pane{padding-top:0}
+/* opened decision detail box: one inset for text and lines (16 sides, 8 top/bottom) instead of box 16 + rows 12 */
+body #g-root .tft-page .tb-fc .tb-fr{padding:8px 16px}
+body #g-root .tft-page .tb-fc .tb-fr .tm-rows{padding:0;margin:0}
+body #g-root .tft-page .tb-fc .tb-fr .tm-row{padding:6px 0}
+body #g-root .tft-page .tb-fc .tb-fr .tm-out{padding:10px 0;margin:0}
+body #g-root .tft-page .tb-fc .tb-fr .tm-rows+.tm-out{margin-top:6px}
+/* stop-loss row label red, take-profit row label green (profit/loss colours) */
+body #g-root .tft-page .tm-row.tm-sl>span{color:#f0566a}
+body #g-root .tft-page .tm-row.tm-tp>span{color:#2fb98a}
+/* detail box padding: earlier rule won, raise specificity */
+body #g-root .tft-page details.tb-fc>.tb-fr{padding:8px 16px}
+/* decision log hierarchy: date 12 gray, kind = colour tag (entry blue, take-profit green, stop-loss red, time exit orange, hold/wait gray), sentence 14 white, "판단 전문" 13 gray link, no wrap */
+body #g-root .tft-page .tb-rl .tb-ft{font-size:12px;color:#8d9199}
+body #g-root .tft-page .tb-rl .tb-k{display:inline-flex;align-items:center;height:22px;padding:0 8px;border-radius:8px;font-size:12px;font-weight:500;background:rgba(255,255,255,.06);color:#9ea3ad!important}
+body #g-root .tft-page .tb-rl .tb-k.k-en{background:var(--tag-blue-bg);color:var(--tag-blue)!important}
+body #g-root .tft-page .tb-rl .tb-k.k-tp{background:var(--tag-green-bg);color:var(--tag-green)!important}
+body #g-root .tft-page .tb-rl .tb-k.k-sl{background:var(--tag-red-bg);color:var(--tag-red)!important}
+body #g-root .tft-page .tb-rl .tb-k.k-tm{background:var(--tag-orange-bg);color:var(--tag-orange)!important}
+body #g-root .tft-page .tb-rl .tb-fs{font-size:14px;color:#ececf1}
+body #g-root .tft-page .tb-rl .tb-fx{font-size:13px;color:#8d9199;white-space:nowrap;transition:color .15s ease}
+body #g-root .tft-page .tb-rl summary:hover .tb-fx{color:#b0b4bb}
+/* strategy name link in bottom tables: blue hover -> underline-link rule (#CFD2D6 -> #E3E5EA, line brighter) */
+body #g-root .tft-page .tft-tbl .stlk{color:#cfd2d6;border-bottom-color:#6e737b;transition:color .15s ease,border-color .15s ease}
+body #g-root .tft-page .tft-tbl .stlk:hover{color:#e3e5ea;border-bottom-color:#b0b4bb}
+/* 아래 표: 마우스로 끌면 옆으로 넘어감(손 모양), 기본 스크롤바(화살표 달린 것) 대신 얇은 회색 막대 */
+body #g-root .tft-page .tft-tblw{cursor:grab;scrollbar-width:thin;scrollbar-color:#3a3d44 transparent}
+body #g-root .tft-page .tft-tblw:active{cursor:grabbing}
+body #g-root .tft-page .tft-tblw::-webkit-scrollbar{height:6px}
+body #g-root .tft-page .tft-tblw::-webkit-scrollbar-button{display:none}
+body #g-root .tft-page .tft-tblw::-webkit-scrollbar-thumb{background:#3a3d44;border-radius:999px}
+body #g-root .tft-page .tft-tblw::-webkit-scrollbar-track{background:transparent}
+/* 간격 넓힘: "전략 6개" 단추 ↔ 판단 탭 6 → 16. 모바일은 차트 ↔ 포지션 탭 0 → 16, 구분선 ↔ "전략 6개" 단추 10 → 16 */
+body #g-root .tft-page .mks-hd{padding-bottom:16px}
+@media (max-width:960px){
+  body #g-root .nfxh-wrap.tft-page>.tft-bottom{padding-top:16px}
+  body #g-root .nfxh-wrap.tft-page .tft-brain .mks-hd{padding-top:16px}
+}
 /* 카드 위 고르기 단추(현재 전략·전략 고르기): 고르기 목록 단추색 #25272C, 호버 #2F3137, 테두리 없음 */
 body #g-root .tft-page .tft-bottom .csel-t,body #g-root .tft-page .mks-btn{background:#25272C;border-color:transparent}
 body #g-root .tft-page .tft-bottom .csel-t:hover,body #g-root .tft-page .mks-btn:hover{background:#2f3137}
@@ -8198,6 +8238,19 @@ body #g-root .tft-page .tft-rail .tft-card .nm,body #g-root .tft-page .tft-rail 
 body #g-root .tft-page .tft-rail .tft-card .nm,body #g-root .tft-page .tft-rail .tft-card .cap,body #g-root .tft-page .tft-rail .tft-card .pnl{font-size:14px}
 body #g-root .tft-page .tft-rail .tft-card .sy,body #g-root .tft-page .tft-rail .tft-card .ver,body #g-root .tft-page .tft-rail .tft-card .st,body #g-root .tft-page .tft-rail .tft-card .pnl .vl{font-size:12px}
 body #g-root .tft-page .tft-rail .tft-card .pnl small:not(.vl){font-size:11px}
+/* search boxes: magnifier on the left (like 종목 검색), browser clear X hidden, own gray X shown only while there is text */
+input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;display:none}
+.srch-x{display:inline-flex;align-items:center;justify-content:center;flex:none;width:28px;height:28px;padding:0;border:0;border-radius:999px;background:transparent;color:#8d9199;cursor:pointer;transition:color .15s ease,background .15s ease}
+.srch-x:hover{color:#fff;background:rgba(255,255,255,.08)}
+input:placeholder-shown~.srch-x{display:none}
+body #g-root .tft-page .tft-rf .srch{position:relative;display:block}
+body #g-root .tft-page .tft-rf .srch .srch-i{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:#8d9199;pointer-events:none}
+body #g-root .tft-page .tft-rf .srch input{padding:0 44px}
+body #g-root .tft-page .tft-rf .srch .srch-x{position:absolute;right:8px;top:50%;transform:translateY(-50%)}
+/* sideways tab rows: fade the edge that has more tabs behind it */
+body #g-root .tft-page .hs-r{-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 40px),transparent)}
+body #g-root .tft-page .hs-l{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40px);mask-image:linear-gradient(90deg,transparent,#000 40px)}
+body #g-root .tft-page .hs-l.hs-r{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent);mask-image:linear-gradient(90deg,transparent,#000 40px,#000 calc(100% - 40px),transparent)}
 /* [공통 규칙 G36] 상태·태그 색 4종(어두운 바탕 + 같은 계열 글자): 빨강(오류) · 파랑(성공·종류) · 주황(확인 필요·위험) · 초록(참고). 토큰 --tag-*. 백테스트 분류 배지: 종류=파랑, 종목=초록, 상품·배수=주황 */
 #bt-root .bt-id-m b,#bt-root .bt-id-m span{font-weight:500}
 body #bt-root .bt-id-m>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
@@ -13868,6 +13921,27 @@ if(!window._tethCsel){ window._tethCsel=1;
   new MutationObserver(function(ms){ ms.forEach(function(m){ [].forEach.call(m.addedNodes,function(n){ if(n.nodeType===1) cselScan(n); }); }); }).observe(document.documentElement,{childList:true,subtree:true});
   cselScan(document);
 }
+/* search boxes: our own clear X (Lucide) instead of the browser's blue one. clears, fires input so lists refresh, keeps focus */
+if(!window._tethSrchX){ window._tethSrchX=1;
+  document.addEventListener('click',function(e){ var b=e.target.closest&&e.target.closest('.srch-x'); if(!b) return; e.preventDefault(); e.stopPropagation();
+    var inp=b.parentNode.querySelector('input'); if(!inp) return; inp.value=''; inp.dispatchEvent(new Event('input',{bubbles:true})); var again=b.parentNode.querySelector('input')||document.querySelector('[aria-label="'+inp.getAttribute('aria-label')+'"]'); if(again) again.focus(); },true); }
+/* tab rows wider than the screen (bottom panel tabs etc.): mouse wheel and drag scroll them sideways, and the cut-off edge fades so it is clear there is more */
+var HSCR_SEL='.tft-page .nfxh-tabs,.tft-page .tft-btabs,.tft-page .tft-tblw';
+function hscrEdge(el){ var m=el.scrollWidth-el.clientWidth; el.classList.toggle('hs-r',m>2&&el.scrollLeft<m-2); el.classList.toggle('hs-l',el.scrollLeft>2); }
+if(!window._tethHscr){ window._tethHscr=1;
+  var hsOf=function(t){ var el=t&&t.closest&&t.closest(HSCR_SEL); return el&&el.scrollWidth>el.clientWidth+2?el:null; };
+  document.addEventListener('wheel',function(e){ var el=hsOf(e.target); if(!el||el.classList.contains('tft-tblw')||Math.abs(e.deltaX)>Math.abs(e.deltaY)) return; var m=el.scrollWidth-el.clientWidth;
+    if((e.deltaY>0&&el.scrollLeft<m)||(e.deltaY<0&&el.scrollLeft>0)){ el.scrollLeft+=e.deltaY; e.preventDefault(); } },{passive:false});
+  var hd=null;
+  document.addEventListener('pointerdown',function(e){ if(e.pointerType!=='mouse'||e.button!==0) return; var el=hsOf(e.target); if(el) hd={el:el,x:e.clientX,s:el.scrollLeft,moved:false}; });
+  document.addEventListener('pointermove',function(e){ if(!hd) return; var dx=e.clientX-hd.x; if(Math.abs(dx)>4) hd.moved=true; if(hd.moved){ hd.el.scrollLeft=hd.s-dx; hd.el.style.userSelect='none'; var sel=window.getSelection&&getSelection(); if(sel&&sel.rangeCount) sel.removeAllRanges(); } });
+  document.addEventListener('pointerup',function(){ if(hd) hd.el.style.userSelect=''; if(hd&&hd.moved){ var el=hd.el; el._hsDrag=1; setTimeout(function(){ el._hsDrag=0; },0); } hd=null; });
+  document.addEventListener('click',function(e){ var el=e.target.closest&&e.target.closest(HSCR_SEL); if(el&&el._hsDrag){ e.preventDefault(); e.stopPropagation(); } },true);
+  document.addEventListener('scroll',function(e){ var el=e.target; if(el.matches&&el.matches(HSCR_SEL)) hscrEdge(el); },true);
+  var hsScan=function(){ [].forEach.call(document.querySelectorAll(HSCR_SEL),hscrEdge); }, hsT=0;
+  new MutationObserver(function(){ clearTimeout(hsT); hsT=setTimeout(hsScan,60); }).observe(document.documentElement,{childList:true,subtree:true});
+  window.addEventListener('resize',hsScan); hsScan();
+}
 /* [공통 규칙 G34] 팝업이 닫힐 때 스르륵: 바탕 막은 0.2초 동안 흐려지고, 창은 살짝 내려가며 작아짐. 메뉴는 살짝 올라가며 사라짐.
    닫는 순간 id를 떼어 같은 이름으로 새로 여는 창과 섞이지 않게 하고, 누르기도 막는다. 움직임 줄이기 설정이면 바로 닫힘 */
 var POP_OV='.g-dlg-w,.mk-follow-w,.ss3-dlgw,.mkp-ov';
@@ -14997,7 +15071,7 @@ function tfTmRail(listOnly){
   var exs={}; all.forEach(function(s){ if(s.ex) exs[s.ex]=1; });
   var h='<div class="tft-rh"><b>전략</b><span class="ct2">'+all.length+'</span><span style="flex:1"></span>'
     +(pv?'':'<button type="button" class="tft-new" onclick="tfBackToChat()">+ 새 전략</button>')+'</div>'
-    +'<div class="tft-rf"><input type="search" placeholder="전략 검색" value="'+gEsc(TF_TM.q)+'" oninput="TF_TM.q=this.value;tfTmRail(1)" aria-label="전략 검색">'
+    +'<div class="tft-rf"><label class="srch"><svg class="srch-i" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><input type="search" placeholder="전략 검색" value="'+gEsc(TF_TM.q)+'" oninput="TF_TM.q=this.value;tfTmRail(1)" aria-label="전략 검색"><button type="button" class="srch-x" aria-label="지우기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></label>'
     +'<div class="fr2"><select onchange="TF_TM.fst=this.value;tfTmRail()" aria-label="상태 필터">'
     +[['all','전체 상태'],['live','실행 중'],['off','일시정지'],['ready','실행 전'],['err','오류']].map(function(o){ return '<option value="'+o[0]+'"'+(TF_TM.fst===o[0]?' selected':'')+'>'+o[1]+'</option>'; }).join('')+'</select>'
     +'<select onchange="TF_TM.fex=this.value;tfTmRail()" aria-label="거래소 필터"><option value="all">전체 거래소</option>'
@@ -20863,7 +20937,8 @@ function tfTmStatusBlock(s,c){
 /* 규칙 카드 — 행은 실제 판정식에서만 (D24): 전봉 RSI < 임계 / 반등 +0.5% 초과 / |SMA20-SMA60|/가격 > 3% / 손절, 익절, 25봉 */
 function tfTmRow(label,val,state){
   var mark=state==='ok'?'✓':state==='no'?'✗':state==='hit'?'✓ 도달':'미도달';
-  return '<div class="tm-row"><span>'+label+'</span><b class="num">'+val+'</b><i class="'+state+'">'+mark+'</i></div>';
+  var pl=/^손절/.test(label)?' tm-sl':/^익절/.test(label)?' tm-tp':'';
+  return '<div class="tm-row'+pl+'"><span>'+label+'</span><b class="num">'+val+'</b><i class="'+state+'">'+mark+'</i></div>';
 }
 function tfLogCardRule(ev,s){
   var p=s.p, i=ev.i, px=PRICE[i], k=ev.k, m=TF_TM_EVM[k]||['판단','ho'];
@@ -26354,7 +26429,7 @@ function mktPick(){
   mktPickClose(); var ov=document.createElement('div'); ov.id='mkp'; ov.className='mkp-ov';
   ov.addEventListener('click',function(e){ if(e.target===ov) mktPickClose(); });
   ov.innerHTML='<div class="mkp" role="dialog" aria-label="종목 선택"><div class="mkp-hd"><div><h3>종목 선택</h3><p>거래할 종목을 검색해 고릅니다.</p></div><button type="button" class="mkp-x" aria-label="닫기" onclick="mktPickClose()"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></div>'
-    +'<label class="mkp-q"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="mkp-q" type="search" placeholder="종목 검색" autocomplete="off" value="'+gEsc(MKT.q)+'"></label>'
+    +'<label class="mkp-q"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="mkp-q" type="search" placeholder="종목 검색" autocomplete="off" value="'+gEsc(MKT.q)+'"><button type="button" class="srch-x" aria-label="지우기"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button></label>'
     +'<div class="mkp-tabs"><div class="mkp-seg" id="mkp-src">'+[['all','무기한'],['fav','즐겨찾기']].map(function(x){ return '<button type="button" data-v="'+x[0]+'" class="'+(MKT.src===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div>'
     +'<div class="mkp-seg" id="mkp-cat">'+MKT_CATS.map(function(x){ return '<button type="button" data-v="'+x[0]+'" class="'+(MKT.cat===x[0]?'on':'')+'">'+x[1]+'</button>'; }).join('')+'</div></div>'
     +'<div class="mkp-th">'+[['sym','종목'],['px','최근가'],['chg','24시간 변동'],['qv','거래대금']].map(function(x){ return '<button type="button" data-s="'+x[0]+'" class="'+(MKT.sort===x[0]?'on':'')+'">'+x[1]+(MKT.sort===x[0]?(MKT.desc?' ↓':' ↑'):'')+'</button>'; }).join('')+'</div>'
@@ -26748,7 +26823,7 @@ function tbRuleLog(){ try{ var box=document.getElementById('tft-bbody'); if(!box
     groups.push({cls:cls,n:1,to:d,from:d,el:cd}); });
   var html=groups.map(function(g){ var m=TB_RULE[g.cls]||TB_RULE.ho, rows=g.el.querySelector('.tm-rows'), outs=[].map.call(g.el.querySelectorAll('.tm-out'),function(o){ return o.outerHTML; }).join('');
     var when=g.n>1?g.from.replace(/^\d{4}\. /,'')+' ~ '+g.to.replace(/^\d{4}\. /,''):g.to;
-    return '<details class="tb-fc tb-rl"><summary><span class="tb-ft num">'+gEsc(when)+'</span><b>'+m[0]+(g.n>1?' '+g.n+'회':'')+'</b><span class="tb-fs">'+m[1]+' <u class="tb-fx">판단 전문</u></span></summary><div class="tb-fr">'+(rows?rows.outerHTML:'')+outs+'</div></details>'; }).join('');
+    return '<details class="tb-fc tb-rl"><summary><span class="tb-ft num">'+gEsc(when)+'</span><b class="tb-k k-'+g.cls+'">'+m[0]+(g.n>1?' '+g.n+'회':'')+'</b><span class="tb-fs">'+m[1]+' <u class="tb-fx">판단 전문</u></span></summary><div class="tb-fr">'+(rows?rows.outerHTML:'')+outs+'</div></details>'; }).join('');
   cards.forEach(function(cd){ cd.remove(); });
   var w=document.createElement('div'); w.className='tb-feed tb-rfeed'; w.innerHTML=html; box.appendChild(w); box.setAttribute('data-tb','1'); }catch(e){} }
 (function(){ var t=0; var go=function(){ clearTimeout(t); t=setTimeout(function(){ var b=document.getElementById('tft-bbody'); if(b&&b.getAttribute('data-tb')==='1'&&b.querySelector('.tm-card.rule')) b.removeAttribute('data-tb'); tbRuleLog(); },120); };
