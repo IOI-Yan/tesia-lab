@@ -8241,6 +8241,10 @@ body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary{padding-top:10p
 body #g-root .tft-page .tm-foldw{margin-bottom:12px}
 /* 아래 표 매수·매도·LONG·SHORT 뱃지: 좌우 8 → 6, 위아래 2 → 4 */
 body #g-root .tft-page .sd{padding:4px 6px;border-radius:100px}
+/* 차트·정보·데이터: 세그먼트 컨트롤(판단 기록 전체/거래 기록과 같은 모양) — 트랙 #1E2024, 고른 칸 #313339, G31 미끄러짐 */
+body #g-root .tft-page .mkt-seg{display:inline-flex;padding:3px;border-radius:999px;background:#1E2024}
+body #g-root .tft-page .mkt-seg button{height:28px;padding:0 14px;font-size:13px}
+body #g-root .tft-page .mkt-seg button.on{background:#313339;color:#fff}
 /* 자산 탭 거래소 카드: 카드색 #17181B + 테두리 → 채운 칸 #1E2024, 테두리 없음, 모서리 12 */
 body #g-root .tft-page .tft-asx{background:#1E2024;border-color:transparent;border-radius:12px}
 /* 판단 기록 줄 호버 바탕: 줄 상자를 묶음 상자와 같은 너비로 넓히고 안쪽 여백도 묶음과 같게(14) → 호버하면 #1E2024 둥근 칸. 줄 사이 선은 글자 폭(양옆 14)만, 호버한 줄 위아래 선은 숨김 */
@@ -14079,7 +14083,7 @@ var POP_MENU='.g-rowmenu,#g-rowmenu';
     m.animate([{opacity:1},{opacity:0}],{duration:200,easing:'ease'}).finished.then(function(){ m._closing=0; cm0.apply(self,args); },function(){ m._closing=0; cm0.apply(self,args); }); }; }
 })();
 /* [공통 규칙 G31] 세그먼트 컨트롤: 고른 칸 바탕을 따로 떼어(.segt) 새로 고른 칸으로 미끄러지게 옮긴다 */
-var SEG_SEL='.skc-pills,.mkp-seg,.mk-seg,.stg-seg,.mkd-seg,.mk3-seg,.ffseg';
+var SEG_SEL='.skc-pills,.mkp-seg,.mk-seg,.stg-seg,.mkd-seg,.mk3-seg,.ffseg,.mkt-seg';
 function segPick(c){ return c.querySelector(':scope>button.on,:scope>button[aria-pressed="true"],:scope>button[aria-checked="true"]'); }
 function segSync(c){
   var b=segPick(c); if(!b||!c.offsetParent) return;
@@ -26573,7 +26577,7 @@ function mktFav(sym,el){ var i=MKT.fav.indexOf(sym); if(i>=0) MKT.fav.splice(i,1
 function mktSet(sym){ MKT.sym=sym; MKT.picked=true; try{ localStorage.setItem('teth.mkt.sym',sym); }catch(e){} mktPickClose(); MKT.tick=null; MKT.prem=null; mktHead(); mktPoll(); mktChart(true); if(MKT.tab==='info') mktInfo(); if(MKT.tab==='data') mktData(); }
 /* ── 차트 / 정보 / 데이터 탭 ── */
 function mktTabsMount(){ var c=document.querySelector('#g-content .tft-page .tft-chart'); if(!c||c.querySelector('.mkt-tabs')) return;
-  c.insertAdjacentHTML('afterbegin','<div class="mkt-tabs" role="tablist">'+[['chart','차트'],['info','정보'],['data','데이터']].map(function(x){ return '<button type="button" role="tab" data-t="'+x[0]+'">'+x[1]+'</button>'; }).join('')+'</div>');
+  c.insertAdjacentHTML('afterbegin','<div class="mkt-tabs" role="tablist"><div class="mkt-seg">'+[['chart','차트'],['info','정보'],['data','데이터']].map(function(x){ return '<button type="button" role="tab" data-t="'+x[0]+'">'+x[1]+'</button>'; }).join('')+'</div></div>');
   c.insertAdjacentHTML('beforeend','<div class="mkt-pane" id="mkt-info" hidden></div><div class="mkt-pane" id="mkt-data" hidden></div>');
   c.querySelector('.mkt-tabs').addEventListener('click',function(e){ var b=e.target.closest('button'); if(b) mktTab(b.dataset.t); });
   mktTab(MKT.tab,true); }
