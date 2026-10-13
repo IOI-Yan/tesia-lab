@@ -15296,7 +15296,7 @@ function tfTmFeed(s,c){
   c.L.evs.forEach(function(e){ if(!e) return; if(e.k==='entry') entryI=e.i; evs.push({k:e.k,i:e.i,txt:e.txt,entryI:entryI}); });
   evs.reverse();
   if(TF_TM.fmode==='act') evs=evs.filter(function(e){ return e.k==='entry'||e.k.indexOf('exit')===0; });
-  h+='<div class="tft-fsec" style="display:flex;align-items:center;gap:8px">판단 기록 <small>검증 구간 재생, 일봉</small><span style="flex:1"></span>'
+  h+='<div class="tft-fsec" style="display:flex;align-items:center;gap:8px">판단 기록<span style="flex:1"></span>'
     +'<span class="ffseg"><button type="button" class="ffc'+(TF_TM.fmode!=='act'?' on':'')+'" onclick="TF_TM.fmode=&quot;all&quot;;tfTmBrain()">전체</button>'
     +'<button type="button" class="ffc'+(TF_TM.fmode==='act'?' on':'')+'" onclick="TF_TM.fmode=&quot;act&quot;;tfTmBrain()">체결만</button></span></div>';
   if(!evs.length) h+='<div class="tm-empty sm"><b>아직 판단 기록이 없습니다</b><span>첫 평가가 끝나면 여기에 표시됩니다.</span></div>';
@@ -20974,7 +20974,7 @@ function tfTmEvalTick(){
   TF_TM.evalTimer=setInterval(function(){ n++; if(n%6===0) step(false); else tfTmLastChk(); },10000);
 }
 function tfTmLastChk(){ var el=$('tm-lastchk'); if(!el) return; var s=TF_TM.sel?tfTmOf(TF_TM.sel):null; if(!s) return; el.textContent=tfTmAgo(tfTmEvalAt(s)); }
-function tfTmDate(i){ var d=idxToDate(i); return d.getFullYear()+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+String(d.getDate()).padStart(2,'0'); }
+function tfTmDate(i){ var d=idxToDate(i); return d.getFullYear()+'. '+(d.getMonth()+1)+'. '+d.getDate()+'.'; } /* 화면에 보이는 날짜 형식으로 처음부터(나중에 바꾸며 깜박이지 않게) */
 function tfTmPnl(s,c){ var today=0; if(c.pos&&s.status==='live'){ var e=s.p.endI; today=c.pos.qty*(PRICE[e]-PRICE[e-1]); } return {today:today,total:c.pnl}; }
 function tfTmCtlBtn(s){
   var d=window.TF_PREVIEW?' disabled':'', k='&quot;'+s.key+'&quot;';
