@@ -6895,8 +6895,9 @@ a.btg-out{text-decoration:none}
 .acx-perm li.pm-n b{color:#aeb3ba}
 #ac-go img{border-radius:5px;margin-right:8px;vertical-align:-4px}
 .acx-help{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:26px 0 0;padding-top:18px;border-top:1px solid rgba(255,255,255,.07);font-size:13px;color:#8b9096}
-.acx-help button{height:34px;padding:0 14px;border-radius:999px;border:1px solid rgba(255,255,255,.16);background:none;color:#e9ebee;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer}
-.acx-help button:hover{background:rgba(255,255,255,.06)}
+.acx-help button{height:36px;padding:0 16px;border-radius:999px;border:0;background:#313339;color:#fff;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s ease} /* 회색 버튼(카드·페이지 위 #313339) */
+.acx-help button:hover{background:#3a3d44}
+@media (max-width:900px){ .acx-help{padding-left:16px;padding-right:16px} } /* 모바일: 안내 글자·버튼 양옆 16px (선은 끝까지) */
 .acx-done{display:flex;align-items:center;gap:16px;margin:4px 0 18px}
 .acx-done .ring{flex:none;width:52px;height:52px;border-radius:50%;background:rgba(47,185,138,.14);color:#2fb98a;display:flex;align-items:center;justify-content:center}
 .acx-done h3{margin:0 0 3px;font-size:19px;font-weight:700;letter-spacing:-.01em}
