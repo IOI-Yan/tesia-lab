@@ -8178,6 +8178,9 @@ body #g-root .tft-page .tb-th .tb-thl::before{content:"";flex:none;width:20px;he
 /* 판단 펼친 상자 글자: 16 → 13(위 포지션 상자와 같게), 오른쪽 상태(아직·도달) 14 → 12 */
 body #g-root .tft-page details.tb-fc>.tb-fr .tm-row,body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>span,body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>b,body #g-root .tft-page details.tb-fc>.tb-fr .tm-out,body #g-root .tft-page details.tb-fc>.tb-fr .tm-out small,body #g-root .tft-page details.tb-fc>.tb-fr .tm-out b{font-size:13px}
 body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>i{font-size:12px}
+/* 손익 숫자 규칙: + 초록 #2FB98A, - 빨강 #F0566A (펼친 상자 숫자·결과) */
+body #g-root .tft-page details.tb-fc>.tb-fr b.up{color:#2fb98a!important}
+body #g-root .tft-page details.tb-fc>.tb-fr b.dn{color:#f0566a!important}
 /* 간격 넓힘: "전략 6개" 단추 ↔ 판단 탭 6 → 16. 모바일은 차트 ↔ 포지션 탭 0 → 16, 구분선 ↔ "전략 6개" 단추 10 → 16 */
 body #g-root .tft-page .mks-hd{padding-bottom:16px}
 @media (max-width:960px){
@@ -20953,7 +20956,7 @@ function tfTmStatusBlock(s,c){
 function tfTmRow(label,val,state){
   var mark=state==='ok'?'✓':state==='no'?'✗':state==='hit'?'✓ 도달':'미도달';
   var pl=/^손절/.test(label)?' tm-sl':/^익절/.test(label)?' tm-tp':'';
-  return '<div class="tm-row'+pl+'"><span>'+label+'</span><b class="num">'+val+'</b><i class="'+state+'">'+mark+'</i></div>';
+  return '<div class="tm-row'+pl+'"><span>'+label+'</span><b class="num'+(/^\s*\+/.test(val)?' up':/^\s*[-−]/.test(val)?' dn':'')+'">'+val+'</b><i class="'+state+'">'+mark+'</i></div>';
 }
 function tfLogCardRule(ev,s){
   var p=s.p, i=ev.i, px=PRICE[i], k=ev.k, m=TF_TM_EVM[k]||['판단','ho'];
