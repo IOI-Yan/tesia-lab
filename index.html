@@ -7985,6 +7985,12 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .px-head{margin-bottom:6px}
 #g-root .px-links{justify-content:center} /* 버튼 아래 글자 버튼("TETH 초대 계정으로 연결" 등)은 버튼과 같이 가운데 */
 #g-root .px-links .pl-link:hover{color:#e3e5ea} #g-root .px-links.px-sm .pl-link:hover{color:#b0b4bb} /* 글자 버튼 호버: 흰색 대신 한 단계 밝은 회색 */
+/* [공통 규칙 G29] 밑줄 글자 단추: 글자·밑줄 #CFD2D6, 호버 한 단계 밝게 #E3E5EA (흰색 아님). 작은 보조 링크(.px-sm)는 #8D9199 → #B0B4BB, 바탕 있는 알약형 링크는 제외 */
+body #g-root .pl-link,body #g-root .btg-me .lk,body #g-root .btg-sum .lk,body #g-root .ac-link,body #g-root .ac-lnk,body #g-root .acx-have button,body #g-root .acx-now .r button,body #g-root .cx-lnk,body #g-root .mk-lnk,body #g-root .stg-lk,body #g-root .ska .lk,body #g-root .rv-links button,body #g-root .rv-prev,body #g-root .bt-skip,body #g-root .skipb,body #g-root .nfxu-later,body #g-root .btg-st .ed{color:#cfd2d6;text-decoration-color:currentColor;transition:color .2s ease}
+body #g-root .pl-link:hover,body #g-root .btg-me .lk:hover,body #g-root .btg-sum .lk:hover,body #g-root .ac-link:hover,body #g-root .ac-lnk:hover,body #g-root .acx-have button:hover,body #g-root .acx-now .r button:hover,body #g-root .cx-lnk:hover,body #g-root .mk-lnk:hover,body #g-root .stg-lk:hover,body #g-root .ska .lk:hover,body #g-root .rv-links button:hover,body #g-root .rv-prev:hover,body #g-root .bt-skip:hover,body #g-root .skipb:hover,body #g-root .nfxu-later:hover,body #g-root .btg-st .ed:hover{color:#e3e5ea}
+body #g-root .px-links.px-sm .pl-link{color:#8d9199} body #g-root .px-links.px-sm .pl-link:hover{color:#b0b4bb}
+body #g-root .px-tbrain .r .pl-link{color:#ececf1} body #g-root .px-tbrain .r .pl-link:hover{color:#ececf1}
+body #g-root .btg-me .lk{font-size:13px}
 #g-root .px-body .acx-help,#g-root .acx-flow .acx-help{margin-top:40px} /* 연결 단계: 버튼·링크와 상담원 안내 사이 16 → 40px */
 #bt-root .bt-hd{margin-bottom:clamp(24px,4vh,56px)} /* [공통 규칙] 뒤로 단추 줄과 내용 사이 = 화면 높이 4% (24~56px), 모바일 16 — 백테스트·전략 실행 준비 */
 @media (min-width:901px){ #bt-root{padding-top:calc(clamp(64px,9vh,128px) - 40px)} } /* PC 맨 위 여백 = 화면 높이 9% (64~128px), 큰 모니터에서 내용이 위로 붙어 보이던 것 */
