@@ -26760,9 +26760,12 @@ function tbText(){ try{ var b=document.querySelector('#g-content .tft-brain'); i
 /* 판단 카드 다시 그릴 때 깜박임 없애기: 예전 글자·예전 판단 카드가 잠깐 보였다가 0.2초 뒤 바뀌던 것 → 다시 그린 바로 그 자리에서 바로 바꿈. 카드 스크롤 위치도 그대로 */
 (function(){ if(typeof tfTmBrain!=='function'||tfTmBrain._tbNow) return; var b0=tfTmBrain;
   tfTmBrain=function(){ var bi=document.querySelector('#g-content .tft-brainin'), st=bi?bi.scrollTop:0;
+    var os=document.querySelector('#g-content .ffseg'), ob=os&&os.querySelector('.ffc.on'), from=ob&&os.offsetParent?{x:ob.offsetLeft,w:ob.offsetWidth}:null;
     var r=b0.apply(this,arguments);
     try{ var bx=document.getElementById('tft-bbody'); if(bx) bx.removeAttribute('data-tb'); if(typeof tbRuleLog==='function') tbRuleLog(); if(typeof sktApply==='function') sktApply(document.querySelector('#g-content .tft-brain')); if(typeof tbText==='function') tbText(); }catch(e){}
     var bi2=document.querySelector('#g-content .tft-brainin'); if(bi2&&st) bi2.scrollTop=st;
+    /* 세그먼트(전체/거래 기록)가 새로 그려져도 고른 칸이 이전 자리에서 미끄러져 오게(G31과 같은 0.26초) */
+    try{ var ns=document.querySelector('#g-content .ffseg'), nb=ns&&ns.querySelector('.ffc.on'); if(from&&nb&&typeof segSync==='function'&&Element.prototype.animate&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){ segSync(ns); var tg=ns.querySelector(':scope>.segt'); if(tg&&nb.offsetLeft!==from.x){ tg.animate([{transform:'translate('+from.x+'px,'+nb.offsetTop+'px)',width:from.w+'px'},{transform:'translate('+nb.offsetLeft+'px,'+nb.offsetTop+'px)',width:nb.offsetWidth+'px'}],{duration:260,easing:'cubic-bezier(.2,.8,.3,1)'}); } } }catch(e){}
     return r; };
   tfTmBrain._tbNow=1; })();
 /* 차트 탭 줄의 시세 출처 표시에도 운용 거래소 앱 아이콘 */
