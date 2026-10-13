@@ -8321,6 +8321,9 @@ body #g-root .tft-page .tft-brain .tft-pm .c4{padding:10px 12px}
 body #g-root .tft-page .tft-brain .tft-pm .c4>small{font-size:12px;color:#8d9199}
 body #g-root .tft-page .tft-brain .tft-pm .c4>b{font-size:14px;font-weight:700}
 body #g-root .tft-page .tft-brain .tft-mg .c5 small{white-space:nowrap}
+/* 칸이 좁아 값이 넘치면 값을 이름 아래 줄로 내림(오른쪽 정렬) — 넘침 없음 */
+body #g-root .tft-page .tft-brain .tft-mg .c5{flex-wrap:wrap;row-gap:2px}
+body #g-root .tft-page .tft-brain .tft-mg .c5 b{margin-left:auto;text-align:right;min-width:0;overflow-wrap:anywhere}
 /* "버전 기록 보기": 파란 글자 → 작은 보조 링크 규칙(13 · #8D9199 · 밑줄, 호버 #B0B4BB) */
 body #g-root .tft-page .tft-vh a{font-size:13px;color:#8d9199;text-decoration:underline;text-underline-offset:3px;text-decoration-color:rgba(141,145,153,.5);transition:color .15s ease}
 body #g-root .tft-page .tft-vh a:hover{color:#b0b4bb}
