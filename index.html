@@ -8262,6 +8262,10 @@ body #g-root .mki .mki-lks{margin-bottom:0}
 @media (min-width:961px){ body #g-root .tft-page .mkt-tabs{padding-left:8px} }
 /* 정보 탭 코인 이름(Bitcoin) 500 → 700 */
 body #g-root .mki-hd b{font-weight:700}
+/* 판단 기록: 줄 사이 선 없앰(호버 둥근 칸과 선이 섞여 어색함) → 줄끼리는 간격 4로만 나눔, 호버하면 둥근 칸만. 묶음 안 목록도 같게 */
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc+details.tb-fc::before,body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-fc+details.tb-fc::before{display:none}
+body #g-root .tft-page #tft-bbody>.tb-rfeed{display:flex;flex-direction:column;gap:4px}
+body #g-root .tft-page .tm-foldx .tb-rfeed{display:flex;flex-direction:column;gap:2px}
 /* 모바일: 정보·데이터 탭이면 차트 카드 높이 고정(60vh) 없이 내용대로 나열(안쪽 스크롤 없음). 차트 탭은 그대로 */
 @media (max-width:960px){
   body #g-root .nfxh-wrap.tft-page .tft-chart.tc-pane{height:auto!important;min-height:0!important;overflow:visible!important}
