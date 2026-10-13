@@ -8102,6 +8102,28 @@ body #g-root .tft-page .tft-comp .row input:focus{border-color:#00feff;outline:n
 body #g-root .tft-page .tft-comp .snd{display:inline-flex;align-items:center;justify-content:center;background:#00feff;color:#101113;border:0}
 body #g-root .tft-page .tft-comp .snd:hover{background:#5cfeff}
 body #g-root .tft-page .tft-comp .snd:disabled{background:#313339;color:#6e737b}
+/* 전략 고르기 창(전략 6): 팝업 규칙 — 바탕 #1B1C1F·테두리 6%, 제목 굵게, 검색 = 입력칸 규칙, 카드 13px, 고른 카드 = #25272C + 안쪽 선 10% (회색 2px 테두리 없앰), 호버 한 단계 밝게 */
+body #g-root .tft-page .tft-rail{background:#1b1c1f;border-color:rgba(255,255,255,.06)}
+body #g-root .tft-page .tft-rail b:first-child{font-weight:700}
+body #g-root .tft-page .tft-rf input{background:#141518;border:1px solid #3c3f45;font-size:15px;transition:border-color .12s}
+body #g-root .tft-page .tft-rf input:focus{border-color:#00feff;outline:none}
+body #g-root .tft-page .tft-rail .tft-card{font-size:13px;background:transparent;transition:background .2s ease}
+body #g-root .tft-page .tft-rail .tft-card:hover{background:#25272c}
+body #g-root .tft-page .tft-card.on{background:#25272c!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.1)!important}
+/* 고르기 목록(G35) — select 대신 쓰는 단추와 목록 */
+.csel{position:relative;display:inline-flex}
+.csel .csel-src{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px}
+.csel-t{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px 0 16px;border:1px solid rgba(255,255,255,.06);border-radius:999px;background:#25272C;color:#fff;font:inherit;font-size:14px;font-weight:500;cursor:pointer;transition:background .2s ease}
+.csel-t:hover{background:#2f3137}
+.csel-t svg{flex:none;color:#9ea3ad;transition:transform .3s cubic-bezier(.2,.8,.3,1)}
+.csel-t[aria-expanded="true"] svg{transform:rotate(180deg)}
+.csel-m{position:absolute;left:0;top:calc(100% + 6px);z-index:60;min-width:160px;padding:6px;border-radius:12px;background:#1b1c1f;border:1px solid rgba(255,255,255,.06);box-shadow:0 12px 32px rgba(0,0,0,.4)}
+.csel-m[hidden]{display:none}
+.csel-m button{display:flex;align-items:center;gap:8px;width:100%;height:36px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:#cfd2d6;font:inherit;font-size:14px;font-weight:500;text-align:left;white-space:nowrap;cursor:pointer;transition:background .15s ease,color .15s ease}
+.csel-m button:hover{background:#313339;color:#fff}
+.csel-m button svg{flex:none;color:#00feff;visibility:hidden}
+.csel-m button[aria-selected="true"]{color:#fff;font-weight:600}
+.csel-m button[aria-selected="true"] svg{visibility:visible}
 /* [공통 규칙 G36] 상태·태그 색 4종(어두운 바탕 + 같은 계열 글자): 빨강(오류) · 파랑(성공·종류) · 주황(확인 필요·위험) · 초록(참고). 토큰 --tag-*. 백테스트 분류 배지: 종류=파랑, 종목=초록, 상품·배수=주황 */
 #bt-root .bt-id-m b,#bt-root .bt-id-m span{font-weight:500}
 body #bt-root .bt-id-m>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
@@ -13747,6 +13769,30 @@ if(!window._tethDetailsAnim){
     kids.forEach(function(k){ if(k.animate) k.animate(closing?[{opacity:1},{opacity:0}]:[{opacity:0},{opacity:1}],{duration:closing?200:300,easing:'ease',fill:'both'}); });
     a.finished.then(function(){ if(d._tAnim!==a) return; d._tAnim=null; if(closing) d.open=false; d.style.overflow=''; d.style.boxSizing=''; kids.forEach(function(k){ k.getAnimations&&k.getAnimations().forEach(function(x){ x.cancel(); }); }); },function(){});
   },true);
+}
+/* [공통 규칙 G35] 기본 select → 고르기 목록(최신순과 같은 모양). select는 숨겨 두고 값·change 이벤트는 그대로 써서 기존 동작 유지 */
+var CSEL_SEL='.tft-scope select,.fr2 select';
+var CSEL_CHEV='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>';
+var CSEL_CK='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>';
+function cselClose(except){ document.querySelectorAll('.csel-m').forEach(function(m){ if(m===except) return; if(!m.hidden){ m.hidden=true; var t=m.previousElementSibling; if(t) t.setAttribute('aria-expanded','false'); } }); }
+function cselBuild(s){
+  if(s._csel||!s.options.length) return; s._csel=1;
+  var w=document.createElement('span'); w.className='csel';
+  var t=document.createElement('button'); t.type='button'; t.className='csel-t'; t.setAttribute('aria-haspopup','listbox'); t.setAttribute('aria-expanded','false');
+  var m=document.createElement('div'); m.className='csel-m'; m.setAttribute('role','listbox'); m.hidden=true;
+  var paint=function(){ var o=s.options[s.selectedIndex]; t.innerHTML='<span>'+gEsc(o?o.text:'')+'</span>'+CSEL_CHEV;
+    m.innerHTML=[].map.call(s.options,function(op,i){ return '<button type="button" role="option" aria-selected="'+(i===s.selectedIndex)+'" data-i="'+i+'">'+CSEL_CK+'<span>'+gEsc(op.text)+'</span></button>'; }).join(''); };
+  paint();
+  t.onclick=function(e){ e.stopPropagation(); var open=m.hidden; cselClose(m); m.hidden=!open; t.setAttribute('aria-expanded',String(open)); };
+  m.onclick=function(e){ var b=e.target.closest('[data-i]'); if(!b) return; e.stopPropagation(); s.selectedIndex=+b.dataset.i; paint(); m.hidden=true; t.setAttribute('aria-expanded','false'); s.dispatchEvent(new Event('change',{bubbles:true})); };
+  s.parentNode.insertBefore(w,s); w.appendChild(s); w.appendChild(t); w.appendChild(m); s.classList.add('csel-src');
+}
+if(!window._tethCsel){ window._tethCsel=1;
+  document.addEventListener('click',function(){ cselClose(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape') cselClose(); });
+  var cselScan=function(root){ if(root.matches&&root.matches(CSEL_SEL)) cselBuild(root); if(root.querySelectorAll) [].forEach.call(root.querySelectorAll(CSEL_SEL),cselBuild); };
+  new MutationObserver(function(ms){ ms.forEach(function(m){ [].forEach.call(m.addedNodes,function(n){ if(n.nodeType===1) cselScan(n); }); }); }).observe(document.documentElement,{childList:true,subtree:true});
+  cselScan(document);
 }
 /* [공통 규칙 G34] 팝업이 닫힐 때 스르륵: 바탕 막은 0.2초 동안 흐려지고, 창은 살짝 내려가며 작아짐. 메뉴는 살짝 올라가며 사라짐.
    닫는 순간 id를 떼어 같은 이름으로 새로 여는 창과 섞이지 않게 하고, 누르기도 막는다. 움직임 줄이기 설정이면 바로 닫힘 */
