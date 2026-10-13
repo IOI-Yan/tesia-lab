@@ -7736,8 +7736,9 @@ body.g-dark .g-side{background:#101113;border-right:1px solid rgba(255,255,255,.
 .skf-nm h3{margin:0;font-size:18px;font-weight:700;line-height:1.35;color:#fff;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .skf-nm span{display:flex;align-items:center;gap:6px;font-size:14px;color:#a6aab2}
 .skf-nm span img{border-radius:4px}
-/* 카드 왼쪽 위 = 실행 거래소 로고(전략 종류 아이콘 대신, 사용자 지시). 이름 첫 줄과 가운데 맞춤 */
-.skf-exl{flex:none;width:28px;height:28px;border-radius:8px;margin-top:-1px;object-fit:cover}
+/* 카드 오른쪽 위 = 실행 거래소 로고(왼쪽 아이콘 없음, 사용자가 비교 후 C안 선택). 이름은 맨 왼쪽부터 */
+.skf-top .skf-nm{flex:1}
+.skf-exl{flex:none;width:28px;height:28px;border-radius:8px;object-fit:cover}
 .skf-perf{display:grid;grid-template-columns:auto minmax(0,1fr);align-items:end;gap:16px}
 .skf-ret{display:grid;gap:2px}
 .skf-ret small{font-size:13px;color:#8d9199}
@@ -25186,7 +25187,7 @@ function skfCard(s){
   if(!s.kind) s.kind='rule';
   var m30=mk30(s), ne=tfSS3Rid(s), ex=mkEx(s), fw=s.fw?mkFwHtml(s.fw):'';
   return '<article class="mk-card skf k-'+s.kind+'" role="link" tabindex="0" aria-label="'+gEsc(mkHook(s))+' 전략 보기" onclick="skfOpen(event,\''+ne+'\')" onkeydown="skfOpen(event,\''+ne+'\')">'
-    +'<div class="skf-top"><img class="skf-exl" src="assets/logos/'+ex[0]+'.png" alt="'+ex[1]+'" width="28" height="28" loading="lazy"><div class="skf-nm"><h3>'+gEsc(mkHook(s))+'</h3><span>'+MK_KIND[s.kind]+', '+ex[1]+'에서 실행</span></div></div>'
+    +'<div class="skf-top"><div class="skf-nm"><h3>'+gEsc(mkHook(s))+'</h3><span>'+MK_KIND[s.kind]+', '+ex[1]+'에서 실행</span></div><img class="skf-exl" src="assets/logos/'+ex[0]+'.png" alt="'+ex[1]+'" width="28" height="28" loading="lazy"></div>'
     +'<div class="skf-perf"><div class="skf-ret"><small>최근 30일</small><b class="num'+mkSign(m30.ret)+'">'+mkPct0(m30.ret)+'</b></div>'+mkSpark3(m30.eq)+'</div>'
     +'<div class="skf-fw">'+fw+'</div>'
     +'</article>';
