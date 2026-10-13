@@ -14189,12 +14189,12 @@ if(!window._tethDetailsAnim){
     d._tClosing=closing;
     if(closing){ d.open=false; to=d.getBoundingClientRect().height; d.open=true; }
     else { d.open=true; to=d.getBoundingClientRect().height; }
-    d.style.overflow='hidden'; d.style.boxSizing='border-box';
+    d.style.clipPath='inset(0 -100vw)'; d.style.boxSizing='border-box'; /* 위아래만 자르고 옆은 그대로: 카드 끝까지 차는 호버 바탕이 열고 닫는 동안 안쪽으로 잘려 작아 보이던 것 막음 */
     var a=d.animate([{height:from+'px'},{height:to+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'});
     d._tAnim=a;
     var kids=[].slice.call(d.children).filter(function(k){ return k!==s; });
     kids.forEach(function(k){ if(k.animate) k.animate(closing?[{opacity:1},{opacity:0}]:[{opacity:0},{opacity:1}],{duration:closing?200:300,easing:'ease',fill:'both'}); });
-    a.finished.then(function(){ if(d._tAnim!==a) return; d._tAnim=null; if(closing) d.open=false; d.style.overflow=''; d.style.boxSizing=''; kids.forEach(function(k){ k.getAnimations&&k.getAnimations().forEach(function(x){ x.cancel(); }); }); },function(){});
+    a.finished.then(function(){ if(d._tAnim!==a) return; d._tAnim=null; if(closing) d.open=false; d.style.clipPath=''; d.style.boxSizing=''; kids.forEach(function(k){ k.getAnimations&&k.getAnimations().forEach(function(x){ x.cancel(); }); }); },function(){});
   },true);
 }
 /* [공통 규칙 G35] 기본 select → 고르기 목록(최신순과 같은 모양). select는 숨겨 두고 값·change 이벤트는 그대로 써서 기존 동작 유지 */
