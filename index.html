@@ -8153,6 +8153,8 @@ body .tm-ditem.on{background:#25272C;border-color:rgba(255,255,255,.1)}
 /* 미리보기 안내 줄: 글자 14 → 13, "내 터미널" 단추 36 → 28px · 12/600 */
 body #g-root .tft-page .tm-preview span{font-size:13px}
 body #g-root .tft-page .tm-preview button{height:28px;padding:0 12px;font-size:12px}
+/* "전략 6개" 단추: 작은 글자(13)가 0.9px 위로 떠 보여 1px 내림 → 이름과 세로 가운데 맞춤 */
+body #g-root .tft-page .mks-btn span{position:relative;top:1px}
 /* [공통 규칙 G36] 상태·태그 색 4종(어두운 바탕 + 같은 계열 글자): 빨강(오류) · 파랑(성공·종류) · 주황(확인 필요·위험) · 초록(참고). 토큰 --tag-*. 백테스트 분류 배지: 종류=파랑, 종목=초록, 상품·배수=주황 */
 #bt-root .bt-id-m b,#bt-root .bt-id-m span{font-weight:500}
 body #bt-root .bt-id-m>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
@@ -8911,7 +8913,7 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .g-send:hover{background:#e5e7eb}
 .g-send:disabled{background:#2E3036;color:#8d9199}
 /* ═══ 터미널 시장 (sk-mkt): 바이낸스처럼 칸마다 카드, 시장 줄, 종목 선택 창, 차트/정보/데이터 ═══ */
-.tft-page{--mkc:#131519;background:#101113}
+.tft-page{--mkc:#17181B;background:#101113}
 .tft-page .tm-simnote{display:none!important}
 /* 카드 배치: 시장 줄 / (차트 카드 | 판단 카드) / 아래 카드 */
 .tft-page .mkh{margin:6px 6px 0;border-radius:16px;background:var(--mkc)}
@@ -9066,12 +9068,12 @@ body:has(.mk3-grid) #teth-help{display:none!important}
   .nfxh-wrap.tft-page>.tm-mhead{order:1}
   .nfxh-wrap.tft-page>.tm-msummary{order:2}
   .nfxh-wrap.tft-page>.mkh{order:3}
-  .nfxh-wrap.tft-page .tft-chart{order:4;display:flex!important;flex-direction:column;height:60vh;min-height:360px;margin:6px 8px 0;border-radius:16px;overflow:hidden;background:#131519}
-  .nfxh-wrap.tft-page>.tft-bottom{order:5;display:block!important;margin:6px 8px 0;border-radius:16px;overflow:hidden;background:#131519}
+  .nfxh-wrap.tft-page .tft-chart{order:4;display:flex!important;flex-direction:column;height:60vh;min-height:360px;margin:6px 8px 0;border-radius:16px;overflow:hidden;background:#17181B}
+  .nfxh-wrap.tft-page>.tft-bottom{order:5;display:block!important;margin:6px 8px 0;border-radius:16px;overflow:hidden;background:#17181B}
   .nfxh-wrap.tft-page>.tft-bottom .nfxh-tabs.m2-only{display:flex!important;overflow-x:auto;scrollbar-width:none}
   .nfxh-wrap.tft-page>.tft-bottom .nfxh-tabs.m2-only::-webkit-scrollbar{display:none}
   .nfxh-wrap.tft-page>.tft-bottom .nfxh-pane.on{display:block!important;max-height:none}
-  .nfxh-wrap.tft-page .tft-brain{order:6;display:flex!important;min-height:0!important;margin:6px 8px 16px;border-radius:16px;background:#131519}
+  .nfxh-wrap.tft-page .tft-brain{order:6;display:flex!important;min-height:0!important;margin:6px 8px 16px;border-radius:16px;background:#17181B}
   .nfxh-wrap.tft-page .tft-rail{order:7}
   .nfxh-wrap.tft-page .tft-ctx{display:none!important}
 }
@@ -9118,9 +9120,9 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .tft-page .nfxh-tabs::-webkit-scrollbar,.tft-page .mkt-pane::-webkit-scrollbar,.tft-page .tft-comp>div::-webkit-scrollbar,.tft-page .nfxh-pane::-webkit-scrollbar,.tft-page .tb-copy::-webkit-scrollbar,.tft-page .tft-bbody::-webkit-scrollbar{display:none!important;width:0!important;height:0!important}
 
 /* 종목 줄도 아래 차트 카드처럼 둥근 카드(PC). 모바일은 메뉴 단추 줄이라 그대로 */
-@media (min-width:961px){ .tft-page .mkh{margin:8px 8px 0;border-radius:16px;background:#131519;border:0} }
+@media (min-width:961px){ .tft-page .mkh{margin:8px 8px 0;border-radius:16px;background:#17181B;border:0} }
 /* 종목 줄도 아래 카드들과 같은 카드(모서리 16px, 바깥 여백) */
-.nfxh-wrap.tft-page>.mkh{margin:8px 6px 0!important;border-radius:16px!important;background:#131519!important;border:0}
+.nfxh-wrap.tft-page>.mkh{margin:8px 6px 0!important;border-radius:16px!important;background:#17181B!important;border:0}
 /* 모바일: 시세 출처 줄은 운용 거래소만(잘림 방지) */
 @media (max-width:600px){ .mkt-ref>img:first-child,.mkt-ref>span:nth-of-type(1),.mkt-ref>.sp{display:none!important} .mkt-ref{max-width:46%} }
 /* 신호 차트 */
@@ -9223,7 +9225,7 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .tft-page .tb-rl .tb-fr .tm-row{display:flex;justify-content:space-between;gap:8px;padding:4px 0;font-size:14px;color:#cfd2d6}
 .tft-page .tb-rl .tb-fr .tm-out{font-size:14px;color:#cfd2d6;margin:4px 0}
 .tft-page .tft-bbody{padding-bottom:24px}
-.tft-page .tb-cps{flex:none;position:sticky;top:0;z-index:2;background:#131519;padding-bottom:10px}
+.tft-page .tb-cps{flex:none;position:sticky;top:0;z-index:2;background:#17181B;padding-bottom:10px}
 @media (max-width:960px){ .tft-page .tm-status.tb{padding-top:16px} .tft-page .tm-status.tb,.tft-page .tb-th,.tft-page .tb-feed,.tft-page .tb-foot,.tft-page .tb-cps{padding-left:16px;padding-right:16px} }
 /* Codex s5: 판단 전문과 접기, 글자 16/14, 모바일 위 여백 */
 .tft-page .tb-fx:empty::after{content:'판단 전문'}
@@ -15069,7 +15071,7 @@ function tfTmBrain(){
   }
   var TABS=[['agent','판단'],['dash','대시보드'],['done','완료된 거래']];
   var c=tfTmCalc(s), pv=!!window.TF_PREVIEW;
-  var h='<div class="tft-btabs">'+TABS.map(function(tb){ return '<button class="'+(TF_TM.tab===tb[0]?'on':'')+'" onclick="TF_TM.tab=&quot;'+tb[0]+'&quot;;tfTmBrain()">'+tb[1]+'</button>'; }).join('')+'</div>';
+  var h='<div class="tft-btabs">'+TABS.map(function(tb){ return '<button class="'+(TF_TM.tab===tb[0]?'on':'')+'" onclick="tfTmTab(this,&quot;'+tb[0]+'&quot;)">'+tb[1]+'</button>'; }).join('')+'</div>';
   if(TF_TM.tab==='agent') h+=tfTmStatusBlock(s,c); /* 상단 고정 — 스크롤 밖 */
   h+='<div class="tft-bbody" id="tft-bbody">';
   if(TF_TM.tab==='agent') h+=tfTmFeed(s,c);
@@ -20966,6 +20968,24 @@ function tfTmHelp(){
   document.body.classList.add('tm-helpon');
   window.tethHelpOpen();
 }
+/* 판단·대시보드·완료된 거래 탭: 밑줄이 이전 탭에서 새 탭으로 0.26초 미끄러지고(G31과 같은 속도), 아래 내용은 살짝 올라오며 나타남 */
+function tfTmTab(btn,k){
+  if(TF_TM.tab===k) return;
+  var bar=btn.parentNode, o=bar.querySelector('button.on'), br=bar.getBoundingClientRect(), from=null;
+  if(o){ var r=o.getBoundingClientRect(); from={l:r.left-br.left,w:r.width}; }
+  TF_TM.tab=k; tfTmBrain();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches; if(calm||!Element.prototype.animate) return;
+  [].forEach.call(document.querySelectorAll('.tft-btabs'),function(nb){ var on=nb.querySelector('button.on'); if(!on||!nb.offsetParent) return;
+    var nr=nb.getBoundingClientRect(), q=on.getBoundingClientRect(), to={l:q.left-nr.left,w:q.width};
+    var body=nb.nextElementSibling; if(body) body.animate([{opacity:0,transform:'translateY(4px)'},{opacity:1,transform:'none'}],{duration:220,easing:'cubic-bezier(.2,.8,.3,1)'});
+    if(!from||!to.w) return;
+    if(getComputedStyle(nb).position==='static') nb.style.position='relative';
+    var ind=document.createElement('i'); ind.setAttribute('aria-hidden','true');
+    ind.style.cssText='position:absolute;left:0;bottom:0;height:2px;width:'+to.w+'px;background:#fff;pointer-events:none;transform-origin:0 0';
+    on.style.borderBottomColor='transparent'; nb.appendChild(ind);
+    ind.animate([{transform:'translateX('+from.l+'px) scaleX('+(from.w/to.w)+')'},{transform:'translateX('+to.l+'px) scaleX(1)'}],{duration:260,easing:'cubic-bezier(.2,.8,.3,1)',fill:'forwards'}).finished.then(function(){ on.style.borderBottomColor=''; ind.remove(); },function(){ on.style.borderBottomColor=''; ind.remove(); });
+  });
+}
 /* 모바일 — 헤더 제목 탭 → 전략 선택 드로어 (D16) */
 function tfTmDrawer(){
   var all=tfTmAll();
@@ -26279,7 +26299,7 @@ function mktChart(force){
   if(typeof taiTv!=='function') return;
   taiTv(function(){ try{ if(gen!==TF_TM.gen) return; var h2=document.getElementById('nfxh-tv'); if(!h2||h2.childNodes.length) return;
     new TradingView.widget({container_id:'nfxh-tv',symbol:tv,interval:'15',timezone:'Asia/Seoul',theme:'dark',style:'1',locale:'kr',autosize:true,
-      toolbar_bg:'#131519',backgroundColor:'#131519',gridColor:'rgba(255,255,255,0.05)',enable_publishing:false,hide_side_toolbar:false,hide_top_toolbar:false,withdateranges:false,
+      toolbar_bg:'#17181B',backgroundColor:'#17181B',gridColor:'rgba(255,255,255,0.05)',enable_publishing:false,hide_side_toolbar:false,hide_top_toolbar:false,withdateranges:false,
       allow_symbol_change:false,save_image:true,details:false,hotlist:false,calendar:false,
       studies:[{id:'MASimple@tv-basicstudies',inputs:{length:7}},{id:'MASimple@tv-basicstudies',inputs:{length:25}},{id:'MASimple@tv-basicstudies',inputs:{length:99}}]});
     var p2=document.getElementById('nfxh-ph'); if(p2) p2.hidden=true; }catch(e){} });
