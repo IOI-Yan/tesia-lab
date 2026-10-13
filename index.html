@@ -8163,6 +8163,15 @@ body #g-root .tft-page .tft-tblw::-webkit-scrollbar{height:6px}
 body #g-root .tft-page .tft-tblw::-webkit-scrollbar-button{display:none}
 body #g-root .tft-page .tft-tblw::-webkit-scrollbar-thumb{background:#3a3d44;border-radius:999px}
 body #g-root .tft-page .tft-tblw::-webkit-scrollbar-track{background:transparent}
+/* 전략 고르기 창: 마지막 카드 아래 여백 = 양옆과 같게(9) */
+body #g-root .tft-page .tft-rail .tft-rl{padding-bottom:5px}
+/* 판단 기록: "판단 전문" 글자 대신 열 수 있다는 꺾쇠(Lucide chevron-down 16) — 문장 줄 오른쪽 끝, 열면 위로 돌아감 */
+body #g-root .tft-page .tb-rl>summary{position:relative}
+body #g-root .tft-page .tb-rl .tb-fs{padding-right:28px}
+body #g-root .tft-page .tb-rl .tb-fx,body #g-root .tft-page details[open].tb-rl .tb-fx{display:block!important;position:absolute;right:0;bottom:13px;width:16px;height:16px;margin:0;font-size:0;text-decoration:none;background-color:#8d9199;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") center/16px 16px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") center/16px 16px no-repeat;transition:transform .3s cubic-bezier(.2,.8,.3,1),background-color .15s ease}
+body #g-root .tft-page .tb-rl .tb-fx:empty::after{content:none!important}
+body #g-root .tft-page .tb-rl>summary:hover .tb-fx{background-color:#e3e5ea}
+body #g-root .tft-page details[open].tb-rl .tb-fx{transform:rotate(180deg)}
 /* 간격 넓힘: "전략 6개" 단추 ↔ 판단 탭 6 → 16. 모바일은 차트 ↔ 포지션 탭 0 → 16, 구분선 ↔ "전략 6개" 단추 10 → 16 */
 body #g-root .tft-page .mks-hd{padding-bottom:16px}
 @media (max-width:960px){
