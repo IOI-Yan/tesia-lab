@@ -1103,8 +1103,8 @@ body.kb-open .g-home-chips{opacity:0;transform:translateY(16px);pointer-events:n
 .g-errcard{border:1px solid rgba(238,118,106,.35);background:rgba(238,118,106,.07);border-radius:14px;padding:14px 16px;max-width:520px;animation:gFadeUp .3s var(--ease) both}
 .g-errcard b{font-size:14px;color:var(--gt)}
 .g-errcard .d{font-size:12.5px;color:var(--gt3);margin:5px 0 11px;line-height:1.6}
-.g-errcard .rt{border:1px solid var(--gl2,rgba(255,255,255,.18));border-radius:9px;padding:7px 14px;font-size:12.5px;color:var(--gt);cursor:pointer;transition:background .12s}
-.g-errcard .rt:hover{background:rgba(128,128,128,.12)}
+.g-errcard .rt{border:0;border-radius:999px;padding:8px 16px;background:rgba(238,118,106,.18);font-size:12.5px;font-weight:600;color:#ececf1;cursor:pointer;transition:background .12s}
+.g-errcard .rt:hover{background:rgba(238,118,106,.26)}
 /* 폼 탈출구, 피드백 textarea */
 .skipb{font-size:12px;color:var(--gt3);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 .skipb:hover{color:var(--gt)}
@@ -7816,10 +7816,11 @@ body.g-dark #g-appbanner{background:#101113}
 @media (max-width:760px){ #g-askdock{margin:0 0 8px} .ska .ops{max-height:40vh} }
 /* 채팅의 전략 카드(tf-sum): #2E3036 카드, 16/14 글자, 흰 알약 단추 */
 .tf-sum{max-width:560px;background:var(--g1);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:16px} /* 질문 카드와 같은 카드 색 (사용자 지시) */
-.tf-sum .h{font-size:16px;font-weight:500;color:#fff;margin-bottom:12px}
-.tf-sum .rows{gap:0;margin-bottom:12px;border-top:1px solid rgba(255,255,255,.07)}
+.tf-sum .h{font-size:16px;font-weight:700;color:#fff;margin-bottom:12px}
+.tf-sum .rows{gap:0;margin-bottom:12px}
 .tf-sum .r{align-items:center;min-height:42px;font-size:15px;border-bottom:1px solid rgba(255,255,255,.07)}
-.tf-sum .r .k{color:#a6aab2;width:104px}
+.tf-sum .rows .r:last-child{border-bottom:0} /* 표 끝 선은 카드 테두리와 겹쳐 보인다 (사용자 지시) */
+.tf-sum .r .k{color:#a6aab2;width:104px;font-size:13px}
 .tf-sum .r .v{color:#fff;font-weight:400}
 .tf-sum .re{font-size:13px;color:#cfd2d6}
 .tf-sum .tf-btn.p,.tf-sum .tf-btn{width:100%;height:48px;border-radius:999px;background:#00feff;border:0;color:#101113;font-size:15px;font-weight:600;transition:background .2s ease}
@@ -13720,7 +13721,7 @@ function tfAiStrategy(sp){
     +row('사는 때',dep+' 하루 0.5% 넘게 반등한 날'+(spec.tf?', 방향이 뚜렷할 때만':'')+(spec.fng!=null?', 공포 탐욕 지수 '+spec.fng+' 이하일 때만':''))
     +row('파는 때',(spec.tp!=null?'+'+spec.tp+'% 오르거나 ':'')+spec.sl+'% 내리면, 또는 25일이 지나면')
     +row('돌려 볼 기간',gEsc(PL[pi][0]))
-    +'</div><div style="font-size:11.5px;color:var(--gt3);line-height:1.7;margin:-4px 0 13px">실제 일봉 시세로 하루씩 다시 돌립니다. 살 때와 팔 때마다 수수료 0.1%를 뺍니다.</div>'
+    +'</div><div style="font-size:11.5px;color:#767b84;line-height:1.7;margin:-4px 0 13px">실제 일봉 시세로 하루씩 다시 돌립니다. 살 때와 팔 때마다 수수료 0.1%를 뺍니다.</div>'
     +'<button class="tf-btn p" onclick="tfVerifyGo(\''+id+'\')">과거로 돌려 보기</button></div>';
   taiThreadAdd(html); gScrollBottom();
 }
