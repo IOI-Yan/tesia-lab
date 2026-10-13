@@ -26733,6 +26733,14 @@ function tbText(){ try{ var b=document.querySelector('#g-content .tft-brain'); i
   kill.forEach(function(e){ e.remove(); }); }catch(e){} }
 (function(){ var t=0; var go=function(){ clearTimeout(t); t=setTimeout(tbText,200); };
   try{ new MutationObserver(go).observe(document.getElementById('g-content'),{childList:true,subtree:true}); }catch(e){} })();
+/* 판단 카드 다시 그릴 때 깜박임 없애기: 예전 글자·예전 판단 카드가 잠깐 보였다가 0.2초 뒤 바뀌던 것 → 다시 그린 바로 그 자리에서 바로 바꿈. 카드 스크롤 위치도 그대로 */
+(function(){ if(typeof tfTmBrain!=='function'||tfTmBrain._tbNow) return; var b0=tfTmBrain;
+  tfTmBrain=function(){ var bi=document.querySelector('#g-content .tft-brainin'), st=bi?bi.scrollTop:0;
+    var r=b0.apply(this,arguments);
+    try{ var bx=document.getElementById('tft-bbody'); if(bx) bx.removeAttribute('data-tb'); if(typeof tbRuleLog==='function') tbRuleLog(); if(typeof tbText==='function') tbText(); }catch(e){}
+    var bi2=document.querySelector('#g-content .tft-brainin'); if(bi2&&st) bi2.scrollTop=st;
+    return r; };
+  tfTmBrain._tbNow=1; })();
 /* 차트 탭 줄의 시세 출처 표시에도 운용 거래소 앱 아이콘 */
 mktRefNote=function(){ try{ var bar=document.querySelector('#g-content .tft-page .mkt-tabs'); if(!bar) return;
   var id=null, ex=null, s=TF_TM.sel?tfTmOf(TF_TM.sel):null;
