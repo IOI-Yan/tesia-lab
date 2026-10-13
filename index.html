@@ -25320,7 +25320,16 @@ function skaSend(id){
 function taiAskSkipText(){ var f=document.getElementById('g-in'); if(f){ f.value='세부 조건은 알아서 합리적으로 판단해서 바로 진행해줘'; gSend(); } }
 (function(){
   taiAskCard=skaCard; taiAskRender=skaRender;
-  taiAskClose=function(id){ var el=document.getElementById(id); if(el) el.remove(); var d=document.getElementById('g-askdock'); if(d&&!d.children.length) d.remove(); var n=document.getElementById(id+'-n'); if(n) n.remove(); /* 답한 뒤에는 아래 요약 말풍선이 같은 내용을 보여주므로 지운다 (사용자 지시) */ if(TAI.qcfg) delete TAI.qcfg[id]; };
+  /* 닫을 때 스르륵: 열릴 때(skaIn)의 반대로 내려가며 사라지고, 그 자리에 입력창이 스르륵 올라온다. 움직임 줄이기 설정이면 바로 닫는다 */
+  taiAskClose=function(id){ var el=document.getElementById(id), n=document.getElementById(id+'-n');
+    var gone=function(){ if(el) el.remove(); var d=document.getElementById('g-askdock'); if(d&&!d.children.length) d.remove(); if(n) n.remove(); };
+    var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(!el||calm||!el.animate){ gone(); }
+    else if(!el._closing){ el._closing=1; el.style.pointerEvents='none';
+      var a=el.animate([{opacity:1,transform:'none'},{opacity:0,transform:'translateY(12px)'}],{duration:200,easing:'cubic-bezier(.4,0,1,1)',fill:'forwards'});
+      if(n&&n.animate) n.animate([{opacity:1},{opacity:0}],{duration:200,easing:'ease',fill:'forwards'});
+      a.finished.then(function(){ gone(); var c=document.querySelector('.g-composer'); if(c&&c.animate&&c.offsetParent) c.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'none'}],{duration:250,easing:'cubic-bezier(.2,.8,.3,1)'}); },gone);
+    } /* 답한 뒤에는 아래 요약 말풍선이 같은 내용을 보여주므로 지운다 (사용자 지시) */ if(TAI.qcfg) delete TAI.qcfg[id]; };
   taiAskSkip=function(id){ taiAskClose(id); taiAskSkipText(); };
   /* "바로 실행" 류 단추: 고정 질문 다섯 개 대신 AI에게 보낸다. AI가 모르는 것만 [ASK]로 묻는다 */
   var ts0=tfStart; tfStart=function(act){
