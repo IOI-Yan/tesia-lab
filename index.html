@@ -1121,7 +1121,7 @@ body.kb-open .g-home-chips{opacity:0;transform:translateY(16px);pointer-events:n
 .fbt{background:rgba(128,128,128,.08);border:1px solid var(--gl);border-radius:10px;color:var(--gt);font-size:13px;font-family:inherit;padding:9px 12px;resize:vertical;outline:none;width:100%}
 .fbt:focus{border-color:var(--gb2,#8fb2ff)}
 .g-amsg p{margin:0 0 10px}
-.g-amsg .tai-txt>*:last-child,.g-amsg>*:last-child{margin-bottom:0} /* 마지막 문단의 10px 이 아이콘 줄 위에 얹혀 묶임이 흐려진다 (사용자 지시) */
+.g-amsg .tai-txt>*:last-child,.g-amsg>*:last-child{margin-bottom:0} .g-nextcol+.g-acts{margin-top:-4px} /* 마지막 문단의 10px 이 아이콘 줄 위에 얹혀 묶임이 흐려진다 (사용자 지시) */
 .g-amsg ul{margin:6px 0 14px;padding-left:22px}
 .g-amsg li{margin:6px 0}
 /* 번호 서술 문단: 불릿 마커 없이 번호를 행잉 인덴트로, 항목 간 여유 */
@@ -13445,7 +13445,7 @@ function taiActs(){
    +'<button aria-label="복사" onclick="taiCopy(this)"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>'
    +'</div>';
 }
-function taiMsgText(b){ var m=b.closest('.g-amsg'); return m?((m.querySelector('.tai-txt')||m).textContent):''; }
+function taiMsgText(b){ var m=b.closest('.g-amsg'); if(!m){ var s=b.closest('.g-acts'); s=s&&s.previousElementSibling; while(s&&!s.classList.contains('g-amsg')&&!s.classList.contains('g-urow')) s=s.previousElementSibling; if(s&&s.classList.contains('g-amsg')) m=s; } return m?((m.querySelector('.tai-txt')||m).textContent):''; }
 function taiCopy(b){
   /* 성공 확인 후에만 성공 피드백 — Promise 를 기다리지 않고 '복사 완료'를 띄우던 결함 수정 */
   var ok=function(){
@@ -13504,7 +13504,7 @@ function taiNext(items,acts){
   taiThreadAdd('<div class="g-nextcol" id="'+id+'">'+rows.map(function(r){
     if(r.t==='a') return '<button class="g-acbtn" data-a="'+r.i+'" data-act="'+gEsc(JSON.stringify(r.a)).replace(/"/g,'&quot;')+'"><span class="lf">'+TAI_ACT_IC[r.a.type]+'<span class="tx">'+gEsc(r.a.label)+'</span></span><span class="rt">'+(badge?'<span class="bdg">바로 실행</span>':'')+'<span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></span></button>';
     return '<button class="g-nextq" data-q="'+gEsc(r.q).replace(/"/g,'&quot;')+'"><span>'+gEsc(r.q)+'</span><span class="ar"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="display:block"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></span></button>';
-  }).join('')+(acts.length?'<div class="g-actnote">모두 무료입니다.</div>':'')+'</div>');
+  }).join('')+(acts.length?'<div class="g-actnote">모두 무료입니다.</div>':'')+'</div>'); /* 따봉·복사 줄은 답변 맨 끝으로: 바로 위 답변의 줄을 다음 행동 목록 아래로 옮긴다 */ var nx=document.getElementById(id), pa=nx&&nx.previousElementSibling; if(pa&&pa.classList.contains('g-acts')) nx.after(pa);
 }
 /* 후속, 액션 칩 문서 위임 (1회 설치). 인라인 onclick 이 있는 구형 칩은 이중 발화 방지를 위해 건너뛴다 */
 if(!window._tethChipDeleg){
