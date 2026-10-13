@@ -7934,6 +7934,12 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 @media (min-width:901px){ #g-root .pl-sub{font-size:14px;margin:32px 0 12px} #g-root .pl-items{gap:16px} #g-root .pl-items li span{font-size:14px} #g-root .pl-items li svg{width:18px;height:18px} #g-root .pl-foot{font-size:12px} }
 /* 모바일 페이지 양옆 5 → 12px */
 @media (max-width:900px){ #g-root .pl{padding-left:12px;padding-right:12px} }
+/* PC 카드 머리 정리: 이름 20 → 14px, 이름과 제목 사이 24 → 12px, 설명 16 → 14px, 설명 최소 높이 84 → 두 줄(44px)만 — 설명 아래 빈칸이 넓던 것 */
+@media (min-width:901px){ #g-root .pl-lb{font-size:14px} #g-root .pl-h{margin-top:12px} #g-root .pl-d{font-size:14px;min-height:44px} }
+/* 상담원 안내: 위 여백 26+18 → 16px(선이 없어져 안쪽 여백 불필요), 모바일 양옆 16 → 8px(화면 끝에서 20px) */
+#g-root .acx-help{margin-top:16px;padding-top:0}
+@media (max-width:900px){ #g-root .acx-help{padding-left:8px;padding-right:8px} }
+#g-root .pl-items li{color:#cfd2d6} /* 기능 목록 글자 한 단계 옅게 #ECECF1 → #CFD2D6 (설명과 같음) */
 .pl-cta-hi:hover,.px-cta.pl-cta-hi:hover{background:#5cf6ff;border-color:#5cf6ff}
 .pl-grad{background:linear-gradient(120deg,#e0feff 0%,#00f0ff 55%,#7ff7ff 100%);-webkit-background-clip:text;background-clip:text}
 .pl-hi .pl-items li svg,.pl-sumcard .pl-items li svg,.px-perm li,.px-hi .px-steps li.ok b svg{color:#00f0ff}
