@@ -8271,6 +8271,25 @@ body #g-root .tft-page .tft-fsec small{font-size:13px;font-weight:400;color:#8d9
 body #g-root .tft-page .tb-th .tb-thl{color:#9ea3ad}
 /* PC 차트 카드 전략 이름(BTC 돌파 추종) 400 → 700 (모바일 머리 전략 이름과 같게) */
 body #g-root .tft-page .tm-ttl{font-weight:700}
+/* 관망 묶음도 판단 줄과 같은 모양: 상자 → 줄(윗줄 회색 태그 "관망 n회" + 날짜, 아랫줄 문장, 오른쪽 꺾쇠), 호버 꽉 찬 바탕, 줄 사이 선. 펼친 하루하루 목록은 다른 펼친 내용처럼 채운 상자 #1E2024 */
+body #g-root .tft-page #tft-bbody>.tm-foldw{position:relative;margin:0!important;background:transparent!important;border-radius:0}
+body #g-root .tft-page #tft-bbody>.tm-foldw::before,body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc:first-child::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.08);z-index:1}
+body #g-root .tft-page #tft-bbody>.tft-fsec+.tm-foldw::before,body #g-root .tft-page #tft-bbody>.tft-fsec+.tb-rfeed>details.tb-fc:first-child::before{display:none}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc:first-child{position:relative}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold{display:grid!important;grid-template-columns:auto 1fr;grid-template-areas:"k t" "s s";column-gap:8px;row-gap:6px;align-items:center;width:calc(100% + 24px);margin:0 -12px;padding:12px 46px 12px 20px;border:0!important;border-radius:0!important;background:transparent;text-align:left;cursor:pointer;transition:background .15s ease;position:relative}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold:hover{background:#1E2024}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold .tb-k{grid-area:k;justify-self:start}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold .tb-ft{grid-area:t;font-size:12px;color:#8d9199}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold .tb-fs{grid-area:s;font-size:14px;color:#ececf1;font-weight:400}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold .tm-foldc{right:20px}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-foldx{margin:4px 0 14px;padding:0 14px 6px;background:#1E2024;border-radius:12px;border-top:0}
+@media (max-width:960px){ body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold{padding-left:16px;padding-right:42px} body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold .tm-foldc{right:16px} body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold:hover{background:#17181B} }
+/* 묶음 줄은 이미 카드 끝에 붙어 있어 넓힘 없이 100%(글자 20으로 판단 줄과 같은 선), 문장 줄높이도 같게(높이 78) */
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold{width:100%;margin:0}
+body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold .tb-fs{line-height:1.55}body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-fold{padding-top:14px;padding-bottom:14px}
+/* 펼친 상자(판단 줄·묶음 둘 다): 양끝을 위 포지션 상자와 같은 선(PC 20 · 모바일 16)에 맞춤 → 호버 칸 폭과 상자 폭이 들쭉날쭉하지 않게 */
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc>.tb-fr{margin:4px 8px 14px!important}body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-foldx{margin:4px 20px 14px!important}
+@media (max-width:960px){ body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc>.tb-fr{margin:4px 4px 14px!important}body #g-root .tft-page #tft-bbody>.tm-foldw>.tm-foldx{margin:4px 16px 14px!important} }
 /* 완료된 거래 카드: 글자 9.5~12.5 → 읽히게(이름 12 · 값 14/600 · 이유 13), 바탕은 놓인 바탕보다 한 단계 밝게(PC 카드 위 #1E2024 · 모바일 페이지 위 #17181B), 테두리 없음, 모서리 12, 안쪽 16 */
 body #g-root .tft-page .tft-ct{background:#1E2024;border:0;border-radius:12px;padding:16px;margin-bottom:8px}
 @media (max-width:960px){ body #g-root .tft-page .tft-ct{background:#17181B} }
@@ -21172,8 +21191,8 @@ function tfLogCardAgent(ev){
 function tfTmFoldChip(s,grp){
   var wk='wf'+s.key+'_'+grp[0].i, open=!!TF_TM.exp[wk];
   var iN=grp[0].i, i0=grp[grp.length-1].i, days=iN-i0+1;
-  return '<div class="tm-foldw"><button type="button" class="tm-fold" aria-expanded="'+open+'" onclick="TF_TM.exp[&quot;'+wk+'&quot;]=!TF_TM.exp[&quot;'+wk+'&quot;];tfTmBrain()">'
-    +'<span class="num">'+tfTmDate(i0)+' ~ '+tfTmDate(iN)+'</span><b>관망 유지, '+grp.length+'회, '+days+'일</b><i class="tm-foldc" aria-hidden="true"></i><span class="sr-only">'+(open?'접기':'펼치기')+'</span></button>'
+  return '<div class="tm-foldw"><button type="button" class="tm-fold tb-rl" aria-expanded="'+open+'" onclick="TF_TM.exp[&quot;'+wk+'&quot;]=!TF_TM.exp[&quot;'+wk+'&quot;];tfTmBrain()">'
+    +'<b class="tb-k k-wa">관망 '+grp.length+'회</b><span class="tb-ft num">'+tfTmDate(i0).replace(/^\d{4}\. /,'')+' ~ '+tfTmDate(iN).replace(/^\d{4}\. /,'')+'</span><span class="tb-fs">진입 조건이 맞지 않아 주문을 내지 않았습니다.</span><i class="tm-foldc" aria-hidden="true"></i><span class="sr-only">'+(open?'접기':'펼치기')+'</span></button>'
     +(open?'<div class="tm-foldx">'+grp.slice(0,30).map(function(e){ return tfLogCardRule(e,s); }).join('')+(grp.length>30?'<div class="tm-foldn">이전 '+(grp.length-30)+'회도 같은 결과(조건 미충족)입니다</div>':'')+'</div>':'')+'</div>';
 }
 /* 전략 관리 행 — 손절/익절/예산 빠른 수정은 기존 tfTmSay 입력을 채운다 */
