@@ -391,5 +391,19 @@ document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('
 document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x.dataset.f===FILTER); });
 render();
 openFromHash();
+/* 자동 새로고침: index.html·_screens.html 이 바뀌면 1.5초 안에 새 주소로 다시 연다 (브라우저가 예전 페이지를 붙잡아도 확실히 새로 받음).
+   미리보기 서버(serve.ps1)의 /__ver 가 없으면 조용히 멈춘다 */
+(function(){
+  var last=null, off=false;
+  function tick(){
+    if(off||document.hidden) return;
+    fetch('__ver?'+Date.now(),{cache:'no-store'}).then(function(r){ if(!r.ok){ off=true; return null; } return r.text(); }).then(function(v){
+      if(v==null) return;
+      if(last!==null&&v!==last){ location.replace(location.pathname+'?v='+Date.now()+location.hash); return; }
+      last=v;
+    }).catch(function(){});
+  }
+  setInterval(tick,1500); tick();
+})();
 </script>
 </html>
