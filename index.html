@@ -13460,13 +13460,13 @@ if(!window._tethDetailsAnim){
   },true);
 }
 /* 따봉·복사 줄은 답변 맨 끝으로: 답변 뒤에 붙는 카드·다음 행동 목록·안내 아래로 옮긴다.
-   다음 내 메시지·다음 AI 글·다른 따봉 줄을 만나면 멈춘다. 새로 붙을 때와 저장된 대화를 다시 열 때 모두 적용 */
+   다음 내 메시지(답변 요약 포함)·다음 AI 글·다른 따봉 줄·스크롤 여백을 만나면 멈춘다. 새로 붙을 때와 저장된 대화를 다시 열 때 모두 적용 */
 function taiActsTidy(th){
   if(!th) return;
   [].slice.call(th.children).forEach(function(a){
     if(!a.classList.contains('g-acts')) return;
     var last=a, n=a.nextElementSibling;
-    while(n&&!(n.classList.contains('g-urow')||n.classList.contains('g-amsg')||n.classList.contains('g-acts'))){ last=n; n=n.nextElementSibling; }
+    while(n&&n.id!=='g-spacer'&&!(n.classList.contains('g-urow')||n.classList.contains('g-usum')||n.classList.contains('g-umsg')||n.classList.contains('g-amsg')||n.classList.contains('g-acts'))){ last=n; n=n.nextElementSibling; }
     if(last!==a) last.after(a);
   });
 }
