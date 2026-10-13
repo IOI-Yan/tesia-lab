@@ -8257,6 +8257,11 @@ body #g-root .tft-page .tft-tnote{font-size:13px}
 body #g-root .mki h4{margin:28px 0 12px;font-size:14px;font-weight:700;color:#fff}
 body #g-root .mki .mki-c>h4:first-child{margin-top:0}
 body #g-root .mki .mki-lks{margin-bottom:0}
+/* 정보 탭 링크: 앞에 종류 아이콘(Lucide globe·file-text·box), 뒤에 바깥으로 나가는 화살표(arrow-up-right) — 누르면 새 창으로 열리는 링크로 보이게 */
+body #g-root .mki .mki-lk{display:inline-flex;align-items:center;gap:6px;text-decoration:none}
+body #g-root .mki .mki-lk>svg:first-child{flex:none;color:#9ea3ad}
+body #g-root .mki .mki-lk .mki-out{flex:none;color:#8d9199;transition:transform .15s ease,color .15s ease}
+body #g-root .mki .mki-lk:hover .mki-out{color:#fff;transform:translate(1px,-1px)}
 @media (max-width:960px){ body #g-root .mki .mki-c>h4:first-child{margin-top:28px} }  /* 모바일은 한 줄로 쌓여서 첫 제목도 위 목록과 띄움 */
 /* 차트·정보·데이터 세그먼트: 알약이라 둥근 끝 때문에 안쪽으로 들어가 보여서 왼쪽 여백 12 → 8 (위 "운용" 글자 선 14에 시각 보정) */
 @media (min-width:961px){ body #g-root .tft-page .mkt-tabs{padding-left:8px} }
@@ -8266,6 +8271,14 @@ body #g-root .mki-hd b{font-weight:700}
 body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary{margin:0 -12px!important;padding-left:27px!important;padding-right:53px!important;border-radius:0!important}
 body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary .tb-fx{right:27px!important}
 body #g-root .tft-page #tft-bbody>.tb-rfeed>details[open].tb-rl>summary .tb-fx{right:27px}
+/* 판단 기록 줄: 양옆 안쪽 여백 27 → 카드 구역 여백과 같게(PC 20, 모바일 16). 호버 바탕은 바탕보다 한 단계만 밝게(PC 카드 #17181B → #1E2024, 모바일 페이지 #101113 → #17181B) */
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary{padding-left:20px!important;padding-right:46px!important}
+body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary .tb-fx,body #g-root .tft-page #tft-bbody>.tb-rfeed>details[open].tb-rl>summary .tb-fx{right:20px!important}
+@media (max-width:960px){
+  body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary{padding-left:16px!important;padding-right:42px!important}
+  body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary .tb-fx,body #g-root .tft-page #tft-bbody>.tb-rfeed>details[open].tb-rl>summary .tb-fx{right:16px!important}
+  body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-rl>summary:hover{background:#17181B}
+}
 /* 모바일: 정보·데이터 탭이면 차트 카드 높이 고정(60vh) 없이 내용대로 나열(안쪽 스크롤 없음). 차트 탭은 그대로 */
 @media (max-width:960px){
   body #g-root .nfxh-wrap.tft-page .tft-chart.tc-pane{height:auto!important;min-height:0!important;overflow:visible!important}
@@ -26622,9 +26635,9 @@ function mktInfo(){
     var mc=m.market_cap&&m.market_cap.usd, fd=m.fully_diluted_valuation&&m.fully_diluted_valuation.usd, vol=m.total_volume&&m.total_volume.usd, tot=g&&g.data&&g.data.total_market_cap&&g.data.total_market_cap.usd;
     var num=function(v,u){ return v==null?'-':Math.round(v).toLocaleString('en-US')+(u?' '+u:''); };
     var row=function(k,v){ return '<div class="mki-r"><span>'+k+'</span><b class="num">'+v+'</b></div>'; };
-    var lk=function(lab,u){ return u?'<a class="mki-lk" href="'+gEsc(u)+'" target="_blank" rel="noopener noreferrer">'+lab+'</a>':''; };
+    var lk=function(lab,u,ic){ return u?'<a class="mki-lk" href="'+gEsc(u)+'" target="_blank" rel="noopener noreferrer">'+(ic||'')+'<span>'+lab+'</span><svg class="mki-out" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>':''; };
     var f=function(t){ var r=(x&&x.filters||[]).filter(function(y){ return y.filterType===t; })[0]; return r||{}; };
-    var links=d?(lk('공식 웹사이트',(d.links&&d.links.homepage||[])[0])+lk('백서',d.links&&d.links.whitepaper)+lk('블록 탐색기',(d.links&&d.links.blockchain_site||[])[0])):'';
+    var links=d?(lk('공식 웹사이트',(d.links&&d.links.homepage||[])[0],'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>')+lk('백서',d.links&&d.links.whitepaper,'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>')+lk('블록 탐색기',(d.links&&d.links.blockchain_site||[])[0],'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>')):'';
     box.innerHTML='<div class="mki"><div class="mki-hd">'+mktIcon(base,28)+'<b>'+gEsc(d?d.name:base)+'</b></div><div class="mki-g"><div class="mki-c">'
       +(d?row('순위',d.market_cap_rank?d.market_cap_rank+'위':'-')+row('시가총액',mktBig(mc,1))+row('완전 희석 시가총액',mktBig(fd,1))+row('시장 점유율',mc&&tot?(mc/tot*100).toFixed(2)+'%':'-')+row('거래량',mktBig(vol,1))+row('거래량 / 시가총액',mc&&vol?(vol/mc*100).toFixed(2)+'%':'-')
         +row('유통 공급량',num(m.circulating_supply,base))+row('최대 공급량',num(m.max_supply,base))+row('총 공급량',num(m.total_supply,base)):'<p class="mkt-ld">이 종목의 코인 정보는 아직 없습니다.</p>')
