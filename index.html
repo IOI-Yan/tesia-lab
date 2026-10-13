@@ -7950,12 +7950,18 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .px-links{justify-content:center} /* 버튼 아래 글자 버튼("TETH 초대 계정으로 연결" 등)은 버튼과 같이 가운데 */
 #g-root .px-links .pl-link:hover{color:#e3e5ea} #g-root .px-links.px-sm .pl-link:hover{color:#b0b4bb} /* 글자 버튼 호버: 흰색 대신 한 단계 밝은 회색 */
 #g-root .px-body .acx-help,#g-root .acx-flow .acx-help{margin-top:40px} /* 연결 단계: 버튼·링크와 상담원 안내 사이 16 → 40px */
-#bt-root[data-phase="go"] .bt-hd{margin-bottom:clamp(24px,4vh,56px)} /* 전략 실행 준비: 뒤로 단추 줄과 내용 사이 = 화면 높이 4% (24~56px), 모바일 16 */
-@media (min-width:901px){ #bt-root[data-phase="go"]{padding-top:calc(clamp(64px,9vh,128px) - 40px)} } /* PC 맨 위 여백 = 화면 높이 9% (64~128px), 큰 모니터에서 내용이 위로 붙어 보이던 것 */
+#bt-root .bt-hd{margin-bottom:clamp(24px,4vh,56px)} /* [공통 규칙] 뒤로 단추 줄과 내용 사이 = 화면 높이 4% (24~56px), 모바일 16 — 백테스트·전략 실행 준비 */
+@media (min-width:901px){ #bt-root{padding-top:calc(clamp(64px,9vh,128px) - 40px)} } /* PC 맨 위 여백 = 화면 높이 9% (64~128px), 큰 모니터에서 내용이 위로 붙어 보이던 것 */
 @media (min-width:1081px){ #bt-root[data-phase="go"] .btg-grid{gap:40px} } /* 왼쪽 전략 카드와 오른쪽 단계 사이 64 → 40px */
-@media (max-width:900px){ #bt-root[data-phase="go"] .bt-hd{margin-bottom:16px} }
+/* [공통 규칙] 뒤로 단추가 있는 다른 화면도 같은 간격 (PC): 플랜 결제 입력 머리 아래, 인사이트 글 */
+@media (min-width:901px){ #g-root .pl-cohead:not(.px-head){margin-bottom:clamp(24px,4vh,56px)} #g-root .nfz-back{margin-top:calc(clamp(64px,9vh,128px) - 46px);margin-bottom:clamp(24px,4vh,56px)} }
+/* 인사이트 뒤로 단추: 글자 화살표 → Lucide 화살표 + 글자 알약(백테스트 뒤로 단추와 같음) */
+#g-root .nfz-back{height:36px;padding:0 12px 0 6px;margin-left:-6px;gap:4px;border-radius:999px;color:#fff;font-size:16px;font-weight:600;transition:background .2s ease}
+#g-root .nfz-back:hover{background:rgba(255,255,255,.07);color:#fff}
+#g-root .nfz-back svg{display:block;flex:none}
+@media (max-width:900px){ #bt-root .bt-hd{margin-bottom:16px} }
 #g-root .px-lead{font-size:14px;color:#9ea3ad} /* 안내 문장 한 단계 옅게 */
-@media (max-width:900px){ #g-root .px-head h1{font-size:26px} #g-root .px-lead{font-size:13px} } /* 안내: PC 16 → 14, 모바일 16 → 13(거래소 연결 화면과 같음). 모바일 제목 32 → 26 */
+@media (max-width:900px){ #g-root .px-head h1{font-size:24px} #g-root .px-lead{font-size:13px} } /* 안내: PC 16 → 14, 모바일 16 → 13(거래소 연결 화면과 같음). 모바일 제목 32 → 26 */
 #g-root .px-card:not(.px-hi){background:#17181B;border-color:rgba(255,255,255,.06)}
 #g-root .px-cta.pl-cta-w{background:#00feff;border-color:#00feff;color:#101113;font-weight:600}
 #g-root .px-cta.pl-cta-w:hover{background:#5cfeff;border-color:#5cfeff}
@@ -18435,7 +18441,7 @@ function tfIns2View(slug){
   var au=tfIns2AuOf(p.au);
   tfNFView('nfins','인사이트',
     '<div class="nfz-page">'
-    +'<button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)">← 인사이트</button>'
+    +'<button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>인사이트</span></button>'
     +'<div class="nfz-det"><article class="nfz-a">'
     +'<h1>'+gEsc(p.title)+'</h1>'
     +'<div class="deck">'+gEsc(p.sub)+'</div>'
@@ -18566,7 +18572,7 @@ function tfIns2PView(token){
   if(G.cur) window.TF_INS_PREV=G.cur.id;
   if(expired||!pd||pd.st!==m[1]){
     var cur=pd?tfIns2PTok():null;
-    tfNFView('nfins','인사이트','<div class="nfz-page"><button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)">← 인사이트</button><div class="nfz-det"><article class="nfz-a" style="padding-top:16px">'
+    tfNFView('nfins','인사이트','<div class="nfz-page"><button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>인사이트</span></button><div class="nfz-det"><article class="nfz-a" style="padding-top:16px">'
       +'<h1>'+(expired?'이 인사이트는 만료됐습니다':'이 인사이트는 새 버전으로 갱신됐습니다')+'</h1>'
       +'<div class="deck">맞춤 인사이트는 발행 후 48시간 동안 제공됩니다. 지금 상태 기준으로 다시 만들 수 있습니다.</div>'
       +(cur?'<button type="button" style="width:300px;max-width:100%;height:46px;border-radius:23px;border:0;background:var(--gb);color:#fff;font-size:14.5px;font-weight:600;cursor:pointer" onclick="tfNav(&quot;#/insight/p/'+cur+'&quot;)">최신 인사이트 다시 생성</button>'
@@ -18579,7 +18585,7 @@ function tfIns2PView(token){
   window.TF_INS2_PASK=pd.ask; /* 인라인 onclick 문자열 삽입 금지 — 상태 변수+전용 핸들러 (codex qa2) */
   tfNFView('nfins','인사이트',
     '<div class="nfz-page">'
-    +'<button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)">← 인사이트</button>'
+    +'<button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>인사이트</span></button>'
     +'<div class="nfz-det"><article class="nfz-a">'
     +'<div style="margin:2px 0 10px"><span style="font-size:10.5px;font-weight:700;letter-spacing:.09em;color:#c7d2fe;background:rgba(99,102,241,.2);border:1px solid rgba(129,140,248,.35);border-radius:6px;padding:5px 9px">FOR YOU</span></div>'
     +'<h1>'+gEsc(pd.title)+'</h1>'
@@ -18604,7 +18610,7 @@ function tfIns2Email(){
   var first=pd.secs[0];
   tfNFView('nfins','인사이트',
     '<div class="nfz-page" style="max-width:860px">'
-    +'<button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)">← 인사이트</button>'
+    +'<button type="button" class="nfz-back" onclick="tfNav(&quot;#/insight&quot;)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg><span>인사이트</span></button>'
     +'<div class="nfz-mail">'
     +'<div class="mh">보낸사람 <b>TETH 인사이트 &lt;insights@teth.ai&gt;</b><br>제목 <b>'+gEsc(pd.title)+'</b></div>'
     +'<div class="mb2">'
