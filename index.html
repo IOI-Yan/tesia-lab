@@ -8181,6 +8181,17 @@ body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>i{font-size:12px}
 /* 손익 숫자 규칙: + 초록 #2FB98A, - 빨강 #F0566A (펼친 상자 숫자·결과) */
 body #g-root .tft-page details.tb-fc>.tb-fr b.up{color:#2fb98a!important}
 body #g-root .tft-page details.tb-fc>.tb-fr b.dn{color:#f0566a!important}
+/* 관망 묶음: 펼치면 묶음 상자가 아래로 늘어나 그 안에 하루하루 판단이 나옴(묶음에 딸린 것이 보이게). "펼치기" 글자 → 꺾쇠 */
+body #g-root .tft-page .tm-foldw:has(.tm-foldx){background:#1e2024;border-radius:12px}
+body #g-root .tft-page .tm-foldw:has(.tm-foldx) .tm-fold{border-color:transparent;border-radius:12px 12px 0 0}
+body #g-root .tft-page .tm-foldx{margin:0;padding:0 14px 6px;border-top:1px solid rgba(255,255,255,.06)}
+body #g-root .tft-page .tm-foldx .tb-fc:first-child{border-top:0}
+body #g-root .tft-page .tm-foldx .tm-foldn{font-size:12px;color:#8d9199;padding:8px 0 6px}
+body #g-root .tft-page .tm-fold{position:relative;padding-right:40px}
+body #g-root .tft-page .tm-fold .tm-foldc{position:absolute;right:14px;top:50%;width:16px;height:16px;margin-top:-8px;background-color:#8d9199;-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") center/16px 16px no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%23000%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") center/16px 16px no-repeat;transition:transform .3s cubic-bezier(.2,.8,.3,1)}
+body #g-root .tft-page .tm-fold:hover .tm-foldc{background-color:#e3e5ea}
+body #g-root .tft-page .tm-fold[aria-expanded="true"] .tm-foldc{transform:rotate(180deg)}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 /* 간격 넓힘: "전략 6개" 단추 ↔ 판단 탭 6 → 16. 모바일은 차트 ↔ 포지션 탭 0 → 16, 구분선 ↔ "전략 6개" 단추 10 → 16 */
 body #g-root .tft-page .mks-hd{padding-bottom:16px}
 @media (max-width:960px){
@@ -21009,7 +21020,7 @@ function tfTmFoldChip(s,grp){
   var wk='wf'+s.key+'_'+grp[0].i, open=!!TF_TM.exp[wk];
   var iN=grp[0].i, i0=grp[grp.length-1].i, days=iN-i0+1;
   return '<div class="tm-foldw"><button type="button" class="tm-fold" aria-expanded="'+open+'" onclick="TF_TM.exp[&quot;'+wk+'&quot;]=!TF_TM.exp[&quot;'+wk+'&quot;];tfTmBrain()">'
-    +'<span class="num">'+tfTmDate(i0)+' ~ '+tfTmDate(iN)+'</span><b>관망 유지, '+grp.length+'회, '+days+'일</b><i>'+(open?'접기':'펼치기')+'</i></button>'
+    +'<span class="num">'+tfTmDate(i0)+' ~ '+tfTmDate(iN)+'</span><b>관망 유지, '+grp.length+'회, '+days+'일</b><i class="tm-foldc" aria-hidden="true"></i><span class="sr-only">'+(open?'접기':'펼치기')+'</span></button>'
     +(open?'<div class="tm-foldx">'+grp.slice(0,30).map(function(e){ return tfLogCardRule(e,s); }).join('')+(grp.length>30?'<div class="tm-foldn">이전 '+(grp.length-30)+'회도 같은 결과(조건 미충족)입니다</div>':'')+'</div>':'')+'</div>';
 }
 /* 전략 관리 행 — 손절/익절/예산 빠른 수정은 기존 tfTmSay 입력을 채운다 */
@@ -26835,7 +26846,12 @@ tbFeed=function(msgs){ var L=(msgs||[]).filter(function(m){ return m.k!=='now'&&
     return '<details class="tb-fc"><summary><span class="tb-ft num">'+gEsc(m.ts||'')+'</span><b>'+gEsc(m.tag||'')+(m.cnt>1?' '+m.cnt+'회':'')+'</b><span class="tb-fs">'+gEsc(s.head)+(s.rest?' <u class="tb-fx">판단 전문</u>':'')+'</span></summary>'+(s.rest?'<p class="tb-fr">'+gEsc(s.rest)+'</p>':'')+'</details>'; }).join('')+'</div>'; };
 /* 규칙형 기록: 검사표 카드 → 날짜, 꼬리표, 한 문장, 펼치면 검사표. 연속 보유 유지와 관망은 묶는다 */
 var TB_RULE={ho:['보유 유지','손절과 익절 조건에 닿지 않아 그대로 들고 있습니다.'],wa:['관망','진입 조건이 맞지 않아 주문을 내지 않았습니다.'],en:['진입','진입 조건이 모두 맞아 롱 포지션을 열었습니다.'],tp:['익절 청산','익절 목표에 닿아 정리했습니다.'],sl:['손절 청산','손절 기준에 닿아 정리했습니다.'],tm:['기간 청산','최대 보유 기간이 지나 정리했습니다.']};
-function tbRuleLog(){ try{ var box=document.getElementById('tft-bbody'); if(!box||box.getAttribute('data-tb')==='1') return; var cards=[].slice.call(box.querySelectorAll('.tm-card.rule')); if(!cards.length) return;
+function tbRuleLog(){ try{ var box=document.getElementById('tft-bbody'); if(!box||box.getAttribute('data-tb')==='1') return;
+  [].forEach.call(box.querySelectorAll('.tm-foldx'),function(fx){ var cs=[].slice.call(fx.querySelectorAll(':scope>.tm-card.rule')); if(!cs.length) return;
+    var h=cs.map(function(cd){ var res=cd.querySelector('.tm-res'), cls=res?(['ho','wa','en','tp','sl','tm'].filter(function(k){ return res.classList.contains(k); })[0]||'wa'):'wa', d=(cd.querySelector('.tm-t')||{}).textContent||'', m=TB_RULE[cls]||TB_RULE.wa, rows=cd.querySelector('.tm-rows'), outs=[].map.call(cd.querySelectorAll('.tm-out'),function(o){ return o.outerHTML; }).join('');
+      return '<details class="tb-fc tb-rl"><summary><span class="tb-ft num">'+gEsc(d)+'</span><b class="tb-k k-'+cls+'">'+m[0]+'</b><span class="tb-fs">'+m[1]+' <u class="tb-fx"></u></span></summary><div class="tb-fr">'+(rows?rows.outerHTML:'')+outs+'</div></details>'; }).join('');
+    cs.forEach(function(cd){ cd.remove(); }); var w=document.createElement('div'); w.className='tb-feed tb-rfeed'; w.innerHTML=h; fx.insertBefore(w,fx.firstChild); });
+  var cards=[].slice.call(box.querySelectorAll('.tm-card.rule')).filter(function(c){ return !c.closest('.tm-foldx'); }); if(!cards.length){ box.setAttribute('data-tb','1'); return; }
   var groups=[]; cards.forEach(function(cd){ var res=cd.querySelector('.tm-res'), cls=res?(['ho','wa','en','tp','sl','tm'].filter(function(k){ return res.classList.contains(k); })[0]||'ho'):'ho', d=(cd.querySelector('.tm-t')||{}).textContent||'';
     var g=groups[groups.length-1]; if(g&&g.cls===cls&&(cls==='ho'||cls==='wa')){ g.n++; g.from=d; g.inner=g.inner||cd.querySelector('.tm-rows'); return; }
     groups.push({cls:cls,n:1,to:d,from:d,el:cd}); });
