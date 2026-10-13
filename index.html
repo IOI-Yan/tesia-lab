@@ -23106,7 +23106,7 @@ function btReadyRail(){
     +'<div class="bt-f"><small>시작 금액</small>'+opt(BT_AMT.map(function(a){ return [a,a.toLocaleString()]; }),BT.amt,'btSetAmt','amt')+'<em>USD</em></div>'
     +'<button type="button" class="bt-cta" onclick="btStart()">과거를 다시 돌려 보기</button>'
     +'<p class="bt-note">'+btYMD(R.eq[0].i)+'부터 '+btYMD(R.eq[R.N-1].i)+'까지, '+R.N.toLocaleString()+'일을 하루씩 다시 돌립니다.</p></section>'
-    +fold('이 전략의 규칙',dl(btRules(s)))+fold('백테스트 조건',dl(btTerms()),'bt-terms');
+    +fold('이 전략의 규칙',dl(btRules(s)))+fold('계산 기준',dl(btTerms()),'bt-terms');
 }
 function btReady(){
   BT.phase='ready'; BT.sel=null; BT.grp=null; BT.trf='all'; btStop(); btCompute(); BT.filt=btDefFilt(BT.s);
@@ -23355,7 +23355,7 @@ function btShortcuts(){
 function btEvidence(){
   var R=BT.R, L=btTrList(), tf=BT.trf;
   return '<section class="bt-sec-b" id="bt-dec"><header><h3>왜 그렇게 판단했습니까</h3><div class="bt-chips" role="group" aria-label="판단 종류">'+btChipsL().map(function(c){ return '<button type="button" aria-pressed="'+(BT.filt===c[0])+'" onclick="btFilt(\''+c[0]+'\')">'+c[1]+'</button>'; }).join('')+'</div></header>'+btShortcuts()+'<div class="bt-list" id="bt-dl">'+btDecRows()+'</div></section>'
-    +'<section class="bt-sec-b" id="bt-trs"><header><h3>거래 하나씩 보기</h3><div class="bt-chips" role="group" aria-label="거래 종류">'+[['all','전체 '+R.tr.length],['win','이긴 거래 '+R.wins.length],['loss','진 거래 '+R.loss.length]].map(function(c){ return '<button type="button" aria-pressed="'+(tf===c[0])+'" onclick="btTrFilt(\''+c[0]+'\')">'+c[1]+'</button>'; }).join('')+'</div></header><div class="bt-list bt-tlist" id="bt-tl">'+btTrRows()+'</div></section>'
+    +'<section class="bt-sec-b" id="bt-trs"><header><h3>거래 내역</h3><div class="bt-chips" role="group" aria-label="거래 종류">'+[['all','전체 '+R.tr.length],['win','이긴 거래 '+R.wins.length],['loss','진 거래 '+R.loss.length]].map(function(c){ return '<button type="button" aria-pressed="'+(tf===c[0])+'" onclick="btTrFilt(\''+c[0]+'\')">'+c[1]+'</button>'; }).join('')+'</div></header><div class="bt-list bt-tlist" id="bt-tl">'+btTrRows()+'</div></section>'
     +'<section class="bt-sec-b"><header><h3>달마다 어땠습니까</h3><span>'+btMonthsSum()+'</span></header>'+btMonths()+'</section>'
     +btTech();
 }
@@ -24251,12 +24251,12 @@ function btSort(v){ BT.sort=v; BT.decN=BT_PAGE; BT.sel=null; var e=$('bt-ev'); i
 function btFilt(k){ BT.filt=k; BT.decN=BT_PAGE; BT.grp=null; if(BT.sel&&BT.sel.t!=='t') BT.sel=null; var e=$('bt-ev'); if(e) e.innerHTML=btEvidence(); btPin(); }
 function btEvidence(){
   var R=BT.R, tf=BT.trf, so=BT.sort||'new', f=BT.filt, S4=btSum4(), fut=!!(BT.s.cfg&&BT.s.cfg.fut);
-  return '<section class="bt-sec-b" id="bt-dec"><header class="v2"><h3>어떻게 판단했나</h3><div class="bt-sort bt-sdd"><span>정렬</span>'+(function(){ var O=[['new','최신순'],['old','오래된순'],['big','결과가 큰 순']], cur=O.filter(function(o){ return o[0]===so; })[0]||O[0]; return '<button type="button" class="bt-sdd-t" aria-haspopup="listbox" aria-expanded="false" onclick="btSdd(this,event)">'+cur[1]+'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="bt-sdd-m" role="listbox" aria-label="정렬" hidden>'+O.map(function(o){ return '<button type="button" role="option" aria-selected="'+(so===o[0])+'" onclick="btSort(\''+o[0]+'\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+o[1]+'</button>'; }).join('')+'</div>'; })()+'</div></header>'
+  return '<section class="bt-sec-b" id="bt-dec"><header class="v2"><h3>판단 기록</h3><div class="bt-sort bt-sdd"><span>정렬</span>'+(function(){ var O=[['new','최신순'],['old','오래된순'],['big','결과가 큰 순']], cur=O.filter(function(o){ return o[0]===so; })[0]||O[0]; return '<button type="button" class="bt-sdd-t" aria-haspopup="listbox" aria-expanded="false" onclick="btSdd(this,event)">'+cur[1]+'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg></button><div class="bt-sdd-m" role="listbox" aria-label="정렬" hidden>'+O.map(function(o){ return '<button type="button" role="option" aria-selected="'+(so===o[0])+'" onclick="btSort(\''+o[0]+'\')"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>'+o[1]+'</button>'; }).join('')+'</div>'; })()+'</div></header>'
     +'<div class="bt-s4 n'+(S4.length+1)+'" role="tablist" aria-label="판단 종류">'+S4.map(function(c){ return '<button type="button" role="tab" aria-selected="'+(f===c[0])+'" class="k-'+c[0]+'" onclick="btFilt(\''+c[0]+'\')"><small>'+c[1]+'</small><b class="num">'+c[2]+'<i>'+(c[0]==='opp'&&BT.s.kind==='agent'?'일':c[0]==='skip'&&BT.s.kind==='agent'?'일':c[0]==='opp'?'번':'건')+'</i></b></button>'; }).join('')
     +'<button type="button" role="tab" aria-selected="'+(f==='all')+'" class="k-all" onclick="btFilt(\'all\')"><small>전체 기록</small><b class="num">'+btDecList('all').length+'<i>건</i></b></button></div>'
     +'<div class="bt-list v2" id="bt-dl">'+btDecRows()+'</div></section>'
-    +'<section class="bt-sec-b" id="bt-trs"><header><h3>거래 하나씩 보기</h3><div class="bt-chips" role="group" aria-label="거래 종류">'+[['all','전체 '+R.tr.length],['win','이긴 거래 '+R.wins.length],['loss','진 거래 '+R.loss.length]].map(function(c){ return '<button type="button" aria-pressed="'+(tf===c[0])+'" onclick="btTrFilt(\''+c[0]+'\')">'+c[1]+'</button>'; }).join('')+'</div></header><div class="bt-list bt-tlist" id="bt-tl">'+btTrRows()+'</div></section>'
-    +'<section class="bt-sec-b"><header><h3>달마다 어땠나</h3><span>'+btMonthsSum()+'</span></header>'+btMonths()+'</section>'
+    +'<section class="bt-sec-b" id="bt-trs"><header><h3>거래 내역</h3><div class="bt-chips" role="group" aria-label="거래 종류">'+[['all','전체 '+R.tr.length],['win','이긴 거래 '+R.wins.length],['loss','진 거래 '+R.loss.length]].map(function(c){ return '<button type="button" aria-pressed="'+(tf===c[0])+'" onclick="btTrFilt(\''+c[0]+'\')">'+c[1]+'</button>'; }).join('')+'</div></header><div class="bt-list bt-tlist" id="bt-tl">'+btTrRows()+'</div></section>'
+    +'<section class="bt-sec-b"><header><h3>월별 수익률</h3><span>'+btMonthsSum()+'</span></header>'+btMonths()+'</section>'
     +btTech();
 }
 /* 판단 하나를 펼치면: 그날 TETH의 판단(모델이 그날의 값으로 쓴 문장), 그날의 가격, 확인한 조건, 그 뒤 */
