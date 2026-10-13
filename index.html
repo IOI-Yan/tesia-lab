@@ -8202,6 +8202,16 @@ body #g-root .tft-page .tm-foldx .tb-fc>summary .tb-fx{bottom:auto;top:50%;margi
 body #g-root .tft-page .tm-foldx details[open].tb-fc>summary .tb-fx{bottom:auto;top:50%;margin-top:-8px}
 body #g-root .tft-page .tm-foldx .tb-fc{border-top-color:rgba(255,255,255,.06)}
 body #g-root .tft-page .tm-foldx details.tb-fc>.tb-fr{background:#25272C;margin:0 0 10px}
+/* 판단 기록 한 줄 정리: 윗줄 = 색 태그 + 날짜(왼쪽), 아랫줄 = 문장, 꺾쇠 = 오른쪽에서 두 줄의 세로 가운데. 태그 밑에 꺾쇠가 붙어 보이던 것 정리 */
+body #g-root .tft-page .tb-rfeed>details.tb-rl>summary{grid-template-columns:auto 1fr;grid-template-areas:"k t" "s s";column-gap:8px;row-gap:6px;align-items:center;padding-right:32px}
+body #g-root .tft-page .tb-rfeed>details.tb-rl>summary .tb-k{grid-area:k;justify-self:start}
+body #g-root .tft-page .tb-rfeed>details.tb-rl>summary .tb-ft{grid-area:t}
+body #g-root .tft-page .tb-rfeed>details.tb-rl>summary .tb-fs{grid-area:s;padding-right:0}
+body #g-root .tft-page .tb-rfeed>details.tb-rl>summary .tb-fx,body #g-root .tft-page .tb-rfeed>details[open].tb-rl>summary .tb-fx{top:50%;bottom:auto;margin-top:-8px}
+/* 묶음 안 목록은 한 줄 그대로 */
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary{grid-template-columns:max-content 1fr;grid-template-areas:none;row-gap:0;align-items:baseline;padding-right:28px}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary .tb-ft{grid-area:auto;grid-column:1}
+body #g-root .tft-page .tm-foldx .tb-rfeed>details.tb-rl>summary .tb-fs{grid-area:auto;grid-column:2}
 /* PC 판단 카드: 판단 기록만 남은 틈(24px)에서 스크롤되던 것 → 카드 전체가 한 번에 스크롤. 위 "전략 6개"·탭과 아래 바꾸기·입력줄은 제자리에 붙어 있음 */
 @media (min-width:961px){
   body #g-root .nfxh-wrap.tft-page .tft-brainin{overflow-y:auto;scrollbar-width:none}
