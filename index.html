@@ -8510,6 +8510,8 @@ body #g-root .tft-page .tft-empty{gap:4px}
 body #g-root .tft-page .tft-empty b{font-weight:600}
 /* coin pill (BTCUSDT): left 6 / right 10 looked uneven because the chevron has its own inner space. left 10 / right 6 -> visible inset ~10 on both sides, matching the 9px top/bottom */
 body .mkh .mkh-sym{padding:0 6px 0 10px}
+/* 모바일 머리: 메뉴 아이콘 ↔ 코인 아이콘 27 → 11 (줄 왼쪽 58 → 44, 알약 왼쪽 안쪽 10 → 8) */
+@media (max-width:960px){ body #g-root .nfxh-wrap.tft-page>.mkh{padding-left:44px!important} body #g-root .nfxh-wrap.tft-page>.mkh .mkh-sym{padding-left:8px} }
 /* mobile terminal: no boxed cards (felt cramped). chart, bottom panel, brain sit flat on the page #101113, split by a 1px 6% line */
 @media (max-width:960px){
   body #g-root .nfxh-wrap.tft-page{--mkc:#101113}
