@@ -26746,7 +26746,7 @@ function tbText(){ try{ var b=document.querySelector('#g-content .tft-brain'); i
 (function(){ if(typeof tfTmBrain!=='function'||tfTmBrain._tbNow) return; var b0=tfTmBrain;
   tfTmBrain=function(){ var bi=document.querySelector('#g-content .tft-brainin'), st=bi?bi.scrollTop:0;
     var r=b0.apply(this,arguments);
-    try{ var bx=document.getElementById('tft-bbody'); if(bx) bx.removeAttribute('data-tb'); if(typeof tbRuleLog==='function') tbRuleLog(); if(typeof tbText==='function') tbText(); }catch(e){}
+    try{ var bx=document.getElementById('tft-bbody'); if(bx) bx.removeAttribute('data-tb'); if(typeof tbRuleLog==='function') tbRuleLog(); if(typeof sktApply==='function') sktApply(document.querySelector('#g-content .tft-brain')); if(typeof tbText==='function') tbText(); }catch(e){}
     var bi2=document.querySelector('#g-content .tft-brainin'); if(bi2&&st) bi2.scrollTop=st;
     return r; };
   tfTmBrain._tbNow=1; })();
