@@ -502,7 +502,7 @@ body{
   --gt:#e3e5ea;--gt2:#c4c7c5;--gt3:#9aa0a6; /* Gemini 다크 실측 톤(#e3e5ea/#c4c7c5/#9aa0a6)으로 상향 — 가독성 (사용자 지시) */
   --gb:#3d6ef0;--gb2:#5b8af7;--gg:#4ec08d;--ga:#d9a84e;--gr:#e0604b;
   /* 확장 토큰: 표면/반전/툴팁/그림자/글로우, 라이트 테마가 이 값만 재정의한다 */
-  --pill:#1e2024;--pop:#26282d;--hoverline:rgba(255,255,255,.05);
+  --pill:#1e2024;--pop:#1b1c1f;--hoverline:rgba(255,255,255,.05);
   --tip-bg:#313339;--tip-fg:#fff;--inv-bg:#eceef2;--inv-fg:#17181b;
   --shadow-pop:0 16px 48px rgba(0,0,0,.45);--shadow-pill:none;
   --glow:rgba(24,42,94,.55);}
@@ -7691,6 +7691,11 @@ body.st-full .stg-r .k span .num{white-space:nowrap}
 .skc-sum .r em{font-style:normal;color:#82868e}
 .skc-more{margin:10px 2px 16px}
 .skc-more .pl-link{font-size:14px}
+.skc-mb{display:inline-flex;align-items:center;gap:4px;padding:6px 0;border:0;background:none;color:#cfd2d6;font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:color .2s ease}
+.skc-mb:hover{color:#e3e5ea}
+.skc-mb svg{display:block;flex:none;transition:transform .3s cubic-bezier(.2,.8,.3,1)}
+.skc-mb[aria-expanded="true"] svg{transform:rotate(180deg)}
+@media (prefers-reduced-motion:reduce){ .skc-mb svg{transition:none} }
 .skc-adv{margin:0 0 16px}
 .skc-cap{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:6px}
 .skc-cap>label{margin:0}
@@ -7986,6 +7991,11 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .px-head{margin-bottom:6px}
 #g-root .px-links{justify-content:center} /* 버튼 아래 글자 버튼("TETH 초대 계정으로 연결" 등)은 버튼과 같이 가운데 */
 #g-root .px-links .pl-link:hover{color:#e3e5ea} #g-root .px-links.px-sm .pl-link:hover{color:#b0b4bb} /* 글자 버튼 호버: 흰색 대신 한 단계 밝은 회색 */
+/* [공통 규칙 G30] 팝업·떠 있는 창 바탕 = 로그인 창과 같은 #1B1C1F (확인 팝업·메뉴·알림·질문 창·토스트·정렬 목록·용어 설명·공유 창·종목 선택·시트) */
+body .nfx-btn.sec:hover{background:#26282d}
+body #bt-root .bt-sdd-m,body #toast,body .mkg-pop,body.g-dark .modal,body .mkp,body .ss3-dlg .din,body .mk-follow,body #ssheet .sheet{background:#1b1c1f}
+body .ss3-dlg select,body .ss3-dlg input[type=text]{background:#141518}
+body .mkp-seg{background:#25272c}
 /* [공통 규칙 G29] 밑줄 글자 단추: 글자·밑줄 #CFD2D6, 호버 한 단계 밝게 #E3E5EA (흰색 아님). 작은 보조 링크(.px-sm)는 #8D9199 → #B0B4BB, 바탕 있는 알약형 링크는 제외 */
 body #g-root .pl-link,body #g-root .btg-me .lk,body #g-root .btg-sum .lk,body #g-root .ac-link,body #g-root .ac-lnk,body #g-root .acx-have button,body #g-root .acx-now .r button,body #g-root .cx-lnk,body #g-root .mk-lnk,body #g-root .stg-lk,body #g-root .ska .lk,body #g-root .rv-links button,body #g-root .rv-prev,body #g-root .bt-skip,body #g-root .skipb,body #g-root .nfxu-later,body #g-root .btg-st .ed{color:#cfd2d6;text-decoration-color:currentColor;transition:color .2s ease}
 body #g-root .pl-link:hover,body #g-root .btg-me .lk:hover,body #g-root .btg-sum .lk:hover,body #g-root .ac-link:hover,body #g-root .ac-lnk:hover,body #g-root .acx-have button:hover,body #g-root .acx-now .r button:hover,body #g-root .cx-lnk:hover,body #g-root .mk-lnk:hover,body #g-root .stg-lk:hover,body #g-root .ska .lk:hover,body #g-root .rv-links button:hover,body #g-root .rv-prev:hover,body #g-root .bt-skip:hover,body #g-root .skipb:hover,body #g-root .nfxu-later:hover,body #g-root .btg-st .ed:hover{color:#e3e5ea}
@@ -25261,7 +25271,7 @@ function skcSheet(ne){
     +'<div class="skc-pills" role="radiogroup" aria-labelledby="skc-loss-l">'+SKC_LOSS.map(function(v){ return '<button type="button" role="radio" aria-checked="'+(v===-20)+'" class="'+(v===-20?'on':'')+'" onclick="skcLoss('+v+',this)">'+Math.abs(v)+'%</button>'; }).join('')+'</div>'
     +'<div class="skc-hint" id="mk-f-lossh">예산의 20%를 잃으면 복사를 자동으로 멈춥니다.</div></div>'
     +'<div class="skc-sum" id="mk-f-sum"></div>'
-    +'<p class="skc-more"><button type="button" class="pl-link" id="skc-more-b" aria-expanded="false" onclick="skcMore()">세부 설정</button></p>'
+    +'<p class="skc-more"><button type="button" class="skc-mb" id="skc-more-b" aria-expanded="false" onclick="skcMore()"><span>세부 설정</span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button></p>'
     +'<div class="skc-adv" id="skc-adv" hidden>'
     +'<div class="skc-fld"><span class="lb" id="skc-ex-l">복사 시작 시점</span><div class="skc-pills two" id="mk-f-ex" role="radiogroup" aria-labelledby="skc-ex-l"><button type="button" role="radio" aria-checked="true" class="on" onclick="skcEx(\'skip\',this)">다음 진입부터</button><button type="button" role="radio" aria-checked="false" onclick="skcEx(\'copy\',this)">현재 포지션부터</button></div><div class="skc-hint" id="skc-ex-h">원본이 새로 진입할 때부터 따라갑니다.</div></div>'
     +'<div class="skc-fld skc-cap"><label for="mk-f-cap">주문당 예산 한도</label><div class="skc-in sm"><input id="mk-f-cap" type="number" inputmode="numeric" min="5" max="95" step="5" value="95" oninput="mkFollowCap(this.value);cpFormSync()"><i>%</i></div></div>'
@@ -25281,7 +25291,15 @@ function skcSheet(ne){
 function skcLoss(v,btn){ TF_MKF.loss=v; var g=btn&&btn.parentNode; if(g) [].forEach.call(g.children,function(b){ var on=b===btn; b.classList.toggle('on',on); b.setAttribute('aria-checked',String(on)); });
   var h=$('mk-f-lossh'); if(h) h.textContent='예산의 '+Math.abs(v)+'%를 잃으면 복사를 자동으로 멈춥니다.'; cpFormSync(); }
 function skcEx(v,btn){ mkFollowExisting(v,btn); var h=$('skc-ex-h'); if(h) h.textContent=v==='copy'?'원본이 지금 가진 포지션을 현재 가격으로 바로 따라 삽니다.':'원본이 새로 진입할 때부터 따라갑니다.'; var g=btn&&btn.parentNode; if(g) [].forEach.call(g.children,function(b){ b.setAttribute('aria-checked',String(b===btn)); }); }
-function skcMore(){ var a=$('skc-adv'), b=$('skc-more-b'); if(!a) return; a.hidden=!a.hidden; if(b){ b.setAttribute('aria-expanded',String(!a.hidden)); b.textContent=a.hidden?'세부 설정':'세부 설정 접기'; } }
+/* 세부 설정: 펼치기 규칙(G26)처럼 높이가 스르륵 늘고 줄며, 꺾쇠가 돌아감 */
+function skcMore(){ var a=$('skc-adv'), b=$('skc-more-b'); if(!a) return; var open=a.hidden; if(b) b.setAttribute('aria-expanded',String(open));
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(calm||!a.animate){ a.hidden=!open; return; }
+  if(a._an){ a._an.cancel(); a._an=null; }
+  a.style.overflow='hidden';
+  if(open){ a.hidden=false; var h=a.scrollHeight; a._an=a.animate([{height:'0px',opacity:0},{height:h+'px',opacity:1}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); }
+  else { var h2=a.scrollHeight; a._an=a.animate([{height:h2+'px',opacity:1},{height:'0px',opacity:0}],{duration:240,easing:'cubic-bezier(.4,0,1,1)'}); }
+  var an=a._an; an.finished.then(function(){ if(a._an!==an) return; a._an=null; a.style.overflow=''; if(!open) a.hidden=true; },function(){}); }
 /* 확인 행: 지금 고른 값을 항상 보인다 (바꾼 값도 그대로) */
 function skcSum(v){ var el=$('mk-f-sum'); if(!el) return; var L=Math.abs(TF_MKF.loss||20); if(v==null){ var raw=parseFloat(($('cps-amt')||{}).value); if(isFinite(raw)&&raw>0) v=raw; }
   el.innerHTML=skcRow('복사 예산',v==null?'<em>미입력</em>':cpUsd(v,0))
