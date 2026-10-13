@@ -8218,6 +8218,8 @@ body #g-root .tft-page .tft-comp .tm-manage small{font-size:13px}
 /* 조건 미충족 표시: 글자 ✗ → Lucide x 아이콘 14, 빨강 태그 글자색 */
 .xmk{display:inline-block;vertical-align:middle;color:var(--tag-red,#d9707d)}
 i.no .xmk{color:var(--tag-red,#d9707d)}
+/* 판단 펼친 상자 아래 줄 이름(주문·리스크 규칙·결과): #9AA0A6 → 더 어둡게 #6E737B (안내 줄 색) */
+body #g-root .tft-page details.tb-fc>.tb-fr .tm-out small{color:#6e737b!important}
 /* PC 판단 카드: 판단 기록만 남은 틈(24px)에서 스크롤되던 것 → 카드 전체가 한 번에 스크롤. 위 "전략 6개"·탭과 아래 바꾸기·입력줄은 제자리에 붙어 있음 */
 @media (min-width:961px){
   body #g-root .nfxh-wrap.tft-page .tft-brainin{overflow-y:auto;scrollbar-width:none}
