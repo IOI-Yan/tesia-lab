@@ -8172,6 +8172,12 @@ body #g-root .tft-page .tb-rl .tb-fx,body #g-root .tft-page details[open].tb-rl 
 body #g-root .tft-page .tb-rl .tb-fx:empty::after{content:none!important}
 body #g-root .tft-page .tb-rl>summary:hover .tb-fx{background-color:#e3e5ea}
 body #g-root .tft-page details[open].tb-rl .tb-fx{transform:rotate(180deg)}
+/* "TETH의 생각" 앞에 TETH 로고(사이드바와 같은 마크) */
+body #g-root .tft-page .tb-th .tb-thl{display:flex;align-items:center;gap:6px}
+body #g-root .tft-page .tb-th .tb-thl::before{content:"";flex:none;width:20px;height:12px;background:var(--logo-uri) center/contain no-repeat}
+/* 판단 펼친 상자 글자: 16 → 13(위 포지션 상자와 같게), 오른쪽 상태(아직·도달) 14 → 12 */
+body #g-root .tft-page details.tb-fc>.tb-fr .tm-row,body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>span,body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>b,body #g-root .tft-page details.tb-fc>.tb-fr .tm-out,body #g-root .tft-page details.tb-fc>.tb-fr .tm-out small,body #g-root .tft-page details.tb-fc>.tb-fr .tm-out b{font-size:13px}
+body #g-root .tft-page details.tb-fc>.tb-fr .tm-row>i{font-size:12px}
 /* 간격 넓힘: "전략 6개" 단추 ↔ 판단 탭 6 → 16. 모바일은 차트 ↔ 포지션 탭 0 → 16, 구분선 ↔ "전략 6개" 단추 10 → 16 */
 body #g-root .tft-page .mks-hd{padding-bottom:16px}
 @media (max-width:960px){
