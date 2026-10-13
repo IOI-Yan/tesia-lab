@@ -8271,6 +8271,20 @@ body #g-root .tft-page .tft-fsec small{font-size:13px;font-weight:400;color:#8d9
 body #g-root .tft-page .tb-th .tb-thl{color:#9ea3ad}
 /* PC 차트 카드 전략 이름(BTC 돌파 추종) 400 → 700 (모바일 머리 전략 이름과 같게) */
 body #g-root .tft-page .tm-ttl{font-weight:700}
+/* 대시보드 숫자 칸(승률·손익비 등): 이름 10 → 12, 값 11.5 → 14, 칸 안쪽 7/12 → 10/12 */
+body #g-root .tft-page .tft-brain .tft-mg .c5{padding:10px 12px}
+body #g-root .tft-page .tft-brain .tft-mg .c5 small{font-size:12px;color:#8d9199}
+body #g-root .tft-page .tft-brain .tft-mg .c5 b{font-size:14px}
+/* 최근 거래 표 "구분": 글자 → 색 태그 알약(익절 초록 · 손절 빨강 · 기간 주황), 표의 매수/매도 뱃지와 같은 크기 */
+body #g-root .tft-page .tgk{display:inline-flex;align-items:center;line-height:14px;padding:4px 8px;border-radius:100px;font-size:12px;font-weight:500;background:rgba(255,255,255,.06);color:#9ea3ad}
+body #g-root .tft-page .tgk.k-tp{background:var(--tag-green-bg);color:var(--tag-green)}
+body #g-root .tft-page .tgk.k-sl{background:var(--tag-red-bg);color:var(--tag-red)}
+body #g-root .tft-page .tgk.k-tm{background:var(--tag-orange-bg);color:var(--tag-orange)}
+/* 완료된 거래 카드 머리(LONG · BTC · 손익): 세로 가운데 정렬 */
+body #g-root .tft-page .tft-ct .h4{display:flex;align-items:center}
+body #g-root .tft-page .tft-ct .h4 .sd{line-height:14px;padding:2px 6px}  /* 완료된 거래 카드 LONG: 높이 22 → 18 (종목·손익과 균형) */
+/* 대시보드 구역 제목(현재 포지션·최근 거래): 왼쪽 20 → 12, 아래 숫자 칸·표 글자 시작선(12)과 맞춤 */
+body #g-root .tft-page .tft-brain .tft-fsec:has(+.tft-tblw),body #g-root .tft-page .tft-brain .tft-fsec:has(+.tft-empty),body #g-root .tft-page .tft-brain .tft-fsec:has(+.tft-posb){padding-left:12px}
 /* 관망 묶음도 판단 줄과 같은 모양: 상자 → 줄(윗줄 회색 태그 "관망 n회" + 날짜, 아랫줄 문장, 오른쪽 꺾쇠), 호버 꽉 찬 바탕, 줄 사이 선. 펼친 하루하루 목록은 다른 펼친 내용처럼 채운 상자 #1E2024 */
 body #g-root .tft-page #tft-bbody>.tm-foldw{position:relative;margin:0!important;background:transparent!important;border-radius:0}
 body #g-root .tft-page #tft-bbody>.tm-foldw::before,body #g-root .tft-page #tft-bbody>.tb-rfeed>details.tb-fc:first-child::before{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:rgba(255,255,255,.08);z-index:1}
@@ -15478,7 +15492,7 @@ function tfTmDash(s,c){
   h+=lt.length?('<div class="tft-tblw"><table class="tft-tbl"><thead><tr><th>청산일</th><th>구분</th><th class="r">진입가</th><th class="r">청산가</th><th class="r">보유</th><th class="r">손익</th></tr></thead><tbody>'
     +lt.map(function(tr){
       var xp=tr.kind==='sl'?tfSPx(s)[tr.entry]*(1+s.p.sl/100):(tr.kind==='tp'?tfSPx(s)[tr.entry]*(1+s.p.tp/100):tfSPx(s)[tr.exit]);
-      return '<tr onclick="tfTmTradeDlg(&quot;'+s.key+'&quot;,'+tr.entry+')"><td>'+fmtDate(idxToDate(tr.exit))+'</td><td>'+({sl:'손절',tp:'익절',time:'기간'}[tr.kind]||tr.kind)+'</td>'
+      return '<tr onclick="tfTmTradeDlg(&quot;'+s.key+'&quot;,'+tr.entry+')"><td>'+fmtDate(idxToDate(tr.exit))+'</td><td><span class="tgk k-'+({sl:'sl',tp:'tp',time:'tm'}[tr.kind]||'ho')+'">'+({sl:'손절',tp:'익절',time:'기간'}[tr.kind]||tr.kind)+'</span></td>'
         +'<td class="r num">'+Math.round(tfSPx(s)[tr.entry]).toLocaleString()+'</td><td class="r num">'+Math.round(xp).toLocaleString()+'</td>'
         +'<td class="r num">'+(tr.exit-tr.entry)+'봉</td><td class="r num '+tfTmSign(tr.krw)+'">'+tfTmWonS(tr.krw)+'</td></tr>';
     }).join('')+'</tbody></table></div>'):('<div class="tft-empty" style="padding:22px"><b>이 구간 체결이 없습니다</b></div>');
