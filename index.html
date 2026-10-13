@@ -8269,6 +8269,8 @@ body #g-root .tft-page .tft-brain .tft-tbl td{font-size:13px;padding:10px 12px}
 body #g-root .tft-page .tft-fsec small{font-size:13px;font-weight:400;color:#8d9199;margin-left:6px}
 /* "TETH의 생각" 글자: #8D9199 → 푸른빛이 더 도는 #9EA3AD (위 운용 줄과 같은 회색) */
 body #g-root .tft-page .tb-th .tb-thl{color:#9ea3ad}
+/* PC 차트 카드 전략 이름(BTC 돌파 추종) 400 → 700 (모바일 머리 전략 이름과 같게) */
+body #g-root .tft-page .tm-ttl{font-weight:700}
 /* 완료된 거래 카드: 글자 9.5~12.5 → 읽히게(이름 12 · 값 14/600 · 이유 13), 바탕은 놓인 바탕보다 한 단계 밝게(PC 카드 위 #1E2024 · 모바일 페이지 위 #17181B), 테두리 없음, 모서리 12, 안쪽 16 */
 body #g-root .tft-page .tft-ct{background:#1E2024;border:0;border-radius:12px;padding:16px;margin-bottom:8px}
 @media (max-width:960px){ body #g-root .tft-page .tft-ct{background:#17181B} }
@@ -8283,7 +8285,15 @@ body #g-root .tft-page .tft-ct .wy{font-size:13px;color:#cfd2d6;line-height:1.55
 body #g-root .tft-page .tft-ct .wy small{display:block;font-size:12px;font-weight:400;letter-spacing:0;text-transform:none;color:#8d9199;margin-bottom:2px}
 body #g-root .tft-page .tft-ct .dt2{display:inline-flex;align-items:center;gap:2px;margin-top:12px;padding:0;border:0;background:none;font:inherit;font-size:13px;color:#8d9199;cursor:pointer;transition:color .15s ease}
 body #g-root .tft-page .tft-ct .dt2:hover{color:#b0b4bb}
-@media (max-width:960px){ body #g-root .mki .mki-c>h4:first-child{margin-top:28px} }  /* 모바일은 한 줄로 쌓여서 첫 제목도 위 목록과 띄움 */
+@media (max-width:960px){ body #g-root .mki .mki-c>h4:first-child{margin-top:28px} }
+/* 정보 탭 칸 나누기: 시장 · 공급량 · 링크와 거래 규칙. 보통 PC = 두 칸(왼쪽 시장 위 공급량), 넓은 화면(1600 이상) = 세 칸, 모바일 = 한 줄 */
+body #g-root .mki .mki-g{grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"a x" "b x";gap:28px 40px;align-items:start}
+body #g-root .mki .mki-a{grid-area:a}
+body #g-root .mki .mki-b{grid-area:b}
+body #g-root .mki .mki-x{grid-area:x}
+body #g-root .mki .mki-b:empty{display:none}
+@media (min-width:1600px){ body #g-root .mki .mki-g{grid-template-columns:repeat(3,minmax(0,1fr));grid-template-areas:"a b x"} }
+@media (max-width:960px){ body #g-root .mki .mki-g{grid-template-columns:minmax(0,1fr);grid-template-areas:"a" "b" "x";gap:0} body #g-root .mki .mki-a>h4:first-child{margin-top:0} }  /* 모바일은 한 줄로 쌓여서 첫 제목도 위 목록과 띄움 */
 /* 차트·정보·데이터 세그먼트: 알약이라 둥근 끝 때문에 안쪽으로 들어가 보여서 왼쪽 여백 12 → 8 (위 "운용" 글자 선 14에 시각 보정) */
 @media (min-width:961px){ body #g-root .tft-page .mkt-tabs{padding-left:8px} }
 /* 정보 탭 코인 이름(Bitcoin) 500 → 700 */
@@ -26659,10 +26669,10 @@ function mktInfo(){
     var lk=function(lab,u,ic){ return u?'<a class="mki-lk" href="'+gEsc(u)+'" target="_blank" rel="noopener noreferrer">'+(ic||'')+'<span>'+lab+'</span><svg class="mki-out" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>':''; };
     var f=function(t){ var r=(x&&x.filters||[]).filter(function(y){ return y.filterType===t; })[0]; return r||{}; };
     var links=d?(lk('공식 웹사이트',(d.links&&d.links.homepage||[])[0],'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>')+lk('백서',d.links&&d.links.whitepaper,'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M10 9H8"/><path d="M16 13H8"/><path d="M16 17H8"/></svg>')+lk('블록 탐색기',(d.links&&d.links.blockchain_site||[])[0],'<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>')):'';
-    box.innerHTML='<div class="mki"><div class="mki-hd">'+mktIcon(base,28)+'<b>'+gEsc(d?d.name:base)+'</b></div><div class="mki-g"><div class="mki-c">'
-      +(d?row('순위',d.market_cap_rank?d.market_cap_rank+'위':'-')+row('시가총액',mktBig(mc,1))+row('완전 희석 시가총액',mktBig(fd,1))+row('시장 점유율',mc&&tot?(mc/tot*100).toFixed(2)+'%':'-')+row('거래량',mktBig(vol,1))+row('거래량 / 시가총액',mc&&vol?(vol/mc*100).toFixed(2)+'%':'-')
-        +row('유통 공급량',num(m.circulating_supply,base))+row('최대 공급량',num(m.max_supply,base))+row('총 공급량',num(m.total_supply,base)):'<p class="mkt-ld">이 종목의 코인 정보는 아직 없습니다.</p>')
-      +'</div><div class="mki-c">'+(links?'<h4>링크</h4><div class="mki-lks">'+links+'</div>':'')
+    box.innerHTML='<div class="mki"><div class="mki-hd">'+mktIcon(base,28)+'<b>'+gEsc(d?d.name:base)+'</b></div><div class="mki-g"><div class="mki-c mki-a">'
+      +(d?'<h4>시장</h4>'+row('순위',d.market_cap_rank?d.market_cap_rank+'위':'-')+row('시가총액',mktBig(mc,1))+row('완전 희석 시가총액',mktBig(fd,1))+row('시장 점유율',mc&&tot?(mc/tot*100).toFixed(2)+'%':'-')+row('거래량',mktBig(vol,1))+row('거래량 / 시가총액',mc&&vol?(vol/mc*100).toFixed(2)+'%':'-')
+        +'</div><div class="mki-c mki-b"><h4>공급량</h4>'+row('유통 공급량',num(m.circulating_supply,base))+row('최대 공급량',num(m.max_supply,base))+row('총 공급량',num(m.total_supply,base)):'<p class="mkt-ld">이 종목의 코인 정보는 아직 없습니다.</p></div><div class="mki-c mki-b">')
+      +'</div><div class="mki-c mki-x">'+(links?'<h4>링크</h4><div class="mki-lks">'+links+'</div>':'')
       +'<h4>거래 규칙</h4>'+(x?row('가격 단위',f('PRICE_FILTER').tickSize?mktFmt(f('PRICE_FILTER').tickSize):'-')+row('최소 주문 수량',f('LOT_SIZE').minQty?mktFmt(f('LOT_SIZE').minQty)+' '+gEsc(base):'-')+row('최소 주문 금액',f('MIN_NOTIONAL').notional?mktFmt(f('MIN_NOTIONAL').notional)+' USDT':'-')+row('상장일',x.onboardDate?stDate(+x.onboardDate):'-'):'<p class="mkt-ld">거래 규칙을 불러오지 못했습니다.</p>')
       +'</div></div><p class="mki-src">코인 정보 출처 CoinGecko, 거래 규칙 출처 Binance</p></div>'; });
 }
