@@ -1026,8 +1026,9 @@ body.kb-open .g-home-chips{opacity:0;transform:translateY(16px);pointer-events:n
 .g-amsg{max-width:720px} /* Reading width 제한 */
 .g-amsg:has(.g-acts){margin-bottom:32px} /* 아이콘 줄이 .g-amsg 안에 들어간 경우 */
 .g-amsg .g-acts{margin-top:4px} /* .g-amsg 안에 들어간 경우엔 gap 이 없다 */
-#g-thread>.g-acts{margin-top:-12px;margin-bottom:24px} /* 평평한 목록이라 gap 하나로는 위아래를 반대로 못 움직인다: 위 16->4, 아래 16->40 (사용자 지시) */
-#g-doc-thread>.g-acts{margin-top:-6px;margin-bottom:24px} /* 문서 스레드는 gap 10px */
+#g-thread>.g-acts{margin-top:-12px;margin-bottom:20px} /* 평평한 목록이라 gap 하나로는 위아래를 반대로 못 움직인다. 위 gap 16->4, 턴 사이 16+20=36px (사용자 지시) */
+#g-doc-thread>.g-acts{margin-top:-6px;margin-bottom:26px} /* 문서 스레드는 gap 10px — 10+26 으로 같은 36px */
+@media (max-width:860px){ #g-thread>.g-acts{margin-bottom:16px} #g-doc-thread>.g-acts{margin-bottom:22px} } /* 모바일 턴 사이 32px — 16+16, 10+22 (사용자 지시) */
 #g-thread>.g-umsg,#g-thread>.g-urow,#g-doc-thread>.g-umsg,#g-doc-thread>.g-urow{margin-bottom:8px} /* 질문 말풍선과 답변 사이 16 -> 24px (사용자 지시) */
 .g-amsg h4{font-size:16px;font-weight:700;margin:22px 0 10px;color:var(--gt)}
 .g-amsg h4:first-child{margin-top:2px}
@@ -1125,8 +1126,8 @@ body.kb-open .g-home-chips{opacity:0;transform:translateY(16px);pointer-events:n
 /* 콜아웃: 인포 카드 (헤어라인 보더 라운드 박스 + 인포 아이콘) */
 .g-amsg blockquote{display:flex;gap:10px;align-items:flex-start;margin:12px 0;padding:12px 15px;border:1px solid var(--gl);background:rgba(255,255,255,.03);border-radius:12px;color:var(--gt2);font-size:14px}
 .g-amsg blockquote::before{content:'';flex-shrink:0;width:15px;height:15px;margin-top:4px;background:var(--gt3);-webkit-mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 7.5v.5'/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='1.8' stroke-linecap='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 11v5M12 7.5v.5'/%3E%3C/svg%3E") center/contain no-repeat}
-.g-amsg .tblwrap{overflow-x:auto;margin:12px 0}
-.g-amsg table{border-collapse:collapse;font-size:14px;line-height:1.6;color:var(--gt2)} /* 전역 --text(잉크) 상속 차단, 다크 가독성 보장 */
+.g-amsg .tblwrap{overflow-x:auto;margin:0} /* 여백은 표 자신에게 건다 — 감싸개 없이 그려지는 경로가 있다 */
+.g-amsg table{border-collapse:collapse;font-size:14px;line-height:1.6;color:var(--gt2);margin:20px 0} /* 전역 --text(잉크) 상속 차단, 다크 가독성 보장 */
 .g-amsg th,.g-amsg td{border:1px solid var(--gl);padding:9px 14px;text-align:left;vertical-align:top;word-break:keep-all}
 .g-amsg th{background:rgba(255,255,255,.06);font-weight:600;color:var(--gt);white-space:nowrap}
 .g-amsg td b{color:var(--gt)}
@@ -7919,7 +7920,7 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 /* 페이지 제목 줄: PC는 통째로 없애고, 모바일은 메뉴 단추 자리는 두고 글자만 지운다 */
 @media (min-width:861px){ body.nochead #g-chead{display:none!important} }
 @media (max-width:860px){ body.nochead #g-chead-title,body.nochead #g-chead-sub{visibility:hidden} }
-@media (max-width:860px){ body.ham-hide #g-hamburger{opacity:0;pointer-events:none;transform:translateY(-8px)} #g-hamburger{transition:opacity .18s,transform .18s,background .12s,color .12s} }
+@media (max-width:860px){ #g-hamburger{transition:background .12s,color .12s} }
 /* 햄버거도 오른쪽 ⋮ 단추처럼 올렸을 때 네모 배경이 생기게 (사용자 지시). 손가락 기기에서는 호버가 눌린 채 남으므로 마우스일 때만. */
 @media (max-width:860px) and (hover:hover){
   #g-hamburger:hover,body.g-inchat #g-hamburger:hover{background:rgba(255,255,255,.06);color:var(--gt2)}
@@ -25197,13 +25198,7 @@ function skSym(t){ return String(t==null?'':t).replace(/비트코인|이더리�
   var last=null; setInterval(function(){ var k=(typeof G!=='undefined'?(G.mode+'|'+!!G.cur):''); if(k!==last){ last=k; sync(); } },300);
   sync();
 })();
-/* 모바일: 아래로 스크롤하면 메뉴 단추를 숨기고, 위로 올리면 다시 보인다(내용 위에 겹치지 않게) */
-(function(){
-  var lastY=0, sc=null;
-  function on(){ var s=document.getElementById('g-scroll'); if(!s||s===sc) return; sc=s; lastY=s.scrollTop;
-    s.addEventListener('scroll',function(){ if(window.innerWidth>860) return; var y=s.scrollTop; if(y>60&&y>lastY+4) document.body.classList.add('ham-hide'); else if(y<lastY-4||y<=60) document.body.classList.remove('ham-hide'); lastY=y; },{passive:true}); }
-  setInterval(on,1000); on();
-})();
+/* 메뉴 단추는 스크롤해도 계속 보인다 (사용자 지시) */
 
 /* ═══ AI가 빠진 정보만 묻는다 (sk-ask) ═══
    AI 답변의 [ASK] 질문을 채팅 안이 아니라 입력창 바로 위 패널로 띄운다(Genspark식).
