@@ -8320,10 +8320,12 @@ body #g-root .tft-page .tft-nav .nh2 small{font-size:12px;color:#8d9199;font-wei
 body #g-root .tft-page .tft-brain .tft-pm .c4{padding:10px 12px}
 body #g-root .tft-page .tft-brain .tft-pm .c4>small{font-size:12px;color:#8d9199}
 body #g-root .tft-page .tft-brain .tft-pm .c4>b{font-size:14px;font-weight:700}
+/* 실현 / 미실현: 안쪽 숫자 11.5 → 14로 다른 값과 같게 */
+body #g-root .tft-page .tft-brain .tft-pm .c4>b em{font-size:inherit;font-style:normal}
 body #g-root .tft-page .tft-brain .tft-mg .c5 small{white-space:nowrap}
 /* 칸이 좁아 값이 넘치면 값을 이름 아래 줄로 내림(오른쪽 정렬) — 넘침 없음 */
 body #g-root .tft-page .tft-brain .tft-mg .c5{flex-wrap:wrap;row-gap:2px}
-body #g-root .tft-page .tft-brain .tft-mg .c5 b{margin-left:auto;text-align:right;min-width:0;overflow-wrap:anywhere}
+body #g-root .tft-page .tft-brain .tft-mg .c5 b{min-width:0;overflow-wrap:anywhere}  /* 한 줄이면 오른쪽, 두 줄이 되면 위 칸들처럼 이름 아래 왼쪽(justify-content:space-between이 혼자 남은 줄을 왼쪽에 둠) */
 /* 데이터 탭 기간 칩: 테두리 알약 → 탭 규칙(안 고른 것 #9EA3AD 글자만, 고른 것 #313339 알약 흰색), 한 줄 + 스크롤바 숨김, 마우스로 끌어 옆으로 넘김 */
 body #g-root .tft-page .mkx-per{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;gap:4px}
 body #g-root .tft-page .mkx-per::-webkit-scrollbar{display:none}
