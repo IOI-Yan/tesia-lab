@@ -7,6 +7,12 @@ Write-Output "Serving $Root at http://localhost:$Port/"
 while ($l.IsListening) {
   $ctx = $l.GetContext()
   $p = [Uri]::UnescapeDataString($ctx.Request.Url.AbsolutePath).TrimStart('/')
+  # /__ver: last-modified ticks of index.html and _screens.html (screen browser auto-reload)
+  if ($p -eq '__ver') {
+    $t = (@('index.html','_screens.html') | ForEach-Object { $q = Join-Path $Root $_; if (Test-Path $q) { (Get-Item $q).LastWriteTimeUtc.Ticks } else { 0 } }) -join '-'
+    $b = [Text.Encoding]::UTF8.GetBytes($t); $ctx.Response.ContentType = 'text/plain'; $ctx.Response.Headers.Add('Cache-Control', 'no-store')
+    $ctx.Response.OutputStream.Write($b, 0, $b.Length); $ctx.Response.Close(); continue
+  }
   $f = Join-Path $Root $p
   if (Test-Path $f -PathType Container) { $f = Join-Path $f 'index.html' }
   if (Test-Path $f -PathType Leaf) {

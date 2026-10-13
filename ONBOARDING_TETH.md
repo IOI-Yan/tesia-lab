@@ -19,7 +19,7 @@
 
 ## 작업할 때 열어두는 것
 - 로컬 미리보기(내 수정본): http://localhost:8080/
-- **화면 찾아보기: http://localhost:8080/_screens.html** — 화면 모아보기 PDF와 같은 묶음·같은 이름으로 212개를 모아 둔 곳. 플로우를 처음부터 타지 않고 고치려는 화면을 바로 띄운다
+- **화면 찾아보기: http://localhost:8080/_screens.html** — 화면 모아보기 PDF와 같은 묶음·같은 이름으로 212개를 모아 둔 곳. 플로우를 처음부터 타지 않고 고치려는 화면을 바로 띄운다. **고치면 저절로 바뀜**: index.html이나 _screens.html이 바뀌면 1.5초 안에 알아서 새로 열림(새로고침 필요 없음, serve.ps1 최신본 필요)
 - 원본 사이트(수정 전 비교용): https://aresjoo.github.io/tesia-lab/
 - 공유용 수정본: https://ioi-yan.github.io/tesia-lab/
 - 모바일 화면 모아보기 PDF: `design-notes` 브랜치의 `TETH 화면 모아보기 (모바일).pdf` (원본은 집 PC `Downloads\Telegram Desktop`)
