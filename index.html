@@ -8027,8 +8027,11 @@ body #g-root .tft-page .st,body #g-root .tft-page .tft-card .st{font-size:13px;c
 body #g-root .tft-page .tm-mttl{font-weight:700;display:inline-flex;align-items:center;gap:4px}
 body #g-root .tft-page .tm-mttl .tm-chev{flex:none;color:#9ea3ad}
 /* 긴급 정지: 테두리 단추 → 빨강 태그색 알약(위험 동작) */
-body #g-root .tft-page .tm-halt{border:0;background:var(--tag-red-bg);color:var(--tag-red);font-size:13px;font-weight:600;padding:0 14px;transition:background .2s ease}
-body #g-root .tft-page .tm-halt:hover{background:rgba(240,86,106,.2);color:var(--tag-red)}
+body #g-root .tft-page .tm-halt{border:0;background:rgba(240,86,106,.2);color:#f0566a;font-size:13px;font-weight:600;padding:0 14px;transition:background .2s ease}
+body #g-root .tft-page .tm-halt:not(:disabled):hover{background:rgba(240,86,106,.3);color:#f0566a}
+/* 누를 수 없을 때(예시 화면): 흐리게, 호버 반응 없음 */
+body #g-root .tft-page .tm-halt:disabled,body #g-root .tft-page .tft-halt:disabled{background:var(--tag-red-bg);color:var(--tag-red);opacity:.45;cursor:default}
+body #g-root .tft-page .tft-halt:disabled{background:#313339;color:#9ea3ad}
 /* 무기한 배지: 상품 = 주황 태그, 모서리 8 */
 body #g-root .tft-page .mkh .tag,body #g-root .tft-page .tag{background:var(--tag-orange-bg);color:var(--tag-orange);border-radius:8px;font-weight:500}
 /* 미리보기 안내 줄: 카드색 + 테두리 6%, "내 터미널" = 회색 단추 */
@@ -8067,7 +8070,7 @@ body #g-root .tft-page .tm-kv b,body #g-root .tft-page .tm-kv b.up,body #g-root 
 body #g-root .tft-page .tm-kv b:not(.up):not(.dn){color:#fff}
 /* 일시정지: 테두리 단추 → 회색 단추 */
 body #g-root .tft-page .tft-halt{border:0;background:#313339;color:#fff;font-size:13px;font-weight:600;transition:background .2s ease}
-body #g-root .tft-page .tft-halt:hover{background:#3a3d44}
+body #g-root .tft-page .tft-halt:not(:disabled):hover{background:#3a3d44}
 /* 전략 종류 배지(규칙·AI 판단·혼합): 백테스트 분류 배지처럼 파랑 태그, 모서리 8 */
 body #g-root .tf-kind{border:0;border-radius:8px;background:var(--tag-blue-bg);color:var(--tag-blue);font-weight:500}
 /* 13.5px → 13px (.5 금지) */
