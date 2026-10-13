@@ -964,6 +964,11 @@ body.tf-route .g-chead{display:none} /* 전략 라우트는 콘텐츠의 tfw-hd(
 .g-hello .hw{display:inline-block;animation:tmBlurIn .8s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 110ms + .1s)}
 @keyframes tmBlurIn{from{opacity:0;filter:blur(12px);transform:translateY(6px)}to{opacity:1;filter:blur(0);transform:none}}
 @media (prefers-reduced-motion:reduce){.tm-ripple i,.g-hello .hw{animation:none;opacity:1}}
+/* 알림 "조건 저장됨": 홈 인사말처럼 단어별로 흐림 → 선명하게 나타남, 체크는 Lucide check */
+.g-sv{display:inline-block;animation:tmBlurIn .8s cubic-bezier(.2,.8,.3,1) both;animation-delay:calc(var(--i) * 110ms)}
+.g-svck{margin-left:4px;vertical-align:-3px}
+.g-svck svg{display:block}
+@media (prefers-reduced-motion:reduce){.g-sv{animation:none;opacity:1}}
 /* [시안] PC 홈: Gemini처럼 화면 가운데 큰 타원형 빛 (카드 뒤) */
 @media (min-width:601px){
   #g-content .g-home::after{content:"";position:fixed;inset:0;background:radial-gradient(28% 32% at 56% 45% in oklch,rgba(61,255,176,.18) 0%,rgba(61,255,176,.09) 35%,rgba(61,255,176,.03) 65%,rgba(61,255,176,0) 100%),radial-gradient(27% 31% at 45% 56% in oklch,rgba(0,230,255,.22) 0%,rgba(0,230,255,.11) 35%,rgba(0,230,255,.035) 65%,rgba(0,230,255,0) 100%),radial-gradient(40% 46% at 50% 50% in oklch,rgba(40,110,255,.26) 0%,rgba(40,110,255,.14) 30%,rgba(40,110,255,.06) 55%,rgba(40,110,255,.015) 80%,rgba(40,110,255,0) 100%);mix-blend-mode:screen;pointer-events:none;z-index:0}
@@ -13527,7 +13532,7 @@ function taiActDo(a,btn,col){
     S.alerts=S.alerts||[];
     S.alerts.push({label:a.label,at:Date.now(),asset:(TAI.chart&&TAI.chart.label)||null});
     try{ STORE.save(); }catch(e){}
-    if(btn){ btn.disabled=true; var tx=btn.querySelector('.tx'); if(tx) tx.textContent='조건 저장됨 ✓'; }
+    if(btn){ btn.disabled=true; var tx=btn.querySelector('.tx'); if(tx) tx.innerHTML='<span class="g-sv" style="--i:0">조건</span> <span class="g-sv" style="--i:1">저장됨</span><span class="g-sv g-svck" style="--i:2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>'; }
     toast('알림 조건을 저장했습니다. 실시간 통지는 준비 중이라, 다음 접속 때 이 조건 기준으로 바로 점검해드리겠습니다');
     return;
   }
