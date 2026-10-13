@@ -26985,6 +26985,19 @@ function tbText(){ try{ var b=document.querySelector('#g-content .tft-brain'); i
         var nr=nb.offsetLeft+nb.offsetWidth, vis=np.scrollLeft+np.clientWidth; if(nr>vis||nb.offsetLeft<np.scrollLeft) np.scrollTo({left:Math.max(0,nb.offsetLeft-(np.clientWidth-nb.offsetWidth)/2),behavior:'smooth'}); } } }catch(e){}
     return r; };
   mktData._keep=1; })();
+/* 아래 패널 탭(포지션·미체결 주문…): 밑줄이 이전 탭에서 새 탭으로 0.26초 미끄러짐(판단 탭과 같게). 탭은 다시 그리지 않고 on만 바뀌므로 누르기 전 위치를 잡아 두고 바뀐 뒤 움직임 */
+if(!window._tethBotUl){ window._tethBotUl=1;
+  document.addEventListener('click',function(e){ var t=e.target.closest&&e.target.closest('.tft-bottom .nfxh-tab'); if(!t) return; var bar=t.parentElement, o=bar.querySelector('.nfxh-tab.on'); if(!o||o===t) return;
+    if(!Element.prototype.animate||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    var from={l:o.offsetLeft,w:o.offsetWidth}, col=getComputedStyle(o).borderBottomColor;
+    setTimeout(function(){ var on=bar.querySelector('.nfxh-tab.on'); if(!on||on===o) return; var to={l:on.offsetLeft,w:on.offsetWidth};
+      if(getComputedStyle(bar).position==='static') bar.style.position='relative';
+      var g=document.createElement('i'); g.setAttribute('aria-hidden','true'); g.style.cssText='position:absolute;left:0;bottom:0;height:2px;width:'+to.w+'px;background:'+col+';pointer-events:none;transform-origin:0 0;z-index:2';
+      on.style.borderBottomColor='transparent'; bar.appendChild(g);
+      var a=g.animate([{transform:'translateX('+from.l+'px) scaleX('+(from.w/to.w)+')'},{transform:'translateX('+to.l+'px) scaleX(1)'}],{duration:260,easing:'cubic-bezier(.2,.8,.3,1)',fill:'forwards'});
+      var done=function(){ on.style.borderBottomColor=''; g.remove(); }; a.finished.then(done,done);
+      var pn=[].filter.call((bar.closest('.tft-bottom')||document).querySelectorAll('.nfxh-pane.on'),function(x){ return x.offsetParent; })[0]; if(pn) pn.animate([{opacity:0,transform:'translateY(4px)'},{opacity:1,transform:'none'}],{duration:220,easing:'cubic-bezier(.2,.8,.3,1)'}); },0);
+  },true); }
 /* 판단 카드 다시 그릴 때 깜박임 없애기: 예전 글자·예전 판단 카드가 잠깐 보였다가 0.2초 뒤 바뀌던 것 → 다시 그린 바로 그 자리에서 바로 바꿈. 카드 스크롤 위치도 그대로 */
 (function(){ if(typeof tfTmBrain!=='function'||tfTmBrain._tbNow) return; var b0=tfTmBrain;
   tfTmBrain=function(){ var bi=document.querySelector('#g-content .tft-brainin'), st=bi?bi.scrollTop:0;
