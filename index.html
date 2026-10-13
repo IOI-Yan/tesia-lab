@@ -500,7 +500,7 @@ body{
   --g0:#0f1012;--g1:#17181b;--g2:#1d1f23;--g3:#26282c;
   --gl:rgba(255,255,255,.07);--gl2:rgba(255,255,255,.13);
   --gt:#e3e5ea;--gt2:#c4c7c5;--gt3:#9aa0a6; /* Gemini 다크 실측 톤(#e3e5ea/#c4c7c5/#9aa0a6)으로 상향 — 가독성 (사용자 지시) */
-  --gb:#3d6ef0;--gb2:#5b8af7;--gg:#4ec08d;--ga:#d9a84e;--gr:#e0604b;
+  --gb:#3d6ef0;--gb2:#5b8af7;--gg:#2fb98a;--ga:#d9a84e;--gr:#f0566a;
   /* 확장 토큰: 표면/반전/툴팁/그림자/글로우, 라이트 테마가 이 값만 재정의한다 */
   --pill:#1e2024;--pop:#1b1c1f;--tag-red-bg:rgba(240,86,106,.12);--tag-red:#d9707d;--tag-blue-bg:rgba(102,150,240,.12);--tag-blue:#6fa1f2;--tag-orange-bg:rgba(230,150,90,.12);--tag-orange:#d39a6b;--tag-green-bg:rgba(47,185,138,.12);--tag-green:#62b394;--hoverline:rgba(255,255,255,.05);
   --tip-bg:#313339;--tip-fg:#fff;--inv-bg:#eceef2;--inv-fg:#17181b;
@@ -8012,6 +8012,66 @@ body #g-root .mk3-seg{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;w
 .seg-anim>button.on,.seg-anim>button[aria-pressed="true"],.seg-anim>button[aria-checked="true"]{background:transparent!important;box-shadow:none!important;outline:none!important}
 .segt{position:absolute;left:0;top:0;z-index:0;pointer-events:none;transition:transform .26s cubic-bezier(.2,.8,.3,1),width .26s cubic-bezier(.2,.8,.3,1)}
 @media (prefers-reduced-motion:reduce){ .segt{transition:none} }
+/* ═══ AI 트레이딩 터미널 1차 정리 (지금까지 정한 규칙 적용) ═══ */
+/* 손익 색: 남아 있던 #E0604B 빨강 → #F0566A */
+body #g-root .tft-page .st.st-err,body #g-root .tft-page b.dn,body #g-root .tft-page .dn{color:#f0566a}
+body #g-root .tft-page b.up,body #g-root .tft-page .up{color:#2fb98a}
+/* 상태 점: 글자 ● ○ ⚠ 대신 6px 점. 실행 중 = 메인색 숨 쉬는 점, 실행 전 = 회색, 오류 = 빨강 */
+body #g-root .st{display:inline-flex;align-items:center;gap:6px}
+body #g-root .st .sdot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#8d9199;flex:none}
+body #g-root .st.st-live .sdot{background:#00feff;animation:gclDot 1.6s ease-in-out infinite}
+body #g-root .st.st-err .sdot{background:#f0566a}
+@media (prefers-reduced-motion:reduce){ .st.st-live .sdot{animation:none} }
+body #g-root .tft-page .st,body #g-root .tft-page .tft-card .st{font-size:13px;color:#cfd2d6}
+/* 전략 이름: 굵게 + Lucide 꺾쇠 */
+body #g-root .tft-page .tm-mttl{font-weight:700;display:inline-flex;align-items:center;gap:4px}
+body #g-root .tft-page .tm-mttl .tm-chev{flex:none;color:#9ea3ad}
+/* 긴급 정지: 테두리 단추 → 빨강 태그색 알약(위험 동작) */
+body #g-root .tft-page .tm-halt{border:0;background:var(--tag-red-bg);color:var(--tag-red);font-size:13px;font-weight:600;padding:0 14px;transition:background .2s ease}
+body #g-root .tft-page .tm-halt:hover{background:rgba(240,86,106,.2);color:var(--tag-red)}
+/* 무기한 배지: 상품 = 주황 태그, 모서리 8 */
+body #g-root .tft-page .mkh .tag,body #g-root .tft-page .tag{background:var(--tag-orange-bg);color:var(--tag-orange);border-radius:8px;font-weight:500}
+/* 미리보기 안내 줄: 카드색 + 테두리 6%, "내 터미널" = 회색 단추 */
+body #g-root .tft-page .tm-preview{background:#17181B;border-color:rgba(255,255,255,.06)}
+body #g-root .tft-page .tm-preview button{background:#313339;color:#fff;font-size:13px;font-weight:600;border:0;transition:background .2s ease}
+body #g-root .tft-page .tm-preview button:hover{background:#3a3d44}
+/* 운용·누적 숫자 굵게 */
+body #g-root .tft-page .tm-msummary b{font-weight:600}
+/* 차트·정보·데이터 탭: 고른 탭 #313339 알약, 굵기 보통, 안 고른 탭 #9EA3AD, 호버 한 단계 밝게 */
+body #g-root .tft-page .mkt-tabs button{color:#9ea3ad;font-weight:400;transition:background .2s ease,color .2s ease}
+body #g-root .tft-page .mkt-tabs button:hover{color:#fff}
+body #g-root .tft-page .mkt-tabs button.on{background:#313339;color:#fff}
+/* 아래 탭(포지션·미체결…)·판단 탭: 안 고른 탭 #9EA3AD, 굵기 보통 */
+body #g-root .tft-page .nfxh-tab{font-weight:400;color:#9ea3ad}
+body #g-root .tft-page .nfxh-tab.on,body #g-root .tft-page .nfxh-tab:hover{color:#fff}
+body #g-root .tft-page .tft-btabs button{color:#9ea3ad;font-weight:400}
+body #g-root .tft-page .tft-btabs button.on,body #g-root .tft-page .tft-btabs button:hover{color:#fff}
+/* 현재 전략 고르기: 고르기 목록 규칙(G35) 칸 — 바탕 #25272C + 테두리 6%, 알약, Lucide 꺾쇠 */
+body #g-root .tft-page .fr2 select,body #g-root .tft-page .tft-scope select{-webkit-appearance:none;appearance:none;background:#25272C url("data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%2716%27 height=%2716%27 viewBox=%270 0 24 24%27 fill=%27none%27 stroke=%27%239ea3ad%27 stroke-width=%272%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27%3E%3Cpath d=%27m6 9 6 6 6-6%27/%3E%3C/svg%3E") no-repeat right 12px center;border:1px solid rgba(255,255,255,.06);border-radius:999px;padding:0 36px 0 16px;color:#fff;font-size:14px;cursor:pointer}
+body #g-root .tft-page .fr2 select:hover,body #g-root .tft-page .tft-scope select:hover{background-color:#2f3137}
+/* 표 안 "중지": 10.5px 테두리 단추 → 회색 작은 알약 12/600 */
+body #g-root .tft-page .tbtn{font-size:12px;font-weight:600;color:#fff;background:#313339;border:0;border-radius:999px;padding:0 10px;height:24px;transition:background .2s ease}
+body #g-root .tft-page .tbtn:hover{background:#3a3d44}
+/* 롱·숏 표시: 테두리 알약 → 태그색(롱 초록 · 숏 빨강), 모서리 8 */
+body #g-root .tft-page .sd{border:0;border-radius:8px;padding:2px 8px;font-size:12px;font-weight:600}
+body #g-root .tft-page .sd.lg{background:var(--tag-green-bg);color:var(--tag-green)}
+body #g-root .tft-page .sd.sh{background:var(--tag-red-bg);color:var(--tag-red)}
+/* 전략 고르기 단추: 테두리 6% */
+body #g-root .tft-page .mks-btn{border:1px solid rgba(255,255,255,.06)}
+body #g-root .tft-page .mks-btn:hover{background:#2f3137}
+/* 지금 상태 카드: 제목 굵게, 이름·값 목록은 "자세한 지표"와 같게(이름 #9EA3AD 14 · 값 흰색 14/600) */
+body #g-root .tft-page .tm-status{font-size:12px}
+body #g-root .tft-page .tm-status .tb-t{font-weight:700}
+body #g-root .tft-page .tm-kv span{font-size:14px;color:#9ea3ad}
+body #g-root .tft-page .tm-kv b,body #g-root .tft-page .tm-kv b.up,body #g-root .tft-page .tm-kv b.dn{font-size:14px;font-weight:600}
+body #g-root .tft-page .tm-kv b:not(.up):not(.dn){color:#fff}
+/* 일시정지: 테두리 단추 → 회색 단추 */
+body #g-root .tft-page .tft-halt{border:0;background:#313339;color:#fff;font-size:13px;font-weight:600;transition:background .2s ease}
+body #g-root .tft-page .tft-halt:hover{background:#3a3d44}
+/* 전략 종류 배지(규칙·AI 판단·혼합): 백테스트 분류 배지처럼 파랑 태그, 모서리 8 */
+body #g-root .tf-kind{border:0;border-radius:8px;background:var(--tag-blue-bg);color:var(--tag-blue);font-weight:500}
+/* 13.5px → 13px (.5 금지) */
+body #g-root .tft-page .mks-btn{font-size:13px}
 /* [공통 규칙 G36] 상태·태그 색 4종(어두운 바탕 + 같은 계열 글자): 빨강(오류) · 파랑(성공·종류) · 주황(확인 필요·위험) · 초록(참고). 토큰 --tag-*. 백테스트 분류 배지: 종류=파랑, 종목=초록, 상품·배수=주황 */
 #bt-root .bt-id-m b,#bt-root .bt-id-m span{font-weight:500}
 body #bt-root .bt-id-m>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
@@ -14804,7 +14864,7 @@ function tfTmRail(listOnly){
     return '<div class="tft-card'+(on?' on':'')+' st-'+s.status+'" onclick="if(event.target.closest(&quot;button&quot;))return;tfTmSelect(&quot;'+s.key+'&quot;)">'
       +'<div class="r1"><span class="exb" style="background:'+ex.col+';color:'+(ex.fg||'#0f1012')+'">'+gEsc(ex.name.slice(0,2).toUpperCase())+'</span>'
       +'<span class="nm" title="'+gEsc(s.name)+'">'+gEsc(s.name)+'</span>'
-      +'<span class="st st-'+st[2]+'">'+st[0]+' '+st[1]+'</span>'
+      +'<span class="st st-'+st[2]+'"><i class="sdot" aria-hidden="true"></i>'+st[1]+'</span>'
       +(pv?'':'<button type="button" class="mn" aria-label="전략 메뉴" onclick="tfTmMenu(event,&quot;'+s.key+'&quot;)">⋯</button>')+'</div>'
       +'<div class="r2"><span class="sy">'+gEsc(s.sym)+', '+gEsc(s.exL||ex.name)+'</span><span class="ver">'+gEsc(s.ver)+'</span></div>'
       +'<div class="r3 num"><span class="cap">'+tfTmWon(s.cap)+(s.capShared?'<i title="예산 공용">*</i>':'')+'</span>'
@@ -14837,7 +14897,7 @@ function tfTmCtx(){
     +'<span class="exb" style="background:'+ex.col+';color:'+(ex.fg||'#0f1012')+'">'+gEsc(ex.name.slice(0,2).toUpperCase())+'</span>'
     +'<b class="sy num">'+gEsc(s.sym)+'</b><span class="mut">'+gEsc(s.exL||ex.name)+'</span>'
     +'<span class="dv"></span>'
-    +'<span class="st st-'+st[2]+'">'+st[0]+' '+st[1]+'</span>'
+    +'<span class="st st-'+st[2]+'"><i class="sdot" aria-hidden="true"></i>'+st[1]+'</span>'
     +'<span style="flex:1"></span>'
     +'<button type="button" class="tm-help" onclick="event.stopPropagation();tfTmHelp()" aria-label="도움" title="도움">?</button>'
     +'</div><div class="tm-c2">'
@@ -14847,8 +14907,8 @@ function tfTmCtx(){
     +'<span style="flex:1"></span>'
     +ctl+halt
     +'</div></div>';
-  if(mh) mh.innerHTML='<button type="button" class="tm-mttl" onclick="tfTmDrawer()" aria-label="전략 선택">'+gEsc(s.name)+' <i>▾</i></button>'
-    +'<span class="st st-'+st[2]+'">'+st[0]+' '+st[1]+'</span>'+halt;
+  if(mh) mh.innerHTML='<button type="button" class="tm-mttl" onclick="tfTmDrawer()" aria-label="전략 선택">'+gEsc(s.name)+'<svg class="tm-chev" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>'
+    +'<span class="st st-'+st[2]+'"><i class="sdot" aria-hidden="true"></i>'+st[1]+'</span>'+halt;
   var summary=$('tm-msummary'); if(summary) summary.innerHTML='<span>운용 '+tfTmWon(s.cap)+'</span><span>누적 <b class="'+tfTmSign(c.pnl)+'">'+tfTmWonS(c.pnl)+' ('+tfTmPct(c.pnlPct)+')</b></span>';
 }
 function tfTmAfter(){ tfTmRail(); tfTmCtx(); tfTmBrain(); tfTmBottom(); }
@@ -20804,7 +20864,7 @@ function tfTmDrawer(){
   var all=tfTmAll();
   tfDrawer('전략 선택','<div class="tm-dlist">'+all.map(function(s){
       var st=TF_TM_ST[s.status]||TF_TM_ST.off;
-      return '<button type="button" class="tm-ditem'+(TF_TM.sel===s.key?' on':'')+'" onclick="tfDrawerClose();tfTmSelect(&quot;'+s.key+'&quot;)"><span class="nm">'+gEsc(s.name)+'</span><span class="st st-'+st[2]+'">'+st[0]+' '+st[1]+'</span><span class="sy num">'+gEsc(s.sym)+', '+gEsc(s.exL||'')+'</span></button>';
+      return '<button type="button" class="tm-ditem'+(TF_TM.sel===s.key?' on':'')+'" onclick="tfDrawerClose();tfTmSelect(&quot;'+s.key+'&quot;)"><span class="nm">'+gEsc(s.name)+'</span><span class="st st-'+st[2]+'"><i class="sdot" aria-hidden="true"></i>'+st[1]+'</span><span class="sy num">'+gEsc(s.sym)+', '+gEsc(s.exL||'')+'</span></button>';
     }).join('')
     +(window.TF_PREVIEW?'':'<button type="button" class="tm-dnew" onclick="tfDrawerClose();tfBackToChat()">+ 새 전략</button>')+'</div>');
 }
