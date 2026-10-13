@@ -7912,8 +7912,8 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .pl-cta,#g-root .pl-cta-hi,#g-root .px-cta{font-weight:600} /* 플랜 시작 버튼 굵게: 사이트 버튼 글자 굵기 600과 같게 */
 /* 강조 플랜 카드 "웅웅거리는" 배경: 바탕 그라데이션 위로 청록·민트·파랑 빛이 14초에 걸쳐 천천히 떠다님. 움직임 줄이기면 멈춤 */
 #g-root .pl-card.pl-hi{overflow:hidden;isolation:isolate}
-#g-root .pl-card.pl-hi::before{content:"";position:absolute;inset:-40%;z-index:-1;pointer-events:none;background:radial-gradient(38% 32% at 28% 30%,rgba(0,254,255,.18),transparent 70%),radial-gradient(42% 38% at 72% 68%,rgba(47,185,138,.16),transparent 70%),radial-gradient(34% 30% at 62% 22%,rgba(64,128,255,.14),transparent 70%);filter:blur(12px);animation:plHum 14s ease-in-out infinite alternate}
-@keyframes plHum{0%{transform:translate(-6%,-4%) rotate(0deg) scale(1)}50%{transform:translate(5%,6%) rotate(8deg) scale(1.08)}100%{transform:translate(-3%,8%) rotate(-6deg) scale(1)}}
+#g-root .pl-card.pl-hi::before{content:"";position:absolute;inset:-40%;z-index:-1;pointer-events:none;background:radial-gradient(30% 26% at 30% 30%,rgba(0,254,255,.34),transparent 70%),radial-gradient(34% 30% at 70% 70%,rgba(47,185,138,.30),transparent 70%),radial-gradient(28% 24% at 64% 24%,rgba(64,128,255,.28),transparent 70%);filter:blur(14px);animation:plHum 9s ease-in-out infinite alternate}
+@keyframes plHum{0%{transform:translate(-14%,-10%) rotate(0deg) scale(1)}33%{transform:translate(12%,4%) rotate(20deg) scale(1.15)}66%{transform:translate(-4%,14%) rotate(-12deg) scale(.95)}100%{transform:translate(10%,-8%) rotate(10deg) scale(1.1)}}
 @media (prefers-reduced-motion:reduce){#g-root .pl-card.pl-hi::before{animation:none}}
 #g-root .pl-head{margin-bottom:32px} /* 제목 묶음과 카드 사이 넓힘 (사용자 지시) */
 @media (max-width:900px){ #g-root .pl-head{margin-bottom:24px} }
@@ -7942,7 +7942,7 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 #g-root .pl-items li{color:#cfd2d6} /* 기능 목록 글자 한 단계 옅게 #ECECF1 → #CFD2D6 (설명과 같음) */
 #g-root .pl-sub{color:#fff;font-weight:600} /* "포함된 기능"·"구독 혜택" 묶음 제목: 흰색·굵게로 목록과 구분 */
 #g-root .pl-foot{color:#8b9096;padding-top:16px} /* 카드 맨 아래 안내 한 단계 옅게 #B0B4BB → #8B9096 (상담원 안내와 같음) */
-#g-root .pl-card.pl-hi .pl-lb{color:#2fb98a} #g-root .pl-card:not(.pl-hi) .pl-lb{color:#9ea3ad} /* 카드 이름: 초대 계정 민트, 구독 옅은 회색 */
+#g-root .pl-card.pl-hi .pl-lb{color:#00feff} #g-root .pl-card:not(.pl-hi) .pl-lb{color:#9ea3ad} /* 카드 이름: 초대 계정 메인색, 구독 옅은 회색 */
 .pl-cta-hi:hover,.px-cta.pl-cta-hi:hover{background:#5cf6ff;border-color:#5cf6ff}
 .pl-grad{background:linear-gradient(120deg,#e0feff 0%,#00f0ff 55%,#7ff7ff 100%);-webkit-background-clip:text;background-clip:text}
 .pl-hi .pl-items li svg,.pl-sumcard .pl-items li svg,.px-perm li,.px-hi .px-steps li.ok b svg{color:#00f0ff}
