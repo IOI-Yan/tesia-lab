@@ -7917,7 +7917,7 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 @media (prefers-reduced-motion:reduce){#g-root .pl-card.pl-hi::before{animation:none}}
 #g-root .pl-head{margin-bottom:32px} /* 제목 묶음과 카드 사이 넓힘 (사용자 지시) */
 @media (max-width:900px){ #g-root .pl-head{margin-bottom:24px} }
-@media (min-width:901px){ #g-root .pl{padding-top:40px} } /* PC: 제목이 위에서 80px(위 바 40 + 40)에서 시작, 모바일과 같게 */
+@media (min-width:901px){ #g-root .pl{padding-top:calc(clamp(64px,9vh,128px) - 40px)} } /* PC: 제목 위치 = 화면 높이의 9% (최소 64 · 최대 128px, 위 바 40px 포함). 900px 높이 화면에서 약 81px */
 /* 강조 카드 테두리: 한 줄 청록선 → 위는 청록, 가운데로 옅어지고 아래는 민트로 이어지는 그라데이션 (사용자 지시) */
 #g-root .pl-card.pl-hi{border-color:transparent}
 #g-root .pl-card.pl-hi::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:linear-gradient(160deg,rgba(0,254,255,.7),rgba(0,254,255,.08) 45%,rgba(47,185,138,.45));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
