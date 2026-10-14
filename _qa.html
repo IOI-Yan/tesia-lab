@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>복사한 전략 — 예산 내역 줄 수 확인</title>
+<style>
+  :root{color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;background:#0b0c0e;color:#ececf1;
+       font:400 14px/1.5 Pretendard,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif}
+  .bar{position:sticky;top:0;z-index:5;display:flex;align-items:center;flex-wrap:wrap;gap:10px;
+       padding:14px 18px;background:#101113;border-bottom:1px solid rgba(255,255,255,.06)}
+  .bar b{font-size:14px;font-weight:700;margin-right:6px}
+  .bar button{height:34px;padding:0 14px;border:0;border-radius:999px;background:#313339;color:#ececf1;
+              font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .15s}
+  .bar button:hover{background:#3A3D44}
+  .bar button.on{background:#00feff;color:#101113}
+  .bar .w{margin-left:auto;display:flex;gap:8px}
+  .msg{padding:10px 18px;font-size:13px;color:#8d9199;border-bottom:1px solid rgba(255,255,255,.06)}
+  .stage{display:flex;justify-content:center;padding:24px 16px 64px}
+  iframe{width:390px;height:1400px;border:1px solid rgba(255,255,255,.08);border-radius:12px;background:#101113}
+  iframe.pc{width:1280px;height:1400px}
+</style>
+</head>
+<body>
+
+<div class="bar">
+  <b>예산 내역 줄 수</b>
+  <button type="button" data-n="0" class="on">원래대로 (1줄)</button>
+  <button type="button" data-n="8">9줄</button>
+  <button type="button" data-n="29">30줄</button>
+  <div class="w">
+    <button type="button" id="wm" class="on">모바일 390</button>
+    <button type="button" id="wp">PC 1280</button>
+  </div>
+</div>
+<div class="msg" id="msg">화면을 불러오는 중입니다…</div>
+
+<div class="stage"><iframe id="f" src="index.html" title="복사한 전략"></iframe></div>
+
+<script>
+(function(){
+  var f=document.getElementById('f'), msg=document.getElementById('msg'), extra=0;
+
+  function say(t){ msg.textContent=t; }
+
+  /* index.html 안의 QA 시나리오로 "복사한 전략 상세" 화면까지 간다 */
+  function run(cb){
+    var w=f.contentWindow, n=0;
+    (function wait(){
+      if(n++>60){ say('화면을 불러오지 못했습니다. 새로고침해 주십시오.'); return; }
+      if(!w.QA_PAGES||!w.qaRun){ setTimeout(wait,300); return; }
+      var P=w.QA_PAGES, gi=-1, ii=-1;
+      for(var a=0;a<P.length;a++) if(P[a][0]==='전략 복사'){ gi=a;
+        for(var b=0;b<P[a][1].length;b++) if(P[a][1][b][0]==='복사한 전략 상세(자금 이동)'){ ii=b; break; } break; }
+      if(gi<0||ii<0){ say('QA 시나리오를 찾지 못했습니다.'); return; }
+      w.qaRun(gi,ii);
+      setTimeout(function(){ cb(w); },5200);
+    })();
+  }
+
+  /* 장부에 줄을 더 넣고 예산 내역 탭을 연다 */
+  function fill(w){
+    var d=w.document;
+    try{
+      var cp=w.cpState(), c2=cp.copies[cp.copies.length-1];
+      if(!c2||!c2.ledger||!c2.ledger.length){ say('장부를 찾지 못했습니다.'); return; }
+      var base=c2.ledger[0], keep=c2.ledger.slice(0,1);
+      c2.ledger=keep;
+      for(var i=1;i<=extra;i++) c2.ledger.push({at:base.at+i*86400000,type:i%3===0?'out':'add',amt:100*((i%9)+1)});
+      var tab=[].slice.call(d.querySelectorAll('.cq-tabs button')).filter(function(x){ return x.textContent.indexOf('예산')>=0; })[0];
+      if(tab) tab.click();
+      setTimeout(function(){
+        var rows=d.querySelectorAll('.cq-lrow').length;
+        var L=d.querySelector('.cq-list.cq-flat');
+        var sc=L?(L.scrollHeight>L.clientHeight+1?'있음':'없음'):'-';
+        say('예산 내역 '+rows+'줄 · 안쪽 스크롤 '+sc+' · 목록 높이 '+(L?Math.round(L.getBoundingClientRect().height):0)+'px — 그대로 아래로 쌓입니다');
+      },500);
+    }catch(e){ say('오류: '+e.message); }
+  }
+
+  function go(){ say('불러오는 중…'); run(fill); }
+
+  [].forEach.call(document.querySelectorAll('.bar button[data-n]'),function(btn){
+    btn.onclick=function(){
+      [].forEach.call(document.querySelectorAll('.bar button[data-n]'),function(x){ x.classList.remove('on'); });
+      btn.classList.add('on');
+      extra=+btn.dataset.n;
+      f.src='index.html?'+Date.now();
+      f.onload=go;
+    };
+  });
+  document.getElementById('wm').onclick=function(){ f.classList.remove('pc'); this.classList.add('on'); document.getElementById('wp').classList.remove('on'); };
+  document.getElementById('wp').onclick=function(){ f.classList.add('pc'); this.classList.add('on'); document.getElementById('wm').classList.remove('on'); };
+
+  f.onload=go;
+})();
+</script>
+</body>
+</html>
