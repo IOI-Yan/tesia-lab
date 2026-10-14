@@ -48,6 +48,10 @@ h1{margin:0 0 3px;font-size:17px;font-weight:700;letter-spacing:-.01em}
 .stagebar b{color:var(--t1);font-size:13.5px;font-weight:600}
 .fsb{margin-left:auto;align-self:center;height:28px;padding:0 12px;border:0;border-radius:999px;background:#313339;color:#fff;font:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:background .2s ease}
 .fsb:hover{background:#3a3d44}
+/* 나란히 보기(켜고 끄기): 크게 보기와 같은 단추. 나란히일 때는 수정본/원본 고르기를 숨김 */
+#sideBtn+#bigBtn{margin-left:8px}
+body.side .cmp{display:none}
+body.solo #sideBtn{display:none}
 /* 크게 보기(켜고 끄기): 머리·목록·이름 줄을 숨기고 화면만 창 전체에. 오른쪽 위 "작게 보기"나 Esc로 돌아옴 */
 .bigx{display:none;position:fixed;top:12px;right:12px;z-index:100;height:32px;padding:0 14px;border:0;border-radius:999px;background:rgba(49,51,57,.92);color:#fff;font:600 12px Pretendard,system-ui,sans-serif;cursor:pointer;box-shadow:0 6px 20px rgba(0,0,0,.4);transition:background .2s ease}
 .bigx:hover{background:#3a3d44}
@@ -95,7 +99,7 @@ kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--
 <div class="main">
   <div class="list" id="list"></div>
   <div class="stage">
-    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span><span class="cmp" id="cmp" role="group" aria-label="원본과 비교"><button type="button" data-v="now" aria-pressed="true" title="내 수정본">수정본</button><button type="button" data-v="orig" aria-pressed="false" title="원본 사이트(aresjoo/tesia-lab main)">원본</button><button type="button" data-v="both" aria-pressed="false" title="원본과 수정본을 나란히">나란히</button></span><button type="button" class="fsb" id="bigBtn" title="머리·목록을 숨기고 화면을 창 전체로 봅니다. Esc로 돌아옵니다">크게 보기</button></div>
+    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span><span class="cmp" id="cmp" role="group" aria-label="원본과 비교"><button type="button" data-v="now" aria-pressed="true" title="내 수정본">수정본</button><button type="button" data-v="orig" aria-pressed="false" title="원본 사이트(aresjoo/tesia-lab main)">원본</button></span><button type="button" class="fsb" id="sideBtn" aria-pressed="false" title="원본과 수정본을 나란히 봅니다. 다시 누르면 하나만">나란히 보기</button><button type="button" class="fsb" id="bigBtn" title="머리·목록을 숨기고 화면을 창 전체로 봅니다. Esc로 돌아옵니다">크게 보기</button></div>
     <div class="frames" id="frames"><p class="hint">왼쪽에서 화면을 고르면 여기에 뜹니다.<br><kbd>/</kbd> 로 검색창, <kbd>Esc</kbd> 로 비우기<br>주소 끝에 <kbd>#09-01</kbd> 처럼 붙이면 그 화면이 바로 열립니다.</p></div>
   </div>
 </div>
@@ -465,9 +469,18 @@ document.getElementById('cmp').addEventListener('click',function(e){
   try{ sessionStorage.setItem('teth.screens.view',VIEW); }catch(e2){}
   if(CUR) openScreen(CUR);
 });
+var LASTV='now';
+function sideSync(){ var on=VIEW==='both', s=document.getElementById('sideBtn'); s.textContent=on?'하나만 보기':'나란히 보기'; s.setAttribute('aria-pressed',on); document.body.classList.toggle('side',on);
+  if(!on) [].forEach.call(document.querySelectorAll('#cmp button[data-v]'),function(x){ x.setAttribute('aria-pressed',x.dataset.v===VIEW); }); }
+document.getElementById('sideBtn').onclick=function(){
+  if(VIEW==='both'){ VIEW=LASTV||'now'; } else { LASTV=VIEW; VIEW='both'; origCheck(function(ok){ if(!ok&&CUR) origMissing(); }); }
+  try{ sessionStorage.setItem('teth.screens.view',VIEW); sessionStorage.setItem('teth.screens.lastv',LASTV); }catch(e2){}
+  sideSync(); if(CUR) openScreen(CUR); };
 try{ var v0=sessionStorage.getItem('teth.screens.view');
   if(v0&&v0!=='now'){ VIEW=v0;
-    [].forEach.call(document.querySelectorAll('#cmp button[data-v]'),function(x){ x.setAttribute('aria-pressed',x.dataset.v===v0); }); } }catch(e){}
+    [].forEach.call(document.querySelectorAll('#cmp button[data-v]'),function(x){ x.setAttribute('aria-pressed',x.dataset.v===v0); }); }
+  LASTV=sessionStorage.getItem('teth.screens.lastv')||'now'; }catch(e){}
+try{ sideSync(); }catch(e){}
 /* 왼쪽 목록 스크롤 위치 기억: 새로고침·반영하기 뒤에도 보던 자리 그대로 */
 (function(){
   var L=document.getElementById('list'); if(!L) return;
