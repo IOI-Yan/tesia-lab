@@ -9661,6 +9661,17 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .cq-hd h1{margin:0;font-size:32px;font-weight:700;line-height:1.25;color:#fff;letter-spacing:-.01em}
 .cq-hd p{margin:6px 0 0;font-size:14px;line-height:1.5;color:#8d9199} /* 설명 줄 (사용자 지시) */
 .cq-hd p .pl-link{margin-left:6px;vertical-align:baseline}
+/* 현재 금액 묶음 = 카드 (사용자 지시) */
+.cq-card{position:relative;margin:24px 0 0;padding:24px;border-radius:16px;background:#17181B;border:1px solid rgba(255,255,255,.06)}
+@media (max-width:768px){ .cq-card{margin-top:20px;padding:20px} }
+.cq-card .cq-hero{margin:0}
+/* 알약 단추는 양옆이 둥글어 안쪽 여백 20 이 더 넓어 보인다 — 4px 내보내 보이는 여백 16 (사용자 지시) */
+.cq-card .cq-acts{margin:20px -4px 0}
+@media (min-width:769px){ .cq-card .cq-acts{margin:20px -4px 0} }
+/* 복사 중단은 카드 오른쪽 위로 (사용자 지시) */
+.cq-stop{position:absolute;top:20px;right:20px;z-index:1;display:inline-flex;align-items:center;height:34px;padding:0 14px;border:0;border-radius:999px;background:var(--tag-red-bg,rgba(240,86,106,.12));font:inherit;font-size:13px;font-weight:600;color:var(--tag-red,#d9707d);cursor:pointer;transition:background .15s ease,color .15s ease}
+.cq-stop:hover{background:rgba(240,86,106,.2);color:#e68b95}
+@media (max-width:768px){ .cq-stop{top:16px;right:16px;height:30px;padding:0 12px;font-size:12.5px} }
 .cq-hero{margin:36px 0 0}
 /* 상태 태그: 도는 중 = 메인색 점이 숨 쉼, 대기 = 샌드 골드, 멈춤 = 회색 (사용자 지시) */
 .cq-strip{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:12px 0 0}
@@ -9672,13 +9683,13 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .cq-st.off i{animation:none}
 .cq-hero small{display:flex;align-items:center;gap:10px;font-size:14px;color:#8d9199}
 .cq-hero small i{font-style:normal;font-size:14px;color:#8d9199}
-.cq-hero .big{margin:6px 0 0;font-size:32px;font-weight:700;line-height:1.2;color:#fff} /* 화면에서 제일 중요한 숫자 (사용자 지시) */
+.cq-hero .big{margin:4px 0 0;font-size:32px;font-weight:700;line-height:1.2;color:#fff} /* 화면에서 제일 중요한 숫자 (사용자 지시) */
 .cq-hero .big.num{font-weight:700}
 /* 라벨 14 회색 + 숫자 20/700 — 같은 크기로 붙어 있어 안 읽히던 것 (사용자 지시) */
-.cq-pl{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 28px;margin:14px 0 0;font-size:14px;color:#8d9199}
+.cq-pl{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 28px;margin:10px 0 0;font-size:14px;color:#8d9199}
 .cq-pl b{font-size:20px;font-weight:700;margin-left:8px;color:#ececf1}
 .cq-page .cq-pl b.num{font-weight:700}
-.cq-cmp{margin:16px 0 0;font-size:14px;color:#8d9199} /* 라벨은 총손익 줄과 같은 단계 (사용자 지시) */
+.cq-cmp{margin:12px 0 0;font-size:14px;color:#8d9199} /* 라벨은 총손익 줄과 같은 단계 (사용자 지시) */
 .cq-cmp b{margin-left:8px;font-size:20px;font-weight:700}
 .cq-page .cq-cmp b.num{font-weight:700}
 @media (max-width:768px){ .cq-cmp{font-size:13px} .cq-cmp b{font-size:18px} }
@@ -9693,15 +9704,16 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .cq-amt[open]>summary svg{transform:rotate(180deg)}
 .cq-amt .cq-list{margin-top:12px}
 /* 금액 상세 줄: 판단 기록 펼친 표와 같은 짜임 — 라벨은 회색, 숫자가 읽히게 (사용자 지시) */
-.cq-amt .cq-row{padding:10px 0}
+.cq-amt .cq-row{padding:12px 0}
 .cq-amt .cq-row .a b{font-size:14px;font-weight:400;color:#8d9199}
 .cq-amt .cq-row .z b{font-size:14px;font-weight:600;color:#ececf1}
-@media (max-width:768px){ .cq-amt .cq-row{padding:9px 0} }
+@media (max-width:768px){ .cq-amt .cq-row{padding:12px 0} }
 .cq-sec{margin:40px 0 0}
 .cq-sh{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px}
 .cq-sh h2{margin:0;font-size:18px;font-weight:600;color:#fff}
 .cq-gray{height:36px;padding:0 16px;border:0;border-radius:999px;background:#313339;color:#ececf1;font:inherit;font-size:14px;cursor:pointer;white-space:nowrap;transition:background .15s}
 .cq-gray:hover{background:#3A3D44}
+.cq-quiet{flex:none;font-size:13px;white-space:nowrap} /* 눈에 덜 띄게 (사용자 지시) */
 .cq-list{background:#17181B;border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:0 20px}
 .cq-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:16px 0;border-top:1px solid rgba(255,255,255,.06)}
 .cq-list>.cq-row:first-child,.cq-list>details.cq-row:first-child{border-top:0}
@@ -9710,17 +9722,27 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .cq-row .a b,.cq-row .z b{font-size:16px;font-weight:400;color:#ececf1}
 .cq-row .z b.u{color:#2FB98A}.cq-row .z b.d{color:#F0566A}
 .cq-row .a span,.cq-row .z span{font-size:14px;line-height:1.5;color:#8d9199}
+/* 라벨은 회색, 숫자는 밝게 — 한 덩어리로 읽히던 것 (사용자 지시) */
+.cq-row .a span b,.cq-row .z span b{font-size:inherit;font-weight:600;color:#ececf1} /* 크기는 같게, 굵기·색으로만 강약 (사용자 지시) */
+/* 포지션 줄: 제목 굵게, 손익 숫자 크게, 손절·익절은 알약으로 떼어 놓기 */
+.cq-pos .cq-row .a>b{font-size:16px;font-weight:700;color:#fff}
+.cq-pos .cq-row .z>b{font-size:18px;font-weight:700}
+.cq-rule{display:block;margin-top:6px;font-style:normal;font-size:14px;line-height:1.5;color:#8d9199} /* 알약 빼고 평문 한 줄 (사용자 지시) */
+.cq-row .a span .p{font-style:normal;white-space:nowrap} /* 라벨+숫자 짝은 줄바꿈에서 안 쪼개지게 */
+.cq-row span .u,.cq-row span b.u{color:#2FB98A}
+.cq-row span .d,.cq-row span b.d{color:#F0566A}
+.cq-row .z span b.n{color:#cfd2d6}
 /* 예산 내역 줄: 판단 기록 줄과 같은 짜임 (사용자 지시) */
 .cq-lrow{padding:14px 0;border-top:1px solid rgba(255,255,255,.06)}
 .cq-list>.cq-lrow:first-child{border-top:0}
-.cq-list.cq-flat{background:none;border:0;border-radius:0;padding:0} /* 상자 없이 폭을 꽉 (사용자 지시) */
+.cq-list.cq-flat{background:none;border:0;border-radius:0;padding:2px 0} /* 선 없이 폭만 꽉 (사용자 지시) */ /* 상자 없이 폭을 꽉, 위아래 선으로 구분 (사용자 지시) */
 .cq-lhd{display:flex;align-items:center;gap:8px;margin:0 0 6px}
 .cq-tag{display:inline-flex;align-items:center;flex:none;height:22px;padding:0 10px;border-radius:100px;font-size:12px;font-weight:500;background:var(--tag-blue-bg);color:var(--tag-blue)}
 .cq-tag.out{background:var(--tag-orange-bg);color:var(--tag-orange)}
 .cq-time{font-size:12px;color:#8d9199}
-.cq-lbd{display:flex;align-items:baseline;flex-wrap:wrap;gap:4px 10px;font-size:14px;line-height:1.5;color:#ececf1}
-.cq-page .cq-lbd b,.cq-page .cq-lbd b.num{font-size:15px;font-weight:600}
-.cq-lbd span{color:#8d9199}
+.cq-lbd{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;line-height:1.5;color:#ececf1}
+.cq-page .cq-lbd b,.cq-page .cq-lbd b.num{font-size:17px;font-weight:600;line-height:1.35}
+.cq-lbd span{flex:none;display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:100px;background:rgba(255,255,255,.06);font-size:12px;color:#9ea3ad}
 /* 빈 상태: 터미널 포지션 탭과 같은 모양 (사용자 지시) */
 .cq-empty{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:40px 16px}
 .cq-empty b{font-size:16px;font-weight:600;color:#fff}
@@ -9759,7 +9781,7 @@ body:has(.cq-page) #teth-help{display:none}
 .cq-why{font-size:16px;line-height:1.55;color:#8d9199} /* 안내 문장 (사용자 지시) */
 .cq-why b{font-weight:600;color:#fff} /* 금액만 밝게 (사용자 지시) */
 .cq-hero small i{margin-left:4px}
-.cq-help{margin:48px 0 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);font-size:14px;color:#8d9199}
+.cq-help{margin:48px 0 0;padding-top:0;font-size:14px;color:#8d9199} /* 선 없앰 (사용자 지시) */
 .cq-help .pl-link{margin-left:4px}
 details.cq-det>summary{gap:12px}
 details.cq-det>summary .cq-chev{flex:none;align-self:center;color:#8d9199;transition:transform .2s var(--ease)}
@@ -27316,6 +27338,8 @@ function cpxDate(ms){ var t=new Date(ms); return t.getFullYear()+'년 '+(t.getMo
 function cpxDot(t){ return t.getFullYear()+'. '+(t.getMonth()+1)+'. '+t.getDate()+'.'; }
 function cpxSgn(v,dd){ return (v>0.004?'+':'')+cpUsd(v,dd); }
 function cpxCls(v){ return Math.abs(v)<0.005?'':v>0?' u':' d'; }
+/* 설명 문장 안의 +x% / -x% 를 손익 색으로 (사용자 지시) */
+function cqSgn(h){ return h.replace(/([+\-−])(\d+(?:\.\d+)?)%/g,function(m,sg){ return '<span class="'+(sg==='+'?'u':'d')+'">'+m+'</span>'; }); }
 function cpxSym(c2,k){ if(k) return mkTk(k); var p=(c2.pairs&&c2.pairs[0])||''; return String(p).replace(/\/USDT?$/,''); }
 function cpxSide(x){ return (x.side<0?'숏':'롱')+(x.lev>1?' '+x.lev+'배':''); }
 function cpxRow(l,ls,r,rs,cls){ return '<div class="cq-row"><div class="a"><b>'+l+'</b>'+(ls?'<span>'+ls+'</span>':'')+'</div><div class="z"><b class="num'+(cls||'')+'">'+r+'</b>'+(rs?'<span class="num">'+rs+'</span>':'')+'</div></div>'; }
@@ -27337,9 +27361,9 @@ function cpxPos2(c2,d){
   var wsum=list.reduce(function(a,x){ return a+(x.w!=null?x.w:1); },0)||1;
   var rule=fuIs(s2)?(c.trail?'유리한 가격에서 '+c.trail+'% 되돌리면 종료':c.sl?'진입가에서 '+c.sl+'% 불리하면 종료':c.exitN?c.exitN+'일 기준선 이탈 때 종료':'방향이 바뀌면 종료'):s2.kind==='agent'?'고점에서 '+c.trail+'% 밀리면 종료':(c.sl!=null?'손절 '+c.sl+'%, 익절 +'+c.tp+'%':(s2.p?'손절 '+s2.p.sl+'%, 익절 +'+s2.p.tp+'%':'원본과 같은 조건'));
   var rows=list.map(function(x){ var w=(x.w!=null?x.w:1)/wsum, u=d.unreal*w;
-    return cpxRow(gEsc(cpxSym(c2,x.k))+' '+cpxSide(x),'반영 금액 '+cpUsd(d.invested*w,0)+', 진입가 '+mkPxFmt(x.ep)+', 현재가 '+mkPxFmt(x.px)+'<br>'+rule,cpxSgn(u),'원본 수익률 '+mkPct0(x.chg,1),cpxCls(u)); }).join('');
-  if(!rows) rows=cpxRow(gEsc(cpxSym(c2))+' 롱','반영 금액 '+cpUsd(d.invested,0)+'<br>'+rule,cpxSgn(d.unreal),'',cpxCls(d.unreal));
-  return hd(list.length||1,'<button type="button" class="cq-gray" onclick="cpFlatDlg(\''+c2.id+'\')">'+(c2.winding?'포지션 정리 후 복사 종료':'포지션 전체 정리')+'</button>')+'<div class="cq-list">'+rows+'</div>';
+    return cpxRow(gEsc(cpxSym(c2,x.k))+' '+cpxSide(x),cqSgn('<i class="p">반영 금액 <b>'+cpUsd(d.invested*w,0)+'</b></i>, <i class="p">진입가 <b>'+mkPxFmt(x.ep)+'</b></i>, <i class="p">현재가 <b>'+mkPxFmt(x.px)+'</b></i><br><span class="cq-rule">'+rule+'</span>'),cpxSgn(u),'원본 수익률 <b class="'+(cpxCls(x.chg).trim()||'n')+'">'+mkPct0(x.chg,1)+'</b>',cpxCls(u)); }).join('');
+  if(!rows) rows=cpxRow(gEsc(cpxSym(c2))+' 롱',cqSgn('<i class="p">반영 금액 <b>'+cpUsd(d.invested,0)+'</b></i><br><span class="cq-rule">'+rule+'</span>'),cpxSgn(d.unreal),'',cpxCls(d.unreal));
+  return hd(list.length||1,'<button type="button" class="pl-link cq-quiet" onclick="cpFlatDlg(\''+c2.id+'\')">'+(c2.winding?'포지션 정리 후 복사 종료':'포지션 전체 정리')+'</button>')+'<div class="cq-list cq-pos">'+rows+'</div>';
 }
 function cpxTradesTab(c2,d){
   var L=cpxTrades(c2,d);
@@ -27388,8 +27412,7 @@ function cpxView(cid,tab){
     var why=on&&d.waiting>0.005?'원본 전략이 다음에 진입하면 예산 <b>'+cpUsd(d.waiting,0)+'</b>을 반영합니다.':Math.abs((d.myPct-d.pnlPct)*100)>=1?'내 수익률에는 예산을 넣고 뺀 시점이 반영됩니다.':'';
     cmp='<p class="cq-cmp">같은 기간 원본 수익률 <b class="num'+cpxCls(d.pnlPct)+'">'+mkPct0(d.pnlPct*100,1)+'</b></p>'+(why?'<p class="cq-why">'+why+'</p>':'');
   }
-  var acts=on&&!c2.winding?'<div class="cq-acts"><button type="button" class="cq-cta" onclick="cpAdjDlg(\''+cid+'\')">예산 조정</button>'
-      +'<button type="button" class="pl-link" onclick="cpCloseDlg(\''+cid+'\')">복사 중단</button></div>'
+  var acts=on&&!c2.winding?'<div class="cq-acts"><button type="button" class="cq-cta" onclick="cpAdjDlg(\''+cid+'\')">예산 조정</button></div>'
     :on&&c2.winding?'<div class="cq-acts"><button type="button" class="cq-cta" onclick="cpFlatDlg(\''+cid+'\')">포지션 정리 후 복사 종료</button></div>':'';
   var det=[['회수 가능 금액',d.avail,0]].concat(on&&d.waiting>0.005?[['진입 대기 금액',d.waiting,0]]:[]).concat([['미실현 손익',d.unreal,1],['실현 손익',d.realized,1]]).concat(m.share>0?[['수익 분배 지급',d.share,0]]:[]).concat([['넣은 금액',d.inv,0]]);
   TF_RENDERING=true; document.body.classList.remove('tf-route');
@@ -27400,10 +27423,13 @@ function cpxView(cid,tab){
     +'</div>'
     +'<header class="cq-hd"><h1>'+gEsc(title)+'</h1><p>'+line+'</p>'
     +'<div class="cq-strip">'+cpxStTag(c2)+'<button type="button" class="pl-link" onclick="cpProfileGo(\''+ne+'\')">원본 전략 보기</button></div></header>'
+    +'<div class="cq-card">'
+    +(on&&!c2.winding?'<button type="button" class="cq-stop" onclick="cpCloseDlg(\''+cid+'\')">복사 중단</button>':'')
     +(d.missing?'<p class="cq-why">전략 기록을 불러올 수 없습니다. 넣은 금액 '+cpUsd(d.inv,0)+'은 그대로 있습니다.</p>'
       :'<section class="cq-hero"><small>현재 금액</small><div class="big num">'+cpUsd(d.est)+'</div>'
       +'<div class="cq-pl"><span>총손익 <b class="num'+cpxCls(d.net)+'">'+cpxSgn(d.net)+'</b></span><span>내 수익률 <b class="num'+cpxCls(d.myPct)+'">'+mkPct0(d.myPct*100,1)+'</b></span></div>'+cmp+'</section>')
     +acts
+    +'</div>'
     +(d.missing?'':'<details class="cq-amt"><summary>금액 상세<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></summary><div class="cq-list">'+det.map(function(r){ return cpxRow(r[0],'',r[2]?cpxSgn(r[1]):cpUsd(r[1]),'',r[2]?cpxCls(r[1]):''); }).join('')+'</div></details>')
     +'<section class="cq-sec">'+cpxPos2(c2,d)+'</section>'
     +'<section class="cq-sec"><div class="cq-tabs" role="tablist">'
