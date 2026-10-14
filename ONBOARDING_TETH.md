@@ -1,6 +1,6 @@
 # TETH 디자인 폴리싱 인수인계
 
-마지막 업데이트: 2026-10-14 밤 (design-polish 마지막 커밋 `298cc7f`, 회사 PC에서)
+마지막 업데이트: 2026-10-15 새벽 (design-polish 마지막 커밋 `4ac0035`, 집 PC에서. 아래 "10/14~15 작업 요약" 참고)
 
 ## 다른 PC에서 Claude에게 이렇게 말하면 이어서 할 수 있음
 > TETH 디자인 폴리싱 이어서 할게. 인수인계 문서(ONBOARDING_TETH) 읽고, tesia-lab 저장소 design-polish 브랜치 받아서 로컬 미리보기(localhost:8080, 화면 찾아보기 _screens.html까지) 켜줘. 메모는 design-notes 브랜치에 있어.
