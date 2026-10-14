@@ -9699,6 +9699,19 @@ body .ss3-dlg:has(.cq-dlg) .dh2 b{font-size:22px;line-height:1.2}body .ss3-dlg:h
 body .ss3-dlg:has(.cq-dlg) .dx{width:36px;height:36px;margin:-6px -13px -6px 0}  /* X 선 끝(아이콘 칸 안 5px 안쪽)이 목록 상자 오른쪽 끝과 맞게 5px 오른쪽으로 */
 /* 전략 복사 창 X도 같은 기준: 선 끝을 아래 내용 오른쪽 끝에 맞춤(5px 오른쪽) */
 body .skc .mk-f-x{margin-right:-5px}
+/* 닫기 X가 제목 글자보다 아래로 내려가 보여서 2px 위로(한글 굵은 제목은 글자 덩어리가 줄 가운데보다 살짝 위에 보임) */
+body .ss3-dlg:has(.cq-dlg) .dx svg,body .skc .mk-f-x svg{transform:none}
+/* 닫기 X: 창 모서리 기준으로 띄워 위·오른쪽을 같은 숫자로(PC 20 · 모바일 16). 제목 줄과 따로 움직여서 어긋나지 않음 */
+body .ss3-dlg:has(.cq-dlg) .din,body .skc.mk-follow{position:relative}
+body .ss3-dlg:has(.cq-dlg) .dx,body .skc .mk-f-x{position:absolute!important;top:20px!important;right:20px!important;margin:0!important;width:36px;height:36px;z-index:2}
+@media (max-width:768px){ body .ss3-dlg:has(.cq-dlg) .dx,body .skc .mk-f-x{top:16px!important;right:16px!important} }
+/* [공통 규칙 G38] 모든 팝업·바텀시트·옆 패널의 닫기 X: 창 모서리 기준으로 띄워 위·오른쪽을 같은 숫자로(PC 20 · 모바일 16), 36 동그라미 단추 + Lucide x 20, #CFD2D6 → 호버 #2E3036 바탕·흰색.
+   로그인·설정 확인·종목 선택·ss3 팝업(거래 추적·복사 설정 등)·전략 복사·전략 선택 서랍·거래소 연결 시트·인증·고르기 시트·의견 보내기 모두 */
+body .modal,body .bx,body .mkp,body .ss3-dlg .din,body .mk-follow,body .acx-aw,body .acx-sw,body .sh{position:relative}
+body .modal .au-x,body .bx>.x,body .mkp .mkp-x,body .ss3-dlg .din .dx,body .mk-follow .mk-f-x,body #tf-drawer .dh .x,body #ac-sheet .ac-x,body .acx-aw>.x,body .acx-sw>.x,body .sh .hd .x,body #fb-panel .fb-x{position:absolute!important;top:20px!important;right:20px!important;left:auto!important;bottom:auto!important;margin:0!important;width:36px!important;height:36px!important;padding:0!important;display:inline-flex!important;align-items:center;justify-content:center;border:0!important;border-radius:999px!important;background:transparent!important;color:#cfd2d6!important;cursor:pointer;z-index:3;transition:background .15s ease,color .15s ease}
+body .modal .au-x:hover,body .bx>.x:hover,body .mkp .mkp-x:hover,body .ss3-dlg .din .dx:hover,body .mk-follow .mk-f-x:hover,body #tf-drawer .dh .x:hover,body #ac-sheet .ac-x:hover,body .acx-aw>.x:hover,body .acx-sw>.x:hover,body .sh .hd .x:hover,body #fb-panel .fb-x:hover{background:#2E3036!important;color:#fff!important}
+body .modal .au-x svg,body .bx>.x svg,body .mkp .mkp-x svg,body .ss3-dlg .din .dx svg,body .mk-follow .mk-f-x svg,body #tf-drawer .dh .x svg,body #ac-sheet .ac-x svg,body .acx-aw>.x svg,body .acx-sw>.x svg,body .sh .hd .x svg,body #fb-panel .fb-x svg{width:20px!important;height:20px!important;transform:none!important}
+@media (max-width:768px){ body .modal .au-x,body .bx>.x,body .mkp .mkp-x,body .ss3-dlg .din .dx,body .mk-follow .mk-f-x,body #tf-drawer .dh .x,body #ac-sheet .ac-x,body .acx-aw>.x,body .acx-sw>.x,body .sh .hd .x,body #fb-panel .fb-x{top:16px!important;right:16px!important} }
 body .ss3-dlg:has(.cq-dlg) .cq-dlg{background:#25272C;border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:4px 16px}
 body .ss3-dlg:has(.cq-dlg) .cq-dlg .cq-row{padding:10px 0;min-height:40px;box-sizing:border-box;border-top-color:rgba(255,255,255,.06)}
 body .ss3-dlg:has(.cq-dlg) .cq-dlg .cq-row b{font-size:14px!important}
