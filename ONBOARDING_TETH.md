@@ -1,6 +1,6 @@
 # TETH 디자인 폴리싱 인수인계
 
-마지막 업데이트: 2026-10-14 밤 (design-polish 마지막 커밋 `9c723fe`, 회사 PC에서)
+마지막 업데이트: 2026-10-14 밤 (design-polish 마지막 커밋 `298cc7f`, 회사 PC에서)
 
 ## 다른 PC에서 Claude에게 이렇게 말하면 이어서 할 수 있음
 > TETH 디자인 폴리싱 이어서 할게. 인수인계 문서(ONBOARDING_TETH) 읽고, tesia-lab 저장소 design-polish 브랜치 받아서 로컬 미리보기(localhost:8080, 화면 찾아보기 _screens.html까지) 켜줘. 메모는 design-notes 브랜치에 있어.
@@ -21,6 +21,7 @@
 
 ### 확인용 페이지 두 개 (둘 다 저장소에 안 올라감, 로컬에서만)
 - **`_qa.html`** — 예산 내역 줄 수를 1 / 9 / 30 으로 바꿔 보는 페이지. "여러 개일 때 어떻게 되냐" 같은 질문을 그림 대신 눌러보게 만들 때 이 틀을 복사해 쓴다. http://localhost:8080/_qa.html
+  `design-notes` 브랜치에 있다: `git show origin/design-notes:_qa.html > _qa.html`
 - **`_orig.html`** — 원본 사이트 사본. `git show origin-up/main:index.html > _orig.html` 한 줄로 만든다. 화면 찾아보기의 "원본·나란히" 단추가 이 파일을 띄운다. **바깥 주소(aresjoo.github.io)로는 안 된다** — 다른 주소면 화면을 여는 스크립트가 막혀 빈 화면만 나온다
 
 ### 이어서 할 곳

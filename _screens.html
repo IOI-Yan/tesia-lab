@@ -66,6 +66,9 @@ body.solo .frames iframe{width:100vw!important;height:100vh!important;border:0!i
 .fwrap>span{font-size:12px;font-weight:600;color:#9ea3ad}
 .fwrap.now>span{color:#00feff}
 body.solo .cmp,body.solo .fwrap>span{display:none}
+.noorig{width:380px;padding:20px;border-radius:16px;background:#17181B;border:1px solid rgba(255,255,255,.06);font-size:13px;line-height:1.7;color:#9ea3ad}
+.noorig b{display:block;margin-bottom:8px;font-size:14px;color:#ececf1}
+.noorig code{display:block;margin-top:8px;padding:10px 12px;border-radius:10px;background:#101113;color:#cfd2d6;font-size:12px;word-break:break-all}
 iframe{border:0;border-radius:20px;background:var(--bg);box-shadow:0 18px 48px rgba(0,0,0,.55)}
 .hint{margin:auto;color:var(--t3);font-size:13px;text-align:center;line-height:1.8}
 kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--line2);border-radius:5px;padding:1px 5px;color:var(--t2)}
@@ -370,7 +373,22 @@ function makeFrame(){
   var one=oneFrame(box,VIEW==='orig'?'_orig.html':'index.html',VIEW==='orig'?'원본':'',VIEW!=='orig');
   one.id='f'; frame=one; return [one];
 }
+var ORIG_OK=null;
+function origCheck(cb){
+  if(ORIG_OK!==null){ cb(ORIG_OK); return; }
+  fetch('_orig.html',{method:'HEAD'}).then(function(r){ ORIG_OK=r.ok; cb(ORIG_OK); })
+    .catch(function(){ ORIG_OK=false; cb(false); });
+}
+function origMissing(){
+  var box=document.getElementById('frames'); box.innerHTML='';
+  var d=document.createElement('div'); d.className='noorig';
+  d.innerHTML='<b>원본 사본이 없습니다</b>원본과 비교하려면 tesia-lab 폴더에 사본을 하나 만들어 주십시오. 저장소에는 올라가지 않습니다.'
+    +'<code>git show origin-up/main:index.html &gt; _orig.html</code>'
+    +'<code>git remote add origin-up https://github.com/aresjoo/tesia-lab.git</code>원본 연결이 없으면 위 한 줄을 먼저 실행합니다.';
+  box.appendChild(d);
+}
 function fresh(run){
+  if(VIEW!=='now'&&ORIG_OK===false){ origMissing(); return; }
   var fs=makeFrame();
   fs.forEach(function(f){
     try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
@@ -442,6 +460,7 @@ document.getElementById('bigBtn').onclick=function(){ window._bigSet(true); };
 document.getElementById('cmp').addEventListener('click',function(e){
   var b=e.target.closest('button[data-v]'); if(!b) return;
   VIEW=b.dataset.v;
+  if(VIEW!=='now') origCheck(function(ok){ if(!ok&&CUR) origMissing(); });
   [].forEach.call(this.querySelectorAll('button[data-v]'),function(x){ x.setAttribute('aria-pressed',x===b); });
   try{ sessionStorage.setItem('teth.screens.view',VIEW); }catch(e2){}
   if(CUR) openScreen(CUR);
