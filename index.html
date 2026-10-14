@@ -8353,7 +8353,7 @@ body #g-root .mk3-dh .mk3-dh-t p{display:flex;flex-wrap:wrap;align-items:center;
 body #g-root .mk3-dh .mk3-dh-t p>b,body #g-root .mk3-dh .mk3-dh-t p>span:not(.mk3-by){display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:8px;font-size:12px;font-weight:500}
 body #g-root .mk3-dh .mk3-dh-t p>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
 body #g-root .mk3-dh .mk3-dh-t p>span:not(.mk3-by){background:var(--tag-green-bg);color:var(--tag-green)}
-body #g-root .mk3-dh .mk3-by{font-size:13px;color:#8d9199}
+body #g-root .mk3-dh .mk3-by{font-size:13px;color:#8d9199}/* 기간 선택: 누를 때 파란 테두리(브라우저 기본) 없이, 다른 세그먼트처럼 */body #g-root .mkd-per,body #g-root .mkd-per:focus,body #g-root .mkd-per:focus-visible{outline:0!important;box-shadow:none!important;-webkit-tap-highlight-color:transparent}body #g-root .mkd-per{transition:background-color .15s ease;height:42px!important;border:1px solid rgba(255,255,255,.06)!important;border-radius:999px!important;box-sizing:border-box}body #g-root .mkd-per:hover{background-color:#2E3036!important}/* 그래프 종류 (i): Lucide info에 동그라미 테두리가 한 겹 더 있어 두 겹으로 보였다 → 테두리 없앰 */body #g-root .mkd-pill i.mkd-ii{width:16px;height:16px;border:0!important;border-radius:0;opacity:.8}body #g-root .mkd-pill i.mkd-ii svg{width:16px;height:16px}body #g-root .mk3-dh-info{display:grid;grid-template-columns:repeat(3,max-content);gap:0 32px;margin:16px 0 0}body #g-root .mk3-dh-info>div{display:flex;flex-direction:column;gap:4px;min-width:0}body #g-root .mk3-dh-info small{font-size:13px;color:#9EA3AD}body #g-root .mk3-dh-info b{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600;color:#E3E5EA;white-space:nowrap}body #g-root .mk3-dh-info b .mkd-term{font:inherit;color:inherit}@media (max-width:640px){ body #g-root .mk3-dh-info{grid-template-columns:repeat(3,1fr);gap:0 12px} }/* 달력 월 이동: 동그라미 없이 꺾쇠만, 글자와 세로 가운데 */body #g-root b:has(>.cal-nav){display:inline-flex!important;align-items:center;gap:4px;vertical-align:middle}body #g-root .cal-nav{width:28px!important;height:28px!important;border-radius:999px!important;background:transparent!important;border:0!important;color:#CFD2D6!important;vertical-align:middle!important;transition:color .15s ease}body #g-root .cal-nav:hover:not([disabled]){background:#2E3036!important;color:#fff!important}body #g-root .cal-nav svg{width:20px;height:20px}/* 전략 상세 머리: 공유·즐겨찾기 = 아이콘만(동그라미·글자 없음), 누르는 영역 36 */body #g-root .mk3-dh .mkd-ic,body #g-root .mk3-dh .mkd-fav,body #g-root .mk3-dh .mk-more-b{width:36px!important;height:36px!important;border-radius:999px!important;padding:0!important;justify-content:center;gap:0!important;font-size:0!important;background:transparent!important;color:#CFD2D6!important;transition:color .15s ease,background-color .15s ease}body #g-root .mk3-dh .mkd-ic:hover,body #g-root .mk3-dh .mkd-fav:hover,body #g-root .mk3-dh .mk-more-b:hover,body #g-root .mk3-dh .mk-more-b[aria-expanded="true"]{background:#2E3036!important;border-radius:999px!important;color:#fff!important}body #g-root .mk3-dh .mkd-ic svg,body #g-root .mk3-dh .mkd-fav svg{width:20px;height:20px}body #g-root .mk3-dh .mkd-fav[aria-pressed="true"]{color:#00feff!important}body #g-root .mk3-dh .mk-menu{left:auto!important;right:0!important;max-width:calc(100vw - 32px)}/* 직접 검증하기 15 → 14 */body #g-root .mk3-dh .mk3-bt2,body #g-root .mk3-dh .mk3-bt2 b{font-size:14px!important}@media (max-width:640px){ body #g-root .mk3-dh-top{flex-wrap:wrap;row-gap:12px;gap:4px} body #g-root .mk3-dh-top>svg{flex:none;order:0;margin-right:auto} body #g-root .mk3-dh-top>.mkd-ic,body #g-root .mk3-dh-top>.mkd-fav,body #g-root .mk3-dh-top>.mk-more{order:1;margin-left:0!important} body #g-root .mk3-dh-top>.mk3-dh-t{order:2;flex:0 0 100%} }
 /* 공유·즐겨찾기·더 보기 = 회색 단추 #313339(호버 #3A3D44), 즐겨찾기는 별 아이콘 + 글자 14/600 */
 body #g-root .mk3-dh .mkd-ic,body #g-root .mk3-dh .mkd-fav,body #g-root .mk3-dh .mk-more-b{background:#313339;color:#fff;border:0;transition:background .2s ease}
 body #g-root .mk3-dh .mkd-ic:hover,body #g-root .mk3-dh .mkd-fav:hover,body #g-root .mk3-dh .mk-more-b:hover{background:#3a3d44}
@@ -8380,7 +8380,7 @@ body #g-root .mk-up{color:#2fb98a}
 body #g-root .mk-dn{color:#f0566a}
 /* 정보 동그라미 i = Lucide info 14, 도움말 말풍선 12.5 → 13, 달력 넘김 = Lucide 꺾쇠 */
 body #g-root .mkd-ii{display:inline-flex;margin-left:4px;color:#8d9199;font-style:normal;vertical-align:-2px}
-body #g-root .mkd-tip{font-size:13px}
+body #g-root .mkd-tip{font-size:13px}/* 툴팁: 열린 알약·용어를 위로(아래 세그먼트 글자가 비치지 않게), 폭은 화면 안 */body #g-root .mkd-pill:hover,body #g-root .mkd-pill:focus,body #g-root .mkd-term:hover,body #g-root .mkd-term:focus{z-index:30}body #g-root .mkd-tip{max-width:min(280px,calc(100vw - 32px))!important}
 body #g-root .cal-nav{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0;background:#313339;border:0;color:#fff}
 body #g-root .cal-nav:hover:not([disabled]){background:#3a3d44}
 /* 그래프 종류(수익률·손익·잔고)·일별/월별 세그먼트: 안 고른 칸 #9EA3AD, 글자 14 */
@@ -8792,10 +8792,10 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 /* 탭 16/400 */
 .mk-detail .mk-dtabs{margin:32px 0 28px;border-bottom:1px solid rgba(255,255,255,.1)}
 .mk-detail .mk-tab{font-size:16px;font-weight:400;color:#cfd2d6;padding:12px 14px}
-.mk-detail .mk-tab.on{color:#fff}
+.mk-detail .mk-tab.on{color:#fff}.mk-detail .mk-tab.on.mk-tab-sliding{border-bottom-color:transparent!important}
 /* 섹션 */
 .mk-detail .mk3-sec{margin:44px 0 0}
-.mk-detail .mk3-sec:first-child{margin-top:0}
+.mk-detail .mk3-sec:first-child{margin-top:0}@media (max-width:640px){ /* 모바일 상세: 구역을 상자 대신 위 선 + 간격으로 나눈다 */ body #g-root .mk-detail .mk3-ov>.mk3-sec,body #g-root .mk-detail .mk3-panel>.mk3-sec,body #g-root .mk-detail .mk3-ov .mk3-sec.mkc{margin:32px 0 0!important;padding:32px 0 0!important;border:0!important;border-top:1px solid rgba(255,255,255,.08)!important;border-radius:0!important;background:transparent!important} body #g-root .mk-detail .mk3-ov>.mk3-sec:first-child,body #g-root .mk-detail .mk3-panel>.mk3-sec:first-child{margin-top:8px!important;padding-top:0!important;border-top:0!important} }
 .mk-detail .mk3-sec h3,.mk-detail .mk3-sec-h h3{font-size:18px;font-weight:400;color:#fff;letter-spacing:0}
 /* 성과 지표: 라벨 16, 숫자 32/400, 점선 없음 */
 .mk-detail .mk3-kpis{gap:16px;margin:16px 0 28px;padding:20px 0;border-color:rgba(255,255,255,.1)}
@@ -8882,7 +8882,7 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .mk-detail .cal-c.d{background:rgba(240,86,106,calc(.12 + var(--a,0) * .42))!important}
 .mk-detail .cal-c.z{background:#25272C!important}
 .mk-detail .cal-c.u,.mk-detail .cal-c.d{color:#fff}
-.mk-detail .cal-c.u i,.mk-detail .cal-c.d i{color:#fff!important}
+.mk-detail .cal-c.u i,.mk-detail .cal-c.d i{color:#fff!important}/* 달력: 날짜 굵게, 수익률은 손익색 */.mk-detail .cal-c:not(:empty){font-weight:700}.mk-detail .cal-c i{font-weight:600!important}.mk-detail .cal-c.u i{color:#2FB98A!important}.mk-detail .cal-c.d i{color:#F0566A!important}
 .mk-detail .cal-c.off{background:transparent!important;border:1px solid rgba(255,255,255,.08)}
 .mk-detail .cal-g>.cal-c:empty{background:transparent!important;border:0!important}
 
@@ -14517,9 +14517,9 @@ if(!window._tethSegObs&&window.MutationObserver){
   var segAdd=function(c){ if(c&&segQ.indexOf(c)<0) segQ.push(c); if(!segRaf) segRaf=setTimeout(segRun,0); };
   window._tethSegObs=new MutationObserver(function(ms){ ms.forEach(function(m){
     if(m.type==='attributes'&&m.attributeName==='hidden'){ if(m.target.querySelectorAll) [].forEach.call(m.target.querySelectorAll(SEG_SEL),segAdd); return; } if(m.type==='attributes'){ var c=m.target.parentElement; if(c&&c.matches&&c.matches(SEG_SEL)) segAdd(c); return; }
-    [].forEach.call(m.addedNodes,function(n){ if(n.nodeType!==1) return; if(n.matches&&n.matches(SEG_SEL)) segAdd(n); if(n.querySelectorAll) [].forEach.call(n.querySelectorAll(SEG_SEL),segAdd); });
+    var tg=m.target.nodeType===1?m.target:m.target.parentElement, sc=tg&&tg.closest&&tg.closest(SEG_SEL); if(sc) segAdd(sc); if(m.type==='characterData') return; [].forEach.call(m.addedNodes,function(n){ if(n.nodeType!==1) return; if(n.matches&&n.matches(SEG_SEL)) segAdd(n); if(n.querySelectorAll) [].forEach.call(n.querySelectorAll(SEG_SEL),segAdd); });
   }); });
-  window._tethSegObs.observe(document.documentElement,{subtree:true,childList:true,attributes:true,attributeFilter:['class','aria-pressed','aria-checked','hidden']});
+  window._tethSegObs.observe(document.documentElement,{subtree:true,childList:true,characterData:true,attributes:true,attributeFilter:['class','aria-pressed','aria-checked','hidden']});
   window.addEventListener('resize',function(){ [].forEach.call(document.querySelectorAll(SEG_SEL),segAdd); });
 }
 /* 따봉·복사 줄은 답변 맨 끝으로: 답변 뒤에 붙는 카드·다음 행동 목록·안내 아래로 옮긴다.
@@ -17274,7 +17274,7 @@ function tfNFTermSheet(key){
 var MKT_STAR='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>';
 /* 관심 버튼 라벨 — 텍스트 글리프(☆/★) 대신 SVG 벡터 (agy qa3) */
 function tfSS3WatchLb(on){
-  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.6l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.5l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9z"/></svg>관심';
+  return '<svg width="15" height="15" viewBox="0 0 24 24" fill="'+(on?'currentColor':'none')+'" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z"/></svg>관심';
 }
 /* TETH에게 분석시키기 — 스냅샷을 질문 텍스트로 전달, tfStart 금지 (codex-arch §6) */
 function tfSS3CopyLink(ne,pd){
@@ -23271,19 +23271,23 @@ function mk3Head(s,ne,pd,watching){
   var ex=mkEx(s);
   return '<header class="mk-d-head mk3-dh">'
     +'<div class="mk3-dh-top">'+mkGlyph(s,44)+'<div class="mk3-dh-t"><h2>'+gEsc(mkHook(s))+'</h2><p><b>'+(MK_KIND[s.kind]||'차트 규칙')+'</b><span>'+gEsc(mkScope(s))+'</span>'+(s.by?'<span class="mk3-by">@'+gEsc(s.by)+' 등록</span>':'')+'</p></div>'
-    +'<button type="button" class="mkd-ic" aria-label="링크 복사" onclick="tfSS3CopyLink(\''+ne+'\',\''+pd+'\')"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8 11l8-4M8 13l8 4"/></svg></button>'
-    +(s.me?'':'<button type="button" class="mkd-fav" aria-pressed="'+watching+'" onclick="tfSS3WatchTgl(\''+ne+'\');mkWatchSync(\''+ne+'\')">'+tfSS3WatchLb(watching).replace('관심','즐겨찾기')+'</button>')+'</div>'
-    +'<p class="mk3-dh-one">'+gEsc(mkOne(s))+'</p>'
-    +'<div class="mk-d-acts mk3-dh-acts">'
-    +(s.me?'<span class="ss3-st">내가 공유한 전략</span>':'<button type="button" class="mk-pri" onclick="cpSetupGo(\''+ne+'\')">전략 복사하기</button>'+(s.cfg?'<button type="button" class="mk3-bt2" onclick="btOpen(\''+ne+'\')" aria-label="직접 검증하기, 백테스트"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M7.5 15l3.5-4 3 2.5 4.5-6"/></svg><span><b>직접 검증하기</b></span></button>':''))
-    +'<span class="mk3-dh-meta"><span class="mk-xtag"><img src="assets/logos/'+ex[0]+'.png" alt="" width="16" height="16">'+mkdTerm(ex[1],MK_TIP.ex)+'</span><span>최소 '+'$'+mkMin(s)+'</span><span>'+mkdSince(s)+' 시작</span></span>'
+    +'<button type="button" class="mkd-ic" aria-label="링크 복사" onclick="tfSS3CopyLink(\''+ne+'\',\''+pd+'\')"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg></button>'
+    +(s.me?'':'<button type="button" class="mkd-fav" aria-label="즐겨찾기" title="즐겨찾기" aria-pressed="'+watching+'" onclick="tfSS3WatchTgl(\''+ne+'\');mkWatchSync(\''+ne+'\')">'+tfSS3WatchLb(watching).replace('관심','즐겨찾기')+'</button>')
+    /* 더 보기: 단추 줄에서 머리 위 줄(공유·즐겨찾기 옆)로 옮김 */
     +'<div class="mk-more"><button type="button" class="mk-more-b" id="mk-menu-b" aria-haspopup="menu" aria-expanded="false" aria-label="더 보기" onclick="mkMenuTgl(event)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>'
     +'<div class="mk-menu" id="mk-menu" role="menu" hidden>'
     +'<button type="button" role="menuitem" onclick="tfSS3Ask(\''+ne+'\',\''+pd+'\')">TETH에게 분석시키기</button>'
     +(s.me?'':'<button type="button" role="menuitem" id="ss3-watch-btn" aria-pressed="'+watching+'" onclick="tfSS3WatchTgl(\''+ne+'\');mkWatchSync(\''+ne+'\')">'+tfSS3WatchLb(watching)+'</button>')
     +'<button type="button" role="menuitem" onclick="tfSS3CopyLink(\''+ne+'\',\''+pd+'\')">링크 복사</button>'
     +(s.me||!s.p?'':'<button type="button" role="menuitem" onclick="tfSS3Copy(\''+ne+'\')">설정 가져오기</button>')
-    +'</div></div></div>'
+    +'</div></div>'+'</div>'
+    +'<p class="mk3-dh-one">'+gEsc(mkOne(s))+'</p>'
+    /* 거래소·최소 금액·시작일: 단추 줄에 끼워 두지 않고 설명 아래 이름/값 세 칸으로 */
+    +'<div class="mk3-dh-info"><div><small>거래소</small><b><img src="assets/logos/'+ex[0]+'.png" alt="" width="16" height="16">'+mkdTerm(ex[1],MK_TIP.ex)+'</b></div><div><small>최소 운용 금액</small><b>$'+mkMin(s)+'</b></div><div><small>시작일</small><b>'+mkdSince(s)+'</b></div></div>'
+    +'<div class="mk-d-acts mk3-dh-acts">'
+    +(s.me?'<span class="ss3-st">내가 공유한 전략</span>':'<button type="button" class="mk-pri" onclick="cpSetupGo(\''+ne+'\')">전략 복사하기</button>'+(s.cfg?'<button type="button" class="mk3-bt2" onclick="btOpen(\''+ne+'\')" aria-label="직접 검증하기, 백테스트"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M7.5 15l3.5-4 3 2.5 4.5-6"/></svg><span><b>직접 검증하기</b></span></button>':''))
+    
+    +'</div>'
     +'</header>';
 }
 
@@ -23563,7 +23567,9 @@ function mkOvKpi(s,per){
 function mkdHintTxt(){ return MKD.per?MK_PER_L[MKD.per].replace('최근 ','')+' 전에 $1,000를 넣었다면':'시작한 날에 $1,000를 넣었다면'; }
 function mkdSet(k,v){
   MKD[k]=v; var c=$('mkd-ctl'), h=$('mkd-hint'), g=$('mkd-chart'), q=$('mk3-kpi-host');
-  if(c) c.innerHTML=mkdCtlHtml(); if(h) h.textContent=MKD.tab==='ret'?'':mkdHintTxt();
+  /* 다시 그리지 않고 고른 칸만 바꾼다: 통째로 다시 그리면 미끄럼칸이 새로 생기며 번쩍이고 글자(번역)가 잠깐 원래 글로 돌아갔다 */
+  if(c){ var bs=c.querySelectorAll('button[aria-pressed]'); if(bs.length) [].forEach.call(bs,function(b){ var m=(b.getAttribute('onclick')||'').match(/mkdSet\('(\w+)','(\w+)'\)/); if(m) b.setAttribute('aria-pressed',String(String(MKD[m[1]])===m[2])); }); else c.innerHTML=mkdCtlHtml(); }
+  if(h) h.textContent=MKD.tab==='ret'?'':mkdHintTxt();
   if(g){ g.classList.remove('hov'); g.innerHTML=mkdChartHtml(); }
   if(k==='per'&&q&&MKD.s) q.innerHTML=mkOvKpi(MKD.s,MKD.per);
 }
@@ -28723,3 +28729,29 @@ if(G && G.mode==='home') phRotStart(); /* 부트 시 gHome이 정의 전에 돌�
 </script>
 <script src="teth-copy.js?v=20261002015746"></script>
 <script src="help-widget.js?v=20261002015746"></script>
+
+<script>/* 툴팁이 화면 밖으로 넘치면 좌우 16 안으로 밀어 넣는다 (모바일 포함) */
+(function(){ function fit(e){ var h=e.target&&e.target.closest&&e.target.closest('.mkd-term,.mkd-pill'); if(!h) return; var t=h.querySelector('.mkd-tip'); if(!t) return; t.style.transform=''; var r=t.getBoundingClientRect(), vw=document.documentElement.clientWidth, dx=0; if(r.left<16) dx=16-r.left; else if(r.right>vw-16) dx=vw-16-r.right; if(dx) t.style.transform='translateX('+Math.round(dx)+'px)'; } document.addEventListener('pointerover',fit,true); document.addEventListener('focusin',fit,true); })();
+</script>
+<script>/* 상세 탭(개요·전략 정보): 누르면 밑줄이 새 탭으로 미끄러진다. 화면을 다시 그린 뒤 옛 위치에서 새 위치로 움직인다 */
+(function(){
+  function slide(nav,on,from){
+    if(!Element.prototype.animate||(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)) return;
+    if(getComputedStyle(nav).position==='static') nav.style.position='relative';
+    var y=on.offsetTop+on.offsetHeight-2, bar=document.createElement('i');
+    bar.setAttribute('aria-hidden','true');
+    bar.style.cssText='position:absolute;left:0;top:'+y+'px;height:2px;background:#fff;pointer-events:none;width:'+on.offsetWidth+'px;transform:translateX('+on.offsetLeft+'px)';
+    nav.appendChild(bar); on.classList.add('mk-tab-sliding');
+    var a=bar.animate([{transform:'translateX('+from.x+'px)',width:from.w+'px'},{transform:'translateX('+on.offsetLeft+'px)',width:on.offsetWidth+'px'}],{duration:260,easing:'cubic-bezier(.2,.8,.3,1)'});
+    var done=function(){ on.classList.remove('mk-tab-sliding'); if(bar.parentNode) bar.remove(); }; a.onfinish=a.oncancel=done; setTimeout(done,400);
+  }
+  document.addEventListener('click',function(e){
+    var b=e.target.closest&&e.target.closest('.mk-dtabs .mk-tab'); if(!b||b.classList.contains('on')) return;
+    var on=b.parentElement.querySelector('.mk-tab.on'); if(!on) return;
+    var from={x:on.offsetLeft,w:on.offsetWidth}, t0=Date.now();
+    (function chk(){ var n=document.querySelector('.mk-dtabs'), o=n&&n.querySelector('.mk-tab.on');
+      if(o&&o.offsetLeft!==from.x){ slide(n,o,from); return; }
+      if(Date.now()-t0<800) requestAnimationFrame(chk); })();
+  },true);
+})();
+</script>
