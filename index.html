@@ -8792,7 +8792,7 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 /* 탭 16/400 */
 .mk-detail .mk-dtabs{margin:32px 0 28px;border-bottom:1px solid rgba(255,255,255,.1)}
 .mk-detail .mk-tab{font-size:16px;font-weight:400;color:#cfd2d6;padding:12px 14px}
-.mk-detail .mk-tab.on{color:#fff}.mk-detail .mk-tab.on.mk-tab-sliding{border-bottom-color:transparent!important}/* 상세 탭: 스크롤하면 위에 붙는다(모바일은 화면 머리 아래, PC는 화면 맨 위) */.mk-detail .mk-dtabs{position:sticky;top:0;z-index:20;background:#101113;box-shadow:0 16px 0 #101113,0 28px 12px #101113}
+.mk-detail .mk-tab.on{color:#fff}.mk-detail .mk-tab.on.mk-tab-sliding{border-bottom-color:transparent!important}/* 탭 글자색: 마우스를 올리고 뗄 때 바로 바뀌지 않고 0.2초 동안 */body #g-root .mk-tab{transition:color .2s ease!important}/* 상세 탭: 스크롤하면 위에 붙는다(모바일은 화면 머리 아래, PC는 화면 맨 위) */.mk-detail .mk-dtabs{position:sticky;top:0;z-index:20;background:#101113;box-shadow:0 16px 0 #101113,0 28px 12px #101113}
 /* 섹션 */
 .mk-detail .mk3-sec{margin:44px 0 0}
 .mk-detail .mk3-sec:first-child{margin-top:0}@media (max-width:640px){ /* 모바일 상세: 구역을 상자 대신 위 선 + 간격으로 나눈다 */ body #g-root .mk-detail .mk3-ov>.mk3-sec,body #g-root .mk-detail .mk3-panel>.mk3-sec,body #g-root .mk-detail .mk3-ov .mk3-sec.mkc{margin:32px 0 0!important;padding:32px 0 0!important;border:0!important;border-top:1px solid rgba(255,255,255,.08)!important;border-radius:0!important;background:transparent!important} body #g-root .mk-detail .mk3-ov>.mk3-sec:first-child,body #g-root .mk-detail .mk3-panel>.mk3-sec:first-child{margin-top:8px!important;padding-top:0!important;border-top:0!important} }
