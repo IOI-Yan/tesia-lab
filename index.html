@@ -8346,6 +8346,49 @@ body #g-root .tft-page #mkt-data{padding-top:24px}
 body #g-root .tft-page .mkx-per{margin-bottom:16px}
 /* 데이터 탭 카드 제목(미결제약정 등) 굵게 700 */
 body #g-root .tft-page .mkx-card h4{font-weight:700}
+/* ═══ 전략 상세(전략 복사 > 상세) 1차 정리 — 지금까지 정한 규칙 적용 ═══ */
+/* 제목 700, 종류 = 파랑 태그 · 종목 = 초록 태그(백테스트 분류 배지와 같음), 등록자 13 회색 */
+body #g-root .mk3-dh h2{font-weight:700}
+body #g-root .mk3-dh .mk3-dh-t p{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+body #g-root .mk3-dh .mk3-dh-t p>b,body #g-root .mk3-dh .mk3-dh-t p>span:not(.mk3-by){display:inline-flex;align-items:center;height:24px;padding:0 8px;border-radius:8px;font-size:12px;font-weight:500}
+body #g-root .mk3-dh .mk3-dh-t p>b{background:var(--tag-blue-bg);color:var(--tag-blue)}
+body #g-root .mk3-dh .mk3-dh-t p>span:not(.mk3-by){background:var(--tag-green-bg);color:var(--tag-green)}
+body #g-root .mk3-dh .mk3-by{font-size:13px;color:#8d9199}
+/* 공유·즐겨찾기·더 보기 = 회색 단추 #313339(호버 #3A3D44), 즐겨찾기는 별 아이콘 + 글자 14/600 */
+body #g-root .mk3-dh .mkd-ic,body #g-root .mk3-dh .mkd-fav,body #g-root .mk3-dh .mk-more-b{background:#313339;color:#fff;border:0;transition:background .2s ease}
+body #g-root .mk3-dh .mkd-ic:hover,body #g-root .mk3-dh .mkd-fav:hover,body #g-root .mk3-dh .mk-more-b:hover{background:#3a3d44}
+body #g-root .mk3-dh .mkd-fav{display:inline-flex;align-items:center;gap:6px;font-size:14px;font-weight:600}
+body #g-root .mk3-dh .mkd-fav[aria-pressed="true"] svg{color:#00feff}
+body #g-root .mk3-dh .mk-more-b{display:inline-flex;align-items:center;justify-content:center;width:36px;padding:0}
+/* 설명 글 #CFD2D6, 주 버튼 = 메인색 52 알약 600, 직접 검증하기 = 밑줄 글자 단추 규칙 */
+body #g-root .mk3-dh .mk3-dh-one{color:#cfd2d6}
+body #g-root .mk3-dh .mk-pri{height:52px;border:0;border-radius:999px;background:#00feff!important;background-image:none!important;color:#101113!important;font-size:16px;font-weight:600;transition:background .2s ease}
+body #g-root .mk3-dh .mk-pri:hover{background:#5cfeff!important}
+body #g-root .mk3-dh .mk3-bt2,body #g-root .mk3-dh .mk3-bt2 b{color:#cfd2d6;font-size:15px;transition:color .15s ease}
+body #g-root .mk3-dh .mk3-bt2:hover,body #g-root .mk3-dh .mk3-bt2:hover b{color:#e3e5ea}
+/* 거래소·최소 금액·시작일 줄: 13 회색 */
+body #g-root .mk3-dh .mk3-dh-meta,body #g-root .mk3-dh .mk3-dh-meta span,body #g-root .mk3-dh .mk3-dh-meta .mkd-term{font-size:13px;color:#9ea3ad}
+/* 개요 · 전략 정보 탭: 안 고른 탭 #9EA3AD, 고른 탭 흰색, 굵기 보통 */
+body #g-root .mk-tab{color:#9ea3ad;font-weight:400}
+body #g-root .mk-tab.on,body #g-root .mk-tab:hover{color:#fff}
+/* 구역 제목(성과·판단 기록) 18 → 700 */
+body #g-root .mk3-sec h3{font-weight:700}
+/* 성과 숫자: 이름 14 #9EA3AD, 값 28/600, 손익 색(+ 초록 · − 빨강 — 최대 낙폭 포함) */
+body #g-root .mk3-kpis small,body #g-root .mk3-kpis small .mkd-term{color:#9ea3ad}
+body #g-root .mk3-kpis b{font-weight:600}
+body #g-root .mk-up{color:#2fb98a}
+body #g-root .mk-dn{color:#f0566a}
+/* 정보 동그라미 i = Lucide info 14, 도움말 말풍선 12.5 → 13, 달력 넘김 = Lucide 꺾쇠 */
+body #g-root .mkd-ii{display:inline-flex;margin-left:4px;color:#8d9199;font-style:normal;vertical-align:-2px}
+body #g-root .mkd-tip{font-size:13px}
+body #g-root .cal-nav{display:inline-flex;align-items:center;justify-content:center;width:32px;padding:0;background:#313339;border:0;color:#fff}
+body #g-root .cal-nav:hover:not([disabled]){background:#3a3d44}
+/* 그래프 종류(수익률·손익·잔고)·일별/월별 세그먼트: 안 고른 칸 #9EA3AD, 글자 14 */
+body #g-root .mkd-pills .mkd-pill{font-size:14px}
+body #g-root .mkd-pills .mkd-pill[aria-pressed="false"],body #g-root .mk3-sec .mkd-seg button:not([aria-pressed="true"]):not(.on){color:#9ea3ad}
+/* 그래프 아래 설명 줄(누적 기간·월 요약·색 안내): 14 #CFD2D6 → 13 #9EA3AD, 달력 달 이름 13 → 14/600 */
+body #g-root .mk3-since,body #g-root .mk3-sec .mt2{font-size:13px;color:#9ea3ad}
+body #g-root .mk3-sec .cal-h b,body #g-root .mk3-sec b:has(>.cal-nav){font-size:14px;font-weight:600}
 /* 데이터 탭 카드 칸 수: 화면 폭에 맞춰 자동(카드 최소 440) — 큰 모니터 3~4칸, 노트북 2칸, 좁으면 1칸. 그래프가 카드 폭대로 커지며 글자까지 커지던 것 막음(1칸일 때도 그래프 최대 640) */
 @media (min-width:961px){ body #g-root .tft-page .mkx-grid{grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px} }
 body #g-root .tft-page .mkx-card svg{max-width:640px}
@@ -17083,8 +17126,8 @@ function tfSS3CalHtml(r,mOff){
   var trM=(r.trades||[]).filter(function(x){ var d3=idxToDate(x.exit); return d3.getFullYear()===y&&d3.getMonth()===mo; });
   var wM=trM.filter(function(x){return x.pnl>0;}).length;
   return '<div class="ss3-ch" style="margin-bottom:10px"><b style="font-size:13px">'
-    +'<button type="button" class="cal-nav" '+(mi<=0?'disabled':'')+' onclick="TF_SS3_CALM--;tfSS3CalRe()">‹</button> '
-    +y+'년 '+(mo+1)+'월 <button type="button" class="cal-nav" '+(mi>=months.length-1?'disabled':'')+' onclick="TF_SS3_CALM++;tfSS3CalRe()">›</button></b>'
+    +'<button type="button" class="cal-nav" '+(mi<=0?'disabled':'')+' onclick="TF_SS3_CALM--;tfSS3CalRe()" aria-label="이전 달"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg></button> '
+    +y+'년 '+(mo+1)+'월 <button type="button" class="cal-nav" '+(mi>=months.length-1?'disabled':'')+' onclick="TF_SS3_CALM++;tfSS3CalRe()" aria-label="다음 달"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button></b>'
     +'<span class="mt2">'+(mo+1)+'월 수익률 '+(mtot>=0?'+':'')+mtot.toFixed(1)+'%, 끝난 거래 '+trM.length+'회'+(false&&trM.length?', 승률 '+Math.round(wM/trM.length*100)+'%':'')+'</span></div>'
     +'<div class="cal-hd">'+['일','월','화','수','목','금','토'].map(function(x){return '<span>'+x+'</span>';}).join('')+'</div>'
     +'<div class="cal-g">'+cells+'</div>'
@@ -23162,12 +23205,12 @@ function mk3Head(s,ne,pd,watching){
   return '<header class="mk-d-head mk3-dh">'
     +'<div class="mk3-dh-top">'+mkGlyph(s,44)+'<div class="mk3-dh-t"><h2>'+gEsc(mkHook(s))+'</h2><p><b>'+(MK_KIND[s.kind]||'차트 규칙')+'</b><span>'+gEsc(mkScope(s))+'</span>'+(s.by?'<span class="mk3-by">@'+gEsc(s.by)+' 등록</span>':'')+'</p></div>'
     +'<button type="button" class="mkd-ic" aria-label="링크 복사" onclick="tfSS3CopyLink(\''+ne+'\',\''+pd+'\')"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="6" cy="12" r="2.4"/><circle cx="18" cy="6" r="2.4"/><circle cx="18" cy="18" r="2.4"/><path d="M8 11l8-4M8 13l8 4"/></svg></button>'
-    +(s.me?'':'<button type="button" class="mkd-fav" aria-pressed="'+watching+'" onclick="tfSS3WatchTgl(\''+ne+'\');mkWatchSync(\''+ne+'\')">★ 즐겨찾기</button>')+'</div>'
+    +(s.me?'':'<button type="button" class="mkd-fav" aria-pressed="'+watching+'" onclick="tfSS3WatchTgl(\''+ne+'\');mkWatchSync(\''+ne+'\')">'+tfSS3WatchLb(watching).replace('관심','즐겨찾기')+'</button>')+'</div>'
     +'<p class="mk3-dh-one">'+gEsc(mkOne(s))+'</p>'
     +'<div class="mk-d-acts mk3-dh-acts">'
     +(s.me?'<span class="ss3-st">내가 공유한 전략</span>':'<button type="button" class="mk-pri" onclick="cpSetupGo(\''+ne+'\')">전략 복사하기</button>'+(s.cfg?'<button type="button" class="mk3-bt2" onclick="btOpen(\''+ne+'\')" aria-label="직접 검증하기, 백테스트"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19V5"/><path d="M4 19h16"/><path d="M7.5 15l3.5-4 3 2.5 4.5-6"/></svg><span><b>직접 검증하기</b></span></button>':''))
     +'<span class="mk3-dh-meta"><span class="mk-xtag"><img src="assets/logos/'+ex[0]+'.png" alt="" width="16" height="16">'+mkdTerm(ex[1],MK_TIP.ex)+'</span><span>최소 '+'$'+mkMin(s)+'</span><span>'+mkdSince(s)+' 시작</span></span>'
-    +'<div class="mk-more"><button type="button" class="mk-more-b" id="mk-menu-b" aria-haspopup="menu" aria-expanded="false" aria-label="더 보기" onclick="mkMenuTgl(event)">⋯</button>'
+    +'<div class="mk-more"><button type="button" class="mk-more-b" id="mk-menu-b" aria-haspopup="menu" aria-expanded="false" aria-label="더 보기" onclick="mkMenuTgl(event)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg></button>'
     +'<div class="mk-menu" id="mk-menu" role="menu" hidden>'
     +'<button type="button" role="menuitem" onclick="tfSS3Ask(\''+ne+'\',\''+pd+'\')">TETH에게 분석시키기</button>'
     +(s.me?'':'<button type="button" role="menuitem" id="ss3-watch-btn" aria-pressed="'+watching+'" onclick="tfSS3WatchTgl(\''+ne+'\');mkWatchSync(\''+ne+'\')">'+tfSS3WatchLb(watching)+'</button>')
@@ -23437,7 +23480,7 @@ function mkInfoTab(s,r,ne){
 /* 개요 그래프의 조작 줄: 수익률, 수익금, 잔고. 기간에 최근 7일 */
 function mkdCtlHtml(){
   var tip='이 전략이 매매로 번 비율입니다. 돈을 더 넣거나 빼도 수익률은 그대로입니다. 수수료를 뺀 실제 수익입니다. 이 전략의 거래만 계산합니다.';
-  return '<div class="mkd-pills" role="group" aria-label="그래프 종류">'+[['ret','수익률',tip],['pnl','수익금','고른 기간의 첫날에 $1,000를 넣었다면 늘거나 줄어든 금액입니다. 수수료를 뺀 금액입니다.'],['bal','잔고','고른 기간의 첫날에 $1,000를 넣었다면 그날 계좌에 들어 있던 금액입니다.']].map(function(t){ return '<button type="button" class="mkd-pill" aria-pressed="'+(MKD.tab===t[0])+'" onclick="mkdSet(\'tab\',\''+t[0]+'\')">'+t[1]+(t[2]?'<i aria-hidden="true">i</i><span class="mkd-tip" role="tooltip">'+t[2]+'</span>':'')+'</button>'; }).join('')+'</div>'
+  return '<div class="mkd-pills" role="group" aria-label="그래프 종류">'+[['ret','수익률',tip],['pnl','수익금','고른 기간의 첫날에 $1,000를 넣었다면 늘거나 줄어든 금액입니다. 수수료를 뺀 금액입니다.'],['bal','잔고','고른 기간의 첫날에 $1,000를 넣었다면 그날 계좌에 들어 있던 금액입니다.']].map(function(t){ return '<button type="button" class="mkd-pill" aria-pressed="'+(MKD.tab===t[0])+'" onclick="mkdSet(\'tab\',\''+t[0]+'\')">'+t[1]+(t[2]?'<i class="mkd-ii" aria-hidden="true"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></i><span class="mkd-tip" role="tooltip">'+t[2]+'</span>':'')+'</button>'; }).join('')+'</div>'
     +'<div class="mkd-right"><div class="mkd-seg" role="group" aria-label="간격">'+[['day','일별'],['month','월별']].map(function(g){ return '<button type="button" aria-pressed="'+(MKD.gran===g[0])+'" onclick="mkdSet(\'gran\',\''+g[0]+'\')">'+g[1]+'</button>'; }).join('')+'</div>'
     +'<select class="mkd-per" aria-label="기간 선택" onchange="mkdSet(\'per\',+this.value)">'+[[7,'최근 7일'],[30,'최근 30일'],[90,'최근 3개월'],[365,'최근 1년'],[0,'전체']].map(function(o){ return '<option value="'+o[0]+'"'+(MKD.per===o[0]?' selected':'')+'>'+o[1]+'</option>'; }).join('')+'</select></div>';
 }
@@ -23448,7 +23491,7 @@ var MK_PER_L={7:'최근 7일',30:'최근 30일',90:'최근 3개월',365:'최근 
 /* 수익률과 최대 낙폭은 그래프에서 고른 기간을 따르고, 승률과 거래 수는 늘 전체 기간이다(짧은 기간의 거래 한두 건이 성과처럼 읽히지 않게) */
 function mkOvKpi(s,per){
   var r=per?mkSlice(s,per):s.r, a=s.r||r, w=(typeof a.winRate==='number'&&(a.n||0)>=5)?Math.round(a.winRate)+'%':'-';
-  return mkKpi4('mk3-kpis num','',[MK_PER_L[per]+' 수익률','ret',mkPct0(r.ret),mkSign(r.ret)],[MK_PER_L[per]+' 최대 낙폭','mdd',r.mdd.toFixed(1)+'%'],['전체 기간 승률','win',w],['전체 기간 거래 수','n',Number(a.n||0).toLocaleString()+'회']);
+  return mkKpi4('mk3-kpis num','',[MK_PER_L[per]+' 수익률','ret',mkPct0(r.ret),mkSign(r.ret)],[MK_PER_L[per]+' 최대 낙폭','mdd',r.mdd.toFixed(1)+'%',mkSign(r.mdd)],['전체 기간 승률','win',w],['전체 기간 거래 수','n',Number(a.n||0).toLocaleString()+'회']);
 }
 function mkdHintTxt(){ return MKD.per?MK_PER_L[MKD.per].replace('최근 ','')+' 전에 $1,000를 넣었다면':'시작한 날에 $1,000를 넣었다면'; }
 function mkdSet(k,v){
