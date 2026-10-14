@@ -56,7 +56,16 @@ body.solo{max-width:none;margin:0;padding:0}
 body.solo>header,body.solo .bar,body.solo .list,body.solo .stagebar{display:none!important}
 body.solo .frames{padding:0!important;position:fixed;inset:0;overflow:hidden}
 body.solo .frames iframe{width:100vw!important;height:100vh!important;border:0!important;border-radius:0!important;box-shadow:none!important}
-.frames{flex:1;overflow:auto;display:flex;justify-content:center;align-items:flex-start;padding:20px}
+.frames{flex:1;overflow:auto;display:flex;justify-content:center;align-items:flex-start;gap:20px;padding:20px}
+/* 비포·애프터 비교 (사용자 지시) */
+.cmp{display:inline-flex;gap:3px;margin-left:10px;padding:3px;border-radius:999px;background:#25272c;border:1px solid rgba(255,255,255,.06)}
+.cmp button{height:26px;padding:0 11px;border:0;border-radius:999px;background:transparent;color:#9ea3ad;font:inherit;font-size:12px;font-weight:600;cursor:pointer;transition:background .15s,color .15s}
+.cmp button:hover{color:#fff}
+.cmp button[aria-pressed="true"]{background:#45484f;color:#fff}
+.fwrap{display:flex;flex-direction:column;align-items:center;gap:8px}
+.fwrap>span{font-size:12px;font-weight:600;color:#9ea3ad}
+.fwrap.now>span{color:#00feff}
+body.solo .cmp,body.solo .fwrap>span{display:none}
 iframe{border:0;border-radius:20px;background:var(--bg);box-shadow:0 18px 48px rgba(0,0,0,.55)}
 .hint{margin:auto;color:var(--t3);font-size:13px;text-align:center;line-height:1.8}
 kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--line2);border-radius:5px;padding:1px 5px;color:var(--t2)}
@@ -83,7 +92,7 @@ kbd{font:inherit;font-size:11.5px;background:var(--chip);border:1px solid var(--
 <div class="main">
   <div class="list" id="list"></div>
   <div class="stage">
-    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span><button type="button" class="fsb" id="bigBtn" title="머리·목록을 숨기고 화면을 창 전체로 봅니다. Esc로 돌아옵니다">크게 보기</button></div>
+    <div class="stagebar"><b id="curId">화면을 고르십시오</b><span id="curNm"></span><span class="cmp" id="cmp" role="group" aria-label="원본과 비교"><button type="button" data-v="now" aria-pressed="true" title="내 수정본">수정본</button><button type="button" data-v="orig" aria-pressed="false" title="원본 사이트(aresjoo/tesia-lab main)">원본</button><button type="button" data-v="both" aria-pressed="false" title="원본과 수정본을 나란히">나란히</button></span><button type="button" class="fsb" id="bigBtn" title="머리·목록을 숨기고 화면을 창 전체로 봅니다. Esc로 돌아옵니다">크게 보기</button></div>
     <div class="frames" id="frames"><p class="hint">왼쪽에서 화면을 고르면 여기에 뜹니다.<br><kbd>/</kbd> 로 검색창, <kbd>Esc</kbd> 로 비우기<br>주소 끝에 <kbd>#09-01</kbd> 처럼 붙이면 그 화면이 바로 열립니다.</p></div>
   </div>
 </div>
@@ -343,19 +352,33 @@ function render(){
   document.getElementById('count').textContent=shown+'개 보임 · 확인된 것 '+onTotal+' / '+total+(warnN?' · 확인 전 '+warnN:'');
 }
 
+/* 보기 방식: now 수정본 / orig 원본 / both 나란히 */
+var VIEW='now';
+function oneFrame(box,src,label,isNow){
+  var wrap=document.createElement('div'); wrap.className='fwrap'+(isNow?' now':'');
+  if(label){ var t=document.createElement('span'); t.textContent=label; wrap.appendChild(t); }
+  var f=document.createElement('iframe');
+  f.style.width=W+'px'; f.style.height=(W===390?844:900)+'px';
+  wrap.appendChild(f); box.appendChild(wrap); f.dataset.src=src; return f;
+}
 function makeFrame(){
   var box=document.getElementById('frames'); box.innerHTML='';
-  frame=document.createElement('iframe'); frame.id='f';
-  frame.style.width=W+'px'; frame.style.height=(W===390?844:900)+'px';
-  box.appendChild(frame); return frame;
+  if(VIEW==='both'){
+    var a=oneFrame(box,'_orig.html','원본',false), b=oneFrame(box,'index.html','수정본',true);
+    b.id='f'; frame=b; return [a,b];
+  }
+  var one=oneFrame(box,VIEW==='orig'?'_orig.html':'index.html',VIEW==='orig'?'원본':'',VIEW!=='orig');
+  one.id='f'; frame=one; return [one];
 }
 function fresh(run){
-  var f=makeFrame();
-  try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
-  f.onload=function(){ f.onload=null;
+  var fs=makeFrame();
+  fs.forEach(function(f){
     try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
-    setTimeout(function(){ try{ run(f.contentWindow); }catch(e){ console.error(e); } },600); };
-  f.src='index.html?'+Date.now();
+    f.onload=function(){ f.onload=null;
+      try{ f.contentWindow.localStorage.removeItem('teth.state'); }catch(e){}
+      setTimeout(function(){ try{ run(f.contentWindow); }catch(e){ console.error(e); } },600); };
+    f.src=f.dataset.src+'?'+Date.now();
+  });
 }
 function openScreen(id){
   if(!wired(id)) return;
@@ -415,6 +438,17 @@ document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('
 render();
 openFromHash();
 document.getElementById('bigBtn').onclick=function(){ window._bigSet(true); };
+/* 비포·애프터: 고르면 보던 화면을 그 쪽으로 다시 띄운다 (사용자 지시) */
+document.getElementById('cmp').addEventListener('click',function(e){
+  var b=e.target.closest('button[data-v]'); if(!b) return;
+  VIEW=b.dataset.v;
+  [].forEach.call(this.querySelectorAll('button[data-v]'),function(x){ x.setAttribute('aria-pressed',x===b); });
+  try{ sessionStorage.setItem('teth.screens.view',VIEW); }catch(e2){}
+  if(CUR) openScreen(CUR);
+});
+try{ var v0=sessionStorage.getItem('teth.screens.view');
+  if(v0&&v0!=='now'){ VIEW=v0;
+    [].forEach.call(document.querySelectorAll('#cmp button[data-v]'),function(x){ x.setAttribute('aria-pressed',x.dataset.v===v0); }); } }catch(e){}
 /* 왼쪽 목록 스크롤 위치 기억: 새로고침·반영하기 뒤에도 보던 자리 그대로 */
 (function(){
   var L=document.getElementById('list'); if(!L) return;
