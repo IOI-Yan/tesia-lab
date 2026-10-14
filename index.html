@@ -6296,7 +6296,7 @@ body.mk-fab-dodge #teth-help,body.mk-fab-dodge #tf-devbtn{opacity:0;pointer-even
 .bt-dd-ch .bt-chain span{animation:none;opacity:1}
 .bt-tip .e em{display:block;font-style:normal;font-size:11px;color:var(--gt3);margin-top:2px}
 
-.btg-grid{display:grid;grid-template-columns:332px minmax(0,560px);gap:64px;justify-content:center;align-items:start;margin-top:14px}
+.btg-grid{display:grid;grid-template-columns:332px minmax(0,560px);gap:64px;justify-content:start;align-items:start;margin-top:14px} /* 뒤로 줄과 시작선 맞춤 (사용자 지시) */
 .btg-me{position:sticky;top:18px;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.012))}
 .btg-me .lb{display:block;font-size:12px;color:var(--gt3);margin-bottom:12px}
 .btg-me .hd{display:flex;gap:12px;align-items:center;margin-bottom:18px}
@@ -6894,8 +6894,9 @@ a.btg-out{text-decoration:none}
 .acx-perm li.pm-y svg{color:#2fb98a}.acx-perm li.pm-n em{display:block;width:11px;height:2px;border-radius:1px;background:#5b6067;justify-self:center}
 .acx-perm li.pm-n b{color:#aeb3ba}
 #ac-go img{border-radius:5px;margin-right:8px;vertical-align:-4px}
-.acx-help{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:26px 0 0;padding-top:18px;font-size:12px;color:#8b9096}
-.acx-help button{height:36px;padding:0 16px;border-radius:999px;border:0;background:#313339;color:#fff;font:inherit;font-size:13px;font-weight:600;cursor:pointer;transition:background .2s ease} /* 회색 버튼(카드·페이지 위 #313339) */
+.acx-help{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin:26px 0 0;padding-top:18px;font-size:14px;color:#8b9096} /* 상담원 안내 줄은 어느 화면이든 14px (사용자 지시) */
+@media (max-width:900px){ .acx-help{font-size:13px} }
+.acx-help button{height:38px;padding:0 18px;border-radius:999px;border:0;background:#313339;color:#fff;font:inherit;font-size:14px;font-weight:600;cursor:pointer;transition:background .2s ease} /* 회색 버튼(카드·페이지 위 #313339) */
 .acx-help button:hover{background:#3a3d44}
 @media (max-width:900px){ .acx-help{padding-left:16px;padding-right:16px} } /* 모바일: 안내 글자·버튼 양옆 16px (선은 끝까지) */
 .acx-done{display:flex;align-items:center;gap:16px;margin:4px 0 18px}
@@ -7255,7 +7256,7 @@ body.pl-page #g-appbanner{display:none!important}
 .pl-cohead{display:inline-flex;align-items:center;gap:4px;margin:0 0 30px;margin-left:-6px;padding:2px 12px 2px 6px;border-radius:999px;transition:background .2s ease}
 .pl-cohead:has(.pl-back){cursor:pointer}
 .pl-cohead:has(.pl-back):hover{background:rgba(255,255,255,.07)}
-.pl-cohead h1{margin:0;font-size:28px;font-weight:700;color:#fff} /* 화면 제목은 PC 28 / 모바일 24 하나로 (사용자 지시) */
+.pl-cohead h1{margin:0;font-size:32px;font-weight:700;color:#fff} /* 화면 제목은 PC 28 / 모바일 24 하나로 (사용자 지시) */
 @media (max-width:900px){ .pl-cohead h1{font-size:24px} }
 .pl-back{width:auto;height:auto;flex:none;padding:0;border:0;border-radius:0;background:transparent;color:#fff;display:flex;align-items:center;justify-content:center;cursor:pointer}
 .pl-back:hover{background:transparent}
@@ -7993,7 +7994,7 @@ body:has(#g-askdock .ska) #g-newmsg{display:none!important}
 .skc-foot{font-size:12px;color:#8b9096}
 @media (max-width:760px){ .skc-hd h2{font-size:20px} }
 /* 거래소 연결 단계 화면(승인 등) 정리 (사용자 지시) */
-#g-root .px-head h1{font-weight:700;line-height:1.3;font-size:28px} /* PC 제목 32 → 28 (모바일 26은 아래) */
+#g-root .px-head h1{font-weight:700;line-height:1.3;font-size:32px} /* PC 제목 32, 모바일 24 (사용자 지시) */
 #g-root .px-head{margin-bottom:6px}
 #g-root .px-links{justify-content:center} /* 버튼 아래 글자 버튼("TETH 초대 계정으로 연결" 등)은 버튼과 같이 가운데 */
 #g-root .px-links .pl-link:hover{color:#e3e5ea} #g-root .px-links.px-sm .pl-link:hover{color:#b0b4bb} /* 글자 버튼 호버: 흰색 대신 한 단계 밝은 회색 */
@@ -8596,10 +8597,14 @@ body #g-root .btg-me .lk{font-size:13px}
 /* [공통 규칙] 설정: 뒤로 단추·제목 위치 = 화면 높이 9%, 뒤로 단추 아래 4%, 뒤로 단추는 화살표+글자 알약 */
 @media (min-width:901px){ body.st-full .stg-nav{padding-top:calc(clamp(64px,9vh,128px) - 40px)} body.st-full .stg-main{padding-top:calc(clamp(64px,9vh,128px) - 40px)} body.st-full .stg-back{height:36px;padding:0 12px 0 6px;gap:4px;border-radius:999px;color:#fff;font-size:16px;font-weight:600;align-self:start;margin-bottom:clamp(24px,4vh,56px);transition:background .2s ease} body.st-full .stg-back:hover{background:rgba(255,255,255,.07);color:#fff} body.st-full .stg-back svg{display:block;flex:none} body.st-full .stg-back+small{margin-top:0} }
 /* [공통 규칙] 화살표+제목 뒤로 단추는 모두 같은 모양 — 전략 실행 준비(#bt-root .bt-hd .bk)에 맞춤 (사용자 지시) */
-#g-root .nfz-back,#g-root .ss3-back,#g-root .cq-back,#g-root .txh-back{display:inline-flex;align-items:center;gap:4px;width:auto;height:36px;padding:0 12px 0 6px;margin-left:-6px;border:0;border-radius:999px;background:transparent;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s ease}
-#g-root .nfz-back:hover,#g-root .ss3-back:hover,#g-root .cq-back:hover,#g-root .txh-back:hover{background:rgba(255,255,255,.07);color:#fff}
-#g-root .nfz-back svg,#g-root .ss3-back svg,#g-root .cq-back svg,#g-root .txh-back svg{display:block;flex:none}
-#g-root .nfz-back .ti,#g-root .ss3-back .ti,#g-root .cq-back .ti,#g-root .txh-back .ti{font-size:16px;font-weight:600;color:#fff}
+#g-root .nfz-back,#g-root .ss3-back,#g-root .cq-back,#g-root .txh-back,#g-root .px-bk{display:inline-flex;align-items:center;gap:4px;width:auto;height:36px;padding:0 12px 0 6px;margin-left:-6px;border:0;border-radius:999px;background:transparent;color:#fff;font-family:inherit;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s ease}
+#g-root .nfz-back:hover,#g-root .ss3-back:hover,#g-root .cq-back:hover,#g-root .txh-back:hover,#g-root .px-bk:hover{background:rgba(255,255,255,.07);color:#fff}
+#g-root .nfz-back svg,#g-root .ss3-back svg,#g-root .cq-back svg,#g-root .txh-back svg,#g-root .px-bk svg{display:block;flex:none;width:19px;height:19px}
+#g-root .nfz-back .ti,#g-root .ss3-back .ti,#g-root .cq-back .ti,#g-root .txh-back .ti,#g-root .px-bk .ti{font-size:16px;font-weight:600;color:#fff}
+/* 뒤로 줄과 제목 사이 = 복사한 전략 화면과 같게 */
+#g-root .px-bkrow{margin:0 0 20px}
+#g-root .px-head{display:block;margin:0 0 6px;padding:0;background:none}
+@media (max-width:900px){ #g-root .px-bkrow{margin-bottom:14px} }
 /* 단추 줄과 내용 사이 = 다른 화면과 같은 24px (모바일 16) */
 #g-root .ss3-back{margin-bottom:24px}
 @media (max-width:900px){ #g-root .ss3-back{margin-bottom:16px} }
@@ -8607,8 +8612,8 @@ body #g-root .btg-me .lk{font-size:13px}
 #g-root .txh-back{left:18px;top:14px;margin-left:0}
 @media (max-width:900px){ #g-root .txh-back{left:10px;top:8px} }
 @media (max-width:900px){ #bt-root .bt-hd{margin-bottom:16px} }
-#g-root .px-lead{font-size:14px;color:#9ea3ad} /* 안내 문장 한 단계 옅게 */
-@media (max-width:900px){ #g-root .px-head h1{font-size:24px} #g-root .px-lead{font-size:13px} } /* 안내: PC 16 → 14, 모바일 16 → 13(거래소 연결 화면과 같음). 모바일 제목 32 → 26 */
+#g-root .px-lead{font-size:16px;line-height:1.55;color:#9ea3ad} /* 제목 32 에 맞춰 PC 16 / 모바일 14 (사용자 지시) */
+@media (max-width:900px){ #g-root .px-head h1{font-size:24px} #g-root .px-lead{font-size:14px} } /* 안내: PC 16 → 14, 모바일 16 → 13(거래소 연결 화면과 같음). 모바일 제목 32 → 26 */
 #g-root .px-card:not(.px-hi){background:#17181B;border-color:rgba(255,255,255,.06)}
 #g-root .px-cta.pl-cta-w{background:#00feff;border-color:#00feff;color:#101113;font-weight:600}
 #g-root .px-cta.pl-cta-w:hover{background:#5cfeff;border-color:#5cfeff}
@@ -9704,10 +9709,10 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .cq-amt[open]>summary svg{transform:rotate(180deg)}
 .cq-amt .cq-list{margin-top:12px}
 /* 금액 상세 줄: 판단 기록 펼친 표와 같은 짜임 — 라벨은 회색, 숫자가 읽히게 (사용자 지시) */
-.cq-amt .cq-row{padding:12px 0}
-.cq-amt .cq-row .a b{font-size:14px;font-weight:400;color:#8d9199}
-.cq-amt .cq-row .z b{font-size:14px;font-weight:600;color:#ececf1}
-@media (max-width:768px){ .cq-amt .cq-row{padding:12px 0} }
+.cq-amt .cq-row{padding:14px 0}
+.cq-amt .cq-row .a b{font-size:16px;font-weight:400;color:#8d9199}
+.cq-amt .cq-row .z b{font-size:16px;font-weight:600;color:#ececf1}
+@media (max-width:768px){ .cq-amt .cq-row{padding:12px 0} .cq-amt .cq-row .a b,.cq-amt .cq-row .z b{font-size:14px} }
 .cq-sec{margin:40px 0 0}
 .cq-sh{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:0 0 12px}
 .cq-sh h2{margin:0;font-size:18px;font-weight:600;color:#fff}
@@ -9733,16 +9738,25 @@ body:has(.mk3-grid) #teth-help{display:none!important}
 .cq-row span .d,.cq-row span b.d{color:#F0566A}
 .cq-row .z span b.n{color:#cfd2d6}
 /* 예산 내역 줄: 판단 기록 줄과 같은 짜임 (사용자 지시) */
-.cq-lrow{padding:14px 0;border-top:1px solid rgba(255,255,255,.06)}
+.cq-lrow{padding:18px 0;border-top:1px solid rgba(255,255,255,.06)}
 .cq-list>.cq-lrow:first-child{border-top:0}
 .cq-list.cq-flat{background:none;border:0;border-radius:0;padding:2px 0} /* 선 없이 폭만 꽉 (사용자 지시) */ /* 상자 없이 폭을 꽉, 위아래 선으로 구분 (사용자 지시) */
 .cq-lhd{display:flex;align-items:center;gap:8px;margin:0 0 6px}
-.cq-tag{display:inline-flex;align-items:center;flex:none;height:22px;padding:0 10px;border-radius:100px;font-size:12px;font-weight:500;background:var(--tag-blue-bg);color:var(--tag-blue)}
+.cq-tag{display:inline-flex;align-items:center;flex:none;height:24px;padding:0 11px;border-radius:100px;font-size:13px;font-weight:500;background:var(--tag-blue-bg);color:var(--tag-blue)}
 .cq-tag.out{background:var(--tag-orange-bg);color:var(--tag-orange)}
-.cq-time{font-size:12px;color:#8d9199}
+.cq-time{font-size:13px;color:#8d9199}
 .cq-lbd{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:13px;line-height:1.5;color:#ececf1}
-.cq-page .cq-lbd b,.cq-page .cq-lbd b.num{font-size:17px;font-weight:600;line-height:1.35}
-.cq-lbd span{flex:none;display:inline-flex;align-items:center;height:22px;padding:0 10px;border-radius:100px;background:rgba(255,255,255,.06);font-size:12px;color:#9ea3ad}
+.cq-page .cq-lbd b,.cq-page .cq-lbd b.num{font-size:20px;font-weight:600;line-height:1.35}
+/* 모바일은 지금 치수 그대로 (사용자 지시) */
+@media (max-width:768px){
+  .cq-lrow{padding:14px 0}
+  .cq-tag{height:22px;padding:0 10px;font-size:12px}
+  .cq-time{font-size:12px}
+  .cq-lbd{font-size:12px}
+  .cq-page .cq-lbd span{height:22px;padding:0 10px;font-size:12px}
+  .cq-page .cq-lbd b,.cq-page .cq-lbd b.num{font-size:17px}
+}
+.cq-lbd span{flex:none;display:inline-flex;align-items:center;height:26px;padding:0 12px;border-radius:100px;background:rgba(255,255,255,.06);font-size:13px;color:#9ea3ad}
 /* 빈 상태: 터미널 포지션 탭과 같은 모양 (사용자 지시) */
 .cq-empty{display:flex;flex-direction:column;align-items:center;gap:4px;text-align:center;padding:40px 16px}
 .cq-empty b{font-size:16px;font-weight:600;color:#fff}
@@ -25800,7 +25814,7 @@ function pxTitle(){
 }
 /* 알약 전체가 뒤로 단추가 되었으니 제목을 눌러도 같이 동작한다 (사용자 지시) */
 document.addEventListener('click',function(e){ var h=e.target.closest&&e.target.closest('.pl-cohead'); if(!h||e.target.closest('.pl-back')) return; var b=h.querySelector('.pl-back'); if(b) b.click(); });
-function pxHead(t){ return '<header class="pl-cohead px-head">'+(t.back?'<button type="button" class="pl-back" aria-label="뒤로" onclick="pxBack(\''+t.back+'\')">'+PX_CHEV+'</button>':'')+'<h1>'+t.h+'</h1></header>'+(t.s?'<p class="px-lead">'+t.s+'</p>':''); }
+function pxHead(t){ return (t.back?'<div class="px-bkrow"><button type="button" class="px-bk" onclick="pxBack(\''+t.back+'\')">'+PX_CHEV+'<span class="ti">'+(t.back==='result'?'검증 결과':'거래소 연결')+'</span></button></div>':'')+'<header class="px-head"><h1>'+t.h+'</h1></header>'+(t.s?'<p class="px-lead">'+t.s+'</p>':''); }
 function pxBack(k){
   var a=acS(), ctx=AC_CTX||{};
   if(k==='plan'){ if(acConnList().length){ a.ex=null; a.adding=0; a.edit=null; acSave(); acPageView(); } else plView(ctx); return; }
