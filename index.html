@@ -8608,6 +8608,9 @@ body #g-root .tft-page .tft-rail .tft-card .sy,body #g-root .tft-page .tft-rail 
 body #g-root .tft-page .tft-rail .tft-card .pnl small:not(.vl){font-size:11px}
 /* search boxes: magnifier on the left (like 종목 검색), browser clear X hidden, own gray X shown only while there is text */
 input[type="search"]::-webkit-search-cancel-button{-webkit-appearance:none;appearance:none;display:none}
+/* 숫자 입력칸의 브라우저 기본 위아래 화살표(흰 칸) 숨김 — 사이트 전체 */
+input[type="number"]::-webkit-inner-spin-button,input[type="number"]::-webkit-outer-spin-button{-webkit-appearance:none;appearance:none;margin:0}
+input[type="number"]{-moz-appearance:textfield;appearance:textfield}
 .srch-x{display:inline-flex;align-items:center;justify-content:center;flex:none;width:28px;height:28px;padding:0;border:0;border-radius:999px;background:transparent;color:#8d9199;cursor:pointer;transition:color .15s ease,background .15s ease}
 .srch-x:hover{color:#fff;background:rgba(255,255,255,.08)}
 input:placeholder-shown~.srch-x{display:none}
