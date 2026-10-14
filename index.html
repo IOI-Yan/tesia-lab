@@ -9812,6 +9812,13 @@ body .ss3-dlg:has(.mk-stop) .mk-stop-o{gap:6px;padding:16px 18px;border-radius:1
 body .ss3-dlg:has(.mk-stop) .mk-stop-o:hover{background:#2E3036}
 body .ss3-dlg:has(.mk-stop) .mk-stop-o b{font-size:16px;font-weight:600}
 body .ss3-dlg:has(.mk-stop) .mk-stop-o span{font-size:13px;color:#9ea3ad;line-height:1.55}
+/* 선택지를 단추처럼: 오른쪽 꺾쇠(Lucide chevron-right 20, #8D9199), 호버 = 바탕 한 단계 밝게 + 꺾쇠 흰색·오른쪽 2px, 누르는 순간 98% */
+body .ss3-dlg:has(.mk-stop) .mk-stop-o{flex-direction:row!important;align-items:center!important;gap:12px!important}
+body .ss3-dlg:has(.mk-stop) .mk-stop-o .mso-t{display:flex;flex-direction:column;gap:6px;flex:1;min-width:0}
+body .ss3-dlg:has(.mk-stop) .mk-stop-o .mso-t>span{font-size:13px;color:#9ea3ad;line-height:1.55}
+body .ss3-dlg:has(.mk-stop) .mk-stop-o .mso-c{flex:none;color:#8d9199;transition:transform .15s ease,color .15s ease}
+body .ss3-dlg:has(.mk-stop) .mk-stop-o:hover .mso-c{color:#fff;transform:translateX(2px)}
+body .ss3-dlg:has(.mk-stop) .mk-stop-o:active{transform:scale(.98)}
 body .ss3-dlg:has(.mk-stop) .acts3{margin-top:20px!important}
 /* 팝업 제목 바로 아래 안내 문구가 오면 제목 ↔ 안내 12 → 6 (제목과 한 덩어리로) */
 body .ss3-dlg .dh2:has(+.ntc){margin-bottom:6px!important}
@@ -21334,7 +21341,7 @@ function mkFollowSum(v){
 function mkStopDlg(cid){
   var c2=cpFind(cid); if(!c2||c2.status!=='active') return;
   var d=cpCalc(c2);
-  var opt=function(k,t,sub){ return '<button type="button" class="mk-stop-o" onclick="mkStopGo(\''+cid+'\',\''+k+'\')"><b>'+t+'</b><span>'+sub+'</span></button>'; };
+  var opt=function(k,t,sub){ return '<button type="button" class="mk-stop-o" onclick="mkStopGo(\''+cid+'\',\''+k+'\')"><span class="mso-t"><b>'+t+'</b><span>'+sub+'</span></span><svg class="mso-c" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg></button>'; };
   tfSS3Dlg('전략 복사 중단, '+c2.nick,
     '<div class="ntc">어떻게 정리할지 골라주십시오. 어떤 선택이든 새 진입은 바로 멈춥니다.</div>'
     +'<div class="cpd-kv" style="margin:0 0 14px"><div><small>순손익</small><b class="num '+(d.net>0?'u':d.net<0?'d':'')+'">'+cpUsd(d.net)+'</b></div><div><small>돌려받을 예산</small><b class="num">'+cpUsd(Math.max(0,d.est))+'</b></div></div>'
