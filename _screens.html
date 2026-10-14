@@ -402,11 +402,15 @@ load();
 document.querySelectorAll('.seg [data-w]').forEach(function(x){ x.setAttribute('aria-pressed',+x.dataset.w===W); });
 document.querySelectorAll('.seg [data-f]').forEach(function(x){ x.setAttribute('aria-pressed',x.dataset.f===FILTER); });
 (function(){ var x=document.createElement('button'); x.type='button'; x.className='bigx'; x.textContent='작게 보기'; document.body.appendChild(x);
-  var set=function(on){ document.body.classList.toggle('solo',on); try{ sessionStorage.setItem('teth.screens.big',on?'1':''); }catch(e){} };
+  var set=function(on){ var L=document.getElementById('list');
+    if(on&&L){ try{ sessionStorage.setItem('teth.screens.y',String(L.scrollTop)); }catch(e){} } /* 숨기기 전에 보던 자리 적어 두기 */
+    document.body.classList.toggle('solo',on);
+    if(!on&&L){ try{ var y=+sessionStorage.getItem('teth.screens.y'); if(y) L.scrollTop=y; }catch(e){} } /* 돌아오면 그 자리로 (사용자 지시) */
+    try{ sessionStorage.setItem('teth.screens.big',on?'1':''); }catch(e){} };
   x.onclick=function(){ set(false); };
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&document.body.classList.contains('solo')) set(false); });
   window._bigSet=set;
-  try{ if(sessionStorage.getItem('teth.screens.big')) set(true); }catch(e){}
+  try{ if(sessionStorage.getItem('teth.screens.big')) document.body.classList.add('solo'); }catch(e){}
 })();
 render();
 openFromHash();
@@ -414,8 +418,9 @@ document.getElementById('bigBtn').onclick=function(){ window._bigSet(true); };
 /* 왼쪽 목록 스크롤 위치 기억: 새로고침·반영하기 뒤에도 보던 자리 그대로 */
 (function(){
   var L=document.getElementById('list'); if(!L) return;
-  try{ var y=+sessionStorage.getItem('teth.screens.y'); if(y) L.scrollTop=y; }catch(e){}
-  var save=function(){ try{ sessionStorage.setItem('teth.screens.y',String(L.scrollTop)); }catch(e){} };
+  try{ var y=+sessionStorage.getItem('teth.screens.y'); if(y&&!document.body.classList.contains('solo')) L.scrollTop=y; }catch(e){}
+  var save=function(){ if(document.body.classList.contains('solo')) return; /* 숨은 동안의 0 을 적지 않는다 (사용자 지시) */
+    try{ sessionStorage.setItem('teth.screens.y',String(L.scrollTop)); }catch(e){} };
   L.addEventListener('scroll',function(){ clearTimeout(L._t); L._t=setTimeout(save,150); });
   window.addEventListener('pagehide',save);
 })();
