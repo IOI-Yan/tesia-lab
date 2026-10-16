@@ -28789,6 +28789,8 @@ document.addEventListener('focusin',function(e){ var w=e.target.closest&&e.targe
   function roll(b){ if(!b||b.dataset.rc) return; var t=b.textContent; if(!/[0-9]/.test(t)) return; b.dataset.rc='1'; b.setAttribute('aria-label',t);
     var k=0, h=t.split('').map(function(ch){ if(!/[0-9]/.test(ch)) return '<span class="rc-x" aria-hidden="true">'+ch+'</span>'; var d=+ch, s=''; for(var i=0;i<=9;i++) s+='<i>'+i+'</i>'; return '<span class="rc" aria-hidden="true"><span class="rc-s" style="--d:'+d+';animation-delay:'+(k++*45)+'ms">'+s+'</span></span>'; }).join('');
     b.classList.add('rc-on'); b.innerHTML=h; setTimeout(function(){ if(b.isConnected){ b.textContent=t; b.classList.remove('rc-on'); b.removeAttribute('aria-label'); } },1200+k*45); }
+  var PEND=[]; function chkPend(){ if(!PEND.length) return; var H=window.innerHeight||800; PEND=PEND.filter(function(b){ if(!b.isConnected) return false; var r=b.getBoundingClientRect(); if(r.height&&r.top<H*0.88&&r.bottom>0){ roll(b); return false; } return true; }); }
+  document.addEventListener('scroll',chkPend,{capture:true,passive:true}); window.addEventListener('scroll',chkPend,{passive:true}); window.addEventListener('resize',chkPend);
   new MutationObserver(function(ms){ var cards=[], dets=[];
     ms.forEach(function(m){ [].forEach.call(m.addedNodes,function(n){ if(n.nodeType!==1) return;
       if(n.matches('.mk-card.skf')) cards.push(n); else [].push.apply(cards,n.querySelectorAll('.mk-card.skf'));
@@ -28797,7 +28799,8 @@ document.addEventListener('focusin',function(e){ var w=e.target.closest&&e.targe
     if(cards.length){ var now=performance.now(); if(now-t0<900){ var el=now-t0; cards.forEach(function(c){ var s=c.querySelector('.mk-spark'); if(!s) return; var d=(parseFloat(getComputedStyle(s).animationDelay)||0)*1000; s.style.animationDelay=(d-el)+'ms'; }); } else t0=now; }
     /* 같은 전략 안에서 탭(개요·전략 정보)을 오가며 다시 그려질 때는 굴리지 않는다. 상세를 떠났다가 다시 들어오면 다시 한 번 */
     if(!document.querySelector('.mk-detail')) lastKey='';
-    if(!RM) dets.forEach(function(d){ var h=d.querySelector('h1'), key=(h?h.textContent:'')||location.hash.split('?')[0]; if(key===lastKey) return; lastKey=key; [].forEach.call(d.querySelectorAll('.mk3-kpis b.num'),roll); });
+    if(!RM) dets.forEach(function(d){ var h=d.querySelector('h1'), key=(h?h.textContent:'')||location.hash.split('?')[0]; if(key===lastKey) return; lastKey=key; var L=d.querySelectorAll('.mk3-kpis b.num'); /* 화면 아래에 있어 들어오자마자 굴리면 내려가 볼 때는 이미 끝나 있다 → 성과 칸이 화면에 보일 때 굴린다 */
+      [].push.apply(PEND,L); chkPend(); });
   }).observe(document.documentElement,{childList:true,subtree:true});
 })();
 </script>
