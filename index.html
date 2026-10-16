@@ -26573,7 +26573,7 @@ function skdDedupe(root){
   var busy=false, mo=null;
   function run(){ var r=document.querySelector('#g-content .mk-detail'); if(!r) return; busy=true; try{ skdApply(r); skdDedupe(r); }finally{ busy=false; } }
   function watch(){ var c=document.getElementById('g-content'); if(!c||mo) return;
-    var tm=null; mo=new MutationObserver(function(){ if(busy||tm) return; tm=setTimeout(function(){ tm=null; if(document.querySelector('#g-content .mk-detail')) run(); },300); });
+    var tm=null, last=0; /* 새로 그린 글자를 화면에 그리기 전에 바로 다듬는다(0.3초 동안 원래 문구가 보이던 깜빡임) */ mo=new MutationObserver(function(){ if(busy) return; var now=Date.now(); if(now-last>25){ last=now; if(document.querySelector('#g-content .mk-detail')) run(); mo.takeRecords(); } else if(!tm){ tm=setTimeout(function(){ tm=null; last=Date.now(); if(document.querySelector('#g-content .mk-detail')) run(); if(mo) mo.takeRecords(); },25); } });
     mo.observe(c,{childList:true,subtree:true,characterData:true}); }
   var r0=tfSS3DetailRender; tfSS3DetailRender=function(){ var r=r0.apply(this,arguments); try{ watch(); run(); }catch(e){} return r; };
 })();
@@ -26652,7 +26652,7 @@ function skbApply(root){
   var busy=false, mo=null;
   function run(){ var r=document.getElementById('bt-root'); if(!r) return; busy=true; try{ skbApply(r); }finally{ busy=false; } }
   function watch(){ var c=document.getElementById('g-content'); if(!c||mo) return;
-    var tm=null; mo=new MutationObserver(function(){ if(busy||tm) return; tm=setTimeout(function(){ tm=null; if(document.getElementById('bt-root')) run(); },300); });
+    var tm=null, last=0; /* 새로 그린 글자를 화면에 그리기 전에 바로 다듬는다(0.3초 동안 원래 문구가 보이던 깜빡임) */ mo=new MutationObserver(function(){ if(busy) return; var now=Date.now(); if(now-last>25){ last=now; if(document.getElementById('bt-root')) run(); mo.takeRecords(); } else if(!tm){ tm=setTimeout(function(){ tm=null; last=Date.now(); if(document.getElementById('bt-root')) run(); if(mo) mo.takeRecords(); },25); } });
     mo.observe(c,{childList:true,subtree:true,characterData:true}); }
   /* 백테스트 화면은 여러 함수가 조각조각 그리므로 #g-content 를 처음부터 지켜본다 */
   function boot(){ if(document.getElementById('g-content')){ watch(); run(); } else setTimeout(boot,300); }
@@ -26752,7 +26752,7 @@ function sktApply(root){
   var busy=false, mo=null;
   function run(){ var r=document.querySelector('#g-content .tft-page'); if(!r) return; busy=true; try{ sktApply(r); }finally{ busy=false; } }
   function watch(){ var c=document.getElementById('g-content'); if(!c||mo) return;
-    var tm=null; mo=new MutationObserver(function(){ if(busy||tm) return; tm=setTimeout(function(){ tm=null; if(document.querySelector('#g-content .tft-page')) run(); },300); });
+    var tm=null, last=0; /* 새로 그린 글자를 화면에 그리기 전에 바로 다듬는다(0.3초 동안 원래 문구가 보이던 깜빡임) */ mo=new MutationObserver(function(){ if(busy) return; var now=Date.now(); if(now-last>25){ last=now; if(document.querySelector('#g-content .tft-page')) run(); mo.takeRecords(); } else if(!tm){ tm=setTimeout(function(){ tm=null; last=Date.now(); if(document.querySelector('#g-content .tft-page')) run(); if(mo) mo.takeRecords(); },25); } });
     mo.observe(c,{childList:true,subtree:true,characterData:true}); }
   function boot(){ if(document.getElementById('g-content')){ watch(); run(); } else setTimeout(boot,300); }
   boot();
