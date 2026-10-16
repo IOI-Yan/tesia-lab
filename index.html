@@ -28805,4 +28805,9 @@ document.addEventListener('focusin',function(e){ var w=e.target.closest&&e.targe
       [].push.apply(PEND,L); chkPend(); });
   }).observe(document.documentElement,{childList:true,subtree:true});
 })();
+
+/* 전략 복사 창 "세부 설정": 펼친 내용이 창 아래쪽 보이지 않는 곳에 생겨 열렸는지 모르던 것 → 펼친 뒤 창 안을 부드럽게 내려 펼친 내용이 보이게 */
+(function(){ if(typeof skcMore!=='function') return; var f0=skcMore; skcMore=function(){ var a=document.getElementById('skc-adv'), was=!!(a&&a.hidden); var r=f0.apply(this,arguments);
+  if(was&&a){ var go=function(){ try{ a.scrollIntoView({block:'nearest',behavior:'smooth'}); }catch(e){ try{ a.scrollIntoView(false); }catch(_){} } }; setTimeout(go,a._an?320:30); /* 펼침(0.3초)이 끝난 높이로 */ }
+  return r; }; })();
 </script>
