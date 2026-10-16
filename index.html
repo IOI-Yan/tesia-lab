@@ -27479,7 +27479,7 @@ document.addEventListener('keydown',function(e){ if(e.key==='Escape') tfMyExMenu
 (function(){
   /* 조작 줄: 시장 선택 바로 뒤에 알약 */
   var c0=mk3Controls; mk3Controls=function(){ var h=c0.apply(this,arguments); try{ var chip=tfMyExChip(); if(!chip) return h;
-    var d=document.createElement('div'); d.innerHTML=h; var s=d.querySelector('.skf-sort'), mkt=d.querySelector('#ss3-m-asset'); var anchor=mkt?(mkt.closest('.tfbk-drop')||mkt.parentNode):s;
+    var d=document.createElement('div'); d.innerHTML=h; var s=d.querySelector('.skf-sort'), mkt=d.querySelector('#ss3-m-asset'); var anchor=d.querySelector('.skf-mkt')||(mkt?(mkt.closest('.tfbk-drop')||mkt.parentNode):s); /* 정렬·시장 선택 두 개를 붙여 두고 "내 거래소"는 그 뒤 끝에 */
     if(anchor&&anchor.parentNode){ var x=document.createElement('div'); x.innerHTML=chip; anchor.parentNode.insertBefore(x.firstChild,anchor.nextSibling); return d.innerHTML; } }catch(e){} return h; };
   /* 목록: 켰을 때 안내 한 줄, 없을 때 안내와 전체 보기 */
   var g0=tfSS3GridHtml; tfSS3GridHtml=function(){ var h=g0.apply(this,arguments); try{ if(!tfMyExOn()) return h; var ids=tfMyExIds(), nm=gEsc(tfMyExNames(ids));
