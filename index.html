@@ -26181,7 +26181,7 @@ function skBilling(){
     +'<section class="stg-sec"><header><h2>결제 내역</h2>'+(a.bill.length>3&&!ST.allBill?'<button type="button" class="stg-lk" onclick="ST.allBill=1;stRe()">전체 보기</button>':'')+'</header>'+hist+'</section>';
 }
 function skSubDlg(){ var a=acS(), sub=a.sub||{}, def=a.cards.filter(function(c){ return c.def; })[0]||a.cards[0];
-  stDlg('<button type="button" class="x" aria-label="닫기" onclick="stDlgClose()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display:block"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></button><h3>TETH 구독</h3><div class="stg-card stg-kv">'
+  stDlg('<h3>TETH 구독</h3><div class="stg-card stg-kv">'
     +stRow('요금','<span class="num">'+acUsd(sub.price||AC_CFG.price)+' / 월</span>')
     +stRow('다음 결제일','<span class="num">'+skDate(sub.next||Date.now()+30*864e5)+'</span>')
     +stRow('결제 수단',def?gEsc(def.brand)+' <span class="num">•••• '+gEsc(def.last4)+'</span>':'등록 안 함')
