@@ -28798,8 +28798,8 @@ document.addEventListener('focusin',function(e){ var w=e.target.closest&&e.targe
     cards=cards.filter(function(c){ return !c.closest('.an-card'); });
     if(cards.length){ var now=performance.now(); if(now-t0<900){ var el=now-t0; cards.forEach(function(c){ var s=c.querySelector('.mk-spark'); if(!s) return; var d=(parseFloat(getComputedStyle(s).animationDelay)||0)*1000; s.style.animationDelay=(d-el)+'ms'; }); } else t0=now; }
     /* 같은 전략 안에서 탭(개요·전략 정보)을 오가며 다시 그려질 때는 굴리지 않는다. 상세를 떠났다가 다시 들어오면 다시 한 번 */
-    if(!document.querySelector('.mk-detail')) lastKey='';
-    if(!RM) dets.forEach(function(d){ var h=d.querySelector('h1'), key=(h?h.textContent:'')||location.hash.split('?')[0]; if(key===lastKey) return; lastKey=key; var L=d.querySelectorAll('.mk3-kpis b.num'); /* 화면 아래에 있어 들어오자마자 굴리면 내려가 볼 때는 이미 끝나 있다 → 성과 칸이 화면에 보일 때 굴린다 */
+    if(lastKey&&location.hash.indexOf('#/share/s/'+lastKey)!==0&&!document.querySelector('.mk-detail')) lastKey='';
+    if(!RM) dets.forEach(function(d){ var mm=location.hash.match(/^#\/share\/s\/([^\/?]+)/), key=mm?mm[1]:location.hash.split('?')[0]; /* 전략 하나 = 주소의 전략 id. 탭(/info)·기간이 붙어도 같은 전략 */ if(key===lastKey) return; lastKey=key; var L=d.querySelectorAll('.mk3-kpis b.num'); /* 화면 아래에 있어 들어오자마자 굴리면 내려가 볼 때는 이미 끝나 있다 → 성과 칸이 화면에 보일 때 굴린다 */
       [].push.apply(PEND,L); chkPend(); });
   }).observe(document.documentElement,{childList:true,subtree:true});
 })();
