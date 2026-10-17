@@ -28984,3 +28984,5 @@ function stTwofaSw(on){ var b=document.querySelector('.stg-sw[aria-label="2단�
   }
   return r1.apply(this,arguments);
 }; })();</script>
+<script>/* 대화 입력창: 코드로 글을 채운 뒤(규칙 수정 초안 등) 높이가 한 줄로 남아 첫 줄이 위로 가려지던 것 → 포커스될 때 입력 이벤트를 한 번 보내 높이를 글에 맞추고 맨 위부터 보이게 */
+document.addEventListener('focusin',function(e){ var t=e.target; if(!t||t.id!=='g-in'||!t.value) return; try{ t.dispatchEvent(new Event('input',{bubbles:true})); t.scrollTop=0; }catch(_){} });</script>
