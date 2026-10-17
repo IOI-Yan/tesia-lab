@@ -302,6 +302,31 @@ html body .ab-card .ab-d{font-size:14px!important;line-height:1.55!important;mar
 @media (min-width:761px){html body .ab-card .ab-h{font-size:28px!important;line-height:1.35!important;margin-top:24px!important}html body .ab-card .ab-d{margin-top:14px!important}}
 /* 소개 카드 항목 사이 16 → 10 */
 html body .ab-card .pl-items{gap:10px!important}
+/* 요금 카드 TETH 초대 계정 빛: 설정 카드용 동그란 빛 → 앱 플랜 화면 초대 계정 카드와 똑같은 번짐(청록·초록·파랑 3개가 크기·위치를 바꾸며 움직임) + 유리 반사 */
+html body .pl-card.pl-card.pl-hi::before{content:""!important;position:absolute!important;inset:-40%!important;z-index:-1!important;pointer-events:none!important;background:radial-gradient(var(--b1s) calc(var(--b1s) * .85) at var(--b1x) var(--b1y),rgba(0,254,255,.34),transparent 70%),radial-gradient(var(--b2s) calc(var(--b2s) * .85) at var(--b2x) var(--b2y),rgba(47,185,138,.30),transparent 70%),radial-gradient(var(--b3s) calc(var(--b3s) * .85) at var(--b3x) var(--b3y),rgba(64,128,255,.28),transparent 70%)!important;filter:blur(14px)!important;animation:b1x 13s ease-in-out infinite alternate,b1y 17s ease-in-out infinite alternate,b1s 11s ease-in-out infinite alternate,b2x 19s ease-in-out infinite alternate,b2y 14s ease-in-out infinite alternate,b2s 12s ease-in-out infinite alternate,b3x 16s ease-in-out infinite alternate,b3y 18s ease-in-out infinite alternate,b3s 15s ease-in-out infinite alternate!important}
+html body .pl-card.pl-card.pl-hi::after{content:""!important;position:absolute!important;inset:0!important;border-radius:inherit!important;z-index:-1!important;pointer-events:none!important;background:linear-gradient(155deg,rgba(255,255,255,.10) 0%,rgba(255,255,255,.03) 38%,rgba(255,255,255,0) 62%)!important;-webkit-backdrop-filter:blur(20px) saturate(140%)!important;backdrop-filter:blur(20px) saturate(140%)!important}
+@property --b1s{syntax:"<percentage>";inherits:false;initial-value:26%}
+@property --b1x{syntax:"<percentage>";inherits:false;initial-value:32%}
+@property --b1y{syntax:"<percentage>";inherits:false;initial-value:30%}
+@property --b2s{syntax:"<percentage>";inherits:false;initial-value:30%}
+@property --b2x{syntax:"<percentage>";inherits:false;initial-value:66%}
+@property --b2y{syntax:"<percentage>";inherits:false;initial-value:68%}
+@property --b3s{syntax:"<percentage>";inherits:false;initial-value:38%}
+@property --b3x{syntax:"<percentage>";inherits:false;initial-value:62%}
+@property --b3y{syntax:"<percentage>";inherits:false;initial-value:28%}
+@keyframes b1s{from{--b1s:20%}to{--b1s:34%}}
+@keyframes b1x{from{--b1x:26%}to{--b1x:56%}}
+@keyframes b1y{from{--b1y:26%}to{--b1y:52%}}
+@keyframes b2s{from{--b2s:34%}to{--b2s:22%}}
+@keyframes b2x{from{--b2x:74%}to{--b2x:44%}}
+@keyframes b2y{from{--b2y:76%}to{--b2y:50%}}
+@keyframes b3s{from{--b3s:32%}to{--b3s:46%}}
+@keyframes b3x{from{--b3x:40%}to{--b3x:72%}}
+@keyframes b3y{from{--b3y:58%}to{--b3y:26%}}
+html body .pl-card.pl-card.pl-hi::after{will-change:auto}
+@media (prefers-reduced-motion:reduce){html body .pl-card.pl-card.pl-hi::before{animation:none!important}}
+/* PC 요금 카드: 설명 칸 최소 높이 84 때문에 가격이 아래로 밀려 있던 것 없앰, 간격을 앱 PC 값으로(작은 제목 ↔ 제목 15, 단추 ↔ 포함된 기능 32, 포함된 기능 ↔ 항목 12) */
+@media (min-width:761px){html body .pl-card .pl-d{min-height:0!important}html body .pl-card .pl-h{margin-top:12px!important}html body .pl-card .pl-sub{margin-top:32px!important}html body .pl-card .pl-items{margin-top:-4px!important}html body .pl-card .pl-h{margin-top:11px!important}}
 </style>
 <style id="sk-sub">
 /* DESIGN_PROMPT: 검정 바탕, 제목 400, 흰 알약 하나, 파랑 금지, 카드 반경 26 */
@@ -700,7 +725,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 (function(){ var RM=false; try{ RM=matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
   document.addEventListener('click',function(e){ var s=e.target.closest&&e.target.closest('.ab-faq summary'); if(!s||RM) return; var d=s.parentElement; if(!d.animate) return; e.preventDefault();
     if(d._an){ d._an.cancel(); d._an=null; }
-    var h0=d.offsetHeight, open=!d.open; d.style.overflow="hidden"; setTimeout(function(){ d.style.overflow=""; },320);
+    var h0=d.offsetHeight, open=!d.open; d.style.clipPath="inset(0 -24px 0 -24px)"; setTimeout(function(){ d.style.clipPath=""; },320); /* 위아래만 잘라 꺾쇠가 옆으로 잘리지 않게 */
     if(open){ d.open=true; var h1=d.offsetHeight; d._an=d.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); var p=d.querySelector('p'); if(p&&p.animate) p.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); }
     else { var hs=s.offsetHeight; d._an=d.animate([{height:h0+'px'},{height:hs+'px'}],{duration:240,easing:'cubic-bezier(.4,0,1,1)'}); var an=d._an; var done=function(){ if(d._an===an){ d.open=false; d._an=null; an.cancel(); } }; an.finished.then(done,function(){}); setTimeout(done,260); return; }
     var a2=d._an; a2.finished.then(function(){ if(d._an===a2) d._an=null; },function(){});
