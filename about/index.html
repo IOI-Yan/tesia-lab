@@ -266,6 +266,10 @@ img,svg{display:block}
 /* 자주 묻는 질문 꺾쇠 줄임 */
 .ab-faq summary svg{width:16px!important;height:16px!important}
 .ab-faq summary::after{width:6px!important;height:6px!important}
+/* 소개 카드 안 "전략 만들기"·"거래소 연결하기" 등: 밑줄 글자 → 회색 면 단추(40 알약, #313339, 14/600 흰색, 호버 #3A3D44, 누를 때 98%, 위 24) */
+.ab-card .ab-link{display:inline-flex!important;align-items:center;justify-content:center;height:40px;padding:0 18px;margin-top:24px!important;border-radius:999px;background:#313339;color:#fff!important;font-size:14px!important;font-weight:600!important;text-decoration:none!important;transition:background .15s ease,transform .1s ease}
+.ab-card .ab-link:hover{background:#3A3D44}
+.ab-card .ab-link:active{transform:scale(.98)}
 </style>
 <style id="sk-sub">
 /* DESIGN_PROMPT: 검정 바탕, 제목 400, 흰 알약 하나, 파랑 금지, 카드 반경 26 */
