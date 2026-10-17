@@ -28988,3 +28988,8 @@ function stTwofaSw(on){ var b=document.querySelector('.stg-sw[aria-label="2단�
 document.addEventListener('focusin',function(e){ var t=e.target; if(!t||t.id!=='g-in'||!t.value) return; try{ t.dispatchEvent(new Event('input',{bubbles:true})); t.dispatchEvent(new Event('input',{bubbles:true})); t.scrollTop=0; }catch(_){} /* 두 번: PC는 첫 번에 여러 줄 모양(폭 넓어짐)으로 바뀌므로 넓어진 폭으로 높이를 다시 잰다 */ });</script>
 <script>/* 대화 입력창: 화면 폭이 바뀌면(모바일 ↔ PC) 이전 폭에서 잰 높이가 남아 크게 부풀던 것 → 폭이 바뀔 때마다 높이를 다시 잰다(PC는 여러 줄 모양 반영 위해 두 번) */
 (function(){ var tm=0; window.addEventListener('resize',function(){ clearTimeout(tm); tm=setTimeout(function(){ var t=document.getElementById('g-in'); if(!t) return; var cp=t.closest('.g-composer'); if(cp&&innerWidth<=860) cp.classList.remove('multi'); if(!t.value){ t.style.height=''; if(cp) cp.classList.remove('multi'); return; } try{ t.dispatchEvent(new Event('input',{bubbles:true})); t.dispatchEvent(new Event('input',{bubbles:true})); }catch(_){} },120); }); })();</script>
+<script>/* 대화 입력창: 미리보기 창처럼 화면에 포커스가 없으면 focus 이벤트가 안 와서 436 수정이 안 걸리던 것 → 코드로 글을 넣는 순간(value 대입) 바로 높이를 맞추고 맨 위부터 보이게 */
+(function(){ var g=document.getElementById('g-in'); if(!g) return; var d=Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype,'value'); if(!d||!d.set) return;
+  function fit(){ if(!g.value) return; try{ g.dispatchEvent(new Event('input',{bubbles:true})); g.dispatchEvent(new Event('input',{bubbles:true})); g.scrollTop=0; }catch(_){} }
+  Object.defineProperty(g,'value',{configurable:true,get:function(){ return d.get.call(this); },set:function(v){ d.set.call(this,v); if(v) setTimeout(fit,0); }});
+})();</script>
