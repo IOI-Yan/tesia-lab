@@ -83,6 +83,36 @@ body{font-family:"Pretendard Variable",Pretendard,-apple-system,"Segoe UI",Robot
 .dl-stores{background:transparent}
 .tabs button[aria-selected=true]{background:#303030;box-shadow:inset 0 0 0 2px #9a9a9a}
 @media (max-width:900px){ .dl-h1{font-size:28px} }
+/* ── 앱 다운로드: 서비스 소개(07-01)와 같은 규칙 ── */
+.hd,.hd.lite{background:rgba(16,17,19,.72)!important;-webkit-backdrop-filter:saturate(160%) blur(18px);backdrop-filter:saturate(160%) blur(18px);border-bottom:1px solid rgba(255,255,255,.06);box-shadow:none!important;color:#fff!important;height:56px!important}
+@media (min-width:761px){.hd{height:64px!important}}
+html body .hd a.cta{height:32px!important;padding:0 16px!important;background:#00FEFF!important;color:#101113!important;font-size:13px!important;font-weight:600!important;border-radius:999px!important}
+html body .hd a.cta:hover{background:#5CFEFF!important}
+@media (min-width:761px){html body .hd a.cta{height:30px!important}}
+/* 머리줄 메뉴 글자 16 → 14/500 (서비스 소개도 같게) */
+html body .hd nav a{font-size:14px!important;font-weight:500!important;padding:8px 12px!important}
+.pl-lb{font-size:14px!important;font-weight:600!important;color:#00FEFF!important}
+.dl-h1{font-weight:700!important;line-height:1.3!important}
+.dl-d{color:#CFD2D6!important;font-size:15px!important}
+.dl-free,.sub-help{font-size:13px!important;color:#9EA3AD!important}
+@media (min-width:761px){.pl-lb{font-size:18px!important}.dl-d{font-size:17px!important}}
+/* 스토어 상자: 투명 + 16% → #17181B + 6% 모서리 16, 줄 구분 6%, 이름 16/600 흰색, 설명 14 #9EA3AD, "링크로 열기"는 회색 면 단추 */
+.dl-stores{background:#17181B!important;border:1px solid rgba(255,255,255,.06)!important;border-radius:16px!important}
+.dl-stores .store+.store{border-top-color:rgba(255,255,255,.06)!important}
+.dl-stores b{font-weight:600!important}
+.dl-stores .pc,.dl-stores .mo{font-size:14px!important;color:#9EA3AD!important}
+.dl-stores a.link{display:inline-flex!important;align-items:center;height:36px;padding:0 14px;margin-top:12px;border-radius:999px;background:#313339;color:#fff!important;font-size:13px!important;font-weight:600!important;text-decoration:none!important;transition:background .15s ease}
+.dl-stores a.link:hover{background:#3A3D44}
+/* 웹에서 바로 시작하기: 메인색 44 단추 */
+.dl-cta{height:44px!important;padding:0 20px!important;background:#00FEFF!important;color:#101113!important;font-size:15px!important;font-weight:600!important}
+.dl-cta:hover{background:#5CFEFF!important}
+/* 화면 미리보기 위 대화·검증·실행 세그먼트: 다른 세그먼트와 같게(#1E2024 바탕, 고른 칸 #313339) */
+.tabs{background:#1E2024!important;border:0!important}
+.tabs button{color:#9EA3AD!important;font-weight:500!important}
+.tabs button.on,.tabs button[aria-selected=true]{background:#313339!important;color:#fff!important;border:0!important;box-shadow:none!important}
+.dev{border-color:rgba(255,255,255,.08)!important}
+.visual p{font-size:15px!important;color:#9EA3AD!important}
+.dl-stores a.link{justify-self:start!important;width:auto!important;margin-top:-4px!important}
 </style>
 </head>
 <body>
