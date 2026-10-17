@@ -327,6 +327,8 @@ html body .pl-card.pl-card.pl-hi::after{will-change:auto}
 @media (prefers-reduced-motion:reduce){html body .pl-card.pl-card.pl-hi::before{animation:none!important}}
 /* PC 요금 카드: 설명 칸 최소 높이 84 때문에 가격이 아래로 밀려 있던 것 없앰, 간격을 앱 PC 값으로(작은 제목 ↔ 제목 15, 단추 ↔ 포함된 기능 32, 포함된 기능 ↔ 항목 12) */
 @media (min-width:761px){html body .pl-card .pl-d{min-height:0!important}html body .pl-card .pl-h{margin-top:12px!important}html body .pl-card .pl-sub{margin-top:32px!important}html body .pl-card .pl-items{margin-top:-4px!important}html body .pl-card .pl-h{margin-top:11px!important}}
+/* 요금 카드 유리 반사 층에 예전 빛 층의 흐림·움직임이 남아 네모 경계가 비치던 것 → 흐림·움직임 없앰 */
+html body .pl-card.pl-card.pl-hi::after{filter:none!important;animation:none!important;transform:none!important;will-change:auto!important}
 </style>
 <style id="sk-sub">
 /* DESIGN_PROMPT: 검정 바탕, 제목 400, 흰 알약 하나, 파랑 금지, 카드 반경 26 */
