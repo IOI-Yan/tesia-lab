@@ -28886,3 +28886,17 @@ document.addEventListener('focusin',function(e){ var w=e.target.closest&&e.targe
 /* 2단계 인증 스위치: 화면을 다시 그리지 않고 제자리에서 켜고 꺼서 움직임이 보이게 */
 function stTwofaSw(on){ var b=document.querySelector('.stg-sw[aria-label="2단계 인증"]'); if(b) b.setAttribute('aria-checked',String(!!on)); else stRe(); }
 </script>
+<style>/* PC 설정 메뉴 이동: 화면 전체를 다시 그려 띡 바뀌던 것 → 사이드바는 그대로, 본문만 0.22초 살짝 떠오르며 바뀜 */@keyframes stMainIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}html body.st-full .stg-main.st-swap{animation:stMainIn .22s cubic-bezier(.2,.7,.2,1) both}</style>
+<script>/* PC 설정 메뉴 이동: 이미 설정 화면이면 본문만 바꾼다(사이드바, 숨김 띠 그대로) */
+(function(){ var r1=stRoute; stRoute=function(h){
+  var m=h.match(/^#\/settings(?:\/([a-z]+))?$/), root=document.getElementById('st-root'), main=document.getElementById('st-main');
+  if(m&&m[1]&&root&&main&&G.mode==='tfset'&&window.innerWidth>900&&S.user&&window.TF_STATE_READY&&ST_TABS.some(function(x){ return x[0]===m[1]; })){
+    ST.mList=false; ST.tab=m[1]; ST.edit=null;
+    root.querySelectorAll('.stg-nav .stg-ni').forEach(function(b){ var on=(b.getAttribute('onclick')||'')==="stGo('"+m[1]+"')"; b.classList.toggle('on',on); if(on) b.setAttribute('aria-current','page'); else b.removeAttribute('aria-current'); });
+    root.classList.remove('m-list'); root.classList.add('m-detail');
+    main.innerHTML=stBody(); main.classList.remove('st-swap'); void main.offsetWidth; main.classList.add('st-swap');
+    try{ $('g-scroll').scrollTop=0; }catch(e){}
+    return true;
+  }
+  return r1.apply(this,arguments);
+}; })();</script>
