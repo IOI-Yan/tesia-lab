@@ -291,6 +291,11 @@ html body .ab-hero .ab-d{font-size:15px!important}
 /* 소개 카드 제목 묶음 간격: 묶음 이름 ↔ 제목 15 → 8, 제목 ↔ 설명 16 → 8 */
 html body .ab-card .ab-h{margin-top:8px!important}
 html body .ab-card .ab-d{margin-top:8px!important}
+/* 자주 묻는 질문 답: 15 → 모바일 14 · PC 15, 줄 높이 1.6, 질문 ↔ 답 4 */
+html body .ab-faq p{font-size:14px!important;line-height:1.6!important;margin-top:-4px!important}
+@media (min-width:761px){html body .ab-faq p{font-size:15px!important}}
+.ab-faq details{overflow:hidden}
+.ab-faq summary::after{transition:transform .25s cubic-bezier(.2,.8,.3,1),margin .25s cubic-bezier(.2,.8,.3,1)!important}
 </style>
 <style id="sk-sub">
 /* DESIGN_PROMPT: 검정 바탕, 제목 400, 흰 알약 하나, 파랑 금지, 카드 반경 26 */
@@ -683,6 +688,17 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 (function(){ var RM=false; try{ RM=matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
   function chk(){ var H=window.innerHeight||800; [].forEach.call(document.querySelectorAll('.ab .rv:not(.in)'),function(e){ if(RM||e.getBoundingClientRect().top<H*0.88) e.classList.add('in'); }); }
   addEventListener('scroll',chk,{passive:true}); document.addEventListener('scroll',chk,{capture:true,passive:true}); addEventListener('resize',chk); addEventListener('load',chk); setTimeout(chk,100); chk(); })();
+</script>
+<script>
+/* 자주 묻는 질문 펼치기: 툭 열리고 닫히던 것 → 펼치기 규칙(G26)처럼 높이가 스르륵(열 때 0.3초, 닫을 때 0.24초), 답은 살짝 내려오며 나타남 */
+(function(){ var RM=false; try{ RM=matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
+  document.addEventListener('click',function(e){ var s=e.target.closest&&e.target.closest('.ab-faq summary'); if(!s||RM) return; var d=s.parentElement; if(!d.animate) return; e.preventDefault();
+    if(d._an){ d._an.cancel(); d._an=null; }
+    var h0=d.offsetHeight, open=!d.open;
+    if(open){ d.open=true; var h1=d.offsetHeight; d._an=d.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); var p=d.querySelector('p'); if(p&&p.animate) p.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); }
+    else { var hs=s.offsetHeight; d._an=d.animate([{height:h0+'px'},{height:hs+'px'}],{duration:240,easing:'cubic-bezier(.4,0,1,1)'}); var an=d._an; var done=function(){ if(d._an===an){ d.open=false; d._an=null; an.cancel(); } }; an.finished.then(done,function(){}); setTimeout(done,260); return; }
+    var a2=d._an; a2.finished.then(function(){ if(d._an===a2) d._an=null; },function(){});
+  },true); })();
 </script>
 </body>
 </html>
