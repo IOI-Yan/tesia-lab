@@ -36,7 +36,7 @@ html body .nfz-page .nfz-cur{background:#17181B!important;border:0!important;bor
 html body .nfz-page .nfz-sh h2{font-size:20px!important;font-weight:700!important;letter-spacing:-.2px!important}
 html body .nfz-page .nfz-sh .s{font-size:14px!important;color:#9EA3AD!important;margin-top:6px!important}
 /* 상단 메뉴 단추 뒤: 92% 단색 띠 → 위는 바탕색, 아래로 갈수록 투명해지는 그라데이션(흐림도 같이 옅어짐) */
-body:has(.nfz-page):not(.g-inchat) #g-hamburger::before{height:76px!important;background:linear-gradient(to bottom,rgba(16,17,19,.72) 0%,rgba(16,17,19,.4) 100%)!important;-webkit-backdrop-filter:blur(16px)!important;backdrop-filter:blur(16px)!important;-webkit-mask-image:linear-gradient(to bottom,#000 60%,transparent);mask-image:linear-gradient(to bottom,#000 60%,transparent)}
+body:has(.nfz-page):not(.g-inchat) #g-hamburger::before{height:60px!important;background:rgba(16,17,19,.72)!important;-webkit-backdrop-filter:blur(16px)!important;backdrop-filter:blur(16px)!important;-webkit-mask-image:none!important;mask-image:none!important}
 }
 /* 인사이트 주제 칩: PC·태블릿도 모바일과 같이 테두리 → 회색 면 `#25272C`, 36, 14/500, 호버 #313339 */html body .nfz-page .nfz-rail .tp{height:36px!important;padding:0 14px!important;border:0!important;background:#25272C!important;color:#CFD2D6!important;font-size:14px!important;font-weight:500!important;display:inline-flex!important;align-items:center!important;transition:background .2s ease}html body .nfz-page .nfz-rail .tp:hover,html body .nfz-page .nfz-rail .tp.on{background:#313339!important;color:#fff!important}
 /* 06 인사이트 목록(PC): 모바일과 같은 규칙 — 제목 굵게, 본문 #9EA3AD, 메타 13 #7C8089, 어중간한 크기 정리, 큐레이터 상자 면 */@media (min-width:901px){
