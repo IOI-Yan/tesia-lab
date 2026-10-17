@@ -148,6 +148,9 @@ html body .dl-acts .dl-web .dl-cta:hover{background:transparent!important;color:
 html body .dl-acts .dl-web .dl-cta svg{transition:transform .15s ease}
 html body .dl-acts .dl-web .dl-cta:hover svg{transform:translateX(2px)}
 html body .dl-acts .dl-free{font-size:13px!important}
+/* 휴대폰 화면: 그림 위 빈 띠(34) 없앰 — 앱 머리줄이 바로 화면 맨 위, 다이내믹 아일랜드는 그 위에 겹침. 홈 막대는 그림 아래 바탕에 */
+.dev img{padding-top:0!important;display:block;height:100%!important;object-fit:cover;object-position:top}
+.dev .scr::before{top:8px!important;height:22px!important}
 </style>
 </head>
 <body>
@@ -173,9 +176,9 @@ html body .dl-acts .dl-free{font-size:13px!important}
   <div class="visual">
     <div class="tabs" role="tablist" id="tabs"><button role="tab" aria-selected="true">대화</button><button role="tab" aria-selected="false">검증</button><button role="tab" aria-selected="false">실행</button></div>
     <div class="stage" id="stage">
-      <div class="slide on" role="tabpanel"><div class="dev"><div class="scr"><img src="../assets/shots/v2/dl-chat.webp" width="780" height="1688" alt="TETH 모바일 대화 화면, 전략 카드"></div></div><p>말하면 진입, 청산, 손절 조건이 정해진 전략 카드로 정리합니다.</p></div>
-      <div class="slide" role="tabpanel"><div class="dev"><div class="scr"><img src="../assets/shots/v2/dl-report.webp" width="780" height="1688" loading="lazy" alt="TETH 모바일 백테스트 결과 화면"></div></div><p>실제 시장 데이터로 돌린 결과를 수익률과 내려간 폭으로 봅니다.</p></div>
-      <div class="slide" role="tabpanel"><div class="dev"><div class="scr"><img src="../assets/shots/v2/dl-live.webp" width="780" height="1688" loading="lazy" alt="TETH 모바일 터미널 판단 패널"></div></div><p>보유 종목과 TETH의 생각, 판단 기록을 24시간 남깁니다.</p></div>
+      <div class="slide on" role="tabpanel"><div class="dev"><div class="scr"><img src="../assets/shots/v2/dl-chat.png" width="780" height="1624" alt="TETH 모바일 대화 화면, 전략 카드"></div></div><p>말하면 진입, 청산, 손절 조건이 정해진 전략 카드로 정리합니다.</p></div>
+      <div class="slide" role="tabpanel"><div class="dev"><div class="scr"><img src="../assets/shots/v2/dl-report.png" width="780" height="1624" loading="lazy" alt="TETH 모바일 백테스트 결과 화면"></div></div><p>실제 시장 데이터로 돌린 결과를 수익률과 내려간 폭으로 봅니다.</p></div>
+      <div class="slide" role="tabpanel"><div class="dev"><div class="scr"><img src="../assets/shots/v2/dl-live.png" width="780" height="1624" loading="lazy" alt="TETH 모바일 터미널 판단 패널"></div></div><p>보유 종목과 TETH의 생각, 판단 기록을 24시간 남깁니다.</p></div>
     </div>
   </div>
 </main>
