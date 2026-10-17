@@ -27322,10 +27322,10 @@ function tbCopyBlock(c2){ var s2=tfSSFind(c2.nick); if(!s2||!s2.r) return '';
   var now=null; try{ var nt=mkChatNow(s2,s2.r); if(nt) now={t:nt}; }catch(e){} if(!now) now=msgs.filter(function(m){ return m.k==='now'; })[0];
   var kind=s2.kind==='agent'?'AI 판단':s2.kind==='mix'?'혼합 전략':'차트 규칙';
   return '<div class="tm-status tb st-live">'
-    +'<p class="tb-k">'+gEsc(mkTitle(s2))+'<span>'+kind+', 복사한 전략</span></p>'
+    /* 제목 위 회색 줄 두 개가 복잡해 전략 이름은 아래 카드 첫 줄로(사용자 결정) */+''
     +'<h3 class="tb-t">'+tbTitle(s2)+'</h3>'
     +'<p class="tb-d">'+tbIcon(id)+'<span>'+gEsc(ex)+'에서 운용 중, '+nx+'</span></p>'
-    +'<div class="tb-list">'+tbHoldRows(s2)+'</div>'
+    +'<div class="tb-list"><div class="tb-r"><span>복사한 전략</span><b>'+gEsc(mkTitle(s2))+'</b></div>'+tbHoldRows(s2)+'</div>'
     +'</div>'
     +tbThought(now&&now.t)
     +tbFeed(msgs)
