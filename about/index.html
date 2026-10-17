@@ -252,6 +252,20 @@ img,svg{display:block}
 @media (min-width:761px){.hd{height:64px!important}.ab-hero{padding-top:104px!important}}
 /* 첫 화면 두 단추 사이 24 → 8 */
 .ab-hero .ab-acts{gap:8px!important}
+/* 요금 카드 글자를 앱 플랜 카드와 똑같이: 작은 제목 13/600, 설명 14 #CFD2D6, $ 16, 가격 36/700, / 월 #CFD2D6, 포함된 기능 14/600 흰색(위 26), 항목 14 #CFD2D6(사이 14, 아이콘↔글자 16), 아래 안내 12 #8B9096, 모서리 19 */
+.pl-card.pl-card,.pl-card.pl-card.pl-hi{border-radius:19px!important}
+.pl-card .pl-lb{font-size:13px!important}
+.pl-card .pl-d{color:#CFD2D6!important}
+.pl-card .pl-price i{font-size:16px!important;margin-top:6px!important}
+.pl-card .pl-price .pl-grad,.pl-card .pl-price>span{font-weight:700!important}
+.pl-card .pl-price small{color:#CFD2D6!important}
+.pl-card .pl-sub{font-size:14px!important;font-weight:600!important;color:#fff!important;margin-top:26px!important}
+.pl-card .pl-items{gap:14px!important}
+.pl-card .pl-items li{font-size:14px!important;color:#CFD2D6!important;column-gap:16px!important}
+.pl-card .pl-foot{font-size:12px!important;color:#8B9096!important}
+/* 자주 묻는 질문 꺾쇠 줄임 */
+.ab-faq summary svg{width:16px!important;height:16px!important}
+.ab-faq summary::after{width:6px!important;height:6px!important}
 </style>
 <style id="sk-sub">
 /* DESIGN_PROMPT: 검정 바탕, 제목 400, 흰 알약 하나, 파랑 금지, 카드 반경 26 */
