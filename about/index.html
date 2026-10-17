@@ -294,7 +294,6 @@ html body .ab-card .ab-d{margin-top:8px!important}
 /* 자주 묻는 질문 답: 15 → 모바일 14 · PC 15, 줄 높이 1.6, 질문 ↔ 답 4 */
 html body .ab-faq p{font-size:14px!important;line-height:1.6!important;margin-top:-4px!important}
 @media (min-width:761px){html body .ab-faq p{font-size:15px!important}}
-.ab-faq details{overflow:hidden}
 .ab-faq summary::after{transition:transform .25s cubic-bezier(.2,.8,.3,1),margin .25s cubic-bezier(.2,.8,.3,1)!important}
 /* 소개 카드 제목 묶음을 요금 카드와 같은 크기·간격으로: 묶음 이름 13/600(줄 높이 1.6), 제목 22/700(줄 높이 1.25, 위 18), 설명 14 #CFD2D6(줄 높이 1.55, 위 10) */
 html body .ab-card .pl-lb{font-size:13px!important;line-height:1.6!important}
@@ -701,7 +700,7 @@ document.querySelectorAll('.rv').forEach(function(el){ io.observe(el); });
 (function(){ var RM=false; try{ RM=matchMedia('(prefers-reduced-motion: reduce)').matches; }catch(e){}
   document.addEventListener('click',function(e){ var s=e.target.closest&&e.target.closest('.ab-faq summary'); if(!s||RM) return; var d=s.parentElement; if(!d.animate) return; e.preventDefault();
     if(d._an){ d._an.cancel(); d._an=null; }
-    var h0=d.offsetHeight, open=!d.open;
+    var h0=d.offsetHeight, open=!d.open; d.style.overflow="hidden"; setTimeout(function(){ d.style.overflow=""; },320);
     if(open){ d.open=true; var h1=d.offsetHeight; d._an=d.animate([{height:h0+'px'},{height:h1+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); var p=d.querySelector('p'); if(p&&p.animate) p.animate([{opacity:0,transform:'translateY(-6px)'},{opacity:1,transform:'none'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); }
     else { var hs=s.offsetHeight; d._an=d.animate([{height:h0+'px'},{height:hs+'px'}],{duration:240,easing:'cubic-bezier(.4,0,1,1)'}); var an=d._an; var done=function(){ if(d._an===an){ d.open=false; d._an=null; an.cancel(); } }; an.finished.then(done,function(){}); setTimeout(done,260); return; }
     var a2=d._an; a2.finished.then(function(){ if(d._an===a2) d._an=null; },function(){});
