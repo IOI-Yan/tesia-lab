@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>TETH 컴포넌트</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<style>
+/* 값은 DESIGN_RULES.md · design-tokens.json 과 같다 */
+:root{
+  --bg:#101113;--card:#17181B;--card-h:#1C1E22;--popup:#1B1C1F;--field:#25272C;--gray:#313339;--gray-h:#3A3D44;--disabled:#2B2D32;
+  --line:rgba(255,255,255,.06);--line2:rgba(255,255,255,.1);
+  --pri:#00FEFF;--pri-h:#5CFEFF;--on-pri:#101113;--deep:#0B4851;
+  --t1:#FFFFFF;--t2:#CFD2D6;--t3:#9EA3AD;--t4:#7C8089;
+  --profit:#2FB98A;--loss:#F0566A;--danger:#D94458;--pending:#EBCB8B;
+}
+*{box-sizing:border-box}
+html,body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--t1);font-family:Pretendard,"Pretendard Variable",Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* 페이지 틀 */
+.top{position:sticky;top:0;z-index:20;background:rgba(16,17,19,.5);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--line)}
+.top .in{max-width:1080px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;gap:16px}
+.top b{font-size:16px;font-weight:700;white-space:nowrap;flex:none}
+.top nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
+.top nav a{flex:none;color:var(--t3);text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;transition:background .2s,color .2s}
+.top nav a:hover{background:rgba(255,255,255,.07);color:var(--t1)}
+main{max-width:1080px;margin:0 auto;padding:48px 16px 120px}
+.hero h1{font-size:28px;font-weight:700;letter-spacing:-.4px;margin:0 0 8px}
+.hero p{font-size:15px;color:var(--t3);margin:0;line-height:1.6}
+@media(min-width:901px){.hero h1{font-size:32px}.hero p{font-size:16px}}
+section{margin-top:64px;scroll-margin-top:72px}
+section>h2{font-size:20px;font-weight:700;margin:0 0 6px;letter-spacing:-.2px}
+@media(min-width:901px){section>h2{font-size:24px}}
+section>.lead{font-size:14px;color:var(--t3);margin:0 0 20px;line-height:1.6}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:24px 20px}
+.panel+.panel{margin-top:12px}
+.ph{font-size:17px;font-weight:700;margin:0 0 4px}
+.pv{font-size:13px;color:var(--t4);margin:0 0 18px;line-height:1.6}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.row+.row{margin-top:14px}
+.lbl{width:100%;font-size:13px;color:var(--t4);margin:6px 0 -4px}
+code{font-family:Geist,ui-monospace,monospace;font-size:12px;color:var(--t2);background:var(--field);padding:2px 6px;border-radius:6px}
+
+/* 색 견본 */
+.sw{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.sw div{border-radius:12px;overflow:hidden;border:1px solid var(--line)}
+.sw i{display:block;height:64px}
+.sw span{display:block;padding:10px 12px;font-size:13px;color:var(--t2);background:var(--card)}
+.sw span em{display:block;font-style:normal;font-size:12px;color:var(--t4);margin-top:2px;font-family:Geist,monospace}
+
+/* 글자 */
+.ty{display:grid;gap:14px}
+.ty div{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ty div:last-child{border:0;padding-bottom:0}
+.ty small{width:150px;flex:none;font-size:13px;color:var(--t4)}
+
+/* 단추 */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:999px;font-weight:600;cursor:pointer;white-space:nowrap;transition:background .2s ease,transform .12s ease}
+.btn:active{transform:scale(.94)}
+.btn.sm{height:32px;padding:0 14px;font-size:13px}
+.btn.md{height:36px;padding:0 16px;font-size:14px}
+.btn.lg{height:44px;padding:0 20px;font-size:15px}
+.btn.pri{background:var(--pri);color:var(--on-pri)}.btn.pri:hover{background:var(--pri-h)}
+.btn.gray{background:var(--gray);color:#fff}.btn.gray:hover{background:var(--gray-h)}
+.btn.dg{background:var(--danger);color:#fff}.btn.dg:hover{background:#E35A6C}
+.btn:disabled{background:var(--disabled);color:var(--t4);cursor:not-allowed;transform:none}
+.link{background:none;border:0;padding:0;color:var(--t2);font-size:14px;text-decoration:underline;text-underline-offset:4px;cursor:pointer;transition:color .2s}
+.link:hover{color:#E3E5EA}
+.send{width:40px;height:40px;border-radius:50%;border:0;background:var(--pri);color:var(--on-pri);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,transform .12s}
+.send:hover{background:var(--pri-h)}.send:active{transform:scale(.94)}.send:disabled{background:var(--disabled);color:var(--t4)}
+.ib{width:36px;height:36px;border-radius:50%;border:0;background:var(--field);color:var(--t2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.ib:hover{background:var(--gray);color:#fff}
+
+/* 입력칸 */
+.fld{display:grid;gap:8px;width:100%;max-width:360px}
+.fld>span{font-size:14px;color:var(--t2)}
+.in{width:100%;height:44px;padding:0 14px;border-radius:12px;background:var(--field);border:1px solid var(--line);color:#fff;font-size:15px;outline:0;transition:border-color .2s}
+.in::placeholder{color:var(--t4)}
+.in:focus,.in.fc{border-color:var(--pri)}
+.in.err{border-color:var(--loss)}
+.fld .er{font-size:13px;color:var(--loss)}
+.at{position:relative}.at b{position:absolute;left:14px;top:50%;transform:translateY(-50%);font-weight:400;color:var(--t4);font-size:15px}.at .in{padding-left:30px}
+textarea.in{height:auto;min-height:84px;padding:12px 14px;line-height:1.5;resize:none}
+
+/* 스위치 */
+.sw2{position:relative;width:44px;height:26px;border-radius:999px;border:0;background:var(--gray);cursor:pointer;transition:background-color .25s ease;flex:none}
+.sw2 i{position:absolute;left:5px;top:4px;width:18px;height:18px;border-radius:50%;background:#9EA3AD;transition:transform .28s cubic-bezier(.34,1.4,.64,1),background-color .25s ease}
+.sw2[aria-checked=true]{background:var(--pri)}
+.sw2[aria-checked=true] i{left:4px;transform:translateX(18px);background:var(--deep);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.sw2:active i{transform:scale(.9)}.sw2[aria-checked=true]:active i{transform:translateX(18px) scale(.9)}
+
+/* 칩·배지·태그 */
+.chip{height:36px;padding:0 14px;border:0;border-radius:999px;background:var(--field);color:var(--t2);font-size:14px;font-weight:500;display:inline-flex;align-items:center;cursor:pointer;transition:background .2s,color .2s}
+.chip:hover,.chip.on{background:var(--gray);color:#fff}
+.badge{display:inline-flex;align-items:center;height:27px;padding:0 10px;border-radius:999px;background:var(--gray);color:#fff;font-size:12px;font-weight:600}
+.tag{display:inline-flex;align-items:center;height:24px;padding:0 9px;border-radius:999px;font-size:12px;font-weight:500}
+.tag.r{background:rgba(240,86,106,.12);color:#D9707D}.tag.b{background:rgba(102,150,240,.12);color:#6FA1F2}.tag.o{background:rgba(230,150,90,.12);color:#D39A6B}.tag.g{background:rgba(47,185,138,.12);color:#62B394}
+
+/* 뒤로 단추 */
+.back{display:inline-flex;align-items:center;gap:4px;height:36px;padding:0 12px 0 6px;border:0;border-radius:999px;background:none;color:#fff;font-size:16px;font-weight:600;cursor:pointer;transition:background .2s}
+.back:hover{background:rgba(255,255,255,.07)}
+
+/* 세그먼트 */
+.seg{position:relative;display:inline-flex;padding:3px;border-radius:999px;background:var(--field)}
+.seg button{position:relative;z-index:1;height:30px;padding:0 14px;border:0;background:none;color:var(--t3);font-size:14px;font-weight:500;border-radius:999px;cursor:pointer;transition:color .2s}
+.seg button.on{color:#fff}
+.seg .ind{position:absolute;top:3px;bottom:3px;left:0;border-radius:999px;background:var(--gray);transition:transform .26s cubic-bezier(.2,.8,.3,1),width .26s cubic-bezier(.2,.8,.3,1)}
+
+/* 고르기 목록 */
+.dd{position:relative;display:inline-block}
+.dd>button{display:inline-flex;align-items:center;gap:6px;height:36px;padding:0 12px 0 14px;border:0;border-radius:999px;background:var(--field);color:#fff;font-size:14px;font-weight:600;cursor:pointer}
+.dd>button svg{width:16px;height:16px;transition:transform .2s}
+.dd.open>button svg{transform:rotate(180deg)}
+.dd ul{position:absolute;left:0;top:42px;z-index:5;min-width:160px;margin:0;padding:6px;list-style:none;background:var(--popup);border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,.4);opacity:0;transform:translateY(-4px);pointer-events:none;transition:opacity .15s,transform .15s}
+.dd.open ul{opacity:1;transform:none;pointer-events:auto}
+.dd li{display:flex;align-items:center;justify-content:space-between;height:36px;padding:0 10px;border-radius:8px;font-size:14px;font-weight:500;color:var(--t2);cursor:pointer}
+.dd li:hover{background:var(--gray)}
+.dd li.on{color:#fff;font-weight:600}.dd li.on svg{color:var(--pri);width:16px;height:16px}
+
+/* 툴팁 */
+.tip{position:relative;display:inline-flex}
+.tip span{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translate(-50%,4px);white-space:nowrap;background:var(--gray);color:#fff;font-size:13px;padding:6px 10px;border-radius:8px;opacity:0;pointer-events:none;transition:opacity .15s,transform .15s}
+.tip:hover span{opacity:1;transform:translate(-50%,0)}
+
+/* 카드·설정 줄 */
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:0 20px;max-width:520px;width:100%}
+.sr{display:flex;align-items:center;gap:16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.sr:last-child{border:0}
+.sr .k{flex:1;min-width:0}.sr .k b{display:block;font-size:16px;font-weight:500}.sr .k span{display:block;font-size:13px;color:var(--t3);margin-top:2px}
+@media(min-width:901px){.sr .k span{font-size:14px}}
+.lc{max-width:340px;cursor:pointer}
+.lc .art{position:relative;aspect-ratio:1.78/1;border-radius:16px;overflow:hidden;background:#131519;margin-bottom:13px}
+.lc .art svg{position:absolute;inset:0;width:100%;height:100%;transition:transform .5s cubic-bezier(.2,.7,.2,1),filter .5s ease}
+.lc .art .badge{position:absolute;left:12px;top:12px;z-index:1}
+.lc .mt{font-size:13px;color:var(--t4);margin-bottom:6px}
+.lc h4{margin:0 0 8px;font-size:17px;font-weight:600;line-height:1.4;text-decoration:underline;text-decoration-color:transparent;text-underline-offset:4px;transition:text-decoration-color .25s}
+.lc p{margin:0;font-size:14px;color:var(--t3);line-height:1.6}
+@media(hover:hover){.lc:hover h4{text-decoration-color:rgba(255,255,255,.85)}.lc:hover .art svg{transform:scale(1.04);filter:brightness(1.12)}}
+.pnl{font-family:Geist,Pretendard,sans-serif;font-size:20px;font-weight:700}
+
+/* 팝업 */
+.dlg{width:100%;max-width:400px;background:var(--popup);border-radius:22px;padding:24px;box-shadow:0 16px 48px rgba(0,0,0,.45)}
+.dlg .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.dlg h3{margin:0;font-size:20px;font-weight:700}
+.dlg .x{width:32px;height:32px;border-radius:50%;border:0;background:none;color:var(--t2);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s}
+.dlg .x:hover{background:#2E3036}
+.dlg p{margin:0 0 20px;font-size:15px;color:var(--t3);line-height:1.6}
+.dlg .ac{display:flex;gap:8px}.dlg .ac .btn{flex:1}
+
+/* 머리줄 예시 */
+.hdemo{position:relative;height:220px;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.hdemo .sc{position:absolute;inset:0;overflow-y:auto;padding:70px 20px 20px;scrollbar-width:none}
+.hdemo .sc div{height:56px;border-radius:12px;margin-bottom:10px;background:linear-gradient(90deg,#2a3550,#1f5a5a)}
+.hdemo .bar{position:absolute;left:0;right:0;top:0;height:56px;display:flex;align-items:center;padding:0 16px;gap:10px;background:rgba(16,17,19,.5);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);font-weight:600;font-size:15px}
+
+/* 펼치기 */
+details.ex{background:var(--card);border:1px solid var(--line);border-radius:16px;max-width:520px;overflow:hidden}
+details.ex summary{list-style:none;display:flex;align-items:center;justify-content:space-between;padding:16px 20px;cursor:pointer;font-size:16px;font-weight:500}
+details.ex summary::-webkit-details-marker{display:none}
+details.ex summary svg{transition:transform .3s cubic-bezier(.2,.8,.3,1);color:var(--t3)}
+details.ex[open] summary svg{transform:rotate(180deg)}
+details.ex .bd{padding:0 20px 18px;font-size:14px;color:var(--t3);line-height:1.6}
+
+/* 스르륵 나타나기 */
+.tin{font-size:22px;font-weight:700}
+.tin span{display:inline-block;opacity:0;filter:blur(12px);transform:translateY(6px);animation:tin .8s cubic-bezier(.2,.7,.2,1) forwards}
+@keyframes tin{to{opacity:1;filter:none;transform:none}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.tin span{opacity:1;filter:none;transform:none}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-share" viewBox="0 0 24 24"><path d="M12 2v13"/><path d="m16 6-4-4-4 4"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/></symbol>
+</svg>
+
+<div class="top"><div class="in"><b>TETH 컴포넌트</b>
+  <nav><a href="#color">색</a><a href="#type">글자</a><a href="#button">단추</a><a href="#input">입력칸</a><a href="#switch">스위치</a><a href="#chip">칩·배지</a><a href="#nav">이동</a><a href="#card">카드</a><a href="#popup">팝업</a><a href="#motion">움직임</a></nav>
+</div></div>
+
+<main>
+  <div class="hero">
+    <h1>TETH 컴포넌트</h1>
+    <p>앱·웹을 새로 만들 때 기준이 되는 공통 부품입니다. 값은 <code>DESIGN_RULES.md</code> · <code>design-tokens.json</code> 과 같습니다.<br>마우스를 올리거나 눌러서 상태와 움직임을 확인할 수 있습니다.</p>
+  </div>
+
+  <section id="color">
+    <h2>색</h2><p class="lead">바탕은 어두운 쪽부터 한 단계씩 밝아집니다. 그라데이션 바탕은 쓰지 않습니다.</p>
+    <div class="panel"><p class="ph">바탕 단계</p><p class="pv">페이지 → 카드 → 팝업 → 칸 → 회색 단추</p>
+      <div class="sw">
+        <div><i style="background:#101113"></i><span>페이지 바탕<em>#101113</em></span></div>
+        <div><i style="background:#17181B"></i><span>카드<em>#17181B</em></span></div>
+        <div><i style="background:#1C1E22"></i><span>카드 호버<em>#1C1E22</em></span></div>
+        <div><i style="background:#1B1C1F"></i><span>팝업<em>#1B1C1F</em></span></div>
+        <div><i style="background:#25272C"></i><span>칸<em>#25272C</em></span></div>
+        <div><i style="background:#313339"></i><span>회색 단추<em>#313339</em></span></div>
+        <div><i style="background:#3A3D44"></i><span>회색 단추 호버<em>#3A3D44</em></span></div>
+      </div></div>
+    <div class="panel"><p class="ph">메인색</p><p class="pv">모든 단추 호버 = 한 단계 밝게</p>
+      <div class="sw">
+        <div><i style="background:#00FEFF"></i><span>메인색<em>#00FEFF</em></span></div>
+        <div><i style="background:#5CFEFF"></i><span>메인색 호버<em>#5CFEFF</em></span></div>
+        <div><i style="background:#101113"></i><span>메인색 위 글자<em>#101113</em></span></div>
+        <div><i style="background:#0B4851"></i><span>어두운 청록<em>#0B4851</em></span></div>
+      </div></div>
+    <div class="panel"><p class="ph">글자 4단계</p><p class="pv">제목 → 본문 → 설명 → 메타</p>
+      <div class="sw">
+        <div><i style="background:#FFFFFF"></i><span>1단계 제목<em>#FFFFFF</em></span></div>
+        <div><i style="background:#CFD2D6"></i><span>2단계 본문<em>#CFD2D6</em></span></div>
+        <div><i style="background:#9EA3AD"></i><span>3단계 설명<em>#9EA3AD</em></span></div>
+        <div><i style="background:#7C8089"></i><span>4단계 메타<em>#7C8089</em></span></div>
+      </div></div>
+    <div class="panel"><p class="ph">손익·상태</p><p class="pv">+ 는 초록, − 는 빨강. 부호 없는 숫자는 회색</p>
+      <div class="sw">
+        <div><i style="background:#2FB98A"></i><span>수익<em>#2FB98A</em></span></div>
+        <div><i style="background:#F0566A"></i><span>손실 · 오류<em>#F0566A</em></span></div>
+        <div><i style="background:#D94458"></i><span>위험 단추<em>#D94458</em></span></div>
+        <div><i style="background:#EBCB8B"></i><span>대기<em>#EBCB8B</em></span></div>
+      </div>
+      <div class="row" style="margin-top:18px"><span class="pnl" style="color:var(--profit)">+30.0%</span><span class="pnl" style="color:var(--loss)">-49.9%</span><span class="pnl" style="color:var(--t1)">32번</span></div></div>
+  </section>
+
+  <section id="type">
+    <h2>글자</h2><p class="lead">글꼴은 Pretendard(원래 Noto Sans KR에서 바꿈). .5px와 1px 차이 같은 애매한 크기는 쓰지 않습니다. 단추 글자는 600.</p>
+    <div class="panel ty">
+      <div><small>페이지 큰 제목 28/700<br>PC 32</small><span style="font-size:28px;font-weight:700;letter-spacing:-.4px">10월 18일, 시장은 이렇게</span></div>
+      <div><small>구역 제목 20/700<br>PC 24</small><span style="font-size:20px;font-weight:700">새로운 인사이트</span></div>
+      <div><small>작은 구역 제목 17/700</small><span style="font-size:17px;font-weight:700">주제별로 보기</span></div>
+      <div><small>카드 제목 17/600</small><span style="font-size:17px;font-weight:600">비트코인은 강한데 알트코인은 조용합니다</span></div>
+      <div><small>줄 이름 16/500</small><span style="font-size:16px;font-weight:500">2단계 인증</span></div>
+      <div><small>읽는 본문 15/400 · 1.7<br>PC 16</small><span style="font-size:15px;color:var(--t2);line-height:1.7">정책 금리는 그대로인데 국채 수익률이 먼저 방향을 틀고 있습니다.</span></div>
+      <div><small>설명 14/400</small><span style="font-size:14px;color:var(--t3)">로그인할 때 이메일 인증번호를 확인합니다.</span></div>
+      <div><small>메타 13/400</small><span style="font-size:13px;color:var(--t4)">Sarah Bennett, 36분 전</span></div>
+      <div><small>배지 12/600</small><span class="badge">시장 흐름</span></div>
+    </div>
+  </section>
+
+  <section id="button">
+    <h2>단추</h2><p class="lead">모두 알약 모양. 마우스를 올리면 한 단계 밝게, 누르면 94%로 살짝 눌립니다.</p>
+    <div class="panel"><p class="ph">종류 × 크기</p><p class="pv">작게 32 · 13 / 보통 36 · 14 / 크게 44 · 15</p>
+      <div class="row"><span class="lbl">주 단추 — #00FEFF, 글자 #101113</span><button class="btn pri sm">시작하기</button><button class="btn pri md">실행 환경 연결</button><button class="btn pri lg">TETH에게 물어보기</button></div>
+      <div class="row"><span class="lbl">회색 단추 — #313339, 호버 #3A3D44</span><button class="btn gray sm">요금 보기</button><button class="btn gray md">변경</button><button class="btn gray lg">취소</button></div>
+      <div class="row"><span class="lbl">위험 단추 — #D94458</span><button class="btn dg md">계정 삭제</button><button class="btn dg lg">구독 해지</button></div>
+      <div class="row"><span class="lbl">꺼짐 — #2B2D32 (미리보기·예시 화면의 단추도 꺼진 상태)</span><button class="btn pri md" disabled>다시 연결</button><button class="btn gray md" disabled>변경</button></div>
+    </div>
+    <div class="panel"><p class="ph">그 밖의 단추</p><p class="pv">밑줄 글자 단추 #CFD2D6 → 호버 #E3E5EA · 보내기 40 원 · 원형 아이콘 단추 36</p>
+      <div class="row"><button class="link">세부 설정</button><button class="send" aria-label="보내기"><svg class="i"><use href="#i-up"/></svg></button><button class="send" disabled aria-label="보내기 꺼짐"><svg class="i"><use href="#i-up"/></svg></button><button class="ib" aria-label="공유"><svg class="i"><use href="#i-share"/></svg></button><button class="ib" aria-label="더하기"><svg class="i"><use href="#i-plus"/></svg></button></div>
+    </div>
+  </section>
+
+  <section id="input">
+    <h2>입력칸</h2><p class="lead">높이 44 · 바탕 #25272C · 테두리 흰색 6% · 모서리 12 · 글자 15. 누르면 메인색 테두리. (구독 결제 입력칸만 56)</p>
+    <div class="panel"><div class="row" style="align-items:flex-start">
+      <label class="fld"><span>이름</span><input class="in" placeholder="이름을 입력하십시오"></label>
+      <label class="fld"><span>누른 상태</span><input class="in fc" value="dohyun"></label>
+      <label class="fld"><span>사용자명 (기호는 칸 안쪽)</span><span class="at"><b>@</b><input class="in" value="dohyun_k"></span></label>
+      <label class="fld"><span>오류</span><input class="in err" value="ab"><small class="er">이름은 2자 이상이어야 합니다</small></label>
+      <label class="fld" style="max-width:740px"><span>여러 줄 (글에 맞춰 늘어남, 크기 조절 손잡이 없음)</span><textarea class="in" placeholder="예: 최근 급등 구간의 지지선도 같이 봐줘 (선택)"></textarea></label>
+    </div></div>
+  </section>
+
+  <section id="switch">
+    <h2>스위치</h2><p class="lead">켜짐: 메인색 바탕 + 어두운 청록 동그라미(흰색 12% 테두리). 꺼짐: #313339 + #9EA3AD. 44 × 26, 동그라미 18, 0.28초 살짝 튕기며.</p>
+    <div class="panel"><div class="card" style="max-width:520px">
+      <div class="sr"><div class="k"><b>체결</b><span>전략의 주문이 체결되면 알립니다.</span></div><button class="sw2" role="switch" aria-checked="true" aria-label="체결 알림"><i></i></button></div>
+      <div class="sr"><div class="k"><b>2단계 인증</b><span>로그인할 때 이메일 인증번호를 확인합니다.</span></div><button class="sw2" role="switch" aria-checked="false" aria-label="2단계 인증"><i></i></button></div>
+    </div></div>
+  </section>
+
+  <section id="chip">
+    <h2>칩 · 배지 · 태그</h2><p class="lead">테두리 없이 회색 면으로 씁니다.</p>
+    <div class="panel">
+      <div class="row"><span class="lbl">칩 — #25272C · 36 · 14/500, 호버·선택 #313339</span><button class="chip">유동성</button><button class="chip on">비트코인</button><button class="chip">암호화폐</button><button class="chip">위험 관리</button></div>
+      <div class="row"><span class="lbl">배지 — #313339 · 12/600</span><span class="badge">매크로</span><span class="badge">AI 인프라</span></div>
+      <div class="row"><span class="lbl">태그 4색 — 바탕 12%</span><span class="tag r">오류</span><span class="tag b">차트 규칙</span><span class="tag o">선물 양방향 2배</span><span class="tag g">BNB</span></div>
+      <div class="row"><span class="lbl">툴팁 — #313339 (마우스를 올려 보십시오)</span><span class="tip"><button class="ib" aria-label="공유"><svg class="i"><use href="#i-share"/></svg></button><span>공유</span></span></div>
+    </div>
+  </section>
+
+  <section id="nav">
+    <h2>이동 · 고르기</h2><p class="lead">뒤로가기 규칙, 세그먼트, 고르기 목록.</p>
+    <div class="panel">
+      <div class="row"><span class="lbl">뒤로 단추 — 꺾쇠 20 + 16/600 알약, 호버 흰색 7%</span><button class="back"><svg class="i"><use href="#i-back"/></svg><span>인사이트</span></button><button class="back"><svg class="i"><use href="#i-back"/></svg><span>앱으로 돌아가기</span></button></div>
+      <div class="row"><span class="lbl">세그먼트 — 고른 칸이 0.26초 미끄러지듯 이동</span><div class="seg" data-seg><span class="ind"></span><button class="on">차트</button><button>정보</button><button>데이터</button></div></div>
+      <div class="row"><span class="lbl">고르기 목록 — 창 #1B1C1F · 항목 36 · 고른 항목 메인색 체크</span>
+        <div class="dd" data-dd><button><span>최신순</span><svg class="i"><use href="#i-down"/></svg></button>
+          <ul><li class="on">최신순<svg class="i"><use href="#i-check"/></svg></li><li>수익률 높은 순</li><li>복사 많은 순</li></ul></div></div>
+    </div>
+  </section>
+
+  <section id="card">
+    <h2>카드 · 줄</h2><p class="lead">카드 #17181B · 테두리 6% · 모서리 16. 누를 수 있는 카드는 마우스를 올리면 제목 밑줄이 서서히, 그림이 살짝 커집니다.</p>
+    <div class="panel"><div class="row" style="align-items:flex-start;gap:24px">
+      <div class="lc"><div class="art"><span class="badge">매크로</span><svg viewBox="0 0 340 191" preserveAspectRatio="none"><path d="M0 150 C80 90 160 40 220 45 S300 110 340 140" stroke="#E0A84A" stroke-width="2.5" fill="none"/><path d="M0 170 H340" stroke="#3A3D44"/></svg></div>
+        <div class="mt">James Carter, 약 1시간 전</div><h4>연준보다 채권시장이 먼저 움직이고 있습니다</h4><p>금리 전망 자체보다 중요한 건 시장이 다음 정책 변화를 어떻게 선반영하는지입니다.</p></div>
+      <div class="card"><div class="sr"><div class="k"><b>비밀번호</b><span>12자 이상, 숫자와 특수문자를 포함합니다.</span></div><button class="btn gray md">변경</button></div>
+        <div class="sr"><div class="k"><b>계정 삭제</b><span>전략과 기록이 모두 지워지며 되돌릴 수 없습니다</span></div><button class="btn dg md">계정 삭제</button></div></div>
+    </div></div>
+  </section>
+
+  <section id="popup">
+    <h2>팝업 · 머리줄</h2><p class="lead">팝업 #1B1C1F · 모서리 22 · 안쪽 24 · 제목 20/700 · 닫기 32 원. 머리줄은 반투명 단색 + 뒤 흐림(그라데이션 없음).</p>
+    <div class="panel"><div class="row" style="align-items:flex-start;gap:24px">
+      <div class="dlg"><div class="hd"><h3>비밀번호 변경</h3><button class="x" aria-label="닫기"><svg class="i"><use href="#i-x"/></svg></button></div>
+        <label class="fld" style="max-width:none;margin-bottom:20px"><span>새 비밀번호</span><input class="in" type="password" value="password"></label>
+        <div class="ac"><button class="btn gray lg">취소</button><button class="btn pri lg">변경</button></div></div>
+      <div style="flex:1;min-width:260px"><div class="hdemo"><div class="bar"><svg class="i"><use href="#i-back"/></svg>머리줄 (아래 칸을 스크롤해 보십시오)</div><div class="sc"><div></div><div></div><div></div><div></div><div></div><div></div></div></div></div>
+    </div></div>
+  </section>
+
+  <section id="motion">
+    <h2>움직임</h2><p class="lead">움직임 줄이기 설정이면 모두 바로 바뀝니다.</p>
+    <div class="panel">
+      <div class="row"><span class="lbl">시그니처 "스르륵 나타나기" — 단어당 0.8초, 0.11초 간격 (눌러서 다시 보기)</span><div class="tin" id="tin"></div></div>
+      <div class="row" style="margin-top:22px"><span class="lbl">펼치기 — 높이 0.3초, 닫을 때 0.2초</span>
+        <details class="ex"><summary>환불은 어떻게 되나요?<svg class="i"><use href="#i-down"/></svg></summary><div class="bd">결제일로부터 7일 안에 사용 기록이 없으면 전액 환불됩니다. 설정 &gt; 결제에서 신청할 수 있습니다.</div></details></div>
+    </div>
+  </section>
+</main>
+
+<script>
+/* 스위치 */
+document.querySelectorAll('.sw2').forEach(function(b){ b.addEventListener('click',function(){ b.setAttribute('aria-checked',String(b.getAttribute('aria-checked')!=='true')); }); });
+/* 칩 */
+document.querySelectorAll('.chip').forEach(function(c){ c.addEventListener('click',function(){ c.classList.toggle('on'); }); });
+/* 세그먼트 */
+document.querySelectorAll('[data-seg]').forEach(function(s){
+  var ind=s.querySelector('.ind'); function place(b){ ind.style.width=b.offsetWidth+'px'; ind.style.transform='translateX('+b.offsetLeft+'px)'; }
+  var bs=s.querySelectorAll('button'); bs.forEach(function(b){ b.addEventListener('click',function(){ bs.forEach(function(x){ x.classList.toggle('on',x===b); }); place(b); }); });
+  requestAnimationFrame(function(){ place(s.querySelector('button.on')); });
+});
+/* 고르기 목록 */
+document.querySelectorAll('[data-dd]').forEach(function(d){
+  var btn=d.querySelector('button'), lab=btn.querySelector('span');
+  btn.addEventListener('click',function(e){ e.stopPropagation(); d.classList.toggle('open'); });
+  d.querySelectorAll('li').forEach(function(li){ li.addEventListener('click',function(){ d.querySelectorAll('li').forEach(function(x){ x.classList.remove('on'); var s=x.querySelector('svg'); if(s) s.remove(); }); li.classList.add('on'); li.insertAdjacentHTML('beforeend','<svg class="i"><use href="#i-check"/></svg>'); lab.textContent=li.firstChild.textContent; d.classList.remove('open'); }); });
+  document.addEventListener('click',function(){ d.classList.remove('open'); });
+});
+/* 여러 줄 입력칸 높이 맞춤 */
+document.querySelectorAll('textarea.in').forEach(function(t){ function fit(){ t.style.height='auto'; t.style.height=Math.min(t.scrollHeight,160)+'px'; } t.addEventListener('input',fit); });
+/* 스르륵 나타나기 */
+function tin(){ var el=document.getElementById('tin'), w='조건이 저장되었습니다'.split(' '); el.innerHTML=w.map(function(x,i){ return '<span style="animation-delay:'+(i*0.11)+'s">'+x+'</span>'; }).join(' '); }
+tin(); document.getElementById('tin').addEventListener('click',tin);
+/* 펼치기 부드럽게 */
+document.querySelectorAll('details.ex').forEach(function(d){
+  var sm=d.querySelector('summary'), bd=d.querySelector('.bd');
+  sm.addEventListener('click',function(e){ e.preventDefault(); if(matchMedia('(prefers-reduced-motion: reduce)').matches){ d.open=!d.open; return; }
+    var start=d.offsetHeight;
+    if(!d.open){ d.open=true; var end=d.offsetHeight; d.animate([{height:start+'px'},{height:end+'px'}],{duration:300,easing:'cubic-bezier(.2,.8,.3,1)'}); bd.animate([{opacity:0},{opacity:1}],{duration:300}); }
+    else { var endC=sm.offsetHeight+2; var a=d.animate([{height:start+'px'},{height:endC+'px'}],{duration:200,easing:'cubic-bezier(.4,0,.6,1)'}); a.onfinish=function(){ d.open=false; }; }
+  });
+});
+</script>
+</body>
+</html>
