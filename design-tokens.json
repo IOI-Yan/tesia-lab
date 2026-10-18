@@ -70,11 +70,49 @@
     "pill": 999
   },
   "space": {
+    "scale": [4, 8, 12, 16, 20, 24, 32, 40, 48, 64],
     "gutterMobile": 16,
     "cardPaddingX": 20,
+    "rowPaddingY": 16,
     "grid": 8,
+    "labelToInput": 8,
+    "inputToError": 6,
     "backToTitle": 16
   },
+  "breakpoint": {
+    "$note": "권장 — 시안에는 여러 기준이 섞여 있음",
+    "mobile": { "max": 640 },
+    "tablet": { "min": 641, "max": 900 },
+    "pc": { "min": 901 }
+  },
+  "layout": {
+    "sidebar": { "collapsed": 64, "expanded": 300 },
+    "topBar": { "mobile": 56, "pc": 56 },
+    "composerMaxWidth": 760,
+    "settingsContent": 744,
+    "insightMaxWidth": 1200,
+    "popupMaxWidth": 440,
+    "minTouch": 40
+  },
+  "shadow": {
+    "popup": "0 16px 48px rgba(0,0,0,0.45)",
+    "floating": "0 12px 32px rgba(0,0,0,0.45)",
+    "card": "none"
+  },
+  "easing": {
+    "standard": "cubic-bezier(.2,.8,.3,1)",
+    "bounce": "cubic-bezier(.34,1.4,.64,1)",
+    "exit": "ease"
+  },
+  "duration": { "xs": "0.15s", "sm": "0.2s", "md": "0.26s", "lg": "0.3s", "xl": "0.5s" },
+  "checkbox": { "size": 20, "radius": 6, "off": "#313339", "on": "#00FEFF", "check": "#101113" },
+  "chat": {
+    "userBubble": { "bg": "#1D1F23", "radius": 18, "paddingY": 10, "paddingX": 16, "font": 14 },
+    "answer": { "font": 15, "lineHeight": 1.8, "color": "#E3E5EA" },
+    "composer": { "bg": "#1A1C1F", "border": "rgba(255,255,255,0.07)", "radiusMobile": 16, "pcHeight": 58 },
+    "followUp": { "bg": "rgba(255,255,255,0.02)", "border": "rgba(255,255,255,0.07)", "radius": 12, "font": 14 }
+  },
+  "toast": { "bg": "#1B1C1F", "border": "rgba(255,255,255,0.09)", "radius": 12, "font": 13, "weight": 500, "bottom": 26, "showFor": "2s" },
   "button": {
     "size": {
       "sm": { "height": 32, "font": 13, "paddingX": 14 },
