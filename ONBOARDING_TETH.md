@@ -1,6 +1,6 @@
 # TETH 디자인 폴리싱 인수인계
 
-마지막 업데이트: 2026-10-18 (design-polish 마지막 커밋 `e8a59fc`, 회사 PC에서. 아래 "10/17~18 작업 요약" 참고)
+마지막 업데이트: 2026-10-18 (design-polish 마지막 커밋 `e8a59fc`. 아래 "10/17~18 작업 요약" 참고)
 
 ## 다른 PC에서 Claude에게 이렇게 말하면 이어서 할 수 있음
 > TETH 디자인 폴리싱 이어서 할게. 인수인계 문서(ONBOARDING_TETH) 읽고, tesia-lab 저장소 design-polish 브랜치 받아서 로컬 미리보기(localhost:8080, 화면 찾아보기 _screens.html까지) 켜줘. 메모는 design-notes 브랜치에 있어.
@@ -9,7 +9,7 @@
 - **다음에 시작할 곳:** 모든 화면을 한 번씩 수정함. 사용자가 화면을 보며 지적하는 곳부터 고침
 (VOILA는 별도 인수인계 문서로 분리됨. 지금은 TETH가 우선, 마감 ASAP)
 
-## 10/14 회사 PC에서 한 것
+## 10/14에 한 것
 - `9a67a24` 거래 추적 창(전체 판단 기록) 설명 줄: 부호 붙은 퍼센트를 손익 색으로 — `+` 는 `#2FB98A`, `-` 는 `#F0566A`. 부호 없는 숫자(25봉, RSI 34.7, 수수료 0.2%)는 회색 그대로. 함수 `tfTmSgn()`
 - `11e0ad6` 화면 찾아보기: 크게 보기에서 돌아오면 왼쪽 목록이 보던 자리로 (작게 보기 단추·Esc·새로고침 뒤 모두)
 - `d832b96` 뒤로 단추 공통(화살표+제목 16/600 알약, 글자 `←` 세 곳 교체), 복사한 전략 화면을 확정 규칙으로, 확인 팝업 틀(`#1B1C1F`·22·24·20/700·닫기 32)
@@ -25,10 +25,10 @@
 - **`_orig.html`** — 원본 사이트 사본. `git show origin-up/main:index.html > _orig.html` 한 줄로 만든다. 화면 찾아보기의 "원본·나란히" 단추가 이 파일을 띄운다. **바깥 주소(aresjoo.github.io)로는 안 된다** — 다른 주소면 화면을 여는 스크립트가 막혀 빈 화면만 나온다
 
 ### 이어서 할 곳
-AI 트레이딩 터미널 계속. 집 PC는 이미 최신이면 그대로, 아니면 `git pull` 부터.
+AI 트레이딩 터미널 계속. 이미 최신이면 그대로, 아니면 `git pull` 부터.
 
 ### 이번에 알게 된 것 (다시 헤매지 않게)
-- **PC를 옮기면 제일 먼저 `git fetch` 로 뒤처진 커밋 수를 확인한다.** 회사 PC가 163 커밋 뒤처져 있어서, 집에서 한 작업이 "반영이 안 됐다"고 보였다. 서버는 멀쩡히 옛 파일을 띄우고 있었던 것
+- **PC를 옮기면 제일 먼저 `git fetch` 로 뒤처진 커밋 수를 확인한다.** 한쪽 PC가 163 커밋 뒤처져 있어서, 다른 PC에서 한 작업이 "반영이 안 됐다"고 보였다. 서버는 멀쩡히 옛 파일을 띄우고 있었던 것
 - **`_screens.html`·`serve.ps1`·메모 `.md` 들은 `.git/info/exclude` 에 들어 있어 `git pull` 로 안 따라온다.** `git show origin/design-notes:<파일> > <파일>` 로 따로 꺼내야 한다 (단 `_screens.html` 은 design-polish 에도 올라가 있으니 그쪽이 최신)
 - **`serve.ps1` 을 바꾸고 서버를 다시 켤 때는 옛 프로세스를 확실히 죽인다.** 포트가 잡혀 있으면 새 서버가 못 붙고 옛 서버가 계속 답한다(`/__ver` 이 404 면 이 상황). `Get-CimInstance Win32_Process | Where CommandLine -like '*serve.ps1*'` 로 찾아 죽인다
 - **Bash heredoc(`<<'EOF'`)으로 .js 스크립트를 쓰면 역슬래시가 한 겹 먹힌다.** `C:\Program Files\...` 경로와 정규식 `\d` 가 조용히 깨진다. Write 툴로 파일을 쓰거나 경로는 슬래시로
@@ -60,7 +60,7 @@ AI 트레이딩 터미널 계속. 집 PC는 이미 최신이면 그대로, 아�
 - **화면 찾아보기: http://localhost:8080/_screens.html** (공유용: https://ioi-yan.github.io/tesia-lab/_screens.html — design-polish에 함께 올라가 있음. 원본에 반영 요청(PR) 보낼 때는 _screens.html 빼기) — 화면 모아보기 PDF와 같은 묶음·같은 이름으로 212개를 모아 둔 곳. 플로우를 처음부터 타지 않고 고치려는 화면을 바로 띄운다. **바뀐 내용 알림**: index.html이나 _screens.html이 바뀌면 아래에 "반영하기" 버튼이 뜸 → 누르면 확실히 최신으로 열림(저절로 깜빡이지 않음, Ctrl+F5 필요 없음, serve.ps1 최신본 필요)
 - 원본 사이트(수정 전 비교용): https://aresjoo.github.io/tesia-lab/
 - 공유용 수정본: https://ioi-yan.github.io/tesia-lab/
-- 모바일 화면 모아보기 PDF: `design-notes` 브랜치의 `TETH 화면 모아보기 (모바일).pdf` (원본은 집 PC `Downloads\Telegram Desktop`)
+- 모바일 화면 모아보기 PDF: `design-notes` 브랜치의 `TETH 화면 모아보기 (모바일).pdf`
 
 ## 다른 PC에서 이어서 하기
 1. 저장소 받기: `git clone https://github.com/IOI-Yan/tesia-lab.git` → `git checkout design-polish`
