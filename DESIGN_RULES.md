@@ -73,7 +73,20 @@
 
 ## 2. 글자
 
-- 글꼴: **Pretendard** (숫자는 Geist 다음 순서). 버튼 글자가 세로 정가운데에 오는 글꼴
+### 글꼴: Pretendard (원래 사이트에서 바꾼 것)
+
+| 항목 | 값 |
+|---|---|
+| 기본 글꼴 | **Pretendard** (Pretendard Variable, 굵기 400~700) |
+| 원래 글꼴 | Noto Sans KR / 맑은 고딕 |
+| 바꾼 이유 | 원래 글꼴은 단추 글자가 0.5~1px 아래로 처져 보임. Pretendard는 세로 정가운데(측정 오차 0) |
+| 순서 | `Pretendard, Geist, system-ui, sans-serif` (영문·숫자 보조 Geist) |
+| 불러오는 주소 (웹) | `https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css` |
+| 적용 범위 | 앱 전체, 서비스 소개, 앱 다운로드, 약관·정책 |
+| 앱(Flutter) | Pretendard 글꼴 파일을 앱 안에 넣어 기본 글꼴로 지정 (서버 필요 없음) |
+| 웹 실서비스 | 지금 시안은 외부 CDN(jsdelivr)에서 불러옴. 실서비스는 글꼴 파일(woff2, 한글 나눔 subset)을 **우리 서버·CDN에 올려서** 쓰는 것을 권장 — 외부 CDN이 막히거나 느려도 글꼴이 깨지지 않음 |
+| 라이선스 | SIL 오픈 폰트 라이선스 — 무료, 상업용·앱 포함·서버에 올려 쓰기 모두 가능 |
+
 - `.5px` 금지, 1px 차이 같은 애매한 크기 금지 → 같은 크기에 굵기로 구분하거나 확실히 다르게
 - 굵기: 제목 700, 단추·강조 600, 이름 500, 본문 400. **단추 글자는 600** (700은 쓰지 않음)
 

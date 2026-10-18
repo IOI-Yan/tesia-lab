@@ -1,0 +1,135 @@
+{
+  "$description": "TETH 디자인 토큰 — DESIGN_RULES.md 의 최종 값과 같다. 단위 px, 시간 s. mobile <= 900px < pc",
+  "color": {
+    "bg": {
+      "page": "#101113",
+      "card": "#17181B",
+      "cardHover": "#1C1E22",
+      "popup": "#1B1C1F",
+      "field": "#25272C",
+      "gray": "#313339",
+      "grayHover": "#3A3D44",
+      "disabled": "#2B2D32"
+    },
+    "border": {
+      "box": "rgba(255,255,255,0.06)",
+      "divider": "rgba(255,255,255,0.08)",
+      "sidebar": "rgba(255,255,255,0.10)"
+    },
+    "primary": {
+      "base": "#00FEFF",
+      "hover": "#5CFEFF",
+      "on": "#101113",
+      "deep": "#0B4851"
+    },
+    "text": {
+      "1": "#FFFFFF",
+      "2": "#CFD2D6",
+      "3": "#9EA3AD",
+      "4": "#7C8089",
+      "linkHover": "#E3E5EA"
+    },
+    "pnl": {
+      "profit": "#2FB98A",
+      "loss": "#F0566A"
+    },
+    "danger": "#D94458",
+    "pending": "#EBCB8B",
+    "tag": {
+      "red": { "bg": "rgba(240,86,106,0.12)", "text": "#D9707D" },
+      "blue": { "bg": "rgba(102,150,240,0.12)", "text": "#6FA1F2" },
+      "orange": { "bg": "rgba(230,150,90,0.12)", "text": "#D39A6B" },
+      "green": { "bg": "rgba(47,185,138,0.12)", "text": "#62B394" }
+    }
+  },
+  "font": {
+    "family": "Pretendard, Geist, system-ui, sans-serif",
+    "primary": "Pretendard",
+    "replaced": "Noto Sans KR / Malgun Gothic",
+    "webSource": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css",
+    "license": "SIL Open Font License",
+    "weight": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
+    "size": {
+      "pageTitle": { "mobile": 28, "pc": 32, "weight": 700 },
+      "sectionTitle": { "mobile": 20, "pc": 24, "weight": 700 },
+      "subTitle": { "mobile": 17, "pc": 17, "weight": 700 },
+      "cardTitle": { "mobile": 17, "pc": 17, "weight": 600 },
+      "rowName": { "mobile": 16, "pc": 16, "weight": 500 },
+      "body": { "mobile": 15, "pc": 16, "weight": 400, "lineHeight": 1.7 },
+      "desc": { "mobile": 14, "pc": 14, "weight": 400 },
+      "meta": { "mobile": 13, "pc": 13, "weight": 400 },
+      "badge": { "mobile": 12, "pc": 12, "weight": 600 }
+    }
+  },
+  "radius": {
+    "card": 16,
+    "input": 12,
+    "navItem": 10,
+    "menuItem": 8,
+    "popup": 22,
+    "pill": 999
+  },
+  "space": {
+    "gutterMobile": 16,
+    "cardPaddingX": 20,
+    "grid": 8,
+    "backToTitle": 16
+  },
+  "button": {
+    "size": {
+      "sm": { "height": 32, "font": 13, "paddingX": 14 },
+      "md": { "height": 36, "font": 14, "paddingX": 16 },
+      "lg": { "height": 44, "font": 15, "paddingX": 20 }
+    },
+    "weight": 600,
+    "pressScale": 0.94,
+    "variant": {
+      "primary": { "bg": "#00FEFF", "text": "#101113", "hover": "#5CFEFF" },
+      "gray": { "bg": "#313339", "text": "#FFFFFF", "hover": "#3A3D44" },
+      "danger": { "bg": "#D94458", "text": "#FFFFFF", "hover": "#E35A6C" },
+      "textLink": { "text": "#CFD2D6", "hover": "#E3E5EA", "underline": true }
+    }
+  },
+  "input": {
+    "height": 44,
+    "bg": "#25272C",
+    "border": "rgba(255,255,255,0.06)",
+    "radius": 12,
+    "paddingX": 14,
+    "paddingYMultiline": 12,
+    "font": 15,
+    "placeholder": "#7C8089",
+    "focusBorder": "#00FEFF",
+    "errorColor": "#F0566A",
+    "exception": { "checkout": { "height": 56 } }
+  },
+  "switch": {
+    "width": 44,
+    "height": 26,
+    "knob": 18,
+    "insetOn": 4,
+    "insetOff": 5,
+    "on": { "track": "#00FEFF", "knob": "#0B4851", "knobBorder": "rgba(255,255,255,0.12)" },
+    "off": { "track": "#313339", "knob": "#9EA3AD" },
+    "motion": { "knob": "0.28s cubic-bezier(.34,1.4,.64,1)", "track": "0.25s ease", "pressScale": 0.9 }
+  },
+  "chip": { "height": 36, "paddingX": 14, "font": 14, "weight": 500, "bg": "#25272C", "text": "#CFD2D6", "hoverBg": "#313339", "hoverText": "#FFFFFF" },
+  "badge": { "height": 27, "paddingX": 10, "font": 12, "weight": 600, "bg": "#313339", "text": "#FFFFFF" },
+  "backButton": { "height": 36, "icon": 20, "font": 16, "weight": 600, "paddingLeft": 6, "paddingRight": 12, "gap": 4, "hoverBg": "rgba(255,255,255,0.07)" },
+  "header": { "bg": "rgba(16,17,19,0.5)", "blur": 20, "saturate": 1.4, "gradient": false },
+  "popup": { "bg": "#1B1C1F", "radius": 22, "padding": 24, "title": 20, "close": { "size": 32, "icon": 20, "hoverBg": "#2E3036" } },
+  "dropdown": { "listBg": "#1B1C1F", "listRadius": 12, "itemHeight": 36, "itemRadius": 8, "itemFont": 14, "itemText": "#CFD2D6", "itemHover": "#313339", "chevron": 16 },
+  "tooltip": { "bg": "#313339", "text": "#FFFFFF" },
+  "icon": { "set": "Lucide", "stroke": 1.6, "close": 20 },
+  "motion": {
+    "signatureIn": { "perWord": "0.8s", "stagger": "0.11s", "blur": 12, "rise": 6 },
+    "expand": { "open": "0.3s", "close": "0.2s" },
+    "popupClose": { "duration": "0.2s", "drop": 8, "scale": 0.98 },
+    "segment": "0.26s",
+    "hover": "0.2s",
+    "cardHover": { "underline": "0.25s", "image": "0.5s", "scale": 1.04, "brightness": 1.12 },
+    "pageSwap": { "duration": "0.22s", "rise": 6 },
+    "scrollReveal": { "rise": 40, "scale": 0.97, "blur": 8 },
+    "reduceMotion": "모든 움직임을 바로 바꿈"
+  }
+}
