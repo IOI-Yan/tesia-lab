@@ -15,18 +15,18 @@
   --profit:#2FB98A;--loss:#F0566A;--danger:#D94458;--pending:#EBCB8B;
 }
 *{box-sizing:border-box}
-html,body{margin:0;overflow-x:hidden;background:var(--bg);color:var(--t1);font-family:Pretendard,"Pretendard Variable",Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+html,body{margin:0;overflow-x:clip;background:var(--bg);color:var(--t1);font-family:Pretendard,"Pretendard Variable",Geist,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
 button,input,textarea{font:inherit}
 svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;flex:none}
 
 /* 페이지 틀 */
-.top{position:sticky;top:0;z-index:20;background:rgba(16,17,19,.5);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--line)}
+.top{position:fixed;top:0;left:0;right:0;z-index:20;background:rgba(16,17,19,.5);-webkit-backdrop-filter:blur(20px) saturate(140%);backdrop-filter:blur(20px) saturate(140%);border-bottom:1px solid var(--line)}
 .top .wrap{max-width:1080px;margin:0 auto;padding:0 16px;height:56px;display:flex;align-items:center;gap:16px}
 .top b{font-size:16px;font-weight:700;white-space:nowrap;flex:none}
 .top nav{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;margin-left:auto;min-width:0}
 .top nav a{flex:none;color:var(--t3);text-decoration:none;font-size:14px;font-weight:500;padding:6px 10px;border-radius:999px;transition:background .2s,color .2s}
 .top nav a:hover{background:rgba(255,255,255,.07);color:var(--t1)}
-main{max-width:1080px;margin:0 auto;padding:48px 16px 120px}
+main{max-width:1080px;margin:0 auto;padding:104px 16px 120px}
 .hero h1{font-size:28px;font-weight:700;letter-spacing:-.4px;margin:0 0 8px}
 .hero p{font-size:15px;color:var(--t3);margin:0;line-height:1.6}
 @media(min-width:901px){.hero h1{font-size:32px}.hero p{font-size:16px}}
