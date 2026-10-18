@@ -149,6 +149,50 @@ textarea.in{height:auto;min-height:84px;padding:12px 14px;line-height:1.5;resize
 .dlg p{margin:0 0 20px;font-size:15px;color:var(--t3);line-height:1.6}
 .dlg .ac{display:flex;gap:8px}.dlg .ac .btn{flex:1}
 
+/* 상태 */
+.dots{display:inline-flex;gap:4px}.dots i{width:6px;height:6px;border-radius:50%;background:currentColor;animation:dot 1.2s infinite}.dots i:nth-child(2){animation-delay:.15s}.dots i:nth-child(3){animation-delay:.3s}
+@keyframes dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.think{display:inline-flex;align-items:center;gap:10px;font-size:14px;color:var(--t3)}
+.think b{font-weight:500;background:linear-gradient(90deg,var(--t4) 0%,#fff 50%,var(--t4) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 1.6s linear infinite}
+@keyframes shine{from{background-position:100% 0}to{background-position:-100% 0}}
+.pulse{width:8px;height:8px;border-radius:50%;background:var(--pri);box-shadow:0 0 0 0 rgba(0,254,255,.5);animation:pulse 1.6s ease-out infinite;flex:none}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(0,254,255,0)}100%{box-shadow:0 0 0 0 rgba(0,254,255,0)}}
+.errdot{width:8px;height:8px;border-radius:50%;background:var(--loss);box-shadow:0 0 8px 2px rgba(240,86,106,.55);animation:errGlow 1.8s ease-in-out infinite;flex:none}
+@keyframes errGlow{50%{box-shadow:0 0 14px 4px rgba(240,86,106,.35)}}
+.stbox{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.stbox>div{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:20px;min-height:150px;display:flex;flex-direction:column;justify-content:center;gap:10px}
+.stbox .cap{font-size:13px;color:var(--t4);margin-bottom:4px}
+.empty{text-align:center;font-size:15px;color:var(--t3);line-height:1.6}
+.errrow{display:flex;align-items:center;gap:10px}.errrow b{font-size:15px;font-weight:600}.errtx{font-size:14px;color:var(--t3);line-height:1.6}
+.skel{height:14px;border-radius:7px;background:linear-gradient(90deg,#1F2125 0%,#2A2C31 50%,#1F2125 100%);background-size:200% 100%;animation:shine 1.4s linear infinite}
+.toastw{position:fixed;left:50%;bottom:26px;z-index:60;transform:translate(-50%,90px);padding:11px 20px;border-radius:12px;background:var(--popup);border:1px solid rgba(255,255,255,.09);color:#ECECF1;font-size:13px;font-weight:500;box-shadow:0 12px 32px rgba(0,0,0,.45);transition:transform .3s cubic-bezier(.2,.8,.3,1);pointer-events:none;white-space:nowrap}
+.toastw.show{transform:translate(-50%,0)}
+/* 대화 */
+.chat{max-width:560px;display:flex;flex-direction:column;gap:16px}
+.umsg{align-self:flex-end;max-width:80%;background:#1D1F23;border-radius:18px;padding:10px 16px;font-size:14px;line-height:1.6;color:#E3E5EA}
+.amsg{font-size:15px;line-height:1.8;color:#E3E5EA}.amsg b{color:#fff;font-weight:600}
+.acts{display:flex;gap:2px;margin-top:-8px}.acts button{width:34px;height:34px;border:0;border-radius:8px;background:none;color:#9AA0A6;display:inline-flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s,color .2s}.acts button:hover{background:rgba(255,255,255,.07);color:#fff}.acts svg{width:18px;height:18px}
+.nextq{display:block;width:100%;text-align:left;padding:14px 18px;border-radius:12px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.07);color:#C4C7C5;font-size:14px;cursor:pointer;transition:background .2s}.nextq:hover{background:rgba(255,255,255,.05)}
+.comp{display:flex;align-items:flex-end;gap:8px;background:#1A1C1F;border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:10px 10px 8px 16px}
+.comp textarea{flex:1;border:0;background:none;color:#E3E5EA;font-size:15px;line-height:22px;resize:none;outline:0;padding:9px 0;min-height:40px}.comp textarea::placeholder{color:var(--t4)}
+/* 탭 */
+.tabs{position:relative;display:flex;border-bottom:1px solid var(--line);max-width:420px;width:100%}
+.tabs button{flex:1;height:44px;border:0;background:none;color:var(--t3);font-size:15px;cursor:pointer;transition:color .2s}
+.tabs button.on{color:#fff}
+.tabs .bar2{position:absolute;bottom:-1px;left:0;height:2px;background:#fff;border-radius:2px;transition:transform .26s cubic-bezier(.2,.8,.3,1),width .26s cubic-bezier(.2,.8,.3,1)}
+/* 전략 카드 */
+.sc2{width:100%;max-width:350px;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;transition:background .2s}
+.sc2:hover{background:var(--card-h)}
+.sc2 h3{margin:0;font-size:17px;font-weight:700}.sc2 .d{font-size:13px;color:var(--t3);margin-top:2px}
+.sc2 .bt{display:flex;align-items:flex-end;justify-content:space-between;margin-top:16px}.sc2 small{display:block;font-size:12px;color:var(--t4)}.sc2 .r{font-family:Geist,Pretendard,sans-serif;font-size:20px;font-weight:700;color:var(--profit)}
+.sc2 svg{width:120px;height:40px}
+/* 목록 줄 */
+.lst{max-width:560px;width:100%}
+.lr{display:flex;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}.lr:last-child{border:0}
+.lr .tm{font-size:13px;color:var(--t4);width:52px;flex:none;padding-top:2px}
+.lr .bd{flex:1;min-width:0}.lr .hd2{display:flex;align-items:center;gap:8px;margin-bottom:4px}.lr .hd2 b{font-size:15px;font-weight:600}
+.lr p{margin:0;font-size:14px;color:var(--t2);line-height:1.6}
+.lr .amt{font-family:Geist,Pretendard,sans-serif;font-size:15px;font-weight:600;text-align:right;flex:none}
 /* 팝업 열기·닫기 */.mw{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(0,0,0,.62);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);animation:mwIn .16s ease both}.mw .dlg{animation:dlgIn .24s cubic-bezier(.2,.8,.3,1) both}@keyframes mwIn{from{opacity:0}}@keyframes dlgIn{from{opacity:0;transform:translateY(12px) scale(.96)}}.mw.out{animation:mwOut .2s ease both}.mw.out .dlg{animation:dlgOut .2s ease both}@keyframes mwOut{to{opacity:0}}@keyframes dlgOut{to{opacity:0;transform:translateY(8px) scale(.98)}}@media(max-width:600px){.mw{align-items:flex-end;padding:0}.mw .dlg{max-width:none;border-radius:22px 22px 0 0;animation:sheetIn .26s cubic-bezier(.2,.8,.3,1) both}.mw.out .dlg{animation:sheetOut .2s ease both}@keyframes sheetIn{from{transform:translateY(100%)}}@keyframes sheetOut{to{transform:translateY(100%)}}}
 /* 머리줄 예시 */
 .hdemo{position:relative;height:220px;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
@@ -183,7 +227,7 @@ details.ex .bd{padding:0 20px 18px;font-size:14px;color:var(--t3);line-height:1.
 </svg>
 
 <div class="top"><div class="wrap"><b>TETH 컴포넌트</b>
-  <nav><a href="#color">색</a><a href="#type">글자</a><a href="#button">단추</a><a href="#input">입력칸</a><a href="#switch">스위치</a><a href="#chip">칩·배지</a><a href="#nav">이동</a><a href="#card">카드</a><a href="#popup">팝업</a><a href="#motion">움직임</a></nav>
+  <nav><a href="#color">색</a><a href="#type">글자</a><a href="#button">단추</a><a href="#input">입력칸</a><a href="#switch">스위치</a><a href="#chip">칩·배지</a><a href="#nav">이동</a><a href="#card">카드</a><a href="#popup">팝업</a><a href="#state">상태</a><a href="#chat">대화</a><a href="#list">목록</a><a href="#motion">움직임</a></nav>
 </div></div>
 
 <main>
@@ -316,6 +360,47 @@ details.ex .bd{padding:0 20px 18px;font-size:14px;color:var(--t3);line-height:1.
     </div></div>
   </section>
 
+  <section id="state">
+    <h2>상태</h2><p class="lead">불러오는 중 · AI 생각 중 · 자리 채우기 · 빈 화면 · 오류 · 답이 필요한 곳 · 짧은 알림.</p>
+    <div class="panel"><div class="stbox">
+      <div><span class="cap">불러오는 중 — 점 3개 1.2초 반복, #9EA3AD</span><span class="think"><span class="dots"><i></i><i></i><i></i></span>불러오는 중</span></div>
+      <div><span class="cap">AI 생각 중 — 글자 위로 빛이 1.6초마다 지나감</span><span class="think"><span class="dots"><i></i><i></i><i></i></span><b>시세 데이터를 확인하는 중</b></span></div>
+      <div><span class="cap">자리 채우기(목록을 불러오는 동안) — 1.4초 빛 지나감</span><div class="skel" style="width:70%"></div><div class="skel" style="width:90%"></div><div class="skel" style="width:50%"></div></div>
+      <div><span class="cap">빈 화면 — 15 #9EA3AD, 문장 끝에서 줄바꿈 + 할 일 단추</span><p class="empty" style="margin:0">아직 연구 기록이 없습니다.<br>새 전략을 만들면 여기에 쌓입니다.</p><div style="text-align:center"><button class="btn pri md">새 전략 만들기</button></div></div>
+      <div><span class="cap">오류 — 빨간 점 빛 번짐 + 메인색 32 "다시 연결" (예시 화면에선 꺼짐)</span><div class="errrow"><span class="errdot"></span><b>전략 오류</b></div><p class="errtx" style="margin:0">거래소 연결이 끊어졌습니다. 다시 연결하면 이어서 실행합니다.</p><div><button class="btn pri sm">다시 연결</button></div></div>
+      <div><span class="cap">답이 필요한 곳 — 메인색 점이 숨 쉼 / 대기 — #EBCB8B</span><div class="errrow"><span class="pulse"></span><b>아래에서 골라 주십시오</b></div><div class="errrow"><span class="pulse" style="background:var(--pending);animation:none;box-shadow:none"></span><span style="font-size:14px;color:var(--pending)">조건 대기</span></div></div>
+      <div><span class="cap">짧은 알림(토스트) — #1B1C1F · 13/500, 아래에서 올라와 2초 뒤 사라짐</span><div><button class="btn gray md" id="toastBtn">알림 띄우기</button></div></div>
+    </div></div>
+  </section>
+
+  <section id="chat">
+    <h2>대화</h2><p class="lead">사용자 말풍선 #1D1F23 · 모서리 18 · 14. 답변은 바탕 없이 15 · 줄 간격 1.8. 입력창 #1A1C1F · 모서리 16 · 보내기 40.</p>
+    <div class="panel"><div class="chat">
+      <div class="umsg">비트코인 지금 사도 돼?</div>
+      <div class="amsg">지금 비트코인은 <b>최근 30일 고점보다 8% 낮은 자리</b>에 있습니다. 한 번에 사기보다 나눠서 사는 전략을 먼저 과거로 돌려 보는 걸 권합니다.</div>
+      <div class="acts"><button aria-label="좋아요"><svg class="i" viewBox="0 0 24 24"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg></button><button aria-label="별로예요"><svg class="i" viewBox="0 0 24 24"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.920-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg></button><button aria-label="복사"><svg class="i" viewBox="0 0 24 24"><rect width="14" height="14" x="8" y="8" rx="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></button></div>
+      <button class="nextq">나눠서 사는 전략을 과거로 돌려 줘</button>
+      <div class="comp"><textarea rows="1" placeholder="시장에 대해 무엇이든 물어보십시오"></textarea><button class="send" aria-label="보내기"><svg class="i"><use href="#i-up"/></svg></button></div>
+    </div></div>
+  </section>
+
+  <section id="list">
+    <h2>탭 · 전략 카드 · 목록 줄</h2><p class="lead">화면에 자주 나오는 큰 부품입니다.</p>
+    <div class="panel">
+      <div class="row"><span class="lbl">탭 — 15, 켜짐 흰색 · 꺼짐 #9EA3AD, 밑줄이 0.26초 미끄러짐</span><div class="tabs" data-tabs><button class="on">개요</button><button>전략 정보</button><span class="bar2"></span></div></div>
+      <div class="row" style="margin-top:24px;align-items:flex-start;gap:24px">
+        <div style="flex:1;min-width:260px;max-width:350px"><span class="lbl" style="display:block;margin-bottom:10px">전략 카드 — #17181B · 안쪽 16 · 이름 17/700 · 수익률 20/700</span>
+          <div class="sc2"><h3>BNB 평균선 양방향</h3><div class="d">차트 규칙, Binance, 선물 2배</div><div class="bt"><div><small>최근 30일</small><span class="r">+17.8%</span></div><svg viewBox="0 0 120 40" preserveAspectRatio="none"><path d="M0 32 L15 28 L30 30 L45 22 L60 24 L75 16 L90 18 L105 9 L120 6" stroke="#2FB98A" stroke-width="2" fill="none" stroke-linejoin="round"/></svg></div></div></div>
+        <div style="flex:1;min-width:260px"><span class="lbl" style="display:block;margin-bottom:4px">목록 줄 (판단·거래 기록) — 시간 13 #7C8089 · 제목 15/600 · 설명 14 #CFD2D6 · 금액 오른쪽</span>
+          <div class="lst">
+            <div class="lr"><span class="tm">14:20</span><div class="bd"><div class="hd2"><b>ETH 롱</b><span class="tag b">진입</span></div><p>RSI 34에서 반등을 확인해 들어갔습니다.</p></div><span class="amt" style="color:var(--profit)">+$42.10</span></div>
+            <div class="lr"><span class="tm">11:05</span><div class="bd"><div class="hd2"><b>BTC 숏</b><span class="tag r">손절</span></div><p>손실 한도 -5%에 닿아 정리했습니다.</p></div><span class="amt" style="color:var(--loss)">-$18.40</span></div>
+            <div class="lr"><span class="tm">09:30</span><div class="bd"><div class="hd2"><b>대기</b><span class="tag o">확인 필요</span></div><p>거래량이 적어 진입을 미뤘습니다.</p></div><span class="amt" style="color:var(--t3)">0</span></div>
+          </div></div>
+      </div>
+    </div>
+  </section>
+
   <section id="motion">
     <h2>움직임</h2><p class="lead">움직임 줄이기 설정이면 모두 바로 바뀝니다.</p>
     <div class="panel">
@@ -327,6 +412,12 @@ details.ex .bd{padding:0 20px 18px;font-size:14px;color:var(--t3);line-height:1.
 </main>
 
 <script>
+/* 토스트 */
+(function(){ var b=document.getElementById("toastBtn"); if(!b) return; var t=document.createElement("div"); t.className="toastw"; t.textContent="조건이 저장되었습니다"; document.body.appendChild(t); var tm=0; b.addEventListener("click",function(){ t.classList.add("show"); clearTimeout(tm); tm=setTimeout(function(){ t.classList.remove("show"); },2000); }); })();
+/* 탭 */
+document.querySelectorAll("[data-tabs]").forEach(function(s){ var bar=s.querySelector(".bar2"); function place(b){ bar.style.width=b.offsetWidth+"px"; bar.style.transform="translateX("+b.offsetLeft+"px)"; } var bs=s.querySelectorAll("button"); bs.forEach(function(b){ b.addEventListener("click",function(){ bs.forEach(function(x){ x.classList.toggle("on",x===b); }); place(b); }); }); requestAnimationFrame(function(){ place(s.querySelector("button.on")); }); });
+/* 대화 입력창 높이 */
+document.querySelectorAll(".comp textarea").forEach(function(t){ t.addEventListener("input",function(){ t.style.height="auto"; t.style.height=Math.min(t.scrollHeight,120)+"px"; }); });
 /* 팝업 열기·닫기 */
 (function(){ var b=document.getElementById("openDlg"); if(!b) return; b.addEventListener("click",function(){ var w=document.createElement("div"); w.className="mw"; w.innerHTML='<div class="dlg" role="dialog" aria-modal="true" aria-label="계정 삭제"><div class="hd"><h3>계정을 삭제할까요?</h3><button class="x" aria-label="닫기"><svg class="i"><use href="#i-x"/></svg></button></div><p>전략과 기록이 모두 지워지며 되돌릴 수 없습니다.</p><div class="ac"><button class="btn gray lg" data-c>취소</button><button class="btn dg lg" data-c>삭제</button></div></div>'; document.body.appendChild(w); function close(){ if(w.classList.contains("out")) return; w.classList.add("out"); setTimeout(function(){ w.remove(); },200); } w.addEventListener("click",function(e){ if(e.target===w||e.target.closest(".x,[data-c]")) close(); }); document.addEventListener("keydown",function k(e){ if(e.key==="Escape"){ close(); document.removeEventListener("keydown",k); } }); }); })();
 /* 스위치 */
