@@ -27,13 +27,17 @@
       "2": "#CFD2D6",
       "3": "#9EA3AD",
       "4": "#7C8089",
+      "$4": "입력칸 안내문·비활성·꺼진 스위치에만. 읽는 글자(메타·설명·각주·소제목·축 숫자)는 3",
+      "iconButton": "#9AA0A6",
+      "followUp": "#C4C7C5",
       "linkHover": "#E3E5EA"
     },
     "pnl": {
       "profit": "#2FB98A",
       "loss": "#F0566A"
     },
-    "danger": "#D94458",
+    "danger": "#B8303F",
+    "dangerHover": "#CC3C50",
     "pending": "#EBCB8B",
     "tag": {
       "red": { "bg": "rgba(240,86,106,0.12)", "text": "#D9707D" },
@@ -45,15 +49,18 @@
   "font": {
     "family": "Pretendard, Geist, system-ui, sans-serif",
     "primary": "Pretendard",
+    "numeric": "Geist",
+    "$numeric": "수익률·금액·가격처럼 자릿수가 바뀌는 숫자. 자체 서버에 함께 둘 것",
     "replaced": "Noto Sans KR / Malgun Gothic",
     "webSource": "https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css",
     "license": "SIL Open Font License",
     "weight": { "regular": 400, "medium": 500, "semibold": 600, "bold": 700 },
     "size": {
-      "pageTitle": { "mobile": 28, "pc": 32, "weight": 700 },
+      "pageTitle": { "mobile": 28, "mobileStep": 24, "pc": 32, "weight": 700, "$note": "모바일 기본 28. 설정·거래소 연결 같은 단계 화면과 두 줄로 넘어가는 긴 제목은 24" },
       "sectionTitle": { "mobile": 20, "pc": 24, "weight": 700 },
       "subTitle": { "mobile": 17, "pc": 17, "weight": 700 },
       "cardTitle": { "mobile": 17, "pc": 17, "weight": 600 },
+      "strategyName": { "mobile": 22, "pc": 22, "weight": 700, "$note": "전략 상세·백테스트 결과 머리의 전략 이름" },
       "rowName": { "mobile": 16, "pc": 16, "weight": 500 },
       "body": { "mobile": 15, "pc": 16, "weight": 400, "lineHeight": 1.7 },
       "desc": { "mobile": 14, "pc": 14, "weight": 400 },
@@ -80,19 +87,22 @@
     "backToTitle": 16
   },
   "breakpoint": {
-    "$note": "권장 — 시안에는 여러 기준이 섞여 있음",
+    "$note": "화면 전체 기준은 640/900. 그 밖 숫자(600·760·768·860·960·961·1024~1280)는 부품별 접힘 폭이라 부품 단위로 유지. 960은 사이드바 접힘 전용",
     "mobile": { "max": 640 },
     "tablet": { "min": 641, "max": 900 },
     "pc": { "min": 901 }
   },
   "layout": {
     "sidebar": { "collapsed": 64, "expanded": 300 },
-    "topBar": { "mobile": 56, "pc": 56 },
+    "topBar": { "mobile": 44, "pc": 44 },
+    "terminalTicker": 60,
     "composerMaxWidth": 760,
     "settingsContent": 744,
     "insightMaxWidth": 1200,
     "popupMaxWidth": 440,
-    "minTouch": 40
+    "popupWideWidth": 560,
+    "minTouch": 44,
+    "$minTouch": "보이는 크기는 그대로, 투명 겹(pseudo-element)으로 누르는 영역만 44. 여백으로 넓히지 말 것"
   },
   "shadow": {
     "popup": "0 16px 48px rgba(0,0,0,0.45)",
@@ -109,7 +119,7 @@
   "chat": {
     "userBubble": { "bg": "#1D1F23", "radius": 18, "paddingY": 10, "paddingX": 16, "font": 14 },
     "answer": { "font": 15, "lineHeight": 1.8, "color": "#E3E5EA" },
-    "composer": { "bg": "#1A1C1F", "border": "rgba(255,255,255,0.07)", "radiusMobile": 16, "pcHeight": 58 },
+    "composer": { "bg": "#1A1C1F", "border": "rgba(255,255,255,0.07)", "radiusMobile": 16, "radiusPc": 26, "pcHeight": 58 },
     "followUp": { "bg": "rgba(255,255,255,0.02)", "border": "rgba(255,255,255,0.07)", "radius": 12, "font": 14 }
   },
   "toast": { "bg": "#1B1C1F", "border": "rgba(255,255,255,0.09)", "radius": 12, "font": 13, "weight": 500, "bottom": 26, "showFor": "2s" },
@@ -124,7 +134,7 @@
     "variant": {
       "primary": { "bg": "#00FEFF", "text": "#101113", "hover": "#5CFEFF" },
       "gray": { "bg": "#313339", "text": "#FFFFFF", "hover": "#3A3D44" },
-      "danger": { "bg": "#D94458", "text": "#FFFFFF", "hover": "#E35A6C" },
+      "danger": { "bg": "#B8303F", "text": "#FFFFFF", "hover": "#CC3C50" },
       "textLink": { "text": "#CFD2D6", "hover": "#E3E5EA", "underline": true }
     }
   },
@@ -159,6 +169,7 @@
   "dropdown": { "listBg": "#1B1C1F", "listRadius": 12, "itemHeight": 36, "itemRadius": 8, "itemFont": 14, "itemText": "#CFD2D6", "itemHover": "#313339", "chevron": 16 },
   "tooltip": { "bg": "#313339", "text": "#FFFFFF" },
   "icon": { "set": "Lucide", "stroke": 1.6, "close": 20 },
+  "copy": { "supportLine": "막히는 곳이 있으면 상담원이 도와드립니다. 24시간 응답합니다." },
   "motion": {
     "signatureIn": { "perWord": "0.8s", "stagger": "0.11s", "blur": 12, "rise": 6 },
     "expand": { "open": "0.3s", "close": "0.2s" },
