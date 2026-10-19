@@ -1,6 +1,6 @@
 # TETH 수정 메모
 
-최종 결과만 기록. 화면 ID는 `SCREEN_IDS.md`, 색은 `COLOR_NOTES.md` 기준.
+최종 결과만 기록. 화면은 `_screens.html` 번호(01-01 ~ 09-40), 색은 `COLOR_NOTES.md` 기준.
 상태: 대기 / 반영 / 보류
 
 ## 1. 전체 수정

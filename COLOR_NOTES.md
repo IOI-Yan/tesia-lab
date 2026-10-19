@@ -1,6 +1,6 @@
 # TETH 색 메모
 
-TETH(`design-polish` 브랜치)에서 정한 색. 최종 값만 기록. 화면 ID는 `SCREEN_IDS.md` 기준.
+TETH(`design-polish` 브랜치)에서 정한 색. 최종 값만 기록. 화면은 `_screens.html` 번호(01-01 ~ 09-40) 기준.
 
 | 용도 | 색 | 원래 색 |
 |---|---|---|

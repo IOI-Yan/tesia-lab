@@ -51,7 +51,7 @@ AI 트레이딩 터미널 계속. 이미 최신이면 그대로, 아니면 `git 
 - 원본: https://github.com/aresjoo/tesia-lab (내 계정 IOI-Yan 쓰기 권한 있음, main = 실제 공개 사이트)
 - **내 포크**: https://github.com/IOI-Yan/tesia-lab
   - `design-polish` 브랜치: 작업 코드 (반영 요청 PR은 아직 안 보냄)
-  - `design-notes` 브랜치: TETH 작업 메모 3개 (EDIT_NOTES 수정 기록 / COLOR_NOTES 색 / SCREEN_IDS 화면 ID) + 모바일 화면 PDF + 확인용 페이지 `_demo.html` + 미리보기 서버 `serve.ps1`
+  - `design-notes` 브랜치: TETH 작업 메모 (EDIT_NOTES 수정 기록 / COLOR_NOTES 색 / DESIGN_RULES 규칙 / design-tokens 토큰) + 모바일 화면 PDF + 확인용 페이지 `_demo.html` + 미리보기 서버 `serve.ps1`
 - **공유 링크(누구나 열람)**: https://ioi-yan.github.io/tesia-lab/ — design-polish에 올리면 1~2분 뒤 자동 반영
 - 화면 ID 캡처(AS-IS): TETH Figma 권한이 없어 **임시로** VOILA Figma 파일 안 "AS-IS" 프레임에 둠 https://www.figma.com/design/80IPAc7yRP0pPoCyza1UJE/Volia?node-id=2352-509 (VOILA 작업과는 무관)
 
@@ -88,7 +88,7 @@ AI 트레이딩 터미널 계속. 이미 최신이면 그대로, 아니면 `git 
 - **뒤로 단추 페이지 여백(PC)**: 맨 위 = 화면 높이 9%(64~128px), 뒤로 단추 ↔ 내용 = 4%(24~56px). 뒤로 단추는 화살표+제목 알약
 - 아이콘: **Lucide**, 선 1.6 (글자 ✕ ↑ 👁 쓰지 않기, 직접 그리지 않기)
 - 글자 크기: .5px 금지(내림), 1px 차이처럼 애매한 크기 금지 → 같은 크기 + 굵기로 구분하거나 확실히 다르게
-- 메모는 **최종 값만** 기록. 화면은 화면 ID(CO/CH/TR/MK/BT/EX/PL)로 부름
+- 메모는 **최종 값만** 기록. 화면은 화면 찾아보기 번호(01-01 ~ 09-40, )로 부름. 옛 번호표 SCREEN_IDS.md 는 10/19 에 지움
 
 ## 진행 현황 (2026-10-14) — AI 트레이딩 터미널
 자세한 값은 EDIT_NOTES의 터미널 표(1~132번)와 COLOR_NOTES. 큰 줄기만:
