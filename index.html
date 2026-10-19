@@ -20254,7 +20254,7 @@ function tfBrokersView(){
     +(st.k==='done'?'':'<div class="cx-acct">계정이 없습니다 → <button type="button" class="cx-lnk" onclick="tfBkOpenAcct(\'bitget\')">만들기(약 2분)</button></div>')
     +'</div>'
     +'<aside class="cx-side"><div class="cx-side-h">TETH가 쓰는 권한</div>'+tfCxPermRows()+'</aside>'
-    +'<div class="cx-help"><span>막히면 24/7 고객지원에 바로 문의하십시오</span><button type="button" class="cx-sec sm" onclick="event.stopPropagation();tfCxHelp()">문의하기</button></div>'
+    +'<div class="cx-help"><span>막히는 곳이 있으면 상담원이 도와드립니다. 24시간 응답합니다.</span><button type="button" class="cx-sec sm" onclick="event.stopPropagation();tfCxHelp()">문의하기</button></div>'
     +'</section>'
     +'<section class="cx-others"><h3 class="cx-sh">다른 지원 거래소</h3>'
     +others.map(function(b){
@@ -20857,7 +20857,7 @@ function tfTradeInactiveView(){
       +(cardDone?'<span class="tx-ac-done">등록됨</span>':'<button type="button" class="tx-btn ghost" onclick="tfAcSheetView(\'card\',{direct:true})">카드 등록</button>')
       +'</div></section>';
   } else ac='<p class="tx-ac-done">'+(apiDone?gEsc(tfExName(d.activation.ex))+' 연결됨':'카드 등록됨')+'</p>';
-  var help='<div class="tx-help"><span>막히면 24/7 고객지원에 바로 문의하십시오</span><button type="button" onclick="tfTxHelp()">문의하기</button></div>';
+  var help='<div class="tx-help"><span>막히는 곳이 있으면 상담원이 도와드립니다. 24시간 응답합니다.</span><button type="button" onclick="tfTxHelp()">문의하기</button></div>';
   gContent('<div class="tx tx-inactive">'+onb+head+layer+free+ac+help
     +'</div>');
   TF_RENDERING=false;
@@ -20955,7 +20955,7 @@ function tfAcSheetHtml(kind,inline){
     +'<div class="ac-meta" style="margin-left:0">연결 없이 쓰고 싶다면</div></div>'
     +'<button class="ac-btn s" id="ac-card" onclick="tfAcGo(\'card\')"'+(cardOn?' disabled':'')+'>'+(cardOn?'등록됨':'카드 등록')+'</button>'
     +'</div></div>'
-    +'<div class="ac-help">막히면 24/7 고객지원에 바로 문의하십시오 <button class="ac-lnk" type="button" onclick="tfAcHelp(event)">문의하기</button></div>'
+    +'<div class="ac-help">막히는 곳이 있으면 상담원이 도와드립니다. 24시간 응답합니다. <button class="ac-lnk" type="button" onclick="tfAcHelp(event)">문의하기</button></div>'
     +'</div>';
 }
 function tfAcHelp(ev){ if(ev&&ev.stopPropagation) ev.stopPropagation(); if(window.tethHelpOpen){ tethHelpOpen(); } else toast('고객지원 창을 불러오지 못했습니다'); }
@@ -27618,7 +27618,7 @@ if(typeof CPX_TH!=='undefined') CPX_TH.pos=CPX_TH.pos.replace('<th class="r">%</
   try{ var fix=[]; cpState().copies.filter(function(c){ return c.status==='active'; }).forEach(function(c2){ var s2=tfSSFind(c2.nick); var o=s2&&s2.r&&s2.r.state&&s2.r.state.open, L=!o?[]:o.length!=null?o:[o]; L.forEach(function(x){ if(x.fut&&x.pnl!=null) fix.push([mkPct0(x.chg,1),mkPct0(+x.pnl,1),+x.pnl]); }); });
     return rows.map(function(r){ for(var i=0;i<fix.length;i++){ var a='">'+fix[i][0]+'</td>'; if(r.indexOf(a)>=0){ return r.replace(/<td class="r num (u|d)">([+-]?[\d.]+%)<\/td>/,function(m){ return '<td class="r num '+(fix[i][2]>=0?'u':'d')+'">'+fix[i][1]+'</td>'; }); } } return r; }); }catch(e){ return rows; } }; })();
 /* 전략 목록: 떠 있는 상담 단추 대신 목록 아래 한 줄 */
-(function(){ var g0=tfSS3GridHtml; tfSS3GridHtml=function(){ var h=g0.apply(this,arguments); return h+'<p class="cq-help mk-help">막히면 상담원이 24시간 답합니다. <button type="button" class="pl-link" onclick="tfTxHelp()">상담원에게 묻기</button></p>'; }; })();
+(function(){ var g0=tfSS3GridHtml; tfSS3GridHtml=function(){ var h=g0.apply(this,arguments); return h+'<p class="cq-help mk-help">막히는 곳이 있으면 상담원이 도와드립니다. 24시간 응답합니다. <button type="button" class="pl-link" onclick="tfTxHelp()">상담원에게 묻기</button></p>'; }; })();
 /* 내 거래소 목록: 키보드(열면 현재 항목에 초점, 위아래 화살표, Esc 와 선택 뒤 단추로 초점 복귀), 현재 항목 체크 표시 */
 (function(){ var m0=tfMyExMenu; tfMyExMenu=function(open){ var had=!!document.querySelector('.myex-m'); m0.apply(this,arguments); var m=document.querySelector('.myex-m'), b=document.querySelector('.myex');
   if(m&&!had){ var items=[].slice.call(m.querySelectorAll('button')); items.forEach(function(x){ x.setAttribute('tabindex','-1'); if(x.classList.contains('on')) x.insertAdjacentHTML('beforeend','<svg class="ck" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>'); });
@@ -27732,7 +27732,7 @@ function cpxView(cid,tab){
     +'<section class="cq-sec"><div class="cq-tabs" role="tablist">'
     +[['tr','거래 기록'],['bal','예산 내역']].map(function(t2){ return '<button type="button" role="tab" aria-selected="'+(tab===t2[0])+'" class="'+(tab===t2[0]?'on':'')+'" onclick="cpxTab(\''+cid+'\',\''+t2[0]+'\')">'+t2[1]+'</button>'; }).join('')+'</div>'
     +'<div id="cq-tabb">'+(tab==='bal'?cpxBudgetTab(c2,d):cpxTradesTab(c2,d))+'</div></section>'
-    +'<p class="cq-help">막히면 상담원이 24시간 답합니다. <button type="button" class="pl-link" onclick="tfTxHelp()">상담원에게 묻기</button></p>'
+    +'<p class="cq-help">막히는 곳이 있으면 상담원이 도와드립니다. 24시간 응답합니다. <button type="button" class="pl-link" onclick="tfTxHelp()">상담원에게 묻기</button></p>'
     +'</div>');
   TF_RENDERING=false;
 }
