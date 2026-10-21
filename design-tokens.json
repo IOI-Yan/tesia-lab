@@ -14,7 +14,18 @@
     "border": {
       "box": "rgba(255,255,255,0.06)",
       "divider": "rgba(255,255,255,0.08)",
-      "sidebar": "rgba(255,255,255,0.10)"
+      "sidebar": "rgba(255,255,255,0.10)",
+      "reserveCard": "#5C6069",
+      "$reserveCard": "예약 카드 안 구분선"
+    },
+    "accent": {
+      "shine": "#8AA8F0",
+      "$shine": "공개 페이지(06-01 게스트·서비스 소개) 작은 머리 글자 파랑과 빛 스침"
+    },
+    "overlay": {
+      "bg": "rgba(0,0,0,0.62)",
+      "blur": 6,
+      "$note": "팝업·시트 뒤 막. 앱은 성능 때문에 흐림을 빼도 됨"
     },
     "primary": {
       "base": "#00FEFF",
@@ -65,7 +76,9 @@
       "body": { "mobile": 15, "pc": 16, "weight": 400, "lineHeight": 1.7 },
       "desc": { "mobile": 14, "pc": 14, "weight": 400 },
       "meta": { "mobile": 13, "pc": 13, "weight": 400 },
-      "badge": { "mobile": 12, "pc": 12, "weight": 600 }
+      "badge": { "mobile": 12, "pc": 12, "weight": 600 },
+      "hero": { "mobile": 36, "pc": 56, "weight": 700, "$note": "공개 페이지 첫 화면 큰 제목(06-01 게스트·서비스 소개)" },
+      "bigNumber": { "mobile": 20, "pc": 20, "weight": 700, "$note": "카드 안 수익률 같은 큰 숫자, 숫자 글꼴" }
     }
   },
   "radius": {
@@ -101,6 +114,8 @@
     "insightMaxWidth": 1200,
     "popupMaxWidth": 440,
     "popupWideWidth": 560,
+    "cardArea": 1040,
+    "$cardArea": "홈 템플릿 카드 영역 최대 폭",
     "minTouch": 44,
     "$minTouch": "보이는 크기는 그대로, 투명 겹(pseudo-element)으로 누르는 영역만 44. 여백으로 넓히지 말 것"
   },
@@ -168,6 +183,14 @@
   "popup": { "bg": "#1B1C1F", "radius": 22, "padding": 24, "title": 20, "close": { "size": 32, "icon": 20, "hoverBg": "#2E3036" } },
   "dropdown": { "listBg": "#1B1C1F", "listRadius": 12, "itemHeight": 36, "itemRadius": 8, "itemFont": 14, "itemText": "#CFD2D6", "itemHover": "#313339", "chevron": 16 },
   "tooltip": { "bg": "#313339", "text": "#FFFFFF" },
+  "segment": {
+    "track": "#25272C",
+    "selected": "#313339",
+    "height": 34,
+    "onFloating": { "track": "#25272C", "selected": "#45484F", "height": 42, "$note": "팝업·떠 있는 창 위 세그먼트(전략 복사 창 등)는 한 단계 밝게" }
+  },
+  "planCard": { "radiusMobile": 20, "radiusPc": 26, "note": "#9EA3AD" },
+  "statusPill": { "height": 26, "font": 12, "weight": 600, "$note": "점 + 글자 상태 알약(전략 복사하는 중·중단됨·종료 대기). 바탕은 상태 색 12%, 중단됨은 흰색 6% + #9EA3AD" },
   "icon": { "set": "Lucide", "stroke": 1.6, "close": 20 },
   "copy": { "supportLine": "막히는 곳이 있으면 상담원이 도와드립니다. 24시간 응답합니다." },
   "motion": {
