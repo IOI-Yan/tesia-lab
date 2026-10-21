@@ -38,7 +38,7 @@
       "2": "#CFD2D6",
       "3": "#9EA3AD",
       "4": "#7C8089",
-      "$4": "입력칸 안내문·비활성·꺼진 스위치에만. 읽는 글자(메타·설명·각주·소제목·축 숫자)는 3",
+      "$4": "입력칸 안내문·비활성 글자에만. 읽는 글자(메타·설명·각주·소제목·축 숫자)는 3. 꺼진 스위치 손잡이는 switch.off.knob(#9EA3AD)",
       "iconButton": "#9AA0A6",
       "followUp": "#C4C7C5",
       "linkHover": "#E3E5EA"
@@ -69,9 +69,10 @@
     "size": {
       "pageTitle": { "mobile": 28, "mobileStep": 24, "pc": 32, "weight": 700, "$note": "모바일 기본 28. 설정·거래소 연결 같은 단계 화면과 두 줄로 넘어가는 긴 제목은 24" },
       "sectionTitle": { "mobile": 20, "pc": 24, "weight": 700 },
+      "publicSectionTitle": { "mobile": 24, "pc": 32, "weight": 700, "$note": "공개 페이지(서비스 소개·06-01 게스트) 구역 제목" },
       "subTitle": { "mobile": 17, "pc": 17, "weight": 700 },
       "cardTitle": { "mobile": 17, "pc": 17, "weight": 600 },
-      "strategyName": { "mobile": 22, "pc": 22, "weight": 700, "$note": "전략 상세·백테스트 결과 머리의 전략 이름" },
+      "strategyName": { "mobile": 22, "pc": 22, "pcBacktest": 28, "weight": 700, "$note": "전략 상세·백테스트 결과 머리의 전략 이름. PC 백테스트 결과만 28" },
       "rowName": { "mobile": 16, "pc": 16, "weight": 500 },
       "body": { "mobile": 15, "pc": 16, "weight": 400, "lineHeight": 1.7 },
       "desc": { "mobile": 14, "pc": 14, "weight": 400 },
@@ -190,6 +191,7 @@
     "onFloating": { "track": "#25272C", "selected": "#45484F", "height": 42, "$note": "팝업·떠 있는 창 위 세그먼트(전략 복사 창 등)는 한 단계 밝게" }
   },
   "planCard": { "radiusMobile": 20, "radiusPc": 26, "note": "#9EA3AD" },
+  "homeTemplateCard": { "radius": 22, "label": { "font": 14, "weight": 500 }, "$note": "홈 템플릿 카드는 일반 카드(16)와 달리 22" },
   "exchangeLogo": { "sizeMobile": 24, "sizePc": 28, "radius": 8, "$note": "전략 카드 오른쪽 위 거래소 로고. 둥근 사각(원형 아님)" },
   "statusPill": { "height": 26, "font": 12, "weight": 600, "$note": "점 + 글자 상태 알약(전략 복사하는 중·중단됨·종료 대기). 바탕은 상태 색 12%, 중단됨은 흰색 6% + #9EA3AD" },
   "icon": { "set": "Lucide", "stroke": 1.6, "close": 20 },
