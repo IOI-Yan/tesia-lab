@@ -190,7 +190,7 @@
     "height": 34,
     "onFloating": { "track": "#25272C", "selected": "#45484F", "height": 42, "$note": "팝업·떠 있는 창 위 세그먼트(전략 복사 창 등)는 한 단계 밝게" }
   },
-  "planCard": { "radiusMobile": 20, "radiusPc": 26, "note": "#9EA3AD" },
+  "planCard": { "radiusMobile": 20, "radiusPc": 24, "note": "#9EA3AD" },
   "homeTemplateCard": { "radius": 24, "label": { "font": 14, "weight": 500 }, "$note": "PC·태블릿 홈 템플릿 카드. 일반 카드(16)와 달리 24. 모바일은 알약 칩" },
   "exchangeLogo": { "sizeMobile": 24, "sizePc": 28, "radius": 8, "$note": "전략 카드 오른쪽 위 거래소 로고. 둥근 사각(원형 아님)" },
   "statusPill": { "height": 26, "font": 12, "weight": 600, "$note": "점 + 글자 상태 알약(전략 복사하는 중·중단됨·종료 대기). 바탕은 상태 색 12%, 중단됨은 흰색 6% + #9EA3AD" },
